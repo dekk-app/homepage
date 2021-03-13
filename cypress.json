@@ -1,0 +1,8 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "fixturesFolder": false,
+  "testFiles": "**/*.feature",
+  "supportFile": "./cypress/support/index.js",
+  "retries": 2,
+  "typescript": true
+}
