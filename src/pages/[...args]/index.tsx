@@ -63,10 +63,7 @@ const Page: NextPage<PageProps> = ({ locale, args, template }) => {
 
 	return (
 		<Component>
-			<Header />
 			<div>{t("hello")} Dekk</div>
-			<DataLog data={{ locale, args, template }} />
-			<LanguageSwitcher />
 		</Component>
 	);
 };

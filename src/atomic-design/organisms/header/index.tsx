@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React from "react";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = ({ children }) => {
 	const { locale } = useRouter();
 	const { t } = useTranslation("common");
 
@@ -35,6 +35,7 @@ export const Header: React.FC = () => {
 					}
 				)}
 			</nav>
+			{children}
 		</header>
 	);
 };

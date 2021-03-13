@@ -1,10 +1,6 @@
+import { Layout } from "@/atomic-design/organisms/layout";
 import React from "react";
 
 export const Template: React.FC = ({ children }) => {
-	return (
-		<main>
-			<h1>Dashboard</h1>
-			<div>{children}</div>
-		</main>
-	);
+	return <Layout>{children}</Layout>;
 };
