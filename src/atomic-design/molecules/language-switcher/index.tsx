@@ -32,7 +32,7 @@ export const LanguageSwitcher: React.FC = () => {
 		<div>
 			{router.locales.map(locale => (
 				<div key={locale}>
-					<Link href={`/${dir[locale]}`} locale={locale}>
+					<Link passHref href={`/${dir[locale]}`} locale={locale}>
 						<StyledLink
 							active={router.locale === locale}
 							data-test-id="language-switcher-link"
