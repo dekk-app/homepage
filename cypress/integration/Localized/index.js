@@ -1,5 +1,4 @@
 import { When, Then } from "cypress-cucumber-preprocessor/steps";
-import { withBaseUrl } from "../../utils";
 
 When("I prefer {string} as language", languages => {
 	const value = languages.split(",").map(lang => lang.trim());
@@ -10,6 +9,6 @@ When("I prefer {string} as language", languages => {
 	});
 });
 
-Then(`I see {string} in the url`, locale => {
-	cy.url().should("equal", withBaseUrl(locale));
+Then(`I see {string} on the page`, text => {
+	cy.contains(text);
 });
