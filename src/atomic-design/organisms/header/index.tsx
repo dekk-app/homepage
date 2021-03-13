@@ -11,7 +11,7 @@ export const Header: React.FC = ({ children }) => {
 	return (
 		<header>
 			<nav>
-				<ActiveLink href="/" locale={locale} data-test-id="header-nav-link">
+				<ActiveLink href="/" data-test-id="header-nav-link">
 					{t("home")}
 				</ActiveLink>
 				{routeMap.map(
@@ -26,7 +26,6 @@ export const Header: React.FC = ({ children }) => {
 							<ActiveLink
 								key={template}
 								href={`/${dir}`}
-								locale={locale}
 								data-test-id="header-nav-link"
 							>
 								{breadcrumb}
