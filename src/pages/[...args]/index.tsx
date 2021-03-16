@@ -51,7 +51,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Page: NextPage<PageProps> = ({ locale, args, template }) => {
-	const { t } = useTranslation("common");
 	const Component = React.useMemo(
 		() =>
 			templates[template] ??
@@ -61,11 +60,7 @@ const Page: NextPage<PageProps> = ({ locale, args, template }) => {
 		[template]
 	);
 
-	return (
-		<Component>
-			<div>{t("hello")} Dekk</div>
-		</Component>
-	);
+	return <Component />;
 };
 
 export default Page;

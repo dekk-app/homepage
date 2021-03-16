@@ -14,11 +14,10 @@ export const StyledFrame = styled.div`
 
 export const StyledInnerFrame = styled(StyledFrame)`
 	transform-origin: 0 0;
-	background: orange;
 `;
 export const StyledOuterFrame = styled(StyledFrame)`
 	overflow: hidden;
-	background: blue;
+	background: #212121;
 `;
 
 import { useMouse } from "react-use";

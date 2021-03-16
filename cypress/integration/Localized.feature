@@ -7,7 +7,7 @@ Feature: Localized UI
 	Scenario: Seeing a localized UI
 
 		When I prefer "en" as language
-		Then I see "Hello Dekk" on the page
+		Then I see "Create" on the page
 
 		When I prefer "de" as language
-		Then I see "Hallo Dekk" on the page
+		Then I see "Erstellen" on the page
