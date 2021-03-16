@@ -8,6 +8,12 @@ Given("I am on the create screen", () => {
 
 const momentum = 2.0202019214630127;
 
+const store = {
+	event: "",
+	distance: "",
+	direction: "",
+}
+
 When("I {string} the view {string} to the {string}", (event, distance, direction) => {
 	cy.window().reload();
 	cy.get(dataTestId("inner-frame")).should("be.visible");
@@ -19,17 +25,20 @@ When("I {string} the view {string} to the {string}", (event, distance, direction
 	if (event === "scroll") {
 		cy.window().trigger("wheel", { deltaX, deltaY });
 	} else if (event === "metaKey+scroll") {
+		store.event = event
+		store.distance = distance
+		store.direction = direction
 		cy.window().trigger("keydown", { metaKey: true });
 		cy.document().trigger("mousemove", {
-			pageX: 300,
-			pageY: 300,
-			pageXOffset: 0,
-			pageYOffset: 0,
+			pageX: 600,
+			pageY: 600,
 		});
 		for (let i = 0; i < Math.abs(Math.floor(parsedDistance / momentum)); i++) {
 			cy.window().trigger("wheel", {
 				deltaX: deltaX / Math.abs(deltaX),
 				deltaY: deltaY / Math.abs(deltaY),
+				pageX: 600,
+				pageY: 600,
 				deltaZ: 0,
 				deltaMode: 0,
 				metaKey: true,
@@ -73,20 +82,37 @@ Then("the screen moves {string} to the {string}", (distance, direction) => {
 	});
 });
 
-Then("the screen zooms to {string} times {string}", (zoomFactor, direction) => {
-	cy.log(zoomFactor, direction);
+const getFactor = (distance, {momentum = 1, scale = 0.99} = {}) => {
+	let counter = Math.floor(distance / momentum);
+	let factor = 1;
+	while(counter--) {
+		factor /= scale
+	}
+	return factor;
+}
+
+const toDecimals = (n, decimalCount) => Math.floor(n *Math.pow(10,decimalCount)) / Math.pow(10,decimalCount);
+
+Then("the screen zooms {string}", (zoomFactor, direction) => {
+	const factor = getFactor(parseFloat(store.distance), {momentum})
+	cy.get(dataTestId("inner-frame")).then(inner => {
+
+		cy.get(dataTestId("outer-frame")).then(outer => {
+			const innerB = inner[0].getBoundingClientRect();
+			const outerB = outer[0].getBoundingClientRect();
+			const actualWidth = toDecimals(innerB.width, 2)
+			let expectedWidth = toDecimals(outerB.width * factor, 2)
+			switch(direction) {
+				case "up":
+					expect(expectedWidth).to.be.equal(actualWidth);
+					break;
+				case "down":
+					expectedWidth = toDecimals(outerB.width / factor, 2)
+					expect(expectedWidth).to.be.equal(actualWidth);
+					break;
+				default:
+					break;
+			}
+		});
+	});
 });
-
-When(
-	"I {string} the view {string} to the {string} with my mouse at {string}",
-	(event, distance, direction, coordinates) => {
-		cy.log(event, distance, direction, coordinates);
-	}
-);
-
-Then(
-	"the screen zooms {string} times {string} centered to {string}",
-	(zoomFactor, direction, coordinates) => {
-		cy.log(zoomFactor, direction, coordinates);
-	}
-);
