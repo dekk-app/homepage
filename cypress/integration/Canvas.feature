@@ -19,11 +19,7 @@ Feature: Canvas
 		Then the screen moves "300px" to the "bottom"
 
 		When I "metaKey+scroll" the view "100px" to the "top"
-		Then the screen zooms to "n" times "up"
+		Then the screen zooms "up"
 
 		When I "metaKey+scroll" the view "100px" to the "bottom"
-		Then the screen zooms to "n" times "down"
-
-		When I "metaKey+scroll" the view "100px" to the "top" with my mouse at "100px,100px"
-		Then the screen zooms "n" times "up" centered to "100px,100px"
-
+		Then the screen zooms "down"
