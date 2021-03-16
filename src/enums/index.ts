@@ -9,3 +9,9 @@ export enum Route {
 	dashboard = "dashboard",
 	create = "create",
 }
+
+export enum Renderer {
+	svg = "svg",
+	html = "html",
+	canvas = "canvas",
+}

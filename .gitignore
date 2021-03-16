@@ -115,6 +115,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# IntelliJ
+.idea
+
+# Git hooks
+.husky
+
 # Generated files
 src/types/contentful-api.ts
 .graphqlconfig

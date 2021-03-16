@@ -3,6 +3,6 @@
   "fixturesFolder": false,
   "testFiles": "**/*.feature",
   "supportFile": "./cypress/support/index.js",
-  "retries": 2,
+  "retries": 0,
   "typescript": true
 }
