@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "cypress:run": "npx cypress run --record --key 18443aff-3deb-4039-b989-d97ceebda366",
+    "cypress:run-local": "npx cypress run",
     "cypress:open": "npx cypress open",
     "dev": "next",
     "start": "next start",
@@ -105,6 +106,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^5.1.3",
     "lint-staged": "10.5.4",
+    "next-pwa": "^5.0.6",
     "pify": "^5.0.0",
     "prettier": "^2.2.1",
     "standard-version": "^9.1.1",

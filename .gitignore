@@ -79,6 +79,8 @@ web_modules/
 # Next.js build output
 .next
 out
+public/sw.js
+public/workbox-*.js
 
 # Nuxt.js build / generate output
 .nuxt
