@@ -4,7 +4,7 @@
   "main": "n/a",
   "scripts": {
     "build": "next build",
-    "cypress:run": "npx cypress run",
+    "cypress:run": "npx cypress run --record --key 18443aff-3deb-4039-b989-d97ceebda366",
     "cypress:open": "npx cypress open",
     "dev": "next",
     "start": "next start",
