@@ -1,7 +1,5 @@
-import { LanguageSwitcher } from "@/atomic-design/molecules/language-switcher";
-import { Header } from "@/atomic-design/organisms/header";
-import { Home } from "@/atomic-design/templates";
-import { Template } from "@/enums";
+import { Template } from "@/ions/enums";
+import { Home } from "@/templates";
 import { PageProps } from "@/types";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";

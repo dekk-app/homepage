@@ -1,4 +1,4 @@
-import { Template } from "@/enums";
+import { Template } from "@/ions/enums";
 import { ParsedUrlQuery } from "querystring";
 
 export interface PageProps {

@@ -1,6 +1,6 @@
-import { useApollo } from "@/services/apollo/client";
-import { cache } from "@/services/emotion/cache";
-import { muiLight, theme } from "@/theme";
+import { useApollo } from "@/ions/services/apollo/client";
+import { cache } from "@/ions/services/emotion/cache";
+import { muiLight, theme } from "@/ions/theme";
 import { ApolloProvider } from "@apollo/client";
 import { CacheProvider, ThemeProvider } from "@emotion/react";
 import { ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";

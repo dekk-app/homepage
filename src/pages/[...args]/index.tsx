@@ -1,12 +1,8 @@
-import { DataLog } from "@/atomic-design/atoms/data-log";
-import { ErrorComponent } from "@/atomic-design/atoms/error-component";
-import { routeMap } from "@/atomic-design/ions/routes";
-import { LanguageSwitcher } from "@/atomic-design/molecules/language-switcher";
-import { Header } from "@/atomic-design/organisms/header";
-import templates, { getTemplate } from "@/atomic-design/templates";
+import { ErrorComponent } from "@/atoms/error-component";
+import { routeMap } from "@/ions/routes";
+import templates, { getTemplate } from "@/templates";
 import { PageProps, PageQuery } from "@/types";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
