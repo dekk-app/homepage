@@ -1,4 +1,5 @@
 import { Template } from "@/ions/enums";
+import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 
 export interface PageProps {
@@ -28,3 +29,9 @@ export interface RouteObject {
 export interface WithDataTestId {
 	"data-test-id"?: string;
 }
+
+export interface StyledLinkProps {
+	active?: boolean;
+}
+
+export interface ActiveLinkProps extends LinkProps, WithDataTestId {}

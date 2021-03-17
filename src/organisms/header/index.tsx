@@ -1,11 +1,13 @@
-import { ActiveLink } from "@/atoms/active-link";
 import { routeMap } from "@/ions/routes";
-import { StyledHeader } from "@/organisms/header/styled";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React from "react";
+import { StyledHeader } from "./styled";
 
-export const Header: React.FC = ({ children }) => {
+const ActiveLink = dynamic(async () => import("@/molecules/active-link"));
+
+const Header: React.FC = ({ children }) => {
 	const { locale } = useRouter();
 	const { t } = useTranslation("common");
 
@@ -39,3 +41,5 @@ export const Header: React.FC = ({ children }) => {
 		</StyledHeader>
 	);
 };
+
+export default Header;

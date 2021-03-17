@@ -1,8 +1,12 @@
 import { Renderer } from "@/ions/enums";
-import { HTMLRenderer } from "@/molecules/html-renderer";
+import dynamic from "next/dynamic";
 import React from "react";
 
-export const Canvas: React.FC<{ renderer: Renderer }> = ({ renderer, children }) => {
+const HTMLRenderer = dynamic<React.ComponentPropsWithRef<React.ElementType>>(async () =>
+	import("@/molecules/html-renderer").then(mod => mod.HTMLRenderer)
+);
+
+const Canvas: React.FC<{ renderer: Renderer }> = ({ renderer, children }) => {
 	switch (renderer) {
 		case Renderer.html:
 			return <HTMLRenderer>{children}</HTMLRenderer>;
@@ -12,3 +16,5 @@ export const Canvas: React.FC<{ renderer: Renderer }> = ({ renderer, children })
 			throw new Error(`Renderer ${renderer} is not implemented`);
 	}
 };
+
+export default Canvas;

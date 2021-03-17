@@ -1,38 +1,10 @@
+import { HTMLShape, SVGShape } from "@/atoms/shape/shapes";
+import { ShapeType } from "@/ions/constants";
 import { Renderer } from "@/ions/enums";
 import { useRenderContext } from "@/ions/hooks/render";
 import React from "react";
 
-enum ShapeType {
-	triangle = "triangle",
-	rectangle = "rectangle",
-	circle = "circle",
-}
-
-const shapePaths = {
-	[ShapeType.triangle]: "",
-	[ShapeType.rectangle]: "",
-	[ShapeType.circle]: "",
-};
-
-export const SVGShape: React.FC<{ shape: ShapeType }> = ({ shape }) => {
-	return (
-		<g>
-			<path d={shapePaths[shape]} />
-		</g>
-	);
-};
-
-export const HTMLShape: React.FC<{ shape: ShapeType }> = ({ shape }) => {
-	return (
-		<div>
-			<svg>
-				<path d={shapePaths[shape]} />
-			</svg>
-		</div>
-	);
-};
-
-export const Shape: React.FC<{ shape: ShapeType }> = ({ shape }) => {
+const Shape: React.FC<{ shape: ShapeType }> = ({ shape }) => {
 	const { renderer } = useRenderContext();
 	switch (renderer) {
 		case Renderer.html:
@@ -44,3 +16,5 @@ export const Shape: React.FC<{ shape: ShapeType }> = ({ shape }) => {
 			throw new Error(`Renderer ${renderer} is not implemented`);
 	}
 };
+
+export default Shape;

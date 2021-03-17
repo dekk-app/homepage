@@ -1,10 +1,16 @@
-import { LanguageSwitcher } from "@/molecules/language-switcher";
-import { StyledFooter } from "@/organisms/footer/styled";
+import dynamic from "next/dynamic";
 import React from "react";
+import { StyledFooter } from "./styled";
 
-export const Footer: React.FC = ({ children }) => (
+const LanguageSwitcher = dynamic(async () =>
+	import("@/molecules/language-switcher").then(mod => mod.LanguageSwitcher)
+);
+
+const Footer: React.FC = ({ children }) => (
 	<StyledFooter>
 		{children}
 		<LanguageSwitcher />
 	</StyledFooter>
 );
+
+export default Footer;

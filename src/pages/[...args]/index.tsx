@@ -1,12 +1,16 @@
-import { ErrorComponent } from "@/atoms/error-component";
 import { routeMap } from "@/ions/routes";
-import templates, { getTemplate } from "@/templates";
+import templates from "@/templates";
 import { PageProps, PageQuery } from "@/types";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import dynamic from "next/dynamic";
 import React from "react";
 
+const ErrorComponent = dynamic(async () => import("@/atoms/error-component"));
+
 export const getStaticProps: GetStaticProps<PageProps, PageQuery> = async ({ locale, params }) => {
+	const { getTemplate } = await import("@/templates/utils");
+
 	const { args } = params;
 	const template = getTemplate(locale, args);
 

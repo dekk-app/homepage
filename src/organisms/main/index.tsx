@@ -1,3 +1,5 @@
 import React from "react";
 
-export const Main: React.FC = ({ children }) => <main>{children}</main>;
+const Main: React.FC = ({ children }) => <main>{children}</main>;
+
+export default Main;

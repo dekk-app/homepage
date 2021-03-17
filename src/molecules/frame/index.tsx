@@ -1,10 +1,10 @@
 import { useXYZ } from "@/ions/hooks/xyz";
 import { globalStyles, noBounce } from "@/ions/styles";
-import { StyledInnerFrame, StyledOuterFrame } from "@/molecules/frame/styled";
 import { Global } from "@emotion/react";
 import React from "react";
+import { StyledInnerFrame, StyledOuterFrame } from "./styled";
 
-export const Frame: React.FC = ({ children, ...props }) => {
+const Frame: React.FC = ({ children, ...props }) => {
 	const ref = React.useRef(null);
 	const { x, y, z } = useXYZ<HTMLDivElement>(ref, { factor: 0.99, min: 0.1, max: 2 });
 
@@ -23,3 +23,5 @@ export const Frame: React.FC = ({ children, ...props }) => {
 		</>
 	);
 };
+
+export default Frame;

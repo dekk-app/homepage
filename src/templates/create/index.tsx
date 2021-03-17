@@ -1,17 +1,19 @@
 import { Renderer } from "@/ions/enums";
-import { Canvas } from "@/organisms/canvas";
-import { Layout } from "@/organisms/layout";
 import styled from "@emotion/styled";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const Canvas = dynamic(async () => import("@/organisms/canvas"));
+const Layout = dynamic(async () => import("@/organisms/layout"));
 
 // @todo remove this component: DemoElement
 const DemoElement = styled.div`
-	width: 800px;
-	height: 450px;
+	width: 300px;
+	height: 750px;
 	background: white;
 `;
 
-export const Template: React.FC = ({ children }) => {
+const Template: React.FC = ({ children }) => {
 	return (
 		<Layout>
 			<Canvas renderer={Renderer.html}>
@@ -20,3 +22,5 @@ export const Template: React.FC = ({ children }) => {
 		</Layout>
 	);
 };
+
+export default Template;

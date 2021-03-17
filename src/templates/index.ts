@@ -1,24 +1,9 @@
-import { Route, Template } from "@/ions/enums";
-import { getRoute } from "@/ions/routes";
-import { Template as Create } from "@/templates/create";
-import { Template as Dashboard } from "@/templates/dashboard";
-import { Template as Home } from "@/templates/home";
+import { Template } from "@/ions/enums";
+import dynamic from "next/dynamic";
 
-export { Home, Dashboard, Create };
-
-export const getTemplate = (locale: string, [dir]: string[]) => {
-	const route = getRoute(locale, dir);
-
-	switch (route) {
-		case Route.dashboard:
-			return Template.dashboard;
-		case Route.create:
-			return Template.create;
-		case Route.home:
-		default:
-			return Template.home;
-	}
-};
+const Create = dynamic(async () => import("./create"));
+const Dashboard = dynamic(async () => import("./dashboard"));
+const Home = dynamic(async () => import("./home"));
 
 const templates = {
 	[Template.home]: Home,

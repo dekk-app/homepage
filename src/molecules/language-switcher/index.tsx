@@ -1,12 +1,16 @@
-import { StyledLink } from "@/atoms/active-link";
-import { ErrorComponent } from "@/atoms/error-component";
 import { ROOT } from "@/ions/constants";
 import routes from "@/ions/routes";
-import { LocalizedString } from "@/types";
+import { LocalizedString, StyledLinkProps } from "@/types";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React from "react";
+
+const ErrorComponent = dynamic(async () => import("@/atoms/error-component"));
+const Link = dynamic(async () => import("next/link"));
+const StyledLink = dynamic<React.ComponentPropsWithRef<React.ElementType> & StyledLinkProps>(
+	async () => import("@/molecules/active-link/styled").then(mod => mod.StyledLink)
+);
 
 export const LanguageSwitcher: React.FC = () => {
 	const router = useRouter();

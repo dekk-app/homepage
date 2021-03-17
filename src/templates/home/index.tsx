@@ -1,6 +1,10 @@
-import { Layout } from "@/organisms/layout";
+import dynamic from "next/dynamic";
 import React from "react";
 
-export const Template: React.FC = ({ children }) => {
+const Layout = dynamic(async () => import("@/organisms/layout"));
+
+const Template: React.FC = ({ children }) => {
 	return <Layout>{children}</Layout>;
 };
+
+export default Template;

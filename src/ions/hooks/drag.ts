@@ -59,9 +59,13 @@ export const useDrag = <T extends Element>(
 			}
 		};
 
-		current.addEventListener("mousedown", handleMouseDown);
+		if (current) {
+			current.addEventListener("mousedown", handleMouseDown);
+		}
 		return () => {
-			current.removeEventListener("mousedown", handleMouseDown);
+			if (current) {
+				current.removeEventListener("mousedown", handleMouseDown);
+			}
 		};
 	}, [dragRef]);
 	React.useEffect(() => {

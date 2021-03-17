@@ -1,16 +1,27 @@
-import { Footer } from "@/organisms/footer";
-import { Header } from "@/organisms/header";
-import { Main } from "@/organisms/main";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import React from "react";
 
-export const Layout: React.FC = ({ children }) => {
+const Footer = dynamic(async () => import("@/organisms/footer"));
+const Header = dynamic(async () => import("@/organisms/header"));
+const Main = dynamic(async () => import("@/organisms/main"));
+const Head = dynamic(async () => import("next/head"));
+
+const Layout: React.FC = ({ children }) => {
 	const { t } = useTranslation("common");
 	return (
 		<>
+			<Head>
+				<meta
+					name="description"
+					content="Dekk reimagines presentations. Create and present by intuition. Make a difference, make a Dekk."
+				/>
+			</Head>
 			<Header />
 			<Main>{children}</Main>
 			<Footer />
 		</>
 	);
 };
+
+export default Layout;
