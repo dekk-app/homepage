@@ -1,7 +1,7 @@
 import { clamp, inRange } from "@/utils/number";
-import { css } from "@emotion/react";
+import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Global } from "@emotion/react";
+
 import React from "react";
 
 export const StyledFrame = styled.div`
@@ -35,8 +35,10 @@ export const useWheel = () => {
 				setDY(deltaY);
 				setDX(deltaX);
 			}
+
 			setTimestamp(Date.now());
 		};
+
 		const handleKeyUp = ({ metaKey }: KeyboardEvent) => {
 			if (!metaKey) {
 				setDZ(0);
@@ -45,6 +47,7 @@ export const useWheel = () => {
 				setTimestamp(Date.now());
 			}
 		};
+
 		window.addEventListener("wheel", handleWheel);
 		window.addEventListener("keyup", handleKeyUp);
 		return () => {
@@ -56,14 +59,11 @@ export const useWheel = () => {
 };
 
 export interface UseDragProps {
-	onDragStart?(): void;
-
-	onDrag?(c: { dX: number; dY: number }): void;
-
-	onDragEnd?(c: { dX: number; dY: number }): void;
-
 	x?: number;
 	y?: number;
+	onDragStart?(): void;
+	onDrag?(c: { dX: number; dY: number }): void;
+	onDragEnd?(c: { dX: number; dY: number }): void;
 }
 
 export const useDrag = <T extends Element>(
@@ -92,13 +92,16 @@ export const useDrag = <T extends Element>(
 				if (onDrag) {
 					onDrag({ dX: _dX, dY: _dY });
 				}
+
 				return;
 			}
+
 			setDragging(true);
 			if (onDragStart) {
 				onDragStart();
 			}
 		};
+
 		window.addEventListener("mousemove", handleMouseMove);
 		return () => {
 			window.removeEventListener("mousemove", handleMouseMove);
@@ -106,8 +109,7 @@ export const useDrag = <T extends Element>(
 	}, [down, startX, startY, dragRef, dragging, onDrag, onDragStart]);
 	React.useEffect(() => {
 		const { current } = dragRef;
-		const handleMouseDown = (e: MouseEvent) => {
-			const { pageX, pageY, buttons } = e;
+		const handleMouseDown = ({ pageX, pageY, buttons }: MouseEvent) => {
 			if (buttons === 1) {
 				setStartX(pageX);
 				setStartY(pageY);
@@ -115,9 +117,9 @@ export const useDrag = <T extends Element>(
 			}
 		};
 
-		current?.addEventListener("mousedown", handleMouseDown);
+		current.addEventListener("mousedown", handleMouseDown);
 		return () => {
-			current?.removeEventListener("mousedown", handleMouseDown);
+			current.removeEventListener("mousedown", handleMouseDown);
 		};
 	}, [dragRef]);
 	React.useEffect(() => {
@@ -125,6 +127,7 @@ export const useDrag = <T extends Element>(
 			if (dragging && onDragEnd) {
 				onDragEnd({ dX, dY });
 			}
+
 			setDragging(false);
 			setDown(false);
 			setX(currentValue => currentValue + dX);
@@ -132,14 +135,16 @@ export const useDrag = <T extends Element>(
 			setDX(0);
 			setDY(0);
 		};
+
 		window.addEventListener("mouseup", handleMouseUp);
 		return () => {
 			window.removeEventListener("mouseup", handleMouseUp);
 		};
-	}, [dX, dY, onDragEnd]);
+	}, [dX, dY, onDragEnd, dragging]);
 	if (down) {
 		return { x: x + dX, y: y + dY, down, dX, dY };
 	}
+
 	return { x, y, down, setX, setY, dX, dY };
 };
 
@@ -160,20 +165,21 @@ export const useXYZ = <T extends Element>(
 	React.useEffect(() => {
 		const _f = dZ < 0 ? 1 / factor : factor;
 		if (Math.abs(dZ) > 0) {
-			setZ(prevState => {
-				const nextState = clamp(prevState * _f, min, max);
+			setZ(previousState => {
+				const nextState = clamp(previousState * _f, min, max);
 				if (inRange(nextState, min, max)) {
-					setX(prevState => prevState - (elX - prevState) * (_f - 1));
-					setY(prevState => prevState - (elY - prevState) * (_f - 1));
-					return prevState * _f;
+					setX(previousState_ => previousState_ - (elX - previousState_) * (_f - 1));
+					setY(previousState_ => previousState_ - (elY - previousState_) * (_f - 1));
+					return previousState * _f;
 				}
-				return prevState;
+
+				return previousState;
 			});
 		} else {
-			setX(prevState => prevState - dX / _f);
-			setY(prevState => prevState - dY / _f);
+			setX(previousState => previousState - dX / _f);
+			setY(previousState => previousState - dY / _f);
 		}
-	}, [dX, dY, dZ, timestamp, factor, min, max]);
+	}, [dX, dY, dZ, timestamp, factor, min, max, elX, elY, setX, setY]);
 
 	return {
 		x,

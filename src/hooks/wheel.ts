@@ -7,19 +7,22 @@ export const useWheel = (clear = 0, throttle = 0) => {
 	const [deltaY, setDeltaY] = React.useState(0);
 	const [timestamp, setTimestamp] = React.useState(0);
 	const timer = React.useRef(0);
-	const handleWheel = React.useCallback((e: WheelEvent) => {
-		window.clearTimeout(timer.current);
-		if (clear) {
-			timer.current = window.setTimeout(() => {
-				setDeltaY(0);
-				setDeltaX(0);
-			}, clear);
-		}
+	const handleWheel = React.useCallback(
+		(event: WheelEvent) => {
+			window.clearTimeout(timer.current);
+			if (clear) {
+				timer.current = window.setTimeout(() => {
+					setDeltaY(0);
+					setDeltaX(0);
+				}, clear);
+			}
 
-		setDeltaY(e.deltaY);
-		setDeltaX(e.deltaX);
-		setTimestamp(Date.now());
-	}, []);
+			setDeltaY(event.deltaY);
+			setDeltaX(event.deltaX);
+			setTimestamp(Date.now());
+		},
+		[clear]
+	);
 
 	const handleThrottledWheel = useThrottledCallback(handleWheel, throttle);
 	React.useEffect(() => {
@@ -28,12 +31,13 @@ export const useWheel = (clear = 0, throttle = 0) => {
 		} else {
 			window.addEventListener("wheel", handleWheel);
 		}
+
 		return () => {
 			window.removeEventListener("wheel", handleThrottledWheel);
 			window.removeEventListener("wheel", handleWheel);
 		};
 	}, [handleWheel, handleThrottledWheel, throttle]);
-	return React.useMemo(() => ({ deltaX, deltaY }), [timestamp, deltaX, deltaY]);
+	return React.useMemo(() => ({ deltaX, deltaY, timestamp }), [timestamp, deltaX, deltaY]);
 };
 
 export const use3dWheel = (clear = 0, throttle = 0) => {
@@ -41,7 +45,7 @@ export const use3dWheel = (clear = 0, throttle = 0) => {
 	const [deltaY, setDeltaY] = React.useState(0);
 	const [deltaZ, setDeltaZ] = React.useState(0);
 	const metaKey = useMetaKey();
-	const wheel = useWheel(clear, throttle);
+	const { timestamp, ...wheel } = useWheel(clear, throttle);
 
 	React.useEffect(() => {
 		if (metaKey) {
@@ -54,5 +58,10 @@ export const use3dWheel = (clear = 0, throttle = 0) => {
 			setDeltaZ(0);
 		}
 	}, [metaKey, wheel]);
-	return React.useMemo(() => ({ deltaX, deltaY, deltaZ }), [wheel, deltaX, deltaY, deltaZ]);
+	return React.useMemo(() => ({ deltaX, deltaY, deltaZ, timestamp }), [
+		timestamp,
+		deltaX,
+		deltaY,
+		deltaZ,
+	]);
 };

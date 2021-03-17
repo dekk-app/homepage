@@ -1,10 +1,7 @@
 import React from "react";
 import { useThrottledCallback } from "use-debounce";
 
-export const useDrag = <T extends Element>(
-	ref: React.MutableRefObject<T>,
-	throttle: number = 0
-) => {
+export const useDrag = <T extends Element>(ref: React.MutableRefObject<T>, throttle = 0) => {
 	const [deltaX, setDeltaX] = React.useState(0);
 	const [deltaY, setDeltaY] = React.useState(0);
 	const [x, setX] = React.useState(0);
@@ -29,8 +26,8 @@ export const useDrag = <T extends Element>(
 	const handleMouseUp = React.useCallback(() => {
 		setDragging(false);
 		setDown(false);
-		setX(prevState => prevState + deltaX);
-		setY(prevState => prevState + deltaY);
+		setX(previousState => previousState + deltaX);
+		setY(previousState => previousState + deltaY);
 		setInitialX(0);
 		setInitialY(0);
 		setDeltaX(0);
@@ -53,8 +50,9 @@ export const useDrag = <T extends Element>(
 				window.addEventListener("mousemove", handleMouseMove);
 			}
 		};
+
 		const unsubscribe = () => {
-			ref.current?.removeEventListener("mousedown", handleMouseDown);
+			ref.current.removeEventListener("mousedown", handleMouseDown);
 			window.removeEventListener("mouseup", handleMouseUp);
 			window.removeEventListener("mousemove", handleThrottledMouseMove);
 			window.removeEventListener("mousemove", handleMouseMove);
@@ -66,13 +64,13 @@ export const useDrag = <T extends Element>(
 			unsubscribe();
 		}
 
-		ref.current?.addEventListener("mousedown", handleMouseDown);
+		ref.current.addEventListener("mousedown", handleMouseDown);
 		window.addEventListener("mouseup", handleMouseUp);
 
 		return () => {
 			unsubscribe();
 		};
-	}, [handleMouseMove, handleThrottledMouseMove, handleMouseUp, throttle, down]);
+	}, [handleMouseMove, handleThrottledMouseMove, handleMouseUp, throttle, down, ref]);
 	return React.useMemo(() => ({ x, y, deltaX, deltaY, dragging, down, timestamp }), [
 		timestamp,
 		deltaX,

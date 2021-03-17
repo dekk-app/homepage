@@ -4,8 +4,9 @@ import { Renderer } from "@/enums";
 import React from "react";
 
 export const HTMLRenderer: React.FC = ({ children }) => {
+	const context = React.useMemo(() => ({ renderer: Renderer.html }), []);
 	return (
-		<RenderContext.Provider value={{ renderer: Renderer.html }}>
+		<RenderContext.Provider value={context}>
 			<StyledFrame data-test-id="html-renderer">
 				<Frame>{children}</Frame>
 			</StyledFrame>

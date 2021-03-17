@@ -10,6 +10,7 @@
     "start": "next start",
     "preexport": "yarn build",
     "export": "next export",
+    "lint": "yarn xo; yarn stylelint",
     "ncu": "npx npm-check-updates -u --dep='prod,dev'",
     "ncu:minor": "yarn ncu -t minor",
     "ncu:patch": "yarn ncu -t patch",
