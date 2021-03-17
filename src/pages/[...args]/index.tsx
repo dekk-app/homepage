@@ -33,14 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 			},
 		}))
 	);
-	console.info(
-		"Paths ->",
-		JSON.stringify(
-			paths.map(({ params: { args }, locale }) => `/${[locale, ...args].join("/")}`),
-			null,
-			2
-		)
-	);
+
 	return {
 		paths,
 		// Always false for SSG support.

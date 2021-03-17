@@ -162,24 +162,38 @@ export const useXYZ = <T extends Element>(
 	const { elX, elY } = useMouse(ref);
 	const { dZ, dX, dY, timestamp } = useWheel();
 	const [z, setZ] = React.useState(1);
+	const element = React.useMemo(() => ({ x: elX, y: elY, timestamp }), [timestamp]);
 	React.useEffect(() => {
 		const _f = dZ < 0 ? 1 / factor : factor;
 		if (Math.abs(dZ) > 0) {
 			setZ(previousState => {
 				const nextState = clamp(previousState * _f, min, max);
 				if (inRange(nextState, min, max)) {
-					setX(previousState_ => previousState_ - (elX - previousState_) * (_f - 1));
-					setY(previousState_ => previousState_ - (elY - previousState_) * (_f - 1));
+					if (setX) {
+						setX(
+							previousState_ =>
+								previousState_ - (element.x - previousState_) * (_f - 1)
+						);
+					}
+					if (setY) {
+						setY(
+							previousState_ =>
+								previousState_ - (element.y - previousState_) * (_f - 1)
+						);
+					}
 					return previousState * _f;
 				}
-
 				return previousState;
 			});
 		} else {
-			setX(previousState => previousState - dX / _f);
-			setY(previousState => previousState - dY / _f);
+			if (setX) {
+				setX(previousState => previousState - dX / _f);
+			}
+			if (setY) {
+				setY(previousState => previousState - dY / _f);
+			}
 		}
-	}, [dX, dY, dZ, timestamp, factor, min, max, elX, elY, setX, setY]);
+	}, [dX, dY, dZ, element, factor, min, max, setX, setY]);
 
 	return {
 		x,
