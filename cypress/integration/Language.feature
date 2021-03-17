@@ -1,4 +1,4 @@
-Feature: Locale redirects
+Feature: Language Switcher
 
 	As a user I want to see a language switcher
 	in order to quickly navigate to a different language for the current page.
