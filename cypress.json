@@ -1,8 +1,9 @@
 {
   "baseUrl": "http://localhost:3000",
   "fixturesFolder": false,
-  "testFiles": "**/*.feature",
+  "projectId": "pv4qcq",
   "supportFile": "./cypress/support/index.js",
-  "retries": 2,
+  "retries": 0,
+  "testFiles": "**/*.feature",
   "typescript": true
 }

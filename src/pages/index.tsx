@@ -1,12 +1,12 @@
-import { LanguageSwitcher } from "@/atomic-design/molecules/language-switcher";
-import { Header } from "@/atomic-design/organisms/header";
-import { Home } from "@/atomic-design/templates";
-import { Template } from "@/enums";
+import { Template } from "@/ions/enums";
 import { PageProps } from "@/types";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const Home = dynamic(async () => import("@/templates/home"));
 
 const Page: NextPage<PageProps> = props => {
 	const { t } = useTranslation("common");

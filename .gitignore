@@ -79,6 +79,8 @@ web_modules/
 # Next.js build output
 .next
 out
+public/sw.js
+public/workbox-*.js
 
 # Nuxt.js build / generate output
 .nuxt
@@ -114,6 +116,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# IntelliJ
+.idea
+
+# Git hooks
+.husky
 
 # Generated files
 src/types/contentful-api.ts

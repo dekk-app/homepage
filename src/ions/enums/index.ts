@@ -1,0 +1,17 @@
+export enum Template {
+	home = "home",
+	dashboard = "dashboard",
+	create = "create",
+}
+
+export enum Route {
+	home = "home",
+	dashboard = "dashboard",
+	create = "create",
+}
+
+export enum Renderer {
+	svg = "svg",
+	html = "html",
+	canvas = "canvas",
+}

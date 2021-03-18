@@ -1,16 +1,16 @@
-import { DataLog } from "@/atomic-design/atoms/data-log";
-import { ErrorComponent } from "@/atomic-design/atoms/error-component";
-import { routeMap } from "@/atomic-design/ions/routes";
-import { LanguageSwitcher } from "@/atomic-design/molecules/language-switcher";
-import { Header } from "@/atomic-design/organisms/header";
-import templates, { getTemplate } from "@/atomic-design/templates";
+import { routeMap } from "@/ions/routes";
+import templates from "@/templates";
 import { PageProps, PageQuery } from "@/types";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import dynamic from "next/dynamic";
 import React from "react";
 
+const ErrorComponent = dynamic(async () => import("@/atoms/error-component"));
+
 export const getStaticProps: GetStaticProps<PageProps, PageQuery> = async ({ locale, params }) => {
+	const { getTemplate } = await import("@/templates/utils");
+
 	const { args } = params;
 	const template = getTemplate(locale, args);
 
@@ -33,14 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 			},
 		}))
 	);
-	console.info(
-		"Paths ->",
-		JSON.stringify(
-			paths.map(({ params: { args }, locale }) => `/${[locale, ...args].join("/")}`),
-			null,
-			2
-		)
-	);
+
 	return {
 		paths,
 		// Always false for SSG support.
@@ -51,7 +44,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Page: NextPage<PageProps> = ({ locale, args, template }) => {
-	const { t } = useTranslation("common");
 	const Component = React.useMemo(
 		() =>
 			templates[template] ??
@@ -61,11 +53,7 @@ const Page: NextPage<PageProps> = ({ locale, args, template }) => {
 		[template]
 	);
 
-	return (
-		<Component>
-			<div>{t("hello")} Dekk</div>
-		</Component>
-	);
+	return <Component />;
 };
 
 export default Page;

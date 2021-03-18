@@ -1,4 +1,4 @@
-Feature: Locale redirects
+Feature: Header Navigation
 
 	As a user I want to see a localized Header
 	in order navigate the page.
