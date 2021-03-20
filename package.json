@@ -9,7 +9,7 @@
     "cypress:open": "npx cypress open",
     "dev": "next",
     "start": "next start",
-    "lint": "yarn xo; yarn prettier; yarn stylelint",
+    "lint": "yarn xo; yarn stylelint",
     "ncu": "npx npm-check-updates -u --dep='prod,dev'",
     "ncu:minor": "yarn ncu -t minor",
     "ncu:patch": "yarn ncu -t patch",
