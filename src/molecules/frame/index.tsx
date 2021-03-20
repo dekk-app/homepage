@@ -6,7 +6,7 @@ import { StyledInnerFrame, StyledOuterFrame } from "./styled";
 
 const Frame: React.FC = ({ children, ...props }) => {
 	const ref = React.useRef(null);
-	const { x, y, z } = useXYZ<HTMLDivElement>(ref, { factor: 0.99, min: 0.1, max: 2 });
+	const { x, y, z } = useXYZ<HTMLDivElement>(ref);
 
 	return (
 		<>

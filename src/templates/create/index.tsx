@@ -8,8 +8,8 @@ const Layout = dynamic(async () => import("@/organisms/layout"));
 
 // @todo remove this component: DemoElement
 const DemoElement = styled.div`
-	width: 300px;
-	height: 750px;
+	width: 1600px;
+	height: 900px;
 	background: white;
 `;
 
