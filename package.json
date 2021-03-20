@@ -22,7 +22,7 @@
     "spj": "npx sort-package-json",
     "stylelint": "stylelint 'src/**/*.{ts,tsx}'",
     "test": "npx start-server-and-test start http://localhost:3000 cypress:run",
-    "xo": "xo 'src/**/*.{ts,tsx}'",
+    "xo": "xo",
     "xo:fix": "yarn xo --fix"
   },
   "dependencies": {
