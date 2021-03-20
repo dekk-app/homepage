@@ -1,67 +1,40 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import { dataTestId } from "../../utils";
 
-Given("I am on the create screen", () => {
+Given("I am on the create screen", function () {
 	cy.visit("/create");
 	cy.get(dataTestId("inner-frame")).should("be.visible");
 });
 
-const momentum = 2.0202019214630127;
-
-const store = {
-	event: "",
-	distance: "",
-	direction: "",
-}
-
-When("I {string} the view {string} to the {string}", (event, distance, direction) => {
+When("I drag the view {string} to the {string}", function (distance, direction) {
 	cy.window().reload();
-	cy.get(dataTestId("inner-frame")).should("be.visible");
+	cy.get(dataTestId("inner-frame")).then(function ($el) {
+		this.originalFrameRect = $el[0].getBoundingClientRect();
+	});
+
 	const parsedDistance = parseFloat(distance);
 	const deltaY =
 		direction === "top" ? -parsedDistance : direction === "bottom" ? parsedDistance : 0;
 	const deltaX =
 		direction === "left" ? -parsedDistance : direction === "right" ? parsedDistance : 0;
-	if (event === "scroll") {
-		cy.window().trigger("wheel", { deltaX, deltaY });
-	} else if (event === "metaKey+scroll") {
-		store.event = event
-		store.distance = distance
-		store.direction = direction
-		cy.window().trigger("keydown", { metaKey: true });
-		cy.document().trigger("mousemove", {
-			pageX: 600,
-			pageY: 600,
-		});
-		for (let i = 0; i < Math.abs(Math.floor(parsedDistance / momentum)); i++) {
-			cy.window().trigger("wheel", {
-				deltaX: deltaX / Math.abs(deltaX),
-				deltaY: deltaY / Math.abs(deltaY),
-				pageX: 600,
-				pageY: 600,
-				deltaZ: 0,
-				deltaMode: 0,
-				metaKey: true,
-			});
-		}
-		cy.window().trigger("keydown", { metaKey: false });
-	} else if (event === "drag") {
-		const initialPosition = { buttons: 1, pageX: 200, pageY: 200 };
-		const finalPosition = {
-			buttons: 1,
-			pageX: initialPosition.pageX + deltaX,
-			pageY: initialPosition.pageY + deltaY,
-		};
-		cy.get(dataTestId("outer-frame")).trigger("mousedown", initialPosition);
-		cy.window().trigger("mousemove", finalPosition);
-		cy.window().trigger("mouseup", finalPosition);
-	}
+	const initialPosition = { buttons: 1, pageX: 200, pageY: 200 };
+	const finalPosition = {
+		buttons: 1,
+		pageX: initialPosition.pageX + deltaX,
+		pageY: initialPosition.pageY + deltaY,
+	};
+	cy.get(dataTestId("outer-frame")).trigger("mousedown", initialPosition);
+	cy.window().trigger("mousemove", finalPosition);
+	cy.window().trigger("mouseup", finalPosition);
 });
 
-Then("the screen moves {string} to the {string}", (distance, direction) => {
+Then("the screen moves {string} to the {string}", function (distance, direction) {
 	const parsedDistance = parseFloat(distance);
-	cy.get(dataTestId("inner-frame")).should($el => {
-		const { left, top } = $el[0].getBoundingClientRect();
+	cy.get(dataTestId("inner-frame")).then(function ($el) {
+		this.modifiedFrameRect = $el[0].getBoundingClientRect();
+
+		const left = this.modifiedFrameRect.left - this.originalFrameRect.left;
+		const top = this.modifiedFrameRect.top - this.originalFrameRect.top;
 
 		switch (direction) {
 			case "left":
@@ -71,10 +44,10 @@ Then("the screen moves {string} to the {string}", (distance, direction) => {
 				expect(left).to.be.equal(parsedDistance);
 				break;
 			case "top":
-				expect(Math.floor(top)).to.be.equal(Math.floor(parsedDistance * momentum));
+				expect(top).to.be.equal(parsedDistance);
 				break;
 			case "bottom":
-				expect(Math.floor(top)).to.be.equal(Math.floor(-parsedDistance * momentum));
+				expect(top).to.be.equal(-parsedDistance);
 				break;
 			default:
 				throw new Error(`Direction: "${direction}" is not supported`);
@@ -82,37 +55,60 @@ Then("the screen moves {string} to the {string}", (distance, direction) => {
 	});
 });
 
-const getFactor = (distance, {momentum = 1, scale = 0.99} = {}) => {
-	let counter = Math.floor(distance / momentum);
-	let factor = 1;
-	while(counter--) {
-		factor /= scale
-	}
-	return factor;
-}
-
-const toDecimals = (n, decimalCount) => Math.floor(n *Math.pow(10,decimalCount)) / Math.pow(10,decimalCount);
-
-Then("the screen zooms {string}", (zoomFactor, direction) => {
-	const factor = getFactor(parseFloat(store.distance), {momentum})
-	cy.get(dataTestId("inner-frame")).then(inner => {
-
-		cy.get(dataTestId("outer-frame")).then(outer => {
-			const innerB = inner[0].getBoundingClientRect();
-			const outerB = outer[0].getBoundingClientRect();
-			const actualWidth = toDecimals(innerB.width, 2)
-			let expectedWidth = toDecimals(outerB.width * factor, 2)
-			switch(direction) {
-				case "up":
-					expect(expectedWidth).to.be.equal(actualWidth);
-					break;
-				case "down":
-					expectedWidth = toDecimals(outerB.width / factor, 2)
-					expect(expectedWidth).to.be.equal(actualWidth);
-					break;
-				default:
-					break;
-			}
-		});
+When("I {string} the view to the {string}", function (event, direction) {
+	cy.window().reload();
+	cy.get(dataTestId("inner-frame")).then(function ($el) {
+		this.originalFrameRect = $el[0].getBoundingClientRect();
 	});
+	switch (event) {
+		case "scroll":
+			cy.window().trigger("wheel", {
+				deltaY: direction === "top" ? 1 : -1,
+			});
+			cy.get(dataTestId("inner-frame")).then(function ($el) {
+				this.modifiedFrameRect = $el[0].getBoundingClientRect();
+			});
+			break;
+		case "metaKey+scroll":
+			cy.window().trigger("keydown", { metaKey: true });
+			cy.window().trigger("wheel", {
+				deltaY: direction === "top" ? 1 : -1,
+				metaKey: true,
+			});
+			cy.window().trigger("keydown", { metaKey: false });
+			cy.get(dataTestId("inner-frame")).then(function ($el) {
+				this.modifiedFrameRect = $el[0].getBoundingClientRect();
+			});
+			break;
+		default:
+			throw new Error(`${event} is not a valid event`);
+	}
+});
+
+Then("the screen zooms {string}", function (direction) {
+	switch (direction) {
+		case "in":
+			expect(this.modifiedFrameRect.height).to.be.greaterThan(this.originalFrameRect.height);
+			break;
+		case "out":
+			expect(this.modifiedFrameRect.height).to.be.lessThan(this.originalFrameRect.height);
+			break;
+		default:
+			throw new Error(`${direction} is not a valid event`);
+			break;
+	}
+});
+
+Then("the screen moves to the {string}", function (direction) {
+	switch (direction) {
+		case "bottom":
+			expect(this.modifiedFrameRect.top).to.be.greaterThan(this.originalFrameRect.top);
+			break;
+		case "top":
+			expect(this.modifiedFrameRect.top).to.be.lessThan(this.originalFrameRect.top);
+			break;
+		default:
+			throw new Error(`${direction} is not a valid event`);
+			break;
+	}
 });

@@ -81,6 +81,9 @@ web_modules/
 out
 public/sw.js
 public/workbox-*.js
+public/sw.js.map
+public/workbox-*.js.map
+
 
 # Nuxt.js build / generate output
 .nuxt

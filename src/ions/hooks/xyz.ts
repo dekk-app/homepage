@@ -6,18 +6,26 @@ import { useMouse } from "react-use";
 
 export interface UseXYZProps<T> {
 	factor?: number;
+	initialZoom?: number;
+	initialPosition?: { x: number; y: number };
 	min?: number;
 	max?: number;
 }
 
 export const useXYZ = <T extends Element>(
 	ref: React.MutableRefObject<T>,
-	{ factor = 0.99, min = 0.1, max = 2 }: UseXYZProps<T>
+	{
+		factor = 0.99,
+		min = 0.1,
+		max = 2,
+		initialZoom = 1,
+		initialPosition = { x: 0, y: 0 },
+	}: UseXYZProps<T> = {}
 ) => {
-	const { x, y, setX, setY } = useDrag<T>(ref, { x: 0, y: 0 });
+	const { x, y, setX, setY } = useDrag<T>(ref, { x: initialPosition.x, y: initialPosition.y });
 	const { elX, elY } = useMouse(ref);
 	const { dZ, dX, dY, timestamp } = useWheel();
-	const [z, setZ] = React.useState(1);
+	const [z, setZ] = React.useState(initialZoom);
 
 	// Intended: missing dependencies elX, elY.
 	// this memo is triggered by the timestamp.

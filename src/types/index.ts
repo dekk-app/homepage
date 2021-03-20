@@ -30,7 +30,7 @@ export interface DataTestId {
 	"data-test-id"?: string;
 }
 
-export type WithDataTestId<T = {}> = DataTestId & T;
+export type WithDataTestId<T = unknown> = DataTestId & T;
 
 export interface StyledLinkProps {
 	active?: boolean;

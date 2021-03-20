@@ -12,8 +12,8 @@ const Header: React.FC = ({ children }) => {
 	const { t } = useTranslation("common");
 
 	return (
-		<StyledHeader>
-			<nav>
+		<StyledHeader data-test-id="header" aria-label="foo">
+			<nav data-test-id="header:nav">
 				<ActiveLink href="/" data-test-id="header-nav-link">
 					{t("home")}
 				</ActiveLink>

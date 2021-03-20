@@ -62,6 +62,7 @@ export const useDrag = <T extends Element>(
 		if (current) {
 			current.addEventListener("mousedown", handleMouseDown);
 		}
+
 		return () => {
 			if (current) {
 				current.removeEventListener("mousedown", handleMouseDown);

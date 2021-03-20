@@ -12,7 +12,7 @@ export const HTMLRenderer: React.FC = ({ children }) => {
 	const context = React.useMemo(() => ({ renderer: Renderer.html }), []);
 	return (
 		<RenderContext.Provider value={context}>
-			<StyledFrame data-test-id="html-renderer">
+			<StyledFrame data-test-id="canvas">
 				<Frame>{children}</Frame>
 			</StyledFrame>
 		</RenderContext.Provider>
