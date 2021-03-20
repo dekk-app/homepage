@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.header`
-	z-index: 1;
+	display: flex;
 	grid-area: Header;
 	padding: 1rem;
 	background: blue;

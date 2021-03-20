@@ -1,6 +1,7 @@
 import { Renderer, Template } from "@/ions/enums";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
+import React from "react";
 
 export interface PageProps {
 	locale: string;
@@ -49,4 +50,8 @@ export interface DataLogProps {
 
 export interface CanvasProps {
 	renderer: Renderer;
+}
+
+export interface DropdownProps {
+	button?: React.ForwardRefExoticComponent<any>;
 }
