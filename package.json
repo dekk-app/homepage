@@ -9,15 +9,12 @@
     "cypress:open": "npx cypress open",
     "dev": "next",
     "start": "next start",
-    "preexport": "yarn build",
-    "export": "next export",
     "lint": "yarn xo; yarn prettier; yarn stylelint",
     "ncu": "npx npm-check-updates -u --dep='prod,dev'",
     "ncu:minor": "yarn ncu -t minor",
     "ncu:patch": "yarn ncu -t patch",
     "graphql:setup": "node ./graphql-setup.js",
     "graphql:types": "graphql-codegen",
-    "postinstall": "husky install",
     "prettier": "prettier 'src/**/*.{ts,tsx}'",
     "prettier:write": "yarn prettier --write",
     "release": "standard-version",
@@ -28,19 +25,6 @@
     "xo": "xo 'src/**/*.{ts,tsx}'",
     "xo:fix": "yarn xo --fix"
   },
-  "lint-staged": {
-    "*.{js,ts,tsx,md,json}": [
-      "xo --fix && prettier --write"
-    ]
-  },
-  "browserslist": [
-    "last 2 android versions",
-    "last 2 edge versions",
-    "last 2 chrome versions",
-    "last 2 firefox versions",
-    "last 2 ios versions",
-    "last 2 safari versions"
-  ],
   "dependencies": {
     "@apollo/client": "3.3.12",
     "@apollo/react-hooks": "4.0.0",
@@ -108,7 +92,7 @@
     "ts-node": "^9.1.1",
     "type-fest": "0.21.3",
     "typescript": "^4.2.3",
-    "webpack": "^5.26.0",
+    "webpack": "^4.46.0",
     "xo": "^0.38.2"
   }
 }
