@@ -1,7 +1,6 @@
 import { HTMLShape, SVGShape } from "@/atoms/shape/shapes";
-import { ShapeType } from "@/ions/constants";
-import { Renderer } from "@/ions/enums";
-import { useRenderContext } from "@/ions/hooks/render";
+import { Renderer, ShapeType } from "@/ions/enums";
+import { useRenderContext } from "@/ions/hooks/context";
 import React from "react";
 
 const Shape: React.FC<{ shape: ShapeType }> = ({ shape }) => {

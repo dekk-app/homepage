@@ -1,4 +1,5 @@
 import { Renderer } from "@/ions/enums";
+import { CanvasProps } from "@/types";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -6,7 +7,7 @@ const HTMLRenderer = dynamic<React.ComponentPropsWithRef<React.ElementType>>(asy
 	import("@/molecules/html-renderer").then(mod => mod.HTMLRenderer)
 );
 
-const Canvas: React.FC<{ renderer: Renderer }> = ({ renderer, children }) => {
+const Canvas: React.FC<CanvasProps> = ({ renderer, children }) => {
 	switch (renderer) {
 		case Renderer.html:
 			return <HTMLRenderer>{children}</HTMLRenderer>;

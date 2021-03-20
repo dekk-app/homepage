@@ -13,7 +13,7 @@ const DemoElement = styled.div`
 	background: white;
 `;
 
-const Template: React.FC = ({ children }) => {
+const Create: React.FC = ({ children }) => {
 	return (
 		<Layout>
 			<Canvas renderer={Renderer.html}>
@@ -23,4 +23,4 @@ const Template: React.FC = ({ children }) => {
 	);
 };
 
-export default Template;
+export default Create;

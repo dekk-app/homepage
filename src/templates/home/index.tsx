@@ -3,8 +3,8 @@ import React from "react";
 
 const Layout = dynamic(async () => import("@/organisms/layout"));
 
-const Template: React.FC = ({ children }) => {
+const Home: React.FC = ({ children }) => {
 	return <Layout>{children}</Layout>;
 };
 
-export default Template;
+export default Home;

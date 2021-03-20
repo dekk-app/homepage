@@ -1,4 +1,4 @@
-import { Template } from "@/ions/enums";
+import { Renderer, Template } from "@/ions/enums";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 
@@ -12,9 +12,9 @@ export interface PageQuery extends ParsedUrlQuery {
 	args: string[];
 }
 
-export type LocalizedValue<T> = Record<string, T>;
+export type LocalizedValue<T = unknown> = Record<string, T>;
 
-export interface LocalizedString extends LocalizedValue<string> {}
+export type LocalizedString = LocalizedValue<string>;
 
 export interface RouteConfig {
 	dir: LocalizedString;
@@ -26,12 +26,27 @@ export interface RouteObject {
 	config: RouteConfig;
 }
 
-export interface WithDataTestId {
+export interface DataTestId {
 	"data-test-id"?: string;
 }
+
+export type WithDataTestId<T = {}> = DataTestId & T;
 
 export interface StyledLinkProps {
 	active?: boolean;
 }
 
-export interface ActiveLinkProps extends LinkProps, WithDataTestId {}
+export interface ActiveLinkProps extends WithDataTestId<LinkProps> {}
+
+export interface ErrorComponentProps {
+	message: string;
+}
+
+export interface DataLogProps {
+	data: unknown;
+	logToConsole?: boolean;
+}
+
+export interface CanvasProps {
+	renderer: Renderer;
+}

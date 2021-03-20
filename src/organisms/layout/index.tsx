@@ -8,7 +8,6 @@ const Main = dynamic(async () => import("@/organisms/main"));
 const Head = dynamic(async () => import("next/head"));
 
 const Layout: React.FC = ({ children }) => {
-	const { t } = useTranslation("common");
 	return (
 		<>
 			<Head>

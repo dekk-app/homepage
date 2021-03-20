@@ -1,4 +1,4 @@
-import { ShapeType } from "@/ions/constants";
+import { ShapeType } from "@/ions/enums";
 import React from "react";
 
 export const shapePaths = {

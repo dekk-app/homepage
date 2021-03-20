@@ -1,6 +1,6 @@
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
-import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "./types";
+import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
 
 const palette: Palette = {
 	red: "hsl(0,50%,50%)",

@@ -1,3 +1,4 @@
+import { ROOT } from "@/ions/constants";
 import { Route } from "@/ions/enums";
 import { RouteConfig, RouteObject } from "@/types";
 import { Except } from "type-fest";
@@ -32,7 +33,7 @@ export const routeMap = Object.entries(routes).map(
 export const getRoute = (locale: string, localizedDir?: string): Route => {
 	const route = routeMap.find(({ config: { dir } }) => {
 		const { [locale]: _localizedDir } = dir;
-		if (_localizedDir === "ROOT") {
+		if (_localizedDir === ROOT) {
 			return localizedDir === undefined;
 		}
 
