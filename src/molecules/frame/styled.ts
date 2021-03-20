@@ -10,6 +10,7 @@ export const StyledFrame = styled.div`
 
 export const StyledInnerFrame = styled(StyledFrame)`
 	transform-origin: 0 0;
+	background: #a4c123;
 `;
 
 export const StyledOuterFrame = styled(StyledFrame)`
