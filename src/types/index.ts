@@ -1,4 +1,5 @@
 import { Renderer, Template } from "@/ions/enums";
+import { UseContextMenu } from "@/ions/hooks/context-menu";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
@@ -54,4 +55,51 @@ export interface CanvasProps {
 
 export interface DropdownProps {
 	button?: React.ForwardRefExoticComponent<any>;
+}
+
+export interface MenuItem {
+	label: string;
+	id: string;
+	disabled?: boolean;
+	onClick?(coords: { x: number; y: number }): void;
+}
+
+export interface ContextMenuProps {
+	items: MenuItem[][];
+	contextMenu: UseContextMenu;
+	onContextMenu?: React.MouseEventHandler;
+}
+
+export interface ContextMenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	selected?: boolean;
+}
+
+export interface Coordinates {
+	x: number;
+	y: number;
+}
+
+export interface Dimensions {
+	height: number;
+	width: number;
+}
+
+export interface View extends Coordinates, Dimensions {
+	id: string;
+}
+
+export interface ArtboardType extends View {}
+
+export interface ArtboardContextProps {
+	artboards: ArtboardType[];
+	selected: ArtboardType;
+	add(coordinates: Coordinates): void;
+	remove(): void;
+	select(artboard: ArtboardType): void;
+}
+
+export type SidebarAnchor = "left" | "right";
+
+export interface SidebarProps {
+	anchor: SidebarAnchor;
 }

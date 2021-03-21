@@ -1,6 +1,10 @@
 import React from "react";
 import { StyledMain } from "./styled";
 
-const Main: React.FC = ({ children, ...props }) => <StyledMain {...props}>{children}</StyledMain>;
+const Main = React.forwardRef<HTMLDivElement>(({ children, ...props }, ref) => (
+	<StyledMain {...props} ref={ref}>
+		{children}
+	</StyledMain>
+));
 
 export default Main;
