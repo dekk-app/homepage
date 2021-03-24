@@ -95,6 +95,7 @@ export interface ArtboardContextProps {
 	selected: ArtboardType;
 	add(coordinates: Coordinates): void;
 	remove(): void;
+	update(id: string, artboard: Partial<ArtboardType>): void;
 	select(artboard: ArtboardType): void;
 }
 

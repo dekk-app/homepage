@@ -14,6 +14,6 @@ export const StyledInnerFrame = styled(StyledFrame)`
 `;
 
 export const StyledOuterFrame = styled(StyledFrame)`
-	overflow: hidden;
+	overflow: visible;
 	background: #212121;
 `;

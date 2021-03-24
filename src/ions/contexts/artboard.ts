@@ -10,6 +10,9 @@ export const ArtboardContext = React.createContext<ArtboardContextProps>({
 	remove() {
 		/**/
 	},
+	update() {
+		/**/
+	},
 	select() {
 		/**/
 	},

@@ -20,6 +20,7 @@ export const useDrag = <T extends Element>(
 	const [y, setY] = React.useState(initialY);
 	const [down, setDown] = React.useState(false);
 	const [dragging, setDragging] = React.useState(false);
+
 	React.useEffect(() => {
 		const handleMouseMove = ({ pageX, pageY }: MouseEvent) => {
 			if (!down) {
@@ -49,9 +50,12 @@ export const useDrag = <T extends Element>(
 			window.removeEventListener("mousemove", handleMouseMove);
 		};
 	}, [down, startX, startY, dragRef, dragging, onDrag, onDragStart]);
+
 	React.useEffect(() => {
 		const { current } = dragRef;
-		const handleMouseDown = ({ pageX, pageY, buttons }: MouseEvent) => {
+		const handleMouseDown = (event_: MouseEvent) => {
+			const { pageX, pageY, buttons } = event_;
+			event_.stopPropagation();
 			if (buttons === 1) {
 				setStartX(pageX);
 				setStartY(pageY);
@@ -69,6 +73,7 @@ export const useDrag = <T extends Element>(
 			}
 		};
 	}, [dragRef]);
+
 	React.useEffect(() => {
 		const handleMouseUp = () => {
 			if (dragging && onDragEnd) {
@@ -88,6 +93,7 @@ export const useDrag = <T extends Element>(
 			window.removeEventListener("mouseup", handleMouseUp);
 		};
 	}, [dX, dY, onDragEnd, dragging]);
+
 	if (down) {
 		return { x: x + dX, y: y + dY, down, dX, dY };
 	}

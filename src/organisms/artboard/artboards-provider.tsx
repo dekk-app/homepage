@@ -1,6 +1,6 @@
 import { ArtboardContext } from "@/ions/contexts/artboard";
 import { usePositionContext } from "@/ions/hooks/position";
-import { Coordinates } from "@/types";
+import { ArtboardType, Coordinates } from "@/types";
 import React from "react";
 import { v4 as uuid } from "uuid";
 
@@ -24,16 +24,29 @@ const ArtboardProvider: React.FC = ({ children }) => {
 		setArtboards(previousState => previousState.filter(({ id }) => id !== selected?.id));
 	}, [selected]);
 
+	const update = React.useCallback((id: string, partialArtboard: Partial<ArtboardType>) => {
+		setArtboards(previousState =>
+			previousState.map(artboard => {
+				if (artboard.id === id) {
+					return { ...artboard, ...partialArtboard };
+				}
+
+				return artboard;
+			})
+		);
+	}, []);
+
 	const select = React.useCallback(artboard => {
 		setSelected(artboard);
 	}, []);
 
-	const context = React.useMemo(() => ({ remove, add, artboards, select, selected }), [
+	const context = React.useMemo(() => ({ remove, add, artboards, select, selected, update }), [
 		remove,
 		add,
 		artboards,
 		select,
 		selected,
+		update,
 	]);
 
 	return <ArtboardContext.Provider value={context}>{children}</ArtboardContext.Provider>;

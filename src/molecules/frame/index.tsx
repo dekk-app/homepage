@@ -14,7 +14,7 @@ const Frame: React.FC = ({ children, ...props }) => {
 			<Global styles={noBounce} />
 			<StyledOuterFrame {...props} ref={ref} data-test-id="outer-frame">
 				<StyledInnerFrame
-					style={{ transform: `translate(${x}px, ${y}px) scale(${z}, ${z})` }}
+					style={{ transform: `translate3d(${x}px, ${y}px, 0) scale3d(${z}, ${z}, 1)` }}
 					data-test-id="inner-frame"
 				>
 					{children}
