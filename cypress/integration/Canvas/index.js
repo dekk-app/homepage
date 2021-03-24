@@ -23,9 +23,10 @@ When("I drag the view {string} to the {string}", function (distance, direction) 
 		pageX: initialPosition.pageX + deltaX,
 		pageY: initialPosition.pageY + deltaY,
 	};
-	cy.get(dataTestId("outer-frame")).trigger("mousedown", initialPosition);
-	cy.window().trigger("mousemove", finalPosition);
-	cy.window().trigger("mouseup", finalPosition);
+	cy.get(dataTestId("outer-frame"))
+		.trigger("mousedown", initialPosition)
+		.trigger("mousemove", finalPosition)
+		.trigger("mouseup", finalPosition);
 });
 
 Then("the screen moves {string} to the {string}", function (distance, direction) {
