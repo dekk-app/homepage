@@ -98,6 +98,96 @@ export const theme: Theme = {
 	breakpoints,
 	mq,
 	grid,
+	ui: {
+		colors: {
+			primary: {
+				background: "#6a28ea",
+				color: "#ffffff",
+			},
+		},
+	},
+};
+
+export const lightTheme = {
+	...theme,
+	ui: {
+		...theme.ui,
+		colors: {
+			...theme.ui.colors,
+			theme: {
+				background: "#ffffff",
+			},
+		},
+		molecules: {
+			artboard: {
+				background: "#ffffff",
+				color: "#000000",
+				border: "#e1e4ea",
+			},
+		},
+		layout: {
+			sidebar: {
+				background: "#ffffff",
+				border: "#eeeeee",
+				color: "#000000",
+			},
+			header: {
+				background: "#ffffff",
+				border: "#eeeeee",
+				color: "#000000",
+			},
+			main: {
+				background: "#f7f7f8",
+				color: "#000000",
+			},
+			dropdown: {
+				background: "#ffffff",
+				border: "#eeeeee",
+				color: "#000000",
+			},
+		},
+	},
+};
+
+export const darkTheme = {
+	...theme,
+	ui: {
+		...theme.ui,
+		colors: {
+			...theme.ui.colors,
+			theme: {
+				background: "#232424",
+			},
+		},
+		molecules: {
+			artboard: {
+				background: "#ffffff",
+				color: "#000000",
+				border: "#e1e4ea",
+			},
+		},
+		layout: {
+			sidebar: {
+				background: "#232424",
+				border: "#2a2a2a",
+				color: "#ffffff",
+			},
+			header: {
+				background: "#232424",
+				border: "#2a2a2a",
+				color: "#ffffff",
+			},
+			main: {
+				background: "#1d1d1d",
+				color: "#ffffff",
+			},
+			dropdown: {
+				background: "#171717",
+				border: "#2a2a2a",
+				color: "#ffffff",
+			},
+		},
+	},
 };
 
 const muiBreakpoints = {

@@ -42,6 +42,16 @@ export interface Layout {
 	header: HeaderLayout;
 }
 
+export interface ElementTheme {
+	background?: string;
+	color?: string;
+	border?: string;
+}
+
+export type Patterns = Record<string, ElementTheme>;
+
+export type UIPatterns = Record<string, Patterns>;
+
 export interface Theme {
 	layout: Layout;
 	palette: Palette;
@@ -49,6 +59,7 @@ export interface Theme {
 	breakpoints: Sizes;
 	mq: MediaQueries;
 	grid: GridConfig;
+	ui: UIPatterns;
 }
 
 export interface PropsWithTheme<T = HTMLDivElement> extends React.HTMLAttributes<T> {

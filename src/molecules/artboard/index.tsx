@@ -1,26 +1,24 @@
 import { useArtboardContext } from "@/ions/hooks/context";
 import { useDrag } from "@/ions/hooks/drag";
 import { usePositionContext } from "@/ions/hooks/position";
-import { ArtboardType } from "@/types";
-import styled from "@emotion/styled";
+import { ArtboardProps, ArtboardType } from "@/types";
 import React from "react";
-import { useMouse } from "react-use";
+import { StyledArtboard, StyledArtboardTitle } from "./styled";
 
-export const StyledArtboard = styled.div`
-	visibility: visible;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: white;
-	pointer-events: all;
-`;
-
-export interface ArtboardProps {
-	artboard: ArtboardType;
-	onMouseDown?(): void;
-	onClick?(): void;
-	onContextMenu?(): void;
+export interface InBoundRuler {
+	x: number;
+	y: number;
+	z: number;
+	height: number;
+	width: number;
 }
+export const inBound = (artboard: ArtboardType, { x, y, z, height, width }: InBoundRuler) => {
+	const top = (artboard.y + artboard.height) * z + y > 0;
+	const right = artboard.x * z < width - x;
+	const bottom = artboard.y * z < height - y;
+	const left = (artboard.x + artboard.width) * z + x > 0;
+	return top && right && bottom && left;
+};
 
 export const Artboard: React.FC<ArtboardProps> = ({
 	artboard,
@@ -34,7 +32,11 @@ export const Artboard: React.FC<ArtboardProps> = ({
 	const ref = React.useRef<HTMLDivElement>();
 	const { update } = useArtboardContext();
 	const { id } = artboard;
-
+	// Const { x: pX, y: pY, z: pZ, height, width } = usePositionContext();
+	// const shouldRender = React.useMemo(
+	//	() => inBound(artboard, { height, width, x: pX, y: pY, z: pZ }),
+	//	[pX, pY, pZ, height, width, artboard]
+	// );
 	const onDragEnd = React.useCallback(
 		({ dX, dY }: { dX: number; dY: number }) => {
 			const _x = x + dX / z;
@@ -72,25 +74,10 @@ export const Artboard: React.FC<ArtboardProps> = ({
 			onMouseDown={onMouseDown}
 			onClick={onClick}
 			onContextMenu={onContextMenu}
-		/>
+		>
+			<StyledArtboardTitle style={{ transform: `scale(${1 / z})`, maxWidth: 1600 * z }}>
+				{artboard.title}
+			</StyledArtboardTitle>
+		</StyledArtboard>
 	);
 };
-
-const Artboards: React.FC = () => {
-	const { artboards, select } = useArtboardContext();
-	return (
-		<>
-			{artboards.map(artboard => (
-				<Artboard
-					key={artboard.id}
-					artboard={artboard}
-					onContextMenu={() => {
-						select(artboard);
-					}}
-				/>
-			))}
-		</>
-	);
-};
-
-export default Artboards;

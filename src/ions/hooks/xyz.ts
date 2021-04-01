@@ -16,7 +16,7 @@ export const useXYZ = <T extends Element>(
 	ref: React.MutableRefObject<T>,
 	{
 		factor = 0.99,
-		min = 0.1,
+		min = 0.02,
 		max = 2,
 		initialZoom = 1,
 		initialPosition = { x: 0, y: 0 },
@@ -24,7 +24,7 @@ export const useXYZ = <T extends Element>(
 ) => {
 	const { x, y, setX, setY } = useDrag<T>(ref, { x: initialPosition.x, y: initialPosition.y });
 	const { elX, elY } = useMouse(ref);
-	const { dZ, dX, dY, timestamp } = useWheel();
+	const { dZ, dX, dY, timestamp } = useWheel<T>(ref);
 	const [z, setZ] = React.useState(initialZoom);
 
 	// Intended: missing dependencies elX, elY.
@@ -33,6 +33,45 @@ export const useXYZ = <T extends Element>(
 	// this memo be safely passed into the dependency array of side-effect that rely on timestamp
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const element = React.useMemo(() => ({ x: elX, y: elY, timestamp }), [timestamp]);
+
+	const zoom = React.useCallback(
+		(dir: number, customFactor = factor) => {
+			const x = (window.innerWidth - 550) / 2 + 250;
+			const y = (window.innerHeight - 60) / 2 + 60;
+			const _f = dir < 0 ? 1 / customFactor : customFactor;
+			if (Math.abs(dir) > 0) {
+				setZ(previousState => {
+					const nextState = clamp(previousState * _f, min, max);
+					if (inRange(nextState, min, max)) {
+						if (setX) {
+							setX(
+								previousState_ => previousState_ - (x - previousState_) * (_f - 1)
+							);
+						}
+
+						if (setY) {
+							setY(
+								previousState_ => previousState_ - (y - previousState_) * (_f - 1)
+							);
+						}
+
+						return previousState * _f;
+					}
+
+					return previousState;
+				});
+			} else {
+				if (setX) {
+					setX(previousState => previousState - dX / _f);
+				}
+
+				if (setY) {
+					setY(previousState => previousState - dY / _f);
+				}
+			}
+		},
+		[dX, dY, factor, min, max, setX, setY]
+	);
 
 	React.useEffect(() => {
 		const _f = dZ < 0 ? 1 / factor : factor;
@@ -74,6 +113,10 @@ export const useXYZ = <T extends Element>(
 		x,
 		y,
 		z,
+		zoom,
 		ref,
+		setX,
+		setY,
+		setZ,
 	};
 };

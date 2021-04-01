@@ -1,3 +1,5 @@
+import { PropsWithTheme } from "@/types/theme";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const StyledFrame = styled.div`
@@ -10,10 +12,19 @@ export const StyledFrame = styled.div`
 
 export const StyledInnerFrame = styled(StyledFrame)`
 	transform-origin: 0 0;
-	background: #a4c123;
 `;
 
-export const StyledOuterFrame = styled(StyledFrame)`
-	overflow: visible;
-	background: #212121;
+export const StyledOuterFrame = styled(StyledFrame)<PropsWithTheme>`
+	overflow: hidden;
+	${({
+		theme: {
+			ui: {
+				layout: {
+					main: { background },
+				},
+			},
+		},
+	}) => css`
+		background: ${background};
+	`};
 `;

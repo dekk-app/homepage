@@ -3,5 +3,8 @@
   "de": "Deutsch",
   "en": "English",
   "hello": "Hello",
-  "home": "Home"
+  "home": "Home",
+  "collapse": "Collapse",
+  "expand": "Expand",
+  "add-artboard": "Add Artboard"
 }

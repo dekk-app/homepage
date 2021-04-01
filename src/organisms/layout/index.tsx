@@ -1,21 +1,22 @@
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Dropdown = dynamic(async () => import("@/molecules/dropdown"));
-const Footer = dynamic(async () => import("@/organisms/footer"));
 const Header = dynamic(async () => import("@/organisms/header"));
 const Main = dynamic(async () => import("@/organisms/main"));
 const Sidebar = dynamic(async () => import("@/organisms/sidebar"));
 const Head = dynamic(async () => import("next/head"));
 
-// @todo remove demo element
-const MenuLink = React.forwardRef<HTMLButtonElement>(({ children, ...props }, ref) => (
-	<button {...props} ref={ref} type="button" data-test-id="header-menu-link">
-		Open Menu
-	</button>
-));
-
-const Layout: React.FC = ({ children }) => {
+export interface LayoutProps {
+	header?: React.ForwardRefExoticComponent<unknown>;
+	sidebarLeft?: React.ForwardRefExoticComponent<unknown>;
+	sidebarRight?: React.ForwardRefExoticComponent<unknown>;
+}
+const Layout: React.FC<LayoutProps> = ({
+	header: HeaderComponent,
+	sidebarLeft: SidebarLeft,
+	sidebarRight: SidebarRight,
+	children,
+}) => {
 	return (
 		<>
 			<Head>
@@ -24,17 +25,10 @@ const Layout: React.FC = ({ children }) => {
 					content="Dekk reimagines presentations. Create and present by intuition. Make a difference, make a Dekk."
 				/>
 			</Head>
-			<Header>
-				<div>
-					<Dropdown button={MenuLink} data-test-id="dropdown">
-						Hello Dropdown
-					</Dropdown>
-				</div>
-			</Header>
-			<Sidebar anchor="left">Sidebar Left</Sidebar>
+			<Header>{HeaderComponent && <HeaderComponent />}</Header>
+			<Sidebar anchor="left">{SidebarLeft && <SidebarLeft />}</Sidebar>
 			<Main>{children}</Main>
-			<Sidebar anchor="right">Sidebar Right</Sidebar>
-			<Footer />
+			<Sidebar anchor="right">{SidebarRight && <SidebarRight />}</Sidebar>
 		</>
 	);
 };

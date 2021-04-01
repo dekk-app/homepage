@@ -4,6 +4,7 @@ import React from "react";
 export const ArtboardContext = React.createContext<ArtboardContextProps>({
 	artboards: [],
 	selected: null,
+	focused: null,
 	add() {
 		/**/
 	},
@@ -14,6 +15,12 @@ export const ArtboardContext = React.createContext<ArtboardContextProps>({
 		/**/
 	},
 	select() {
+		/**/
+	},
+	focus() {
+		/**/
+	},
+	inject() {
 		/**/
 	},
 });

@@ -7,7 +7,7 @@ import React from "react";
 const ContextMenu: React.FC<ContextMenuProps> = ({
 	contextMenu: { isOpen, ref, x, y, close },
 	onContextMenu,
-	items,
+	items = [],
 }) => {
 	const [selectedItem, setSelectedItem] = React.useState(-1);
 	React.useEffect(() => {

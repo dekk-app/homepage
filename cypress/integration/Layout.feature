@@ -7,14 +7,14 @@ Feature: App Layout
 
 		Given I am on the "create" screen
 
-		When the viewport is "at least" "800px" wide
+		When the viewport is "at least" "1120px" wide
 		Then I "can" see the "Header"
 		And I "can" see the "Canvas"
 		And I "can" see the "Left Sidebar"
 		And I "can" see the "Right Sidebar"
 
 
-		When the viewport is "less than" "800px" wide
+		When the viewport is "less than" "1120px" wide
 		Then I "can" see the "Header"
 		And I "can" see the "Canvas"
 		And I "cannot" see the "Left Sidebar"

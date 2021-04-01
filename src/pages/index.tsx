@@ -8,6 +8,7 @@ import React from "react";
 
 const Page: NextPage<PageProps> = props => {
 	const { t } = useTranslation("common");
+
 	return (
 		<Home>
 			<div>{t("hello")} Dekk</div>

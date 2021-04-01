@@ -2,6 +2,7 @@ import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import { dataTestId } from "../../utils";
 
 Given("I am on the create screen", function () {
+	cy.viewport(1600, 900);
 	cy.visit("/create");
 	cy.get(dataTestId("inner-frame")).should("be.visible");
 });
@@ -17,16 +18,17 @@ When("I drag the view {string} to the {string}", function (distance, direction) 
 		direction === "top" ? -parsedDistance : direction === "bottom" ? parsedDistance : 0;
 	const deltaX =
 		direction === "left" ? -parsedDistance : direction === "right" ? parsedDistance : 0;
-	const initialPosition = { buttons: 1, pageX: 200, pageY: 200 };
+	const initialPosition = { buttons: 1, pageX: 500, pageY: 100 };
 	const finalPosition = {
 		buttons: 1,
 		pageX: initialPosition.pageX + deltaX,
 		pageY: initialPosition.pageY + deltaY,
 	};
-	cy.get(dataTestId("outer-frame"))
-		.trigger("mousedown", initialPosition)
-		.trigger("mousemove", finalPosition)
-		.trigger("mouseup", finalPosition);
+	cy.get(dataTestId("canvas-wrapper"))
+		.last()
+		.trigger("mousedown", initialPosition.pageX, initialPosition.pageY, initialPosition)
+		.trigger("mousemove", finalPosition.pageX, finalPosition.pageY, finalPosition)
+		.trigger("mouseup", finalPosition.pageX, finalPosition.pageY, finalPosition);
 });
 
 Then("the screen moves {string} to the {string}", function (distance, direction) {
