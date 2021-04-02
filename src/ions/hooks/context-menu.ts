@@ -33,11 +33,17 @@ export const useContextMenu = <T extends Element = HTMLDivElement>(
 			}
 		};
 
-		window.addEventListener("contextmenu", handleContextMenu);
-		return () => {
-			window.removeEventListener("contextmenu", handleContextMenu);
-		};
-	}, [elX, elY, ref]);
+		if (outerRef.current) {
+			outerRef.current.addEventListener("contextmenu", handleContextMenu);
+			const unsubscribe = () => {
+				outerRef.current.removeEventListener("contextmenu", handleContextMenu);
+			};
+
+			return () => {
+				unsubscribe();
+			};
+		}
+	}, [elX, elY, ref, outerRef]);
 
 	useOutsideClick(() => {
 		setIsOpen(false);

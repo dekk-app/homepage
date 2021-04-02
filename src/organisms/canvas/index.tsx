@@ -7,12 +7,17 @@ const HTMLRenderer = dynamic<React.ComponentPropsWithRef<React.ElementType>>(asy
 	import("@/molecules/html-renderer").then(mod => mod.HTMLRenderer)
 );
 
+const CanvasRenderer = dynamic<React.ComponentPropsWithRef<React.ElementType>>(
+	async () => import("@/molecules/canvas-renderer")
+);
+
 const Canvas: React.FC<CanvasProps> = ({ renderer, children }) => {
 	switch (renderer) {
 		case Renderer.html:
 			return <HTMLRenderer>{children}</HTMLRenderer>;
-		case Renderer.svg:
 		case Renderer.canvas:
+			return <CanvasRenderer>{children}</CanvasRenderer>;
+		case Renderer.svg:
 		default:
 			throw new Error(`Renderer ${renderer} is not implemented`);
 	}

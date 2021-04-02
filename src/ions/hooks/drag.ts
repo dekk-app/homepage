@@ -20,17 +20,19 @@ export const useDrag = <T extends Element>(
 	const [y, setY] = React.useState(initialY);
 	const [down, setDown] = React.useState(false);
 	const [dragging, setDragging] = React.useState(false);
+	const { current } = dragRef;
+
 	React.useEffect(() => {
 		const handleMouseMove = ({ pageX, pageY }: MouseEvent) => {
 			if (!down) {
 				return;
 			}
 
-			const _dX = pageX - startX;
-			const _dY = pageY - startY;
-			setDX(_dX);
-			setDY(_dY);
 			if (dragging) {
+				const _dX = pageX - startX;
+				const _dY = pageY - startY;
+				setDX(_dX);
+				setDY(_dY);
 				if (onDrag) {
 					onDrag({ dX: _dX, dY: _dY });
 				}
@@ -45,13 +47,19 @@ export const useDrag = <T extends Element>(
 		};
 
 		window.addEventListener("mousemove", handleMouseMove);
-		return () => {
+		const unsubscribe = () => {
 			window.removeEventListener("mousemove", handleMouseMove);
 		};
-	}, [down, startX, startY, dragRef, dragging, onDrag, onDragStart]);
+
+		return () => {
+			unsubscribe();
+		};
+	}, [down, startX, startY, dragging, onDrag, onDragStart]);
+
 	React.useEffect(() => {
-		const { current } = dragRef;
-		const handleMouseDown = ({ pageX, pageY, buttons }: MouseEvent) => {
+		const handleMouseDown = (event_: MouseEvent) => {
+			const { pageX, pageY, buttons } = event_;
+			event_.stopPropagation();
 			if (buttons === 1) {
 				setStartX(pageX);
 				setStartY(pageY);
@@ -68,17 +76,20 @@ export const useDrag = <T extends Element>(
 				current.removeEventListener("mousedown", handleMouseDown);
 			}
 		};
-	}, [dragRef]);
+	}, [current]);
+
 	React.useEffect(() => {
 		const handleMouseUp = () => {
-			if (dragging && onDragEnd) {
-				onDragEnd({ dX, dY });
+			if (dragging) {
+				setX(currentValue => currentValue + dX);
+				setY(currentValue => currentValue + dY);
+				if (onDragEnd) {
+					onDragEnd({ dX, dY });
+				}
 			}
 
 			setDragging(false);
 			setDown(false);
-			setX(currentValue => currentValue + dX);
-			setY(currentValue => currentValue + dY);
 			setDX(0);
 			setDY(0);
 		};
@@ -88,9 +99,10 @@ export const useDrag = <T extends Element>(
 			window.removeEventListener("mouseup", handleMouseUp);
 		};
 	}, [dX, dY, onDragEnd, dragging]);
+
 	if (down) {
-		return { x: x + dX, y: y + dY, down, dX, dY };
+		return { x: x + dX, y: y + dY, down, dX, dY, dragging };
 	}
 
-	return { x, y, down, setX, setY, dX, dY };
+	return { x, y, down, setX, setY, dX, dY, dragging };
 };

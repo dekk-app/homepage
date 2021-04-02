@@ -10,15 +10,14 @@ Feature: Create Artboards
 
 		When I rightclick on the "canvas"
 		Then I see a contextmenu
-		And I see a "New Artboard" in the contextmenu
+		And I see "New Artboard" in the contextmenu
 
 		When I click "New Artboard"
-		Then I see an artboard on the canvas
-		And the artboard is positioned where I clicked
+		Then I see "2" artboards on the canvas
 
 		When I rightclick on the "artboard"
 		Then I see a contextmenu
-		And I see a "Remove" in the contextmenu
+		And I see "Remove" in the contextmenu
 
 		When I click "Remove"
-		Then I don't see an artboard on the canvas
+		Then I see "1" artboards on the canvas

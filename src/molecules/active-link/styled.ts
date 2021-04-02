@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 export const StyledLink = styled.a<StyledLinkProps>`
 	padding: 0.5em;
-	color: black;
+	color: currentColor;
 	${({ active }) => css`
 		text-decoration: ${active ? "underline" : "none"};
 	`};

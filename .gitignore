@@ -133,3 +133,7 @@ src/types/contentful-api.ts
 # Cypress
 /cypress/videos
 /cypress/screenshots
+
+# Unignore
+!src/atoms/icon
+

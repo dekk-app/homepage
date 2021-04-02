@@ -23,6 +23,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 			<>
 				<Button
 					ref={setReferenceElement}
+					active={isOpen}
 					onClick={() => {
 						setIsOpen(previousState => !previousState);
 					}}

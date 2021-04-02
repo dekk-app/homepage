@@ -7,9 +7,9 @@ import React from "react";
 const ContextMenu = dynamic(async () => import("@/molecules/context-menu"));
 
 const CanvasContextMenu = ({ outerRef }) => {
+	const contextMenu = useContextMenu(outerRef);
 	const { t } = useTranslation(["context-menu"]);
 	const { remove, add } = useArtboardContext();
-	const contextMenu = useContextMenu(outerRef);
 	const items = React.useMemo(() => {
 		return [
 			[

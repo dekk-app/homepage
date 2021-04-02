@@ -1,4 +1,6 @@
+import { pxToRem } from "@/ions/utils/unit";
 import { SidebarProps } from "@/types";
+import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -12,21 +14,31 @@ export const transforms = {
 	right: 100,
 };
 
-export const StyledSidebar = styled.aside<SidebarProps>`
+export const StyledSidebar = styled.aside<SidebarProps & PropsWithTheme>`
 	position: fixed;
 	z-index: 1;
-	top: 4rem;
+	top: ${pxToRem(60)};
 	bottom: 0;
-	padding: 1rem;
-	background: orange;
-	color: black;
-	${({ anchor }) => css`
+	height: calc(100vh - ${pxToRem(60)});
+	${({
+		theme: {
+			ui: {
+				layout: {
+					sidebar: { background, color, border },
+				},
+			},
+		},
+		anchor,
+	}) => css`
 		grid-area: ${areas[anchor]};
 		${anchor}: 0;
 		transform: translate3d(${transforms[anchor]}%, 0, 0);
+		background: ${background};
+		color: ${color};
+		box-shadow: inset ${anchor === "left" ? -1 : 1}px 0 0 ${border};
 	`};
 
-	@media (min-width: 800px) {
+	@media (min-width: ${pxToRem(1120)}) {
 		position: relative;
 		top: unset;
 		bottom: unset;

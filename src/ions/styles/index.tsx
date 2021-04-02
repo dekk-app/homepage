@@ -6,6 +6,28 @@ export const noBounce = css`
 	}
 `;
 
+export const noSelect = css`
+	* {
+		user-select: none;
+	}
+	input {
+		&[type="text"],
+		&[type="number"],
+		&[type="password"],
+		&[type="email"],
+		&[type="search"],
+		&[type="url"],
+		&[type="date"],
+		&[type="time"],
+		&[type="week"],
+		&[type="month"],
+		&[type="datetime-local"],
+		&[type="tel"] {
+			user-select: text;
+		}
+	}
+`;
+
 export const globalStyles = css`
 	*,
 	*::before,
@@ -23,6 +45,14 @@ export const globalStyles = css`
 		margin: 0;
 		overflow-x: hidden;
 		overflow-y: auto;
+
+		&.dark-mode {
+			/* dark mode */
+			-webkit-font-smoothing: antialiased;
+		}
+		&.light-mode {
+			/* light mode */
+		}
 	}
 	#__next {
 		display: contents;

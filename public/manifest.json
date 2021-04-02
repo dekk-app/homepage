@@ -1,11 +1,11 @@
 {
-  "name": "next-pwa",
-  "short_name": "next-pwa",
+  "name": "Dekk Presentations",
+  "short_name": "Dekk",
   "display": "standalone",
-  "orientation": "portrait",
-  "theme_color": "#FFFFFF",
-  "background_color": "#FFFFFF",
-  "start_url": "/",
+  "orientation": "landscape",
+  "theme_color": "#232424",
+  "background_color": "#232424",
+  "start_url": "/create",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
