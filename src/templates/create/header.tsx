@@ -73,8 +73,8 @@ export const PlayLink = React.forwardRef<HTMLButtonElement, { active?: boolean }
 	)
 );
 
-export const Header = React.forwardRef<HTMLDivElement>((props, ref) => {
-	const { zoom, setZ, setX, setY } = usePositionContext();
+const Header: React.FC = () => {
+	const { zoom, setZ } = usePositionContext();
 	React.useEffect(() => {
 		const handleKeydown = event_ => {
 			if (event_.metaKey) {
@@ -97,7 +97,7 @@ export const Header = React.forwardRef<HTMLDivElement>((props, ref) => {
 		};
 	}, [zoom, setZ]);
 	return (
-		<StyledHeader ref={ref}>
+		<StyledHeader>
 			<MenuLink />
 			<StyledSpace>
 				<StyledTitle>Reinventing Presentations</StyledTitle>
@@ -114,4 +114,6 @@ export const Header = React.forwardRef<HTMLDivElement>((props, ref) => {
 			<PlayLink />
 		</StyledHeader>
 	);
-});
+};
+
+export default Header;

@@ -7,10 +7,11 @@ const Sidebar = dynamic(async () => import("@/organisms/sidebar"));
 const Head = dynamic(async () => import("next/head"));
 
 export interface LayoutProps {
-	header?: React.ForwardRefExoticComponent<unknown>;
-	sidebarLeft?: React.ForwardRefExoticComponent<unknown>;
-	sidebarRight?: React.ForwardRefExoticComponent<unknown>;
+	header?: React.ComponentType<unknown>;
+	sidebarLeft?: React.ComponentType<unknown>;
+	sidebarRight?: React.ComponentType<unknown>;
 }
+
 const Layout: React.FC<LayoutProps> = ({
 	header: HeaderComponent,
 	sidebarLeft: SidebarLeft,
@@ -25,10 +26,23 @@ const Layout: React.FC<LayoutProps> = ({
 					content="Dekk reimagines presentations. Create and present by intuition. Make a difference, make a Dekk."
 				/>
 			</Head>
-			<Header>{HeaderComponent && <HeaderComponent />}</Header>
-			<Sidebar anchor="left">{SidebarLeft && <SidebarLeft />}</Sidebar>
+			{HeaderComponent && (
+				<Header>
+					<HeaderComponent />
+				</Header>
+			)}
+			{SidebarLeft && (
+				<Sidebar anchor="left">
+					{" "}
+					<SidebarLeft />
+				</Sidebar>
+			)}
 			<Main>{children}</Main>
-			<Sidebar anchor="right">{SidebarRight && <SidebarRight />}</Sidebar>
+			{SidebarRight && (
+				<Sidebar anchor="right">
+					<SidebarRight />
+				</Sidebar>
+			)}
 		</>
 	);
 };

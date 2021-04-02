@@ -4,7 +4,7 @@ import React from "react";
 let apolloClient;
 
 const backend = new HttpLink({
-	uri: `https://graphql.dekk.app/`,
+	uri: process.env.NEXT_PUBLIC_BACKEND_URI,
 });
 
 function createApolloClient() {

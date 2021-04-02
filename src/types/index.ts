@@ -4,6 +4,8 @@ import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 
 import React from "react";
+import { FieldErrors } from "react-hook-form/dist/types/errors";
+import { UseFormRegisterReturn } from "react-hook-form/dist/types/form";
 
 export interface PageProps {
 	locale: string;
@@ -169,4 +171,16 @@ export interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement>
 	primary?: boolean;
 	active?: boolean;
 	type: "button";
+}
+
+export interface InputFieldProps extends React.HTMLProps<HTMLInputElement> {
+	errors?: FieldErrors;
+	inputProps: UseFormRegisterReturn & React.HTMLAttributes<HTMLInputElement>;
+	args?: Record<string, string | number>;
+	testId?: string;
+}
+
+export interface LoginFormProps {
+	email: string;
+	password: string;
 }

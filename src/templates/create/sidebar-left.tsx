@@ -94,11 +94,11 @@ export const Item: React.FC<{ artboard: ArtboardType }> = ({ artboard, children,
 	);
 };
 
-export const SidebarLeft = React.forwardRef<HTMLDivElement>((props, ref) => {
+const SidebarLeft: React.FC = () => {
 	const { artboards, inject } = useArtboardContext();
 	const { t } = useTranslation("aria");
 	return (
-		<StyledSidebarInner ref={ref}>
+		<StyledSidebarInner data-test-id="sidebar:left">
 			<StyledSidebarHeader>
 				Slides
 				<IconButton
@@ -106,6 +106,7 @@ export const SidebarLeft = React.forwardRef<HTMLDivElement>((props, ref) => {
 					size={24}
 					icon="plus"
 					aria-label={t("aria:add-artboard")}
+					data-test-id="sidebar:add-artboard"
 					type="button"
 					onClick={() => {
 						inject();
@@ -128,4 +129,6 @@ export const SidebarLeft = React.forwardRef<HTMLDivElement>((props, ref) => {
 			</DndProvider>
 		</StyledSidebarInner>
 	);
-});
+};
+
+export default SidebarLeft;

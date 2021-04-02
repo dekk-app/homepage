@@ -134,6 +134,9 @@ src/types/contentful-api.ts
 /cypress/videos
 /cypress/screenshots
 
+# Graphql
+schema.graphql
+
 # Unignore
 !src/atoms/icon
 

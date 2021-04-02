@@ -1,0 +1,33 @@
+{
+  "button-labels": {
+    "login": "Login",
+    "register": "Register",
+    "submit": "Submit"
+  },
+  "errors": {
+    "minLength": "The minimum length is {{minLength}}.",
+    "passwordMatch": "The passwords do not match.",
+    "required": "This field is required."
+  },
+  "fields-labels": {
+    "confirmPassword": "Confirm password",
+    "email": "E-mail address",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "password": "Password"
+  },
+  "legends": {
+    "enter-email": "Please enter your e-mail address.",
+    "enter-email-password": "Please enter your e-mail address and password.",
+    "enter-name-email": "Please enter your name and e-mail address.",
+    "enter-password-confirm": "Please enter your password and confirm it."
+  },
+  "links": {
+    "to-login": "Login",
+    "to-register": "Register",
+    "to-forgot": "Forgot password"
+  },
+  "messages": {
+    "welcome-user": "Welcome {{name}}!"
+  }
+}

@@ -12,38 +12,43 @@ export interface UseContextMenu {
 }
 
 export const useContextMenu = <T extends Element = HTMLDivElement>(
-	outerRef: React.MutableRefObject<T>
+	targetRef: React.MutableRefObject<T>
 ): UseContextMenu => {
 	const ref = React.useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = React.useState(false);
-	const { elX, elY } = useMouse(outerRef);
+	const { elX, elY } = useMouse(targetRef);
 	const [x, setX] = React.useState(0);
 	const [y, setY] = React.useState(0);
+	const { current } = ref;
+	const { current: targetRefCurrent } = targetRef;
 
 	React.useEffect(() => {
-		const handleContextMenu = (event: MouseEvent) => {
+		const handleContextMenu = (event_: MouseEvent) => {
 			// Prevent native contextmenu from opening
-			event.preventDefault();
+			event_.preventDefault();
 			setIsOpen(true);
 			setX(elX);
 			setY(elY);
-			if (ref.current) {
+			if (current) {
 				// Focus the contextmenu
-				ref.current.focus();
+				current.focus();
 			}
 		};
 
-		if (outerRef.current) {
-			outerRef.current.addEventListener("contextmenu", handleContextMenu);
-			const unsubscribe = () => {
-				outerRef.current.removeEventListener("contextmenu", handleContextMenu);
-			};
-
-			return () => {
-				unsubscribe();
-			};
+		if (targetRefCurrent) {
+			targetRefCurrent.addEventListener("contextmenu", handleContextMenu);
 		}
-	}, [elX, elY, ref, outerRef]);
+
+		const unsubscribe = () => {
+			if (targetRefCurrent) {
+				targetRefCurrent.removeEventListener("contextmenu", handleContextMenu);
+			}
+		};
+
+		return () => {
+			unsubscribe();
+		};
+	}, [elX, elY, current, targetRefCurrent]);
 
 	useOutsideClick(() => {
 		setIsOpen(false);

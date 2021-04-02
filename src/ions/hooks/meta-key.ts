@@ -3,12 +3,12 @@ import React from "react";
 export const useMetaKey = () => {
 	const [metaKey, setMetaKey] = React.useState(false);
 	React.useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			setMetaKey(event.metaKey);
+		const handleKeyDown = (event_: KeyboardEvent) => {
+			setMetaKey(event_.metaKey);
 		};
 
-		const handleKeyUp = (event: KeyboardEvent) => {
-			setMetaKey(event.metaKey);
+		const handleKeyUp = (event_: KeyboardEvent) => {
+			setMetaKey(event_.metaKey);
 		};
 
 		window.addEventListener("keydown", handleKeyDown);
