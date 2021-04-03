@@ -1,3 +1,4 @@
+import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 
 export const noBounce = css`
@@ -39,7 +40,8 @@ export const globalStyles = css`
 		font-size: 16px;
 	}
 	body {
-		width: 100vw;
+		width: 100%;
+		min-width: ${pxToRem(320)};
 		max-width: 100vw;
 		min-height: 100vh;
 		margin: 0;

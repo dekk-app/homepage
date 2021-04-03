@@ -8,6 +8,7 @@ module.exports = {
 		"*.config.js",
 		"node_modules",
 		"mockServiceWorker.js",
+		"types/*.d.ts",
 	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],

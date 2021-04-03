@@ -118,11 +118,28 @@ export const lightTheme = {
 				background: "#ffffff",
 			},
 		},
+		atoms: {
+			inputLabel: {
+				color: "#000000",
+				focus: {
+					color: "#2a2a2a",
+				},
+			},
+		},
 		molecules: {
 			artboard: {
 				background: "#ffffff",
 				color: "#000000",
 				border: "#e1e4ea",
+			},
+		},
+		organisms: {
+			inputField: {
+				background: "#ffffff",
+				color: "#000000",
+				focus: {
+					border: "#6a28ea",
+				},
 			},
 		},
 		layout: {
@@ -159,11 +176,28 @@ export const darkTheme = {
 				background: "#232424",
 			},
 		},
+		atoms: {
+			inputLabel: {
+				color: "#000000",
+				focus: {
+					color: "#2a2a2a",
+				},
+			},
+		},
 		molecules: {
 			artboard: {
 				background: "#ffffff",
 				color: "#000000",
 				border: "#e1e4ea",
+			},
+		},
+		organisms: {
+			inputField: {
+				background: "#ffffff",
+				color: "#000000",
+				focus: {
+					border: "#6a28ea",
+				},
 			},
 		},
 		layout: {

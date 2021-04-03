@@ -46,6 +46,9 @@ export interface ElementTheme {
 	background?: string;
 	color?: string;
 	border?: string;
+	focus?: ElementTheme;
+	hover?: ElementTheme;
+	active?: ElementTheme;
 }
 
 export type Patterns = Record<string, ElementTheme>;
@@ -60,9 +63,4 @@ export interface Theme {
 	mq: MediaQueries;
 	grid: GridConfig;
 	ui: UIPatterns;
-}
-
-export interface PropsWithTheme<T = HTMLDivElement> extends React.HTMLAttributes<T> {
-	/** The theme is injected via a ThemeProvider */
-	theme?: Theme;
 }

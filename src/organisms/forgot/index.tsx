@@ -18,20 +18,7 @@ const Forgot: React.FC = () => {
 		console.log(data);
 	};
 
-	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<fieldset>
-				<legend>{t("form:legends.enter-email")}</legend>
-				<InputField
-					name="email"
-					type="email"
-					inputProps={register("email", { required: true })}
-					errors={errors}
-				/>
-			</fieldset>
-			<button type="submit">{t("form:button-labels.submit")}</button>
-		</form>
-	);
+	return null;
 };
 
 export default Forgot;

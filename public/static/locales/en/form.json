@@ -7,6 +7,7 @@
   "errors": {
     "minLength": "The minimum length is {{minLength}}.",
     "passwordMatch": "The passwords do not match.",
+    "pattern": "Please check your input.",
     "required": "This field is required."
   },
   "fields-labels": {
@@ -16,11 +17,18 @@
     "lastName": "Last name",
     "password": "Password"
   },
+  "texts": {
+    "continue-with": "or continue with e-mail:",
+    "have-no-account": "No account? <toRegister>You can register here</toRegister>!",
+    "forgot-password": "<toForgot>Forgot password</toForgot>",
+    "policy-data-agreement": "Our <toPrivacyPolicy>Terms of Use, Privacy Policy</toPolicy> and <toDataProcessing>Data Processing Agreement</toDataProcessing>."
+  },
   "legends": {
-    "enter-email": "Please enter your e-mail address.",
-    "enter-email-password": "Please enter your e-mail address and password.",
-    "enter-name-email": "Please enter your name and e-mail address.",
-    "enter-password-confirm": "Please enter your password and confirm it."
+    "enter-email": "Please enter your e-mail address",
+    "enter-email-password": "Please enter your e-mail address and password",
+    "enter-name-email": "Please enter your name and e-mail address",
+    "enter-password-confirm": "Please enter your password and confirm it",
+    "login": "Login to Dekk"
   },
   "links": {
     "to-login": "Login",

@@ -1,5 +1,4 @@
 import { pxToRem } from "@/ions/utils/unit";
-import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -8,7 +7,7 @@ export const StyledDropdown = styled.div`
 	margin-top: ${pxToRem(16)};
 `;
 
-export const StyledDropdownContent = styled.div<PropsWithTheme>`
+export const StyledDropdownContent = styled.div`
 	width: ${pxToRem(250)};
 	min-height: ${pxToRem(400)};
 	padding: ${pxToRem(8)};

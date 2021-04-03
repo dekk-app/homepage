@@ -1,4 +1,3 @@
-import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -14,7 +13,7 @@ export const StyledInnerFrame = styled(StyledFrame)`
 	transform-origin: 0 0;
 `;
 
-export const StyledOuterFrame = styled(StyledFrame)<PropsWithTheme>`
+export const StyledOuterFrame = styled(StyledFrame)`
 	overflow: hidden;
 	${({
 		theme: {

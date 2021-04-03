@@ -1,9 +1,8 @@
 import { pxToRem } from "@/ions/utils/unit";
-import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledArtboard = styled.div<PropsWithTheme>`
+export const StyledArtboard = styled.div`
 	visibility: visible;
 	position: absolute;
 	top: 0;
@@ -24,7 +23,7 @@ export const StyledArtboard = styled.div<PropsWithTheme>`
 	`};
 `;
 
-export const StyledArtboardTitle = styled.div<PropsWithTheme>`
+export const StyledArtboardTitle = styled.div`
 	position: absolute;
 	bottom: 100%;
 	left: 0;

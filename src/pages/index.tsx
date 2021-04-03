@@ -1,16 +1,13 @@
 import { Template } from "@/ions/enums";
 import { PageProps } from "@/types";
 import { NextPage } from "next";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
 import React from "react";
 
 const Home = dynamic(async () => import("@/templates/home"));
 
-const Page: NextPage<PageProps> = props => {
-	const { t } = useTranslation("common");
-
+const Page: NextPage<PageProps> = () => {
 	return <Home />;
 };
 

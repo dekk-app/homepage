@@ -3,7 +3,9 @@ import { Renderer } from "@/ions/enums";
 import { useBoundingClientRect } from "@/ions/hooks/bounding-client-rect";
 import { useXYZ } from "@/ions/hooks/xyz";
 import { globalStyles, noBounce, noSelect } from "@/ions/styles";
-import { Global } from "@emotion/react";
+import { debugging, StyledFab } from "@/pages/_app";
+import { CacheProvider, Global } from "@emotion/react";
+import TouchAppIcon from "@material-ui/icons/TouchApp";
 import dynamic from "next/dynamic";
 import React from "react";
 import { StyledCanvasWrapper, StyledLayoutWrapper } from "./styled";
@@ -18,6 +20,7 @@ const SidebarRight = dynamic(async () => import("./sidebar-right"));
 const Header = dynamic(async () => import("./header"));
 
 const Create: React.FC = () => {
+	const [withDebugging, setWithDebugging] = React.useState(false);
 	const innerRef = React.useRef<HTMLDivElement>(null);
 	const { x, y, z, zoom, setX, setY, setZ } = useXYZ<HTMLDivElement>(innerRef);
 	const { height, width } = useBoundingClientRect<HTMLDivElement>(innerRef);
@@ -48,6 +51,16 @@ const Create: React.FC = () => {
 					</Layout>
 					<CanvasContextMenu outerRef={innerRef} />
 				</StyledLayoutWrapper>
+				{withDebugging && <Global styles={debugging} />}
+				<StyledFab
+					type="button"
+					aria-label="show tap area"
+					onClick={() => {
+						setWithDebugging(previousState => !previousState);
+					}}
+				>
+					<TouchAppIcon />
+				</StyledFab>
 			</ArtboardsProvider>
 		</PositionContext.Provider>
 	);

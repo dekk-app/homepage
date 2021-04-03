@@ -3,7 +3,7 @@ import { UseContextMenu } from "@/ions/hooks/context-menu";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
-import { UseFormRegisterReturn, FieldErrors } from "react-hook-form";
+import { UseFormRegisterReturn, FieldErrors, RegisterOptions } from "react-hook-form";
 
 export interface PageProps {
 	locale: string;
@@ -172,10 +172,11 @@ export interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement>
 }
 
 export interface InputFieldProps extends React.HTMLProps<HTMLInputElement> {
-	errors?: FieldErrors;
-	inputProps: UseFormRegisterReturn & React.HTMLAttributes<HTMLInputElement>;
+	fullWidth?: boolean;
+	validation: RegisterOptions;
 	args?: Record<string, string | number>;
 	testId?: string;
+	defaultValue?: string;
 }
 
 export interface LoginFormProps {

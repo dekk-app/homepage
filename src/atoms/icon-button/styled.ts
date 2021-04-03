@@ -1,7 +1,6 @@
 import { IconSize } from "@/ions/enums";
 import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
-import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -25,14 +24,12 @@ export const StyledButtonBase = styled.button`
 	}
 `;
 
-export const StyledIconButton = styled(StyledButtonBase)<
-	{
-		size: IconSize;
-		primary?: boolean;
-		active?: boolean;
-		type: "button";
-	} & PropsWithTheme<HTMLButtonElement>
->`
+export const StyledIconButton = styled(StyledButtonBase)<{
+	size: IconSize;
+	primary?: boolean;
+	active?: boolean;
+	type: "button";
+}>`
 	position: relative;
 	justify-content: center;
 	border-radius: ${pxToRem(4)};

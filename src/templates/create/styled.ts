@@ -2,7 +2,6 @@ import { Icon } from "@/atoms/icon";
 import { StyledButtonBase } from "@/atoms/icon-button/styled";
 import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
-import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
@@ -45,7 +44,7 @@ export const StyledCanvasWrapper = styled.div`
 	left: 0;
 `;
 
-export const StyledHeader = styled.div<PropsWithTheme>`
+export const StyledHeader = styled.div`
 	display: flex;
 	flex: 1;
 	align-content: center;
@@ -66,7 +65,7 @@ export const StyledHeader = styled.div<PropsWithTheme>`
 		color: ${color};
 	`};
 `;
-export const StyledPreview = styled.div<PropsWithTheme>`
+export const StyledPreview = styled.div`
 	position: relative;
 	width: ${pxToRem(50)};
 	height: ${pxToRem(28)};
@@ -98,7 +97,7 @@ export const StyledItemTitle = styled.span`
 	font-weight: 600;
 `;
 
-export const StyledList = styled.ul<PropsWithTheme<HTMLUListElement>>`
+export const StyledList = styled.ul`
 	flex: 1;
 	margin: 0;
 	padding: ${pxToRem(16)} ${pxToRem(8)};
@@ -108,7 +107,7 @@ export const StyledList = styled.ul<PropsWithTheme<HTMLUListElement>>`
 	list-style: none;
 `;
 
-export const StyledSidebarHeader = styled.header<PropsWithTheme>`
+export const StyledSidebarHeader = styled.header`
 	display: flex;
 	align-content: center;
 	align-items: center;
@@ -130,7 +129,7 @@ export const StyledSidebarHeader = styled.header<PropsWithTheme>`
 	`};
 `;
 
-export const StyledItem = styled.li<PropsWithTheme<HTMLLIElement>>`
+export const StyledItem = styled.li`
 	display: flex;
 	margin: ${pxToRem(2)} 0;
 	padding: 0;
@@ -143,9 +142,7 @@ export const StyledSidebarInner = styled.div`
 	height: 100%;
 `;
 
-export const StyledItemWrapper = styled.div<
-	{ focused?: boolean; active?: boolean } & PropsWithTheme
->`
+export const StyledItemWrapper = styled.div<{ focused?: boolean; active?: boolean }>`
 	display: flex;
 	align-content: center;
 	align-items: center;
@@ -191,14 +188,12 @@ export const StyledChild = styled.li`
 	list-style: none;
 `;
 
-export const StyledGreyIcon = styled(Icon)<PropsWithTheme<SVGSVGElement>>`
+export const StyledGreyIcon = styled(Icon)`
 	margin-right: ${pxToRem(12)};
 	color: rgb(83, 83, 83);
 `;
 
-export const StyledItemButton = styled(StyledButtonBase)<
-	{ focused?: boolean; type: "button" } & PropsWithTheme<HTMLButtonElement>
->`
+export const StyledItemButton = styled(StyledButtonBase)<{ focused?: boolean; type: "button" }>`
 	position: relative;
 	flex: 1;
 	margin-left: ${pxToRem(12)};
@@ -228,7 +223,7 @@ export const StyledIconGrid = styled.div`
 	grid-column-gap: ${pxToRem(16)};
 	grid-template-columns: repeat(2, 1fr);
 `;
-export const StyledSeparator = styled.div<PropsWithTheme>`
+export const StyledSeparator = styled.div`
 	position: absolute;
 	top: 50%;
 	right: 0;

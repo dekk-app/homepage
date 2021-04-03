@@ -33,7 +33,6 @@ const Layout: React.FC<LayoutProps> = ({
 			)}
 			{SidebarLeft && (
 				<Sidebar anchor="left">
-					{" "}
 					<SidebarLeft />
 				</Sidebar>
 			)}

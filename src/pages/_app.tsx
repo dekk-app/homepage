@@ -14,7 +14,7 @@ import React from "react";
 import useDarkMode from "use-dark-mode";
 import pkg from "../../package.json";
 
-export const typeKit = css`
+export const fontFaces = css`
 	body {
 		font-family: poppins, sans-serif;
 	}
@@ -41,27 +41,19 @@ const App = ({ Component, pageProps }) => {
 	const { value: darkMode } = useDarkMode();
 	const [theme, setTheme] = React.useState(lightTheme);
 	const [muiTheme, setMuiTheme] = React.useState(muiLight);
-	const [withDebugging, setWithDebugging] = React.useState(false);
 
 	React.useEffect(() => {
 		setTheme(darkMode ? darkTheme : lightTheme);
 		setMuiTheme(darkMode ? muiDark : muiLight);
 	}, [darkMode]);
-	React.useEffect(() => {
-		console.log(withDebugging);
-	}, [withDebugging]);
+
 	return (
 		<CacheProvider value={cache}>
-			<Global styles={typeKit} />
-			{withDebugging && <Global styles={debugging} />}
+			<Global styles={fontFaces} />
 			<Head>
 				<title>Dekk</title>
-				<meta charSet="utf-8" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" />
-				<link
-					href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-					rel="stylesheet"
-				/>
+				<meta charSet="utf-8" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<meta name="version" content={pkg.version} />
 				<meta name="application-name" content="Dekk" />
@@ -73,7 +65,6 @@ const App = ({ Component, pageProps }) => {
 				<meta name="msapplication-TileColor" content={theme.ui.colors.theme.background} />
 				<meta name="msapplication-tap-highlight" content="no" />
 				<meta name="theme-color" content={theme.ui.colors.theme.background} />
-
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
@@ -99,15 +90,10 @@ const App = ({ Component, pageProps }) => {
 					<MaterialThemeProvider theme={muiTheme}>
 						<EmotionThemeProvider theme={theme}>
 							<Component {...pageProps} />
-							<StyledFab
-								type="button"
-								aria-label="show tap area"
-								onClick={() => {
-									setWithDebugging(previousState => !previousState);
-								}}
-							>
-								<TouchAppIcon />
-							</StyledFab>
+							<link
+								href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+								rel="stylesheet"
+							/>
 						</EmotionThemeProvider>
 					</MaterialThemeProvider>
 				</StylesProvider>
