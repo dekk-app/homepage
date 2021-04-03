@@ -1,6 +1,14 @@
 module.exports = {
 	extends: ["xo-react", "plugin:prettier/recommended"],
-	ignores: ["lib", "cypress", "public", "migrations", "*.config.js", "node_modules"],
+	ignores: [
+		"lib",
+		"cypress",
+		"public",
+		"migrations",
+		"*.config.js",
+		"node_modules",
+		"mockServiceWorker.js",
+	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],
 	overrides: [

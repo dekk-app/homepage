@@ -2,10 +2,8 @@ import { IconSize, Renderer, Template } from "@/ions/enums";
 import { UseContextMenu } from "@/ions/hooks/context-menu";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
-
 import React from "react";
-import { FieldErrors } from "react-hook-form/dist/types/errors";
-import { UseFormRegisterReturn } from "react-hook-form/dist/types/form";
+import { UseFormRegisterReturn, FieldErrors } from "react-hook-form";
 
 export interface PageProps {
 	locale: string;

@@ -127,15 +127,13 @@ dist
 .husky
 
 # Generated files
-src/types/contentful-api.ts
+src/types/backend-api.ts
 .graphqlconfig
 
 # Cypress
 /cypress/videos
 /cypress/screenshots
-
-# Graphql
-schema.graphql
+public/mockServiceWorker.js
 
 # Unignore
 !src/atoms/icon

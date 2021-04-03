@@ -6,6 +6,11 @@ on:
     branches:
       - "**"
 
+env:
+  NEXT_PUBLIC_BACKEND_URI: http://localhost:1337/graphql
+  BACKEND_URI: http://localhost:1337/graphql
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
 jobs:
   test:
     runs-on: ubuntu-18.04
