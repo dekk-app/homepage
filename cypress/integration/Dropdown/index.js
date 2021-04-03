@@ -17,8 +17,7 @@ Then(`I see a dropdown`, function () {
 });
 
 When(`I click outside the dropdown`, function () {
-	cy.window().reload();
-	cy.get(dataTestId("sidebar:left")).click();
+	cy.get(dataTestId("sidebar:left")).first().click();
 });
 
 Then(`the dropdown closes`, function () {
