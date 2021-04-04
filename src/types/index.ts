@@ -1,10 +1,12 @@
 import { IconSize, Renderer, Template } from "@/ions/enums";
 import { UseContextMenu } from "@/ions/hooks/context-menu";
+import { AppProvider, DefaultProviders } from "next-auth/providers";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
-import { UseFormRegisterReturn, FieldErrors, RegisterOptions } from "react-hook-form";
+import { RegisterOptions } from "react-hook-form";
 
+/* eslint-disable no-unused-vars */
 export interface PageProps {
 	locale: string;
 	args: string[];
@@ -183,3 +185,38 @@ export interface LoginFormProps {
 	email: string;
 	password: string;
 }
+
+export type NextAuthProvider = Record<keyof DefaultProviders | string, AppProvider> | null;
+
+export interface LoginProps {
+	providers: NextAuthProvider;
+}
+
+export interface PositionContextProps {
+	x: number;
+	y: number;
+	z: number;
+	height: number;
+	width: number;
+	zoom(dir: number, m: number): void;
+	setX(n: number): void;
+	setY(n: number): void;
+	setZ(n: number): void;
+}
+
+export interface UseDragProps {
+	x?: number;
+	y?: number;
+	onDragStart?(): void;
+	onDrag?(c: { dX: number; dY: number }): void;
+	onDragEnd?(c: { dX: number; dY: number }): void;
+}
+
+export interface UseXYZProps<T> {
+	factor?: number;
+	initialZoom?: number;
+	initialPosition?: { x: number; y: number };
+	min?: number;
+	max?: number;
+}
+/* eslint-enable no-unused-vars */

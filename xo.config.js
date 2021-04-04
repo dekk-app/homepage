@@ -1,3 +1,6 @@
+/**
+ * {@see https://eslint.org/docs/user-guide/configuring/rules}
+ */
 module.exports = {
 	extends: ["xo-react", "plugin:prettier/recommended"],
 	ignores: [
@@ -47,5 +50,6 @@ module.exports = {
 		"prettier/prettier": 0,
 		"react/jsx-uses-react": 1,
 		"react/jsx-uses-vars": 1,
+		"no-unused-vars": 2,
 	},
 };

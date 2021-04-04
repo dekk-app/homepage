@@ -13,24 +13,20 @@ import {
 	StyledLegend,
 } from "@/molecules/form/styled";
 import { InputField } from "@/molecules/input-field";
-import Transdown from "@/molecules/transdown";
 import { StyledScreenBackground, StyledScreenWrapper } from "@/molecules/screen/styled";
-import { LoginFormProps } from "@/types";
+import Transdown from "@/molecules/transdown";
+import { LoginFormProps, LoginProps } from "@/types";
+import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-const Login: React.FC = () => {
+const Login: React.FC<LoginProps> = ({ providers }) => {
 	const { t } = useTranslation(["form"]);
 	const methods = useForm<LoginFormProps>();
-	const router = useRouter();
-	const onSubmit = React.useCallback(
-		data => {
-			void router.push("/dashboard");
-		},
-		[router]
-	);
+	const onSubmit = React.useCallback(data => {
+		console.log(data);
+	}, []);
 
 	return (
 		<FormProvider {...methods}>
@@ -45,7 +41,13 @@ const Login: React.FC = () => {
 									</Typography>
 								</StyledLegend>
 								<StyledSocialButtonWrapper>
-									<StyledSocialButton aria-label="google">
+									<StyledSocialButton
+										type="button"
+										aria-label="google"
+										onClick={() => {
+											void signIn(providers.google.id);
+										}}
+									>
 										<img
 											src="/big-icons/Google.svg"
 											alt="Google"
@@ -53,7 +55,14 @@ const Login: React.FC = () => {
 											width={36}
 										/>
 									</StyledSocialButton>
-									<StyledSocialButton aria-label="apple">
+									{/* Activate once we have a developer account
+									<StyledSocialButton
+										type="button"
+										onClick={() => {
+											void signIn(providers.apple.id);
+										}}
+										aria-label="apple"
+									>
 										<img
 											src="/big-icons/Apple.svg"
 											alt="Apple"
@@ -61,7 +70,14 @@ const Login: React.FC = () => {
 											width={31}
 										/>
 									</StyledSocialButton>
-									<StyledSocialButton aria-label="facebook">
+									*/}
+									<StyledSocialButton
+										type="button"
+										aria-label="facebook"
+										onClick={() => {
+											void signIn(providers.facebook.id);
+										}}
+									>
 										<img
 											src="/big-icons/Facebook.svg"
 											alt="Facebook"
@@ -69,7 +85,13 @@ const Login: React.FC = () => {
 											width={36}
 										/>
 									</StyledSocialButton>
-									<StyledSocialButton aria-label="github">
+									<StyledSocialButton
+										type="button"
+										aria-label="github"
+										onClick={() => {
+											void signIn(providers.github.id);
+										}}
+									>
 										<img
 											src="/big-icons/Github.svg"
 											alt="Github"
@@ -85,12 +107,14 @@ const Login: React.FC = () => {
 								</StyledStripeWrapper>
 								<InputField
 									fullWidth
+									id="form:signIn:email"
 									name="email"
 									type="email"
 									validation={{ required: true, pattern: /.*@.*\..*/ }}
 								/>
 								<InputField
 									fullWidth
+									id="form:signIn:password"
 									name="password"
 									type="password"
 									validation={{ required: true }}

@@ -54,10 +54,9 @@ export const StyledSocialButton = styled.button`
 	box-shadow: inset 0 0 0 1px #eee;
 	${({
 		theme: {
-			mq,
 			ui: {
 				colors: {
-					primary: { background, color },
+					primary: { background },
 				},
 			},
 		},
@@ -71,7 +70,7 @@ export const StyledSocialButton = styled.button`
 export const StyledSocialButtonWrapper = styled.div`
 	display: grid;
 	grid-column-gap: ${pxToRem(16)};
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	width: 100%;
 	margin: 0 auto;
 `;

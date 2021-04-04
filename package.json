@@ -54,6 +54,7 @@
     "konva": "^7.2.5",
     "multi-key-cache": "^1.0.2",
     "next": "10.1.3",
+    "next-auth": "^3.13.3",
     "next-i18next": "8.1.3",
     "react": "17.0.2",
     "react-dnd": "^14.0.2",
@@ -65,7 +66,7 @@
     "react-use": "17.2.1",
     "tslib": "2.1.0",
     "use-dark-mode": "^2.3.1",
-    "use-debounce": "^6.0.0",
+    "use-debounce": "^6.0.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -87,6 +88,7 @@
     "@types/jasmine": "^3.6.9",
     "@types/jasmine-matchers": "^0.2.32",
     "@types/jest": "^26.0.22",
+    "@types/next-auth": "^3.13.0",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
@@ -98,7 +100,7 @@
     "cypress-graphql-mock-network": "^0.3.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.23.0",
-    "eslint-config-xo-react": "^0.24.0",
+    "eslint-config-xo-react": "^0.25.0",
     "eslint-config-xo-typescript": "^0.38.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.1",

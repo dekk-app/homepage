@@ -37,7 +37,6 @@ const ArtboardsProvider: React.FC = ({ children }) => {
 	const inject = React.useCallback(() => {
 		setArtboards(previousState => {
 			const { x, y } = findOuter(previousState);
-			console.log({ x, y });
 			return [
 				...previousState,
 				{

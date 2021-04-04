@@ -1,5 +1,4 @@
 import Typography from "@/atoms/typography";
-import { shortId } from "@/ions/utils/id";
 import {
 	StyledFloatingLabel,
 	StyledInput,
@@ -13,6 +12,7 @@ import { useFormContext } from "react-hook-form";
 
 export const InputField: React.FC<InputFieldProps> = ({
 	name,
+	id,
 	type,
 	testId,
 	fullWidth,
@@ -34,7 +34,6 @@ export const InputField: React.FC<InputFieldProps> = ({
 	React.useEffect(() => {
 		setFilled(current?.value?.length > 0);
 	}, [current]);
-	const id = React.useMemo(() => shortId.generate(), []);
 	return (
 		<>
 			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_input`}>

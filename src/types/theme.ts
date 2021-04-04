@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable no-unused-vars */
 export interface Palette {
 	red: string;
 	green: string;

@@ -1,4 +1,4 @@
-import { InputField } from "@/molecules/input-field";
+/* eslint-disable no-unused-vars */
 import { gql, useMutation } from "@apollo/client";
 import { useTranslation } from "next-i18next";
 import React from "react";

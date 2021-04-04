@@ -1,9 +1,6 @@
 import React from "react";
 
-export const useOutsideClick = <T extends Element[]>(
-	onClick: (event_: MouseEvent) => void,
-	elements: T
-) => {
+export const useOutsideClick = <T extends Element[]>(onClick, elements: T) => {
 	React.useEffect(() => {
 		const handleClick = event_ => {
 			const isOutside = elements.reduce(

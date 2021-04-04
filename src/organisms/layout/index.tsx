@@ -1,3 +1,5 @@
+import { globalStyles } from "@/ions/styles";
+import { Global } from "@emotion/react";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -20,6 +22,7 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
 	return (
 		<>
+			<Global styles={globalStyles} />
 			<Head>
 				<meta
 					name="description"

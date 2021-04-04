@@ -13,7 +13,7 @@ export const useSiblingSnap = (artboard: ArtboardType, dragging) => {
 			dragging
 				? artboards
 						.filter(({ id }) => id !== artboard.id)
-						.map(({ x, y, height, width, id }) => {
+						.map(({ x, y, height, width }) => {
 							const snap = { x: null, y: null };
 							if (inRange(artboard.x, x + width - threshold, x + width + threshold)) {
 								snap.x = x + width;

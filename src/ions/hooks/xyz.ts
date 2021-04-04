@@ -1,16 +1,9 @@
 import { useDrag } from "@/ions/hooks/drag";
 import { useWheel } from "@/ions/hooks/wheel";
 import { clamp, inRange } from "@/ions/utils/number";
+import { UseXYZProps } from "@/types";
 import React from "react";
 import { useMouse } from "react-use";
-
-export interface UseXYZProps<T> {
-	factor?: number;
-	initialZoom?: number;
-	initialPosition?: { x: number; y: number };
-	min?: number;
-	max?: number;
-}
 
 export const useXYZ = <T extends Element>(
 	ref: React.MutableRefObject<T>,

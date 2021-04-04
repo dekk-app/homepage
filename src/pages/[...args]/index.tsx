@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-const Page: NextPage<PageProps> = ({ locale, args, template }) => {
+const Page: NextPage<PageProps> = ({ template }) => {
 	const Component = React.useMemo(
 		() =>
 			templates[template] ??

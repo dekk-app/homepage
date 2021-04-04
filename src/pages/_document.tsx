@@ -1,5 +1,4 @@
 import { cache } from "@/ions/services/emotion/cache";
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import createEmotionServer from "@emotion/server/create-instance";
 import MaterialUiServerStyleSheet from "@material-ui/styles/ServerStyleSheets";
 import NextDocument, {

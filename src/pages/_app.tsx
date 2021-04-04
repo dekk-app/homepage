@@ -6,8 +6,8 @@ import { ApolloProvider } from "@apollo/client";
 import { CacheProvider, css, Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Fab } from "@material-ui/core";
-import TouchAppIcon from "@material-ui/icons/TouchApp";
 import { StylesProvider, ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
+import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
 import React from "react";
@@ -85,19 +85,21 @@ const App = ({ Component, pageProps }) => {
 				<link rel="manifest" href="/manifest.json" />
 				<link rel="shortcut icon" href={`favicon.ico?${pkg.version}`} />
 			</Head>
-			<ApolloProvider client={apolloClient}>
-				<StylesProvider injectFirst>
-					<MaterialThemeProvider theme={muiTheme}>
-						<EmotionThemeProvider theme={theme}>
-							<Component {...pageProps} />
-							<link
-								href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-								rel="stylesheet"
-							/>
-						</EmotionThemeProvider>
-					</MaterialThemeProvider>
-				</StylesProvider>
-			</ApolloProvider>
+			<NextAuthProvider session={pageProps.session}>
+				<ApolloProvider client={apolloClient}>
+					<StylesProvider injectFirst>
+						<MaterialThemeProvider theme={muiTheme}>
+							<EmotionThemeProvider theme={theme}>
+								<Component {...pageProps} />
+								<link
+									href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+									rel="stylesheet"
+								/>
+							</EmotionThemeProvider>
+						</MaterialThemeProvider>
+					</StylesProvider>
+				</ApolloProvider>
+			</NextAuthProvider>
 		</CacheProvider>
 	);
 };

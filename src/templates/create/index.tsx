@@ -2,9 +2,9 @@ import { PositionContext } from "@/ions/contexts/position";
 import { Renderer } from "@/ions/enums";
 import { useBoundingClientRect } from "@/ions/hooks/bounding-client-rect";
 import { useXYZ } from "@/ions/hooks/xyz";
-import { globalStyles, noBounce, noSelect } from "@/ions/styles";
+import { noBounce, noSelect } from "@/ions/styles";
 import { debugging, StyledFab } from "@/pages/_app";
-import { CacheProvider, Global } from "@emotion/react";
+import { Global } from "@emotion/react";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -38,7 +38,6 @@ const Create: React.FC = () => {
 	return (
 		<PositionContext.Provider value={context}>
 			<ArtboardsProvider>
-				<Global styles={globalStyles} />
 				<Global styles={noBounce} />
 				<Global styles={noSelect} />
 				<StyledLayoutWrapper>
