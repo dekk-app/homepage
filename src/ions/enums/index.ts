@@ -6,9 +6,13 @@ export enum Template {
 }
 
 export enum Route {
-	home = "home",
-	dashboard = "dashboard",
+	auth = "auth",
 	create = "create",
+	dashboard = "dashboard",
+	dataProcessing = "dataProcessing",
+	forgot = "forgot",
+	register = "register",
+	policy = "policy",
 }
 
 export enum Renderer {

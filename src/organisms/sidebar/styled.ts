@@ -18,7 +18,7 @@ export const StyledSidebar = styled.aside<SidebarProps>`
 	z-index: 1;
 	top: ${pxToRem(60)};
 	bottom: 0;
-	height: calc(100vh - ${pxToRem(60)});
+	height: 100%;
 	${({
 		theme: {
 			ui: {

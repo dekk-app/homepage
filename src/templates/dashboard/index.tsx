@@ -1,11 +1,15 @@
 import Typography from "@/atoms/typography";
+import routes from "@/ions/routes";
 import { pxToRem } from "@/ions/utils/unit";
 import Layout from "@/organisms/layout";
 import styled from "@emotion/styled";
 import { User } from "next-auth";
 import { signOut, useSession } from "next-auth/client";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import React from "react";
+import { StyledLayoutWrapper } from "./styled";
 
 export const StyledUserCard = styled.div`
 	display: flex;
@@ -39,6 +43,57 @@ export const AccountCard: React.FC<AccountCardProps> = ({ user }) => {
 	);
 };
 
+const SidebarLeft = () => {
+	const { t } = useTranslation(["common", "dashboard"]);
+	const router = useRouter();
+	const [session] = useSession();
+	return (
+		<>
+			<AccountCard user={session.user} />
+			<button
+				type="button"
+				onClick={() => {
+					void signOut();
+				}}
+			>
+				{t("logout")}
+			</button>
+			<button
+				type="button"
+				onClick={() => {
+					void router.push("/create");
+				}}
+			>
+				{t("dashboard:new-presentation")}
+			</button>
+		</>
+	);
+};
+
+const projects = [
+	{ id: "my-project-1" },
+	{ id: "my-project-2" },
+	{ id: "my-project-3" },
+	{ id: "my-project-4" },
+	{ id: "my-project-5" },
+	{ id: "my-project-6" },
+];
+
+const Projects = () => {
+	const { locale } = useRouter();
+	return (
+		<div>
+			{projects.map(project => (
+				<div key={project.id}>
+					<Link passHref href={`/${routes.create.dir[locale]}/${project.id}`}>
+						<a>Project</a>
+					</Link>
+				</div>
+			))}
+		</div>
+	);
+};
+
 const Dashboard: React.FC = () => {
 	const router = useRouter();
 	const [session, loading] = useSession();
@@ -49,25 +104,11 @@ const Dashboard: React.FC = () => {
 	}, [loading, session, router]);
 
 	return session ? (
-		<Layout>
-			<AccountCard user={session.user} />
-			<button
-				type="button"
-				onClick={() => {
-					void signOut();
-				}}
-			>
-				Sign out
-			</button>
-			<button
-				type="button"
-				onClick={() => {
-					void router.push("/create");
-				}}
-			>
-				New Presentation
-			</button>
-		</Layout>
+		<StyledLayoutWrapper>
+			<Layout sidebarLeft={SidebarLeft}>
+				<Projects />
+			</Layout>
+		</StyledLayoutWrapper>
 	) : null;
 };
 

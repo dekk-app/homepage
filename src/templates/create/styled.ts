@@ -139,7 +139,7 @@ export const StyledItem = styled.li`
 export const StyledSidebarInner = styled.div`
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: calc(100vh - ${pxToRem(60)});
 `;
 
 export const StyledItemWrapper = styled.div<{ focused?: boolean; active?: boolean }>`

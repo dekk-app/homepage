@@ -1,10 +1,8 @@
-import { ROOT } from "@/ions/constants";
 import { Route } from "@/ions/enums";
-import { RouteConfig, RouteObject } from "@/types";
-import { Except } from "type-fest";
+import { RouteConfig } from "@/types";
 
-const routes: Except<Record<Route, RouteConfig>, Route.home> = {
-	dashboard: {
+const routes: Record<Route, RouteConfig> = {
+	[Route.dashboard]: {
 		dir: {
 			en: "dashboard",
 			de: "dashboard",
@@ -14,7 +12,7 @@ const routes: Except<Record<Route, RouteConfig>, Route.home> = {
 			de: "Dashboard",
 		},
 	},
-	create: {
+	[Route.create]: {
 		dir: {
 			en: "create",
 			de: "erstellen",
@@ -24,30 +22,56 @@ const routes: Except<Record<Route, RouteConfig>, Route.home> = {
 			de: "Erstellen",
 		},
 	},
-};
-
-export const routeMap = Object.entries(routes).map(
-	([template, config]): RouteObject => ({ template, config })
-);
-
-export const getRoute = (locale: string, localizedDir?: string): Route => {
-	const route = routeMap.find(({ config: { dir } }) => {
-		const { [locale]: _localizedDir } = dir;
-		if (_localizedDir === ROOT) {
-			return localizedDir === undefined;
-		}
-
-		return localizedDir === _localizedDir;
-	});
-
-	switch (route.template) {
-		case Route.dashboard:
-			return Route.dashboard;
-		case Route.create:
-			return Route.create;
-		default:
-			return Route.home;
-	}
+	[Route.auth]: {
+		dir: {
+			en: "auth",
+			de: "auth",
+		},
+		breadcrumb: {
+			en: "Authorization",
+			de: "Autorisierung",
+		},
+	},
+	[Route.register]: {
+		dir: {
+			en: "auth/register",
+			de: "auth/registrieren",
+		},
+		breadcrumb: {
+			en: "Register",
+			de: "Registrieren",
+		},
+	},
+	[Route.forgot]: {
+		dir: {
+			en: "auth/forgot-password",
+			de: "auth/passwort-vergessen",
+		},
+		breadcrumb: {
+			en: "Forgot password",
+			de: "Passwort vergessen",
+		},
+	},
+	[Route.policy]: {
+		dir: {
+			en: "data-policy",
+			de: "datenschutz",
+		},
+		breadcrumb: {
+			en: "Data policy",
+			de: "Datenschutz",
+		},
+	},
+	[Route.dataProcessing]: {
+		dir: {
+			en: "data-processing",
+			de: "daten-bearbeitung",
+		},
+		breadcrumb: {
+			en: "Data processing",
+			de: "Datenbearbeitung",
+		},
+	},
 };
 
 export default routes;

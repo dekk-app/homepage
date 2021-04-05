@@ -4,10 +4,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Home = dynamic(async () => import("@/templates/home"));
+const Dashboard = dynamic(async () => import("@/templates/dashboard"));
 
 const Page: NextPage = () => {
-	return <Home />;
+	console.log("dashboard");
+	return <Dashboard />;
 };
 
 export async function getServerSideProps(context) {

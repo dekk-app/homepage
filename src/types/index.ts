@@ -1,16 +1,19 @@
-import { IconSize, Renderer, Template } from "@/ions/enums";
+import { IconSize, Renderer, Route, Template } from "@/ions/enums";
 import { UseContextMenu } from "@/ions/hooks/context-menu";
+import { Session } from "next-auth";
 import { AppProvider, DefaultProviders } from "next-auth/providers";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { RegisterOptions } from "react-hook-form";
+import { Except } from "type-fest";
 
 /* eslint-disable no-unused-vars */
 export interface PageProps {
 	locale: string;
 	args: string[];
 	template: Template;
+	session: Session;
 }
 
 export interface PageQuery extends ParsedUrlQuery {
@@ -220,3 +223,12 @@ export interface UseXYZProps<T> {
 	max?: number;
 }
 /* eslint-enable no-unused-vars */
+export interface GetI18nRouteOptions {
+	locale: string;
+	defaultLocale: string;
+}
+
+export interface I18nLinkProps extends Except<LinkProps, "href"> {
+	route: Route;
+	subPath?: string;
+}
