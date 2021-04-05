@@ -1,6 +1,8 @@
 import Typography from "@/atoms/typography";
 import {
+	StyledError,
 	StyledFloatingLabel,
+	StyledHelpText,
 	StyledInput,
 	StyledInputWrapper,
 	StyledRequiredIndicator,
@@ -52,6 +54,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 					id={`${id}_input`}
 					name={name}
 					required={Boolean(validation.required)}
+					invalid={Boolean(errors[name])}
 					type={type}
 					data-test-id={testId}
 					aria-labelledby={`${id}_label`}
@@ -70,9 +73,16 @@ export const InputField: React.FC<InputFieldProps> = ({
 					}}
 				/>
 			</StyledInputWrapper>
-			<Typography id={`${id}_help`}>
-				{errors[name] && t(`form:errors.${errors[name].type as string}`, args)}
-			</Typography>
+
+			<StyledHelpText>
+				<Typography id={`${id}_help`}>
+					{errors[name] && (
+						<StyledError>
+							{t(`form:errors.${errors[name].type as string}`, args)}
+						</StyledError>
+					)}
+				</Typography>
+			</StyledHelpText>
 		</>
 	);
 };

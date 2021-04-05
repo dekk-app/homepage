@@ -140,6 +140,10 @@ export const lightTheme = {
 				focus: {
 					border: "#6a28ea",
 				},
+				error: {
+					border: "#D90303",
+					color: "#D90303",
+				},
 			},
 		},
 		layout: {
@@ -197,6 +201,10 @@ export const darkTheme = {
 				color: "#000000",
 				focus: {
 					border: "#6a28ea",
+				},
+				error: {
+					border: "#D90303",
+					color: "#D90303",
 				},
 			},
 		},

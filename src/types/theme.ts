@@ -45,6 +45,7 @@ export interface ElementTheme {
 	background?: string;
 	color?: string;
 	border?: string;
+	error?: ElementTheme;
 	focus?: ElementTheme;
 	hover?: ElementTheme;
 	active?: ElementTheme;

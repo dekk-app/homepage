@@ -37,7 +37,7 @@ export const StyledFloatingLabel = styled.span<{ floating?: boolean }>`
 			color: ${floating ? focus.color : color};
 		`};
 `;
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<{ invalid?: boolean }>`
 	width: 100%;
 	height: ${pxToRem(60)};
 	margin: 0;
@@ -49,16 +49,19 @@ export const StyledInput = styled.input`
 	line-height: ${pxToRem(16)};
 	caret-color: var(--focus-color);
 	${({
+		invalid,
 		theme: {
 			ui: {
 				organisms: {
-					inputField: { background, color, focus },
+					inputField: { background, color, focus, error },
 				},
 			},
 		},
 	}) => css`
 		background: ${background};
 		color: ${color};
+		box-shadow: 0 0 0 1px ${invalid ? error.border : "transparent"};
+
 		&:focus {
 			outline: 0;
 			box-shadow: 0 0 0 1px ${focus.border};
@@ -78,4 +81,24 @@ export const StyledRequiredIndicator = styled.sup`
 		css`
 			color: ${background};
 		`};
+`;
+
+export const StyledError = styled.span`
+	${({
+		theme: {
+			ui: {
+				organisms: {
+					inputField: { error },
+				},
+			},
+		},
+	}) => css`
+		color: ${error.color};
+	`};
+`;
+
+export const StyledHelpText = styled.div`
+	width: 100%;
+	margin-top: ${pxToRem(-12)};
+	padding-left: ${pxToRem(16)};
 `;
