@@ -8,4 +8,4 @@ const Sidebar: React.FC<SidebarProps> = ({ children, anchor, ...props }) => (
 	</StyledSidebar>
 );
 
-export default Sidebar;
+export default React.memo(Sidebar);

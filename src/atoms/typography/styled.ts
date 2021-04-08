@@ -16,6 +16,9 @@ export const StyledLink = styled.a`
 		},
 	}) => css`
 		&:focus {
+			outline: 0;
+		}
+		&:focus-visible {
 			outline: 1px solid ${background};
 			outline-offset: 3px;
 		}

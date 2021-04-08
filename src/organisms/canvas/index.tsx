@@ -23,4 +23,4 @@ const Canvas: React.FC<CanvasProps> = ({ renderer, children }) => {
 	}
 };
 
-export default Canvas;
+export default React.memo(Canvas);

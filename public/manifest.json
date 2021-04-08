@@ -5,7 +5,7 @@
   "orientation": "landscape",
   "theme_color": "#232424",
   "background_color": "#232424",
-  "start_url": "/create",
+  "start_url": "/",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     },
     {
-      "src":"icons/icon-196x196-maskable.png",
+      "src": "icons/icon-196x196-maskable.png",
       "sizes": "196x196",
       "type": "image/png",
       "purpose": "any maskable"

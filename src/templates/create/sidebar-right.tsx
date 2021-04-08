@@ -5,4 +5,4 @@ const SidebarRight: React.FC = () => {
 	return <StyledSidebarInner>Sidebar Right</StyledSidebarInner>;
 };
 
-export default SidebarRight;
+export default React.memo(SidebarRight);

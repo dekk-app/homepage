@@ -37,6 +37,8 @@ export const StyledButton = styled.button<{ focused?: boolean }>`
 
 		&:focus {
 			outline: 0;
+		}
+		&:focus-visible {
 			box-shadow: 0 0 0 1px ${background};
 		}
 	`};
@@ -63,7 +65,9 @@ export const StyledSocialButton = styled.button`
 	}) => css`
 		&:focus {
 			outline: 0;
-			box-shadow: inset 0 0 0 1px ${background};
+		}
+		&:focus-visible {
+			box-shadow: 0 0 0 1px ${background};
 		}
 	`};
 `;

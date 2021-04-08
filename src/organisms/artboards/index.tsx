@@ -1,6 +1,8 @@
 import { useArtboardContext } from "@/ions/hooks/context";
-import { Artboard } from "@/molecules/artboard";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const Artboard = dynamic(async () => import("@/molecules/artboard"));
 
 const Artboards: React.FC = () => {
 	const { artboards, select } = useArtboardContext();
@@ -21,4 +23,4 @@ const Artboards: React.FC = () => {
 	);
 };
 
-export default Artboards;
+export default React.memo(Artboards);

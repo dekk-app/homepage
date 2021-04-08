@@ -186,7 +186,6 @@ export interface InputFieldProps extends React.HTMLProps<HTMLInputElement> {
 
 export interface LoginFormProps {
 	email: string;
-	password: string;
 }
 
 export type NextAuthProvider = Record<keyof DefaultProviders | string, AppProvider> | null;

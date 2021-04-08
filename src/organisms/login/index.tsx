@@ -4,22 +4,24 @@ import {
 	StyledSocialButton,
 	StyledSocialButtonWrapper,
 } from "@/atoms/button/styled";
-import { StyledFullStripe, StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
-import Typography from "@/atoms/typography";
+import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import {
 	StyledFieldset,
 	StyledForm,
 	StyledFormWrapper,
 	StyledLegend,
 } from "@/molecules/form/styled";
-import { InputField } from "@/molecules/input-field";
 import { StyledScreenBackground, StyledScreenWrapper } from "@/molecules/screen/styled";
-import Transdown from "@/molecules/transdown";
 import { LoginFormProps, LoginProps } from "@/types";
 import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+const InputField = dynamic(async () => import("@/molecules/input-field"));
+const Transdown = dynamic(async () => import("@/molecules/transdown"));
+const Typography = dynamic(async () => import("@/atoms/typography"));
 
 const Login: React.FC<LoginProps> = ({ providers }) => {
 	const { t } = useTranslation(["form"]);
@@ -55,22 +57,6 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 											width={36}
 										/>
 									</StyledSocialButton>
-									{/* Activate once we have a developer account
-									<StyledSocialButton
-										type="button"
-										onClick={() => {
-											void signIn(providers.apple.id);
-										}}
-										aria-label="apple"
-									>
-										<img
-											src="/big-icons/Apple.svg"
-											alt="Apple"
-											height={36}
-											width={31}
-										/>
-									</StyledSocialButton>
-									*/}
 									<StyledSocialButton
 										type="button"
 										aria-label="facebook"
@@ -112,13 +98,6 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 									type="email"
 									validation={{ required: true, pattern: /.*@.*\..*/ }}
 								/>
-								<InputField
-									fullWidth
-									id="form:signIn:password"
-									name="password"
-									type="password"
-									validation={{ required: true }}
-								/>
 							</StyledFieldset>
 							<StyledButtonWrapper>
 								<StyledButton type="submit">
@@ -127,13 +106,6 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 							</StyledButtonWrapper>
 						</StyledFormWrapper>
 					</StyledForm>
-					<Typography centered>
-						<Transdown i18nKey="form:texts.forgot-password" />
-					</Typography>
-					<Typography centered>
-						<Transdown i18nKey="form:texts.have-no-account" />
-					</Typography>
-					<StyledFullStripe />
 					<Typography centered raw>
 						<Transdown i18nKey="form:texts.policy-data-agreement" />
 					</Typography>
@@ -143,4 +115,4 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 	);
 };
 
-export default Login;
+export default React.memo(Login);

@@ -69,7 +69,7 @@ export const StyledIconButton = styled(StyledButtonBase)<{
 		height: ${pxToRem(size + 8)};
 		width: ${pxToRem(size + 8)};
 
-		&:focus {
+		&:focus-visible {
 			background: ${active ? background : setOpacity(background, 0.3)};
 		}
 		&:active {

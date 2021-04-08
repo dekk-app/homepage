@@ -12,7 +12,7 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 
-export const InputField: React.FC<InputFieldProps> = ({
+const InputField: React.FC<InputFieldProps> = ({
 	name,
 	id,
 	type,
@@ -86,3 +86,5 @@ export const InputField: React.FC<InputFieldProps> = ({
 		</>
 	);
 };
+
+export default React.memo(InputField);

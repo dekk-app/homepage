@@ -64,7 +64,9 @@ export const StyledInput = styled.input<{ invalid?: boolean }>`
 
 		&:focus {
 			outline: 0;
-			box-shadow: 0 0 0 1px ${focus.border};
+		}
+		&:focus-visible {
+			box-shadow: 0 0 0 1px ${focus.background};
 		}
 	`};
 `;

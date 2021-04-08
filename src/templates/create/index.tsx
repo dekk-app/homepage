@@ -65,4 +65,4 @@ const Create: React.FC = () => {
 	);
 };
 
-export default Create;
+export default React.memo(Create);

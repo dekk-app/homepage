@@ -30,4 +30,4 @@ const SignIn: React.FC<SignInPageProps> = ({ providers }) => {
 	);
 };
 
-export default SignIn;
+export default React.memo(SignIn);

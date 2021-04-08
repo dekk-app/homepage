@@ -1,13 +1,10 @@
 import { IconButton } from "@/atoms/icon-button";
 import { IconSize } from "@/ions/enums";
 import { useArtboardContext } from "@/ions/hooks/context";
-import { truncateByWidth } from "@/ions/utils/string";
 import { ArtboardPreview } from "@/molecules/artboard/preview";
 import { ArtboardType } from "@/types";
 import { useTranslation } from "next-i18next";
 import React from "react";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 
 import {
 	StyledChild,
@@ -24,16 +21,7 @@ import {
 } from "./styled";
 
 export const ItemTitle: React.FC<{ title: string }> = ({ title }) => {
-	const truncated = React.useMemo(
-		() =>
-			truncateByWidth(title, 136, 20, {
-				fontSize: "12px",
-				fontFamily: "Poppins",
-				fontWeight: "600",
-			}),
-		[title]
-	);
-	return <StyledItemTitle>{truncated}</StyledItemTitle>;
+	return <StyledItemTitle>{title}</StyledItemTitle>;
 };
 
 export const Item: React.FC<{ artboard: ArtboardType }> = ({ artboard, children, ...props }) => {
@@ -108,27 +96,23 @@ const SidebarLeft: React.FC = () => {
 					aria-label={t("aria:add-artboard")}
 					data-test-id="sidebar:add-artboard"
 					type="button"
-					onClick={() => {
-						inject();
-					}}
+					onClick={inject}
 				/>
 			</StyledSidebarHeader>
-			<DndProvider backend={HTML5Backend}>
-				<StyledList>
-					{artboards.map(artboard => {
-						return (
-							<Item key={artboard.id} artboard={artboard}>
-								<StyledPreview>
-									<ArtboardPreview artboard={artboard} scale={50 / 1600} />
-								</StyledPreview>
-								<ItemTitle title={artboard.title} />
-							</Item>
-						);
-					})}
-				</StyledList>
-			</DndProvider>
+			<StyledList>
+				{artboards.map(artboard => {
+					return (
+						<Item key={artboard.id} artboard={artboard}>
+							<StyledPreview>
+								<ArtboardPreview artboard={artboard} scale={50 / 1600} />
+							</StyledPreview>
+							<ItemTitle title={artboard.title} />
+						</Item>
+					);
+				})}
+			</StyledList>
 		</StyledSidebarInner>
 	);
 };
 
-export default SidebarLeft;
+export default React.memo(SidebarLeft);

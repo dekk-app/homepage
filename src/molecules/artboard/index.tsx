@@ -20,12 +20,7 @@ export const inBound = (artboard: ArtboardType, { x, y, z, height, width }: InBo
 	return top && right && bottom && left;
 };
 
-export const Artboard: React.FC<ArtboardProps> = ({
-	artboard,
-	onMouseDown,
-	onClick,
-	onContextMenu,
-}) => {
+const Artboard: React.FC<ArtboardProps> = ({ artboard, onMouseDown, onClick, onContextMenu }) => {
 	const { z } = usePositionContext();
 	const [x, setX] = React.useState(artboard.x);
 	const [y, setY] = React.useState(artboard.y);
@@ -81,3 +76,5 @@ export const Artboard: React.FC<ArtboardProps> = ({
 		</StyledArtboard>
 	);
 };
+
+export default React.memo(Artboard);

@@ -39,4 +39,4 @@ const Typography: React.FC<
 	}
 };
 
-export default Typography;
+export default React.memo(Typography);

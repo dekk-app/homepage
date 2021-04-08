@@ -20,6 +20,7 @@ export const StyledScreenBackground = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	min-height: 100vh;
 	${({ theme: { mq } }) => css`
 		@media ${mq.l} {
 			background-image: url(/illustrations/start_left.svg),

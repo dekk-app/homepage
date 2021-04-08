@@ -7,4 +7,4 @@ const Main = React.forwardRef<HTMLDivElement>(({ children, ...props }, ref) => (
 	</StyledMain>
 ));
 
-export default Main;
+export default React.memo(Main);
