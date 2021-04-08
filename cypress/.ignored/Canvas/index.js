@@ -2,86 +2,84 @@ import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import { dataTestId } from "../../utils";
 
 Given("I am on the create screen", function () {
+	this.originalFrameRect = { top: 0, left: 0, height: 0, width: 0 };
+	this.modifiedFrameRect = { top: 0, left: 0, height: 0, width: 0 };
 	cy.viewport(1600, 900);
 	cy.visit("/create");
-	cy.get(dataTestId("inner-frame")).should("be.visible");
 });
 
 When("I drag the view {string} to the {string}", function (distance, direction) {
 	cy.window().reload();
-	cy.get(dataTestId("inner-frame")).then(function ($el) {
-		this.originalFrameRect = $el[0].getBoundingClientRect();
-	});
+	cy.getBoundingClientRect(dataTestId("inner-frame"), this.originalFrameRect);
 
 	const parsedDistance = parseFloat(distance);
 	const deltaY =
 		direction === "top" ? -parsedDistance : direction === "bottom" ? parsedDistance : 0;
 	const deltaX =
 		direction === "left" ? -parsedDistance : direction === "right" ? parsedDistance : 0;
-	const initialPosition = { buttons: 1, pageX: 500, pageY: 100 };
+	const initialPosition = { pageX: 500, pageY: 100 };
 	const finalPosition = {
-		buttons: 1,
 		pageX: initialPosition.pageX + deltaX,
 		pageY: initialPosition.pageY + deltaY,
 	};
-	cy.get(dataTestId("canvas-wrapper"))
-		.last()
-		.trigger("mousedown", initialPosition.pageX, initialPosition.pageY, initialPosition)
-		.trigger("mousemove", finalPosition.pageX, finalPosition.pageY, finalPosition)
-		.trigger("mouseup", finalPosition.pageX, finalPosition.pageY, finalPosition);
+
+	cy.drag(dataTestId("canvas-wrapper"), {
+		initialPosition,
+		finalPosition,
+		options: {
+			button: 0,
+			buttons: 1,
+			which: 1,
+		},
+	});
 });
 
 Then("the screen moves {string} to the {string}", function (distance, direction) {
+	cy.getBoundingClientRect(dataTestId("inner-frame"), this.originalFrameRect);
+
+	const left = this.modifiedFrameRect.left - this.originalFrameRect.left;
+	const top = this.modifiedFrameRect.top - this.originalFrameRect.top;
 	const parsedDistance = parseFloat(distance);
-	cy.get(dataTestId("inner-frame")).then(function ($el) {
-		this.modifiedFrameRect = $el[0].getBoundingClientRect();
 
-		const left = this.modifiedFrameRect.left - this.originalFrameRect.left;
-		const top = this.modifiedFrameRect.top - this.originalFrameRect.top;
-
-		switch (direction) {
-			case "left":
-				expect(left).to.be.equal(-parsedDistance);
-				break;
-			case "right":
-				expect(left).to.be.equal(parsedDistance);
-				break;
-			case "top":
-				expect(top).to.be.equal(parsedDistance);
-				break;
-			case "bottom":
-				expect(top).to.be.equal(-parsedDistance);
-				break;
-			default:
-				throw new Error(`Direction: "${direction}" is not supported`);
-		}
-	});
+	switch (direction) {
+		case "left":
+			expect(left).to.be.equal(-parsedDistance);
+			break;
+		case "right":
+			expect(left).to.be.equal(parsedDistance);
+			break;
+		case "top":
+			expect(top).to.be.equal(parsedDistance);
+			break;
+		case "bottom":
+			expect(top).to.be.equal(-parsedDistance);
+			break;
+		default:
+			throw new Error(`Direction: "${direction}" is not supported`);
+	}
 });
 
 When("I {string} the view to the {string}", function (event, direction) {
 	cy.window().reload();
-	cy.get(dataTestId("inner-frame")).then(function ($el) {
-		this.originalFrameRect = $el[0].getBoundingClientRect();
-	});
+	cy.getBoundingClientRect(dataTestId("inner-frame"), this.originalFrameRect);
+
 	switch (event) {
 		case "scroll":
-			cy.window().trigger("wheel", {
+			cy.get(dataTestId("canvas-wrapper")).trigger("wheel", {
 				deltaY: direction === "top" ? 1 : -1,
 			});
-			cy.get(dataTestId("inner-frame")).then(function ($el) {
-				this.modifiedFrameRect = $el[0].getBoundingClientRect();
-			});
+			cy.getBoundingClientRect(dataTestId("inner-frame"), this.modifiedFrameRect);
+
 			break;
 		case "metaKey+scroll":
 			cy.window().trigger("keydown", { metaKey: true });
-			cy.window().trigger("wheel", {
+			cy.get(dataTestId("canvas-wrapper")).trigger("wheel", {
 				deltaY: direction === "top" ? 1 : -1,
 				metaKey: true,
 			});
-			cy.window().trigger("keydown", { metaKey: false });
-			cy.get(dataTestId("inner-frame")).then(function ($el) {
-				this.modifiedFrameRect = $el[0].getBoundingClientRect();
-			});
+			cy.window().trigger("keyup", { metaKey: false });
+			cy.getBoundingClientRect(dataTestId("inner-frame"), this.modifiedFrameRect);
+
 			break;
 		default:
 			throw new Error(`${event} is not a valid event`);
