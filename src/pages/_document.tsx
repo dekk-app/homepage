@@ -1,6 +1,6 @@
 import { cache } from "@/ions/services/emotion/cache";
 import createEmotionServer from "@emotion/server/create-instance";
-import MaterialUiServerStyleSheet from "@material-ui/styles/ServerStyleSheets";
+// Import MaterialUiServerStyleSheet from "@material-ui/styles/ServerStyleSheets";
 import NextDocument, {
 	DocumentContext,
 	DocumentInitialProps,
@@ -38,21 +38,21 @@ class Document extends NextDocument<any> {
 		// 4. page.render
 
 		// Render app and page and get the context of the page with collected side effects.
-		const materialUiSheets = new MaterialUiServerStyleSheet();
-		const originalRenderPage = ctx.renderPage;
+		// const materialUiSheets = new MaterialUiServerStyleSheet();
+		// const originalRenderPage = ctx.renderPage;
 
 		try {
-			ctx.renderPage = () =>
-				originalRenderPage({
-					enhanceApp: App => props => materialUiSheets.collect(<App {...props} />),
-				});
+			// Ctx.renderPage = () =>
+			//	originalRenderPage({
+			//		enhanceApp: App => props => materialUiSheets.collect(<App {...props} />),
+			//	});
 			const initialProps = await NextDocument.getInitialProps(ctx);
 			const styles = extractCritical(initialProps.html);
 			return {
 				...initialProps,
 				styles: [
 					...React.Children.toArray(initialProps.styles),
-					materialUiSheets.getStyleElement(),
+					// MaterialUiSheets.getStyleElement(),
 					<style
 						key="emotion"
 						// eslint-disable-next-line react/no-danger

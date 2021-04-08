@@ -1,5 +1,5 @@
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
+// Import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+// import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
 
 const palette: Palette = {
@@ -232,30 +232,30 @@ export const darkTheme = {
 	},
 };
 
-const muiBreakpoints = {
-	values: {
-		xs: breakpoints.xs,
-		sm: breakpoints.s,
-		md: breakpoints.m,
-		lg: breakpoints.l,
-		xl: breakpoints.xl,
-	},
-};
+// Const muiBreakpoints = {
+// 	values: {
+// 		xs: breakpoints.xs,
+// 		sm: breakpoints.s,
+// 		md: breakpoints.m,
+// 		lg: breakpoints.l,
+// 		xl: breakpoints.xl,
+// 	},
+// };
 
-export const muiLight = responsiveFontSizes(
-	createMuiTheme({
-		palette: {
-			type: "light",
-		},
-		breakpoints: muiBreakpoints,
-	})
-);
-
-export const muiDark = responsiveFontSizes(
-	createMuiTheme({
-		palette: {
-			type: "dark",
-		},
-		breakpoints: muiBreakpoints,
-	})
-);
+// export const muiLight = responsiveFontSizes(
+// 	createMuiTheme({
+// 		palette: {
+// 			type: "light",
+// 		},
+// 		breakpoints: muiBreakpoints,
+// 	})
+// );
+//
+// export const muiDark = responsiveFontSizes(
+// 	createMuiTheme({
+// 		palette: {
+// 			type: "dark",
+// 		},
+// 		breakpoints: muiBreakpoints,
+// 	})
+// );

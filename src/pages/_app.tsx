@@ -1,12 +1,10 @@
-import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
-import { darkTheme, lightTheme, muiDark, muiLight } from "@/ions/theme";
-import { pxToRem } from "@/ions/utils/unit";
-import { ApolloProvider } from "@apollo/client";
+import { darkTheme, lightTheme } from "@/ions/theme";
+// Import { pxToRem } from "@/ions/utils/unit";
 import { CacheProvider, css, Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-import styled from "@emotion/styled";
-import { Fab } from "@material-ui/core";
-import { StylesProvider, ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
+// Import styled from "@emotion/styled";
+// import { Fab } from "@material-ui/core";
+// import { StylesProvider, ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
 import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
@@ -27,24 +25,23 @@ export const debugging = css`
 	}
 `;
 
-export const StyledFab = styled(Fab)`
-	position: fixed;
-	z-index: 10;
-	right: ${pxToRem(16)};
-	bottom: ${pxToRem(16)};
-	background: white;
-	color: black;
-`;
+// Export const StyledFab = styled(Fab)`
+//	position: fixed;
+//	z-index: 10;
+//	right: ${pxToRem(16)};
+//	bottom: ${pxToRem(16)};
+//	background: white;
+//	color: black;
+// `;
 
 const App = ({ Component, pageProps }) => {
-	const apolloClient = useApollo(pageProps.initialApolloState);
 	const { value: darkMode } = useDarkMode();
 	const [theme, setTheme] = React.useState(lightTheme);
-	const [muiTheme, setMuiTheme] = React.useState(muiLight);
+	// Const [muiTheme, setMuiTheme] = React.useState(muiLight);
 
 	React.useEffect(() => {
 		setTheme(darkMode ? darkTheme : lightTheme);
-		setMuiTheme(darkMode ? muiDark : muiLight);
+		// SetMuiTheme(darkMode ? muiDark : muiLight);
 	}, [darkMode]);
 
 	return (
@@ -86,19 +83,13 @@ const App = ({ Component, pageProps }) => {
 				<link rel="shortcut icon" href={`favicon.ico?${pkg.version}`} />
 			</Head>
 			<NextAuthProvider session={pageProps.session}>
-				<ApolloProvider client={apolloClient}>
-					<StylesProvider injectFirst>
-						<MaterialThemeProvider theme={muiTheme}>
-							<EmotionThemeProvider theme={theme}>
-								<Component {...pageProps} />
-								<link
-									href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-									rel="stylesheet"
-								/>
-							</EmotionThemeProvider>
-						</MaterialThemeProvider>
-					</StylesProvider>
-				</ApolloProvider>
+				<EmotionThemeProvider theme={theme}>
+					<Component {...pageProps} />
+					<link
+						href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+						rel="stylesheet"
+					/>
+				</EmotionThemeProvider>
 			</NextAuthProvider>
 		</CacheProvider>
 	);
