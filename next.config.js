@@ -17,14 +17,8 @@ module.exports = withPWA({
 		return [
 			{
 				// does not handle locales automatically since locale: false is set
-				source: "/de/erstellen/:projectId",
-				destination: "/create/:projectId",
-				locale: false,
-			},
-			{
-				// does not handle locales automatically since locale: false is set
-				source: "/de/erstellen",
-				destination: "/create",
+				source: "/de/wunschliste",
+				destination: "/wishlist",
 				locale: false,
 			},
 		];

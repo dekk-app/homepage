@@ -1,10 +1,13 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import { StyledMain } from "./styled";
+import { MainProps } from "./types";
 
-const Main = React.forwardRef<HTMLDivElement>(({ children, ...props }, ref) => (
-	<StyledMain {...props} ref={ref}>
-		{children}
-	</StyledMain>
-));
+const Main: FC<MainProps> = ({ children, className, innerRef, testId }) => {
+	return (
+		<StyledMain ref={innerRef} className={className} data-test-id={testId}>
+			{children}
+		</StyledMain>
+	);
+};
 
-export default React.memo(Main);
+export default memo(Main);

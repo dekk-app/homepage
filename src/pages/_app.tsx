@@ -1,14 +1,12 @@
 import { cache } from "@/ions/services/emotion/cache";
 import { darkTheme, lightTheme } from "@/ions/theme";
-// Import { pxToRem } from "@/ions/utils/unit";
 import { CacheProvider, css, Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-// Import styled from "@emotion/styled";
-// import { Fab } from "@material-ui/core";
-// import { StylesProvider, ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
+import { Session } from "next-auth";
 import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
+import { AppProps } from "next/app";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useDarkMode from "use-dark-mode";
 import pkg from "../../package.json";
 
@@ -25,23 +23,16 @@ export const debugging = css`
 	}
 `;
 
-// Export const StyledFab = styled(Fab)`
-//	position: fixed;
-//	z-index: 10;
-//	right: ${pxToRem(16)};
-//	bottom: ${pxToRem(16)};
-//	background: white;
-//	color: black;
-// `;
+export interface PageProps {
+	session: Session;
+}
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 	const { value: darkMode } = useDarkMode();
-	const [theme, setTheme] = React.useState(lightTheme);
-	// Const [muiTheme, setMuiTheme] = React.useState(muiLight);
+	const [theme, setTheme] = useState(lightTheme);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		setTheme(darkMode ? darkTheme : lightTheme);
-		// SetMuiTheme(darkMode ? muiDark : muiLight);
 	}, [darkMode]);
 
 	return (
@@ -49,7 +40,6 @@ const App = ({ Component, pageProps }) => {
 			<Global styles={fontFaces} />
 			<Head>
 				<title>Dekk</title>
-				<link rel="preconnect" href="https://fonts.gstatic.com" />
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<meta name="version" content={pkg.version} />
@@ -82,13 +72,9 @@ const App = ({ Component, pageProps }) => {
 				<link rel="manifest" href="/manifest.json" />
 				<link rel="shortcut icon" href={`favicon.ico?${pkg.version}`} />
 			</Head>
-			<NextAuthProvider session={pageProps.session}>
+			<NextAuthProvider session={(pageProps as PageProps).session}>
 				<EmotionThemeProvider theme={theme}>
 					<Component {...pageProps} />
-					<link
-						href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-						rel="stylesheet"
-					/>
 				</EmotionThemeProvider>
 			</NextAuthProvider>
 		</CacheProvider>

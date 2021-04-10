@@ -6,7 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Home = dynamic(async () => import("@/templates/home"));
+const Wishlist = dynamic(async () => import("@/templates/wishlist"));
 
 export interface PageProps {
 	providers: NextAuthProvider;
@@ -14,7 +14,7 @@ export interface PageProps {
 }
 
 const Page: NextPage<PageProps> = props => {
-	return <Home {...props} />;
+	return <Wishlist {...props} />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {

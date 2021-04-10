@@ -1,6 +1,5 @@
 import { cache } from "@/ions/services/emotion/cache";
 import createEmotionServer from "@emotion/server/create-instance";
-// Import MaterialUiServerStyleSheet from "@material-ui/styles/ServerStyleSheets";
 import NextDocument, {
 	DocumentContext,
 	DocumentInitialProps,
@@ -13,7 +12,7 @@ import React from "react";
 
 const { extractCritical } = createEmotionServer(cache);
 
-class Document extends NextDocument<any> {
+class Document extends NextDocument {
 	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
 		// Resolution order
 		//
@@ -42,17 +41,12 @@ class Document extends NextDocument<any> {
 		// const originalRenderPage = ctx.renderPage;
 
 		try {
-			// Ctx.renderPage = () =>
-			//	originalRenderPage({
-			//		enhanceApp: App => props => materialUiSheets.collect(<App {...props} />),
-			//	});
 			const initialProps = await NextDocument.getInitialProps(ctx);
 			const styles = extractCritical(initialProps.html);
 			return {
 				...initialProps,
 				styles: [
 					...React.Children.toArray(initialProps.styles),
-					// MaterialUiSheets.getStyleElement(),
 					<style
 						key="emotion"
 						// eslint-disable-next-line react/no-danger
@@ -68,7 +62,7 @@ class Document extends NextDocument<any> {
 
 	render() {
 		return (
-			<Html lang="de">
+			<Html>
 				<Head />
 				<body>
 					<script src="/noflash.js" />

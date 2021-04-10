@@ -1,27 +1,21 @@
-import { globalStyles } from "@/ions/styles";
+import { globalStyles, poppins } from "@/ions/styles";
+import { OverlayGrid } from "@/templates/home/components";
 import { Global } from "@emotion/react";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { FC, memo } from "react";
 
 const Header = dynamic(async () => import("@/organisms/header"));
 const Main = dynamic(async () => import("@/organisms/main"));
-const Sidebar = dynamic(async () => import("@/organisms/sidebar"));
 const Head = dynamic(async () => import("next/head"));
 
 export interface LayoutProps {
 	header?: React.ComponentType<unknown>;
-	sidebarLeft?: React.ComponentType<unknown>;
-	sidebarRight?: React.ComponentType<unknown>;
 }
 
-const Layout: React.FC<LayoutProps> = ({
-	header: HeaderComponent,
-	sidebarLeft: SidebarLeft,
-	sidebarRight: SidebarRight,
-	children,
-}) => {
+const Layout: FC<LayoutProps> = ({ header: HeaderComponent, children }) => {
 	return (
 		<>
+			<Global styles={poppins} />
 			<Global styles={globalStyles} />
 			<Head>
 				<meta
@@ -34,19 +28,10 @@ const Layout: React.FC<LayoutProps> = ({
 					<HeaderComponent />
 				</Header>
 			)}
-			{SidebarLeft && (
-				<Sidebar anchor="left">
-					<SidebarLeft />
-				</Sidebar>
-			)}
 			<Main>{children}</Main>
-			{SidebarRight && (
-				<Sidebar anchor="right">
-					<SidebarRight />
-				</Sidebar>
-			)}
+			<OverlayGrid />
 		</>
 	);
 };
 
-export default Layout;
+export default memo(Layout);

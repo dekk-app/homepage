@@ -1,6 +1,7 @@
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const StyledButtonWrapper = styled.div`
 	display: flex;
@@ -9,16 +10,14 @@ export const StyledButtonWrapper = styled.div`
 	align-items: center;
 	width: 100%;
 `;
-export const StyledButton = styled.button<{ focused?: boolean }>`
-	display: flex;
+export const StyledButton = styled(motion.button)`
+	display: inline-flex;
 	position: relative;
 	align-content: center;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
 	height: ${pxToRem(60)};
-	margin: 0 auto ${pxToRem(16)};
-	padding: ${pxToRem(16)};
+	padding: ${pxToRem(24)} ${pxToRem(18)};
 	border: 0;
 	border-radius: ${pxToRem(10)};
 	font-size: ${pxToRem(14)};
@@ -43,6 +42,7 @@ export const StyledButton = styled.button<{ focused?: boolean }>`
 		}
 	`};
 `;
+
 export const StyledSocialButton = styled.button`
 	display: flex;
 	align-content: center;

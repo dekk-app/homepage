@@ -1,5 +1,4 @@
-// Import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-// import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
+import { pxToRem } from "@/ions/utils/unit";
 import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
 
 const palette: Palette = {
@@ -49,7 +48,7 @@ export const breakpoints: Sizes = {
 	xs: 0,
 	s: 320,
 	m: 640,
-	l: 960,
+	l: 1280,
 	xl: 1280,
 };
 
@@ -57,7 +56,7 @@ export const getMediaQueries = (b: Sizes) =>
 	Object.entries(b).reduce(
 		(previousValue, [key, value]: [string, number]) => ({
 			...previousValue,
-			[key]: `(min-width: ${value}px)`,
+			[key]: `(min-width: ${pxToRem(value)})`,
 		}),
 		{}
 	) as MediaQueries;
@@ -231,31 +230,3 @@ export const darkTheme = {
 		},
 	},
 };
-
-// Const muiBreakpoints = {
-// 	values: {
-// 		xs: breakpoints.xs,
-// 		sm: breakpoints.s,
-// 		md: breakpoints.m,
-// 		lg: breakpoints.l,
-// 		xl: breakpoints.xl,
-// 	},
-// };
-
-// export const muiLight = responsiveFontSizes(
-// 	createMuiTheme({
-// 		palette: {
-// 			type: "light",
-// 		},
-// 		breakpoints: muiBreakpoints,
-// 	})
-// );
-//
-// export const muiDark = responsiveFontSizes(
-// 	createMuiTheme({
-// 		palette: {
-// 			type: "dark",
-// 		},
-// 		breakpoints: muiBreakpoints,
-// 	})
-// );

@@ -1,8 +1,16 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import { StyledHeader } from "./styled";
+import { HeaderProps } from "./types";
 
-const Header: React.FC = ({ children }) => {
-	return <StyledHeader data-test-id="header">{children}</StyledHeader>;
+const Header: FC<HeaderProps> = ({ children, className, innerRef, testId }) => {
+	return (
+		<StyledHeader ref={innerRef} className={className} data-test-id={testId}>
+			{children}
+		</StyledHeader>
+	);
 };
 
-export default React.memo(Header);
+export default memo<HeaderProps>(Header, (previousProps, nextProps) => {
+	console.log(previousProps, nextProps);
+	return true;
+});

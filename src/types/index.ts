@@ -1,24 +1,9 @@
-import { IconSize, Renderer, Route, Template } from "@/ions/enums";
-import { UseContextMenu } from "@/ions/hooks/context-menu";
-import { Session } from "next-auth";
-import { AppProvider, DefaultProviders } from "next-auth/providers";
+import { IconSize, Route } from "@/ions/enums";
+import { AppProvider, AppProviders } from "next-auth/providers";
 import { LinkProps } from "next/link";
-import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { RegisterOptions } from "react-hook-form";
 import { Except } from "type-fest";
-
-/* eslint-disable no-unused-vars */
-export interface PageProps {
-	locale: string;
-	args: string[];
-	template: Template;
-	session: Session;
-}
-
-export interface PageQuery extends ParsedUrlQuery {
-	args: string[];
-}
 
 export type LocalizedValue<T = unknown> = Record<string, T>;
 
@@ -34,18 +19,6 @@ export interface RouteObject {
 	config: RouteConfig;
 }
 
-export interface DataTestId {
-	"data-test-id"?: string;
-}
-
-export type WithDataTestId<T = unknown> = DataTestId & T;
-
-export interface StyledLinkProps {
-	active?: boolean;
-}
-
-export interface ActiveLinkProps extends WithDataTestId<LinkProps> {}
-
 export interface ErrorComponentProps {
 	message: string;
 }
@@ -53,27 +26,6 @@ export interface ErrorComponentProps {
 export interface DataLogProps {
 	data: unknown;
 	logToConsole?: boolean;
-}
-
-export interface CanvasProps {
-	renderer: Renderer;
-}
-
-export interface DropdownProps {
-	button?: React.ForwardRefExoticComponent<any>;
-}
-
-export interface MenuItem {
-	label: string;
-	id: string;
-	disabled?: boolean;
-	onClick?(coords: { x: number; y: number }): void;
-}
-
-export interface ContextMenuProps {
-	items: MenuItem[][];
-	contextMenu: UseContextMenu;
-	onContextMenu?: React.MouseEventHandler;
 }
 
 export interface ContextMenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -133,13 +85,6 @@ export interface SidebarProps {
 	anchor: SidebarAnchor;
 }
 
-export interface ArtboardProps {
-	artboard: ArtboardType;
-	onMouseDown?(): void;
-	onClick?(): void;
-	onContextMenu?(): void;
-}
-
 export type IconName =
 	| "chevronDown"
 	| "chevronRight"
@@ -188,7 +133,7 @@ export interface LoginFormProps {
 	email: string;
 }
 
-export type NextAuthProvider = Record<keyof DefaultProviders | string, AppProvider> | null;
+export type NextAuthProvider = Record<keyof AppProviders | string, AppProvider> | null;
 
 export interface LoginProps {
 	providers: NextAuthProvider;
@@ -214,13 +159,6 @@ export interface UseDragProps {
 	onDragEnd?(c: { dX: number; dY: number }): void;
 }
 
-export interface UseXYZProps<T> {
-	factor?: number;
-	initialZoom?: number;
-	initialPosition?: { x: number; y: number };
-	min?: number;
-	max?: number;
-}
 /* eslint-enable no-unused-vars */
 export interface GetI18nRouteOptions {
 	locale: string;

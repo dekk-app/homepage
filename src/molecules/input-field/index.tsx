@@ -10,7 +10,7 @@ import {
 import { InputFieldProps } from "@/types";
 import { useTranslation } from "next-i18next";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 
 const InputField: React.FC<InputFieldProps> = ({
 	name,
@@ -78,7 +78,7 @@ const InputField: React.FC<InputFieldProps> = ({
 				<Typography id={`${id}_help`}>
 					{errors[name] && (
 						<StyledError>
-							{t(`form:errors.${errors[name].type as string}`, args)}
+							{t(`form:errors.${(errors[name] as FieldError).type as string}`, args)}
 						</StyledError>
 					)}
 				</Typography>

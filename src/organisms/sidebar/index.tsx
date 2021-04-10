@@ -8,4 +8,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children, anchor, ...props }) => (
 	</StyledSidebar>
 );
 
-export default React.memo(Sidebar);
+const areEqual = () => {
+	return true;
+};
+
+export default React.memo(Sidebar, areEqual);
