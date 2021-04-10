@@ -1,4 +1,4 @@
-import { globalStyles } from "@/ions/styles";
+import { globalStyles, poppins } from "@/ions/styles";
 import { Global } from "@emotion/react";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -22,6 +22,7 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
 	return (
 		<>
+			<Global styles={poppins} />
 			<Global styles={globalStyles} />
 			<Head>
 				<meta
@@ -49,4 +50,8 @@ const Layout: React.FC<LayoutProps> = ({
 	);
 };
 
-export default Layout;
+const areEqual = () => {
+	return true;
+};
+
+export default React.memo<LayoutProps & React.HTMLProps<HTMLDivElement>>(Layout, areEqual);

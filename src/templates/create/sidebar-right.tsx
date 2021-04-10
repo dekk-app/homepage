@@ -5,4 +5,8 @@ const SidebarRight: React.FC = () => {
 	return <StyledSidebarInner>Sidebar Right</StyledSidebarInner>;
 };
 
-export default React.memo(SidebarRight);
+const areEqual = () => {
+	return true;
+};
+
+export default React.memo(SidebarRight, areEqual);

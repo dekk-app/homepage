@@ -30,4 +30,4 @@ const CanvasContextMenu = ({ outerRef }) => {
 	return contextMenu.isOpen && <ContextMenu items={items} contextMenu={contextMenu} />;
 };
 
-export default CanvasContextMenu;
+export default React.memo(CanvasContextMenu);

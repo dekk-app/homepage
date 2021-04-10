@@ -1,9 +1,9 @@
-import { IconButton } from "@/atoms/icon-button";
+import IconButton from "@/atoms/icon-button";
 import { IconSize } from "@/ions/enums";
 import { useArtboardContext } from "@/ions/hooks/context";
-import { ArtboardPreview } from "@/molecules/artboard/preview";
 import { ArtboardType } from "@/types";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import React from "react";
 
 import {
@@ -20,11 +20,13 @@ import {
 	StyledSidebarInner,
 } from "./styled";
 
+const ArtboardPreview = dynamic(async () => import("@/molecules/artboard/preview"));
+
 export const ItemTitle: React.FC<{ title: string }> = ({ title }) => {
 	return <StyledItemTitle>{title}</StyledItemTitle>;
 };
 
-export const Item: React.FC<{ artboard: ArtboardType }> = ({ artboard, children, ...props }) => {
+const Item: React.FC<{ artboard: ArtboardType }> = ({ artboard, children, ...props }) => {
 	const { t } = useTranslation("aria");
 	const context = useArtboardContext();
 	const [expanded, setExpanded] = React.useState(false);
@@ -115,4 +117,8 @@ const SidebarLeft: React.FC = () => {
 	);
 };
 
-export default React.memo(SidebarLeft);
+const areEqual = () => {
+	return true;
+};
+
+export default React.memo(SidebarLeft, areEqual);

@@ -17,4 +17,4 @@ const Frame: React.FC = ({ children, ...props }) => {
 	);
 };
 
-export default Frame;
+export default React.memo(Frame);

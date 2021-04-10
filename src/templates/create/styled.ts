@@ -1,10 +1,11 @@
-import { Icon } from "@/atoms/icon";
+import Icon from "@/atoms/icon";
 import { StyledButtonBase } from "@/atoms/icon-button/styled";
 import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import React from "react";
 
 export const StyledLayoutWrapper = styled.div`
 	display: grid;
@@ -136,11 +137,13 @@ export const StyledItem = styled.li`
 	list-style: none;
 `;
 
-export const StyledSidebarInner = styled.div`
+const StyledSidebarInner_ = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: calc(100vh - ${pxToRem(60)});
 `;
+
+export const StyledSidebarInner = React.memo(StyledSidebarInner_);
 
 export const StyledItemWrapper = styled.div<{ focused?: boolean; active?: boolean }>`
 	display: flex;

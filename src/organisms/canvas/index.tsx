@@ -23,4 +23,8 @@ const Canvas: React.FC<CanvasProps> = ({ renderer, children }) => {
 	}
 };
 
-export default React.memo(Canvas);
+const areEqual = () => {
+	return true;
+};
+
+export default React.memo(Canvas, areEqual);

@@ -96,4 +96,4 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 	);
 };
 
-export default ContextMenu;
+export default React.memo(ContextMenu);

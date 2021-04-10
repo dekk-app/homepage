@@ -5,7 +5,6 @@ import { useXYZ } from "@/ions/hooks/xyz";
 import { noBounce, noSelect } from "@/ions/styles";
 // Import { debugging } from "@/pages/_app";
 import { Global } from "@emotion/react";
-// Import TouchAppIcon from "@material-ui/icons/TouchApp";
 import dynamic from "next/dynamic";
 import React from "react";
 import { StyledCanvasWrapper, StyledLayoutWrapper } from "./styled";

@@ -29,4 +29,4 @@ const Transdown: React.FC<{ i18nKey: string }> = ({ i18nKey }) => {
 	);
 };
 
-export default Transdown;
+export default React.memo(Transdown);

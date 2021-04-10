@@ -29,5 +29,6 @@ export default nextAuth({
 	],
 	// Optional SQL or MongoDB database to persist users
 	database: process.env.DATABASE_URL,
+	pages: { signIn: "/auth", signOut: "/auth" },
 });
 /* eslint-enable new-cap */

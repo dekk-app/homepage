@@ -2,10 +2,7 @@ import { ArtboardProps } from "@/types";
 import React from "react";
 import { StyledArtboardPreview } from "./styled";
 
-export const ArtboardPreview: React.FC<ArtboardProps & { scale: number }> = ({
-	artboard,
-	scale,
-}) => {
+const ArtboardPreview: React.FC<ArtboardProps & { scale: number }> = ({ artboard, scale }) => {
 	const ref = React.useRef<HTMLDivElement>();
 
 	return (
@@ -19,3 +16,5 @@ export const ArtboardPreview: React.FC<ArtboardProps & { scale: number }> = ({
 		/>
 	);
 };
+
+export default React.memo(ArtboardPreview);

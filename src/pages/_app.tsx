@@ -3,8 +3,6 @@ import { darkTheme, lightTheme } from "@/ions/theme";
 // Import { pxToRem } from "@/ions/utils/unit";
 import { CacheProvider, css, Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 // Import styled from "@emotion/styled";
-// import { Fab } from "@material-ui/core";
-// import { StylesProvider, ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
 import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
@@ -85,10 +83,6 @@ const App = ({ Component, pageProps }) => {
 			<NextAuthProvider session={pageProps.session}>
 				<EmotionThemeProvider theme={theme}>
 					<Component {...pageProps} />
-					<link
-						href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-						rel="stylesheet"
-					/>
 				</EmotionThemeProvider>
 			</NextAuthProvider>
 		</CacheProvider>

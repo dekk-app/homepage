@@ -1,4 +1,4 @@
-import { IconButton } from "@/atoms/icon-button";
+import IconButton from "@/atoms/icon-button";
 import { IconSize } from "@/ions/enums";
 import { usePositionContext } from "@/ions/hooks/position";
 import Dropdown from "@/molecules/dropdown";
@@ -116,4 +116,8 @@ const Header: React.FC = () => {
 	);
 };
 
-export default React.memo(Header);
+const areEqual = () => {
+	return true;
+};
+
+export default React.memo(Header, areEqual);

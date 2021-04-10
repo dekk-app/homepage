@@ -79,7 +79,7 @@ const projects = [
 	{ id: "my-project-6" },
 ];
 
-const Projects = () => {
+const Projects: React.FC = () => {
 	const { locale } = useRouter();
 	return (
 		<div>
