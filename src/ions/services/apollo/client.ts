@@ -5,6 +5,7 @@ let apolloClient;
 
 const backend = new HttpLink({
 	uri: process.env.NEXT_PUBLIC_BACKEND_URI,
+	credentials: 'include'
 });
 
 function createApolloClient() {
