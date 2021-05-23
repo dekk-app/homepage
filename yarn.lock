@@ -1949,6 +1949,21 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@dekk-app/dekk-backend@0.0.1-rc-2":
+  version "0.0.1-rc-2"
+  resolved "https://npm.pkg.github.com/download/@dekk-app/dekk-backend/0.0.1-rc-2/9388f903816693a6f0e95fea09f93c061ea1cfd5e6b8056d6592300cff94b1c7#4ac06a469879a1d5974426214c092dd0b5be5d56"
+  integrity sha512-S+ECVG9FAnaPIz3LKtvQmf6FoX/0y8ai5D3XTpZS2DyE7xO7ZoYdOpviRsenkF9Pv7PQtn+SbvBg1Sp1e0tHGw==
+  dependencies:
+    "@prisma/client" "^2.20.1"
+    apollo-server-express "^2.21.2"
+    class-validator "^0.13.1"
+    cors "^2.8.5"
+    graphql "^15.5.0"
+    isomorphic-fetch "^3.0.0"
+    next-auth "^3.14.0"
+    reflect-metadata "^0.1.13"
+    type-graphql "^1.1.1"
+
 "@emotion/babel-plugin@^11.3.0":
   version "11.3.0"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.3.0.tgz#3a16850ba04d8d9651f07f3fb674b3436a4fb9d7"
@@ -6438,20 +6453,6 @@ defined@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
   integrity sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
-
-dekk-backend@dekk-app/dekk-backend:
-  version "0.0.0"
-  resolved "git+ssh://git@github.com/dekk-app/dekk-backend.git#9d6a312a22d5b455b3097fa438ce1e149b918754"
-  dependencies:
-    "@prisma/client" "^2.20.1"
-    apollo-server-express "^2.21.2"
-    class-validator "^0.13.1"
-    cors "^2.8.5"
-    graphql "^15.5.0"
-    isomorphic-fetch "^3.0.0"
-    next-auth "^3.14.0"
-    reflect-metadata "^0.1.13"
-    type-graphql "^1.1.1"
 
 del@^4.1.1:
   version "4.1.1"
