@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import providers from "next-auth/providers";
 import Adapters from 'next-auth/adapters'
-import { PrismaClient } from 'dekk-backend/src/colonies/prisma/client'
+import { PrismaClient } from '@dekk-app/dekk-backend/src/colonies/prisma/client'
 
 const prisma = new PrismaClient()
 
