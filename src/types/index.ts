@@ -1,7 +1,7 @@
 import { IconSize, Renderer, Route, Template } from "@/ions/enums";
 import { UseContextMenu } from "@/ions/hooks/context-menu";
 import { Session } from "next-auth";
-import { AppProvider, DefaultProviders } from "next-auth/providers";
+import { AppProvider, AppProviders } from "next-auth/providers";
 import { LinkProps } from "next/link";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
@@ -189,7 +189,7 @@ export interface LoginFormProps {
 	password: string;
 }
 
-export type NextAuthProvider = Record<keyof DefaultProviders | string, AppProvider> | null;
+export type NextAuthProvider = Record<keyof AppProviders | string, AppProvider> | null;
 
 export interface LoginProps {
 	providers: NextAuthProvider;
