@@ -1,9 +1,10 @@
-import { NextAuthProvider } from "@/types";
+import { StyledButton } from "@/atoms/button/styled";
+import { gql, useQuery } from "@apollo/client";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { AnimatePresence, motion } from "framer-motion";
+import { ClientSafeProvider, useSession } from "next-auth/client";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import animationData from "./data.json";
 
@@ -13,100 +14,21 @@ const Grid = dynamic(async () => import("@/molecules/grid").then(mod => mod.Grid
 const Layout = dynamic(async () => import("@/organisms/layout"));
 const Login = dynamic(async () => import("@/organisms/login"));
 
-const speed = 0.5;
-
-const background = {
-	hidden: { x: "-100vw" },
-	exit: { x: "100vw" },
-	visible: {
-		x: "0vw",
-		transition: {
-			duration: speed,
-			ease: "easeOut",
-		},
-	},
-};
-
-const foreground = {
-	hidden: { x: "-100vw" },
-	exit: { x: "100vw" },
-	visible: {
-		x: 0,
-		transition: {
-			duration: speed,
-			ease: "easeIn",
-			delayChildren: speed,
-		},
-	},
-};
-
-const left = {
-	hidden: { x: -100, opacity: 0 },
-	exit: {
-		x: -100,
-		opacity: 0,
-	},
-	visible: {
-		x: 0,
-		opacity: 1,
-		transition: {
-			duration: speed,
-			delay: speed,
-			ease: "easeOut",
-		},
-	},
-};
-
-const center = {
-	hidden: { opacity: 0 },
-	exit: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: speed,
-			ease: "easeOut",
-		},
-	},
-};
-
-const right = {
-	hidden: { x: 100, opacity: 0 },
-	exit: {
-		x: 100,
-		opacity: 0,
-	},
-	visible: {
-		x: 0,
-		opacity: 1,
-		transition: {
-			duration: speed,
-			delay: speed,
-			ease: "easeOut",
-		},
-	},
-};
-
-const Background = styled(motion.div)`
+const Foreground = styled.div`
 	width: 100vw;
 	min-height: 100vh;
 	overflow: hidden;
+	background-image: url(/illustrations/bg_1.svg);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: auto 540px;
 	${({ theme }) => css`
-		background: ${theme.ui.colors.primary.background};
-		color: ${theme.ui.colors.primary.color};
+		background-color: ${theme.ui.colors.dark.background};
+		color: ${theme.ui.colors.dark.color};
 	`};
 `;
 
-const Foreground = styled(motion.div)`
-	width: 100vw;
-	min-height: 100vh;
-	overflow: hidden;
-	${({ theme }) => css`
-		background: ${theme.ui.colors.theme.background};
-		color: ${theme.ui.colors.theme.color};
-	`};
-`;
-
-const StyledBox = styled(motion.div)`
+const StyledBox = styled.div`
 	height: 540px;
 	padding: 48px 32px;
 	border-radius: 18px;
@@ -121,30 +43,6 @@ const StyledBox = styled(motion.div)`
 	`};
 `;
 
-const Illustration = styled(motion.div)`
-	height: 540px;
-	background-image: url(/illustrations/bg_1.svg);
-	background-repeat: no-repeat;
-	background-position: 0% 50%;
-	background-size: 100% auto;
-`;
-
-const two = {
-	hidden: { y: "100vh", opacity: 0 },
-	exit: {
-		y: "-100vh",
-		opacity: 0,
-	},
-	visible: {
-		y: 0,
-		opacity: 1,
-		transition: {
-			duration: speed,
-			ease: "easeOut",
-		},
-	},
-};
-
 const defaultOptions = {
 	loop: true,
 	autoplay: true,
@@ -154,82 +52,88 @@ const defaultOptions = {
 	},
 };
 
-const Steps: React.FC<{ step: number; providers: NextAuthProvider }> = ({ step, providers }) => {
+const Steps: React.FC<{ step: number; providers: Record<string, ClientSafeProvider> }> = ({
+	step,
+	providers,
+}) => {
 	return (
-		<>
-			<Column colSpanL={5}>
-				<AnimatePresence exitBeforeEnter>
-					<motion.div key={step} initial="hidden" animate="visible" exit="exit">
-						{step === 0 ? (
-							<motion.div variants={left}>
-								<Login providers={providers} />
-							</motion.div>
-						) : (
-							<motion.div variants={two}>
-								<Typography variant="h2">Welcome to Dekk</Typography>
-							</motion.div>
-						)}
-					</motion.div>
-				</AnimatePresence>
+		<Grid>
+			<Column colSpanL={6}>
+				{step === 0 ? (
+					<Login providers={providers} />
+				) : (
+					<Typography variant="h2">
+						We are happy to
+						<br />
+						have you on
+						<br />
+						board.
+					</Typography>
+				)}
 			</Column>
-			<Column colSpanL={3}>
-				<Illustration variants={center} />
+			{step === 1 && (
+				<Column colSpanL={5} colStartL={1}>
+					<Typography>
+						We can´t build the best product without you!
+						<br />
+						Visit our wishlist and help us.
+					</Typography>
+					<StyledButton>I have a wish</StyledButton>
+				</Column>
+			)}
+			<Column colSpanL={4} colStartL={8}>
+				{step === 0 ? (
+					<StyledBox>
+						<Typography>Foo</Typography>
+					</StyledBox>
+				) : (
+					<Lottie options={defaultOptions} width={300} height={300 * (950 / 700)} />
+				)}
 			</Column>
-			<Column colSpanL={4} style={{ display: "flex", justifyContent: "stretch" }}>
-				<AnimatePresence exitBeforeEnter>
-					<motion.div
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-						style={{ width: "100%" }}
-					>
-						{step === 0 ? (
-							<StyledBox variants={right}>
-								<Typography>Foo</Typography>
-							</StyledBox>
-						) : (
-							<motion.div
-								variants={two}
-								style={{
-									height: "100%",
-									display: "flex",
-									alignItems: "center",
-								}}
-							>
-								<Lottie
-									options={defaultOptions}
-									width={300}
-									height={300 * (950 / 700)}
-								/>
-							</motion.div>
-						)}
-					</motion.div>
-				</AnimatePresence>
-			</Column>
-		</>
+		</Grid>
 	);
 };
 
-const Home: React.FC<{ providers: NextAuthProvider }> = ({ providers }) => {
-	const [step, setStep] = useState(0);
+const ALL_USERS = gql`
+	query AllUsers {
+		users {
+			id
+			createdAt
+			email
+			emailVerified
+			image
+			name
+			role
+			updatedAt
+		}
+	}
+`;
+
+const Home: React.FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers }) => {
+	const [session] = useSession();
+	const [step, setStep] = useState(session ? 1 : 0);
 	const next = React.useCallback(() => {
 		setStep(previousValue => previousValue + 1);
 	}, []);
 
+	const response = useQuery(ALL_USERS);
+
+	useEffect(() => {
+		console.log(session);
+	}, [session]);
+
+	useEffect(() => {
+		console.log(response);
+	}, [response]);
+
 	return (
 		<Layout>
-			<motion.div initial="hidden" animate="visible" exit="exit">
-				<Background variants={background}>
-					<Foreground variants={foreground}>
-						<button type="button" onClick={next}>
-							Next
-						</button>
-						<Grid>
-							<Steps step={step} providers={providers} />
-						</Grid>
-					</Foreground>
-				</Background>
-			</motion.div>
+			<Foreground>
+				<button type="button" onClick={next}>
+					Next
+				</button>
+				<Steps step={step} providers={providers} />
+			</Foreground>
 		</Layout>
 	);
 };

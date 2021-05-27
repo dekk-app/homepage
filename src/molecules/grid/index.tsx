@@ -76,6 +76,7 @@ const StyledColumn = styled.div<StyledColumnProps>`
 		css`
 			grid-column-start: ${colStartXS};
 		`};
+
 		@media screen and ${theme.mq.s} {
 			${colSpanS &&
 			css`

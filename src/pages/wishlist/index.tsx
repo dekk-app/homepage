@@ -1,17 +1,11 @@
-import { NextAuthProvider } from "@/types";
+import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
-import { Session } from "next-auth";
-import { getSession, getProviders } from "next-auth/client";
+import { getProviders, getSession } from "next-auth/client";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
 import React from "react";
 
 const Wishlist = dynamic(async () => import("@/templates/wishlist"));
-
-export interface PageProps {
-	providers: NextAuthProvider;
-	session: Session;
-}
 
 const Page: NextPage<PageProps> = props => {
 	return <Wishlist {...props} />;

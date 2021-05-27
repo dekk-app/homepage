@@ -129,11 +129,14 @@ dist
 # Generated files
 src/types/backend-api.ts
 .graphqlconfig
+schema.graphql
+
 
 # Cypress
 /cypress/videos
 /cypress/screenshots
 public/mockServiceWorker.js
+
 
 # Unignore
 !src/atoms/icon

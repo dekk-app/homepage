@@ -1,5 +1,6 @@
 import { IconSize, Route } from "@/ions/enums";
-import { AppProvider, AppProviders } from "next-auth/providers";
+import { Session } from "next-auth";
+import { ClientSafeProvider } from "next-auth/client";
 import { LinkProps } from "next/link";
 import React from "react";
 import { RegisterOptions } from "react-hook-form";
@@ -133,10 +134,8 @@ export interface LoginFormProps {
 	email: string;
 }
 
-export type NextAuthProvider = Record<keyof AppProviders | string, AppProvider> | null;
-
 export interface LoginProps {
-	providers: NextAuthProvider;
+	providers: Record<string, ClientSafeProvider>;
 }
 
 export interface PositionContextProps {
@@ -168,4 +167,9 @@ export interface GetI18nRouteOptions {
 export interface I18nLinkProps extends Except<LinkProps, "href"> {
 	route: Route;
 	subPath?: string;
+}
+
+export interface PageProps {
+	providers: Record<string, ClientSafeProvider>;
+	session: Session;
 }

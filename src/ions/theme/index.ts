@@ -103,6 +103,14 @@ export const theme: Theme = {
 				background: "#6a28ea",
 				color: "#ffffff",
 			},
+			light: {
+				background: "#ffffff",
+				color: "#000000",
+			},
+			dark: {
+				background: "#232424",
+				color: "#ffffff",
+			},
 		},
 	},
 };
@@ -115,6 +123,7 @@ export const lightTheme = {
 			...theme.ui.colors,
 			theme: {
 				background: "#ffffff",
+				color: "#000000",
 			},
 		},
 		atoms: {
@@ -177,6 +186,7 @@ export const darkTheme = {
 			...theme.ui.colors,
 			theme: {
 				background: "#232424",
+				color: "#ffffff",
 			},
 		},
 		atoms: {

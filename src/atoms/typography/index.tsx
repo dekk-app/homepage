@@ -1,4 +1,3 @@
-import { MotionProps } from "framer-motion";
 import React, { ElementType, FC, memo, ReactNode } from "react";
 import { StyledBodyText, StyledH1Text, StyledH2Text, StyledH3Text } from "./styled";
 
@@ -22,7 +21,7 @@ export interface TypographyProps {
 	children?: ReactNode;
 }
 
-const Typography: FC<TypographyProps & MotionProps> = ({
+const Typography: FC<TypographyProps> = ({
 	centered,
 	children,
 	component,
