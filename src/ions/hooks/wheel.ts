@@ -5,6 +5,7 @@ export const useWheel = <T extends Element>(ref: React.MutableRefObject<T>) => {
 	const [dX, setDX] = React.useState(0);
 	const [dY, setDY] = React.useState(0);
 	const [timestamp, setTimestamp] = React.useState(0);
+	const { current } = ref;
 
 	React.useEffect(() => {
 		const handleWheel = ({ deltaX, deltaY, metaKey }: WheelEvent) => {
@@ -29,22 +30,21 @@ export const useWheel = <T extends Element>(ref: React.MutableRefObject<T>) => {
 
 		window.addEventListener("keyup", handleKeyUp);
 
-		if (ref.current) {
-			ref.current.addEventListener("wheel", handleWheel, { passive: true });
-			const unsubscribe = () => {
-				ref.current.removeEventListener("wheel", handleWheel);
-			};
-
-			return () => {
-				unsubscribe();
-				window.removeEventListener("keyup", handleKeyUp);
-			};
+		if (current) {
+			current.addEventListener("wheel", handleWheel, { passive: true });
 		}
 
-		return () => {
+		const unsubscribe = () => {
 			window.removeEventListener("keyup", handleKeyUp);
+			if (current) {
+				current.removeEventListener("wheel", handleWheel);
+			}
 		};
-	}, [ref]);
+
+		return () => {
+			unsubscribe();
+		};
+	}, [current]);
 
 	return { dX, dY, dZ, timestamp };
 };

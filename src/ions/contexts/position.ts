@@ -1,21 +1,22 @@
+import { PositionContextProps } from "@/types";
 import React from "react";
 
-export const PositionContext = React.createContext({
+export const PositionContext = React.createContext<PositionContextProps>({
 	x: 0,
 	y: 0,
 	z: 1,
 	height: 0,
 	width: 0,
-	zoom(dir: number, m: number) {
+	zoom() {
 		/**/
 	},
-	setX(n: number) {
+	setX() {
 		/**/
 	},
-	setY(n: number) {
+	setY() {
 		/**/
 	},
-	setZ(n: number) {
+	setZ() {
 		/**/
 	},
 });

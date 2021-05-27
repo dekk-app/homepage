@@ -1,10 +1,15 @@
 {
+  "add-artboard": "Add Artboard",
+  "collapse": "Collapse",
   "create": "Create",
+  "dashboard": "Dashboard",
   "de": "Deutsch",
   "en": "English",
+  "expand": "Expand",
   "hello": "Hello",
   "home": "Home",
-  "collapse": "Collapse",
-  "expand": "Expand",
-  "add-artboard": "Add Artboard"
+  "login": "Login",
+  "logout": "Logout",
+  "try-now": "Try now",
+  "welcome-to-dekk": "Welcome to Dekk"
 }

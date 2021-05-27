@@ -1,5 +1,4 @@
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
+import { pxToRem } from "@/ions/utils/unit";
 import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
 
 const palette: Palette = {
@@ -49,7 +48,7 @@ export const breakpoints: Sizes = {
 	xs: 0,
 	s: 320,
 	m: 640,
-	l: 960,
+	l: 1280,
 	xl: 1280,
 };
 
@@ -57,7 +56,7 @@ export const getMediaQueries = (b: Sizes) =>
 	Object.entries(b).reduce(
 		(previousValue, [key, value]: [string, number]) => ({
 			...previousValue,
-			[key]: `(min-width: ${value}px)`,
+			[key]: `(min-width: ${pxToRem(value)})`,
 		}),
 		{}
 	) as MediaQueries;
@@ -104,6 +103,14 @@ export const theme: Theme = {
 				background: "#6a28ea",
 				color: "#ffffff",
 			},
+			light: {
+				background: "#ffffff",
+				color: "#000000",
+			},
+			dark: {
+				background: "#232424",
+				color: "#ffffff",
+			},
 		},
 	},
 };
@@ -116,6 +123,15 @@ export const lightTheme = {
 			...theme.ui.colors,
 			theme: {
 				background: "#ffffff",
+				color: "#000000",
+			},
+		},
+		atoms: {
+			inputLabel: {
+				color: "#000000",
+				focus: {
+					color: "#2a2a2a",
+				},
 			},
 		},
 		molecules: {
@@ -123,6 +139,19 @@ export const lightTheme = {
 				background: "#ffffff",
 				color: "#000000",
 				border: "#e1e4ea",
+			},
+		},
+		organisms: {
+			inputField: {
+				background: "#ffffff",
+				color: "#000000",
+				focus: {
+					border: "#6a28ea",
+				},
+				error: {
+					border: "#D90303",
+					color: "#D90303",
+				},
 			},
 		},
 		layout: {
@@ -157,6 +186,15 @@ export const darkTheme = {
 			...theme.ui.colors,
 			theme: {
 				background: "#232424",
+				color: "#ffffff",
+			},
+		},
+		atoms: {
+			inputLabel: {
+				color: "#000000",
+				focus: {
+					color: "#2a2a2a",
+				},
 			},
 		},
 		molecules: {
@@ -164,6 +202,19 @@ export const darkTheme = {
 				background: "#ffffff",
 				color: "#000000",
 				border: "#e1e4ea",
+			},
+		},
+		organisms: {
+			inputField: {
+				background: "#ffffff",
+				color: "#000000",
+				focus: {
+					border: "#6a28ea",
+				},
+				error: {
+					border: "#D90303",
+					color: "#D90303",
+				},
 			},
 		},
 		layout: {
@@ -189,31 +240,3 @@ export const darkTheme = {
 		},
 	},
 };
-
-const muiBreakpoints = {
-	values: {
-		xs: breakpoints.xs,
-		sm: breakpoints.s,
-		md: breakpoints.m,
-		lg: breakpoints.l,
-		xl: breakpoints.xl,
-	},
-};
-
-export const muiLight = responsiveFontSizes(
-	createMuiTheme({
-		palette: {
-			type: "light",
-		},
-		breakpoints: muiBreakpoints,
-	})
-);
-
-export const muiDark = responsiveFontSizes(
-	createMuiTheme({
-		palette: {
-			type: "dark",
-		},
-		breakpoints: muiBreakpoints,
-	})
-);

@@ -1,6 +1,5 @@
 import { pxToRem } from "@/ions/utils/unit";
 import { SidebarProps } from "@/types";
-import { PropsWithTheme } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -14,12 +13,12 @@ export const transforms = {
 	right: 100,
 };
 
-export const StyledSidebar = styled.aside<SidebarProps & PropsWithTheme>`
+export const StyledSidebar = styled.aside<SidebarProps>`
 	position: fixed;
 	z-index: 1;
 	top: ${pxToRem(60)};
 	bottom: 0;
-	height: calc(100vh - ${pxToRem(60)});
+	height: 100%;
 	${({
 		theme: {
 			ui: {

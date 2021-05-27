@@ -1,11 +1,9 @@
 const { config } = require("dotenv");
 config();
-const {
-	BACKEND_API_KEY: ACCESS_TOKEN,
-} = process.env;
+const { BACKEND_URI } = process.env;
 
 module.exports = {
-	schema: `https://graphql.dekk.app/?accessToken=${ACCESS_TOKEN}`,
+	schema: BACKEND_URI,
 	generates: {
 		"./src/types/backend-api.ts": {
 			plugins: ["typescript", "typescript-operations"],

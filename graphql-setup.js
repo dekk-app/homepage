@@ -1,22 +1,22 @@
-const { config } = require("dotenv");
 const fs = require("fs");
 const path = require("path");
+const { config } = require("dotenv");
 const pify = require("pify");
 config();
 
 const { writeFile } = pify(fs);
 
-const { BACKEND_API_KEY: ACCESS_TOKEN } = process.env;
+const { BACKEND_URI } = process.env;
 
 const GRAPHQLCONFIG_FILE = ".graphqlconfig";
 
 const graphQlConfigTpl = schemaPath => `{
-  "name": "Contentful Schema",
+  "name": "Backend Schema",
   "schemaPath": "${schemaPath}",
   "extensions": {
     "endpoints": {
-      "master": {
-        "url": "https://graphql.dekk.app/?accessToken=${ACCESS_TOKEN}",
+      "local": {
+        "url": "${BACKEND_URI}",
         "headers": {
           "user-agent": "JS GraphQL"
         },

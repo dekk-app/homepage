@@ -1,12 +1,20 @@
+/**
+ * {@see https://eslint.org/docs/user-guide/configuring/rules}
+ */
 module.exports = {
 	extends: ["xo-react", "plugin:prettier/recommended"],
 	ignores: [
 		"lib",
 		"cypress",
+		"public",
 		"migrations",
 		"*.config.js",
-		"src/types/contentful-api.ts",
 		"node_modules",
+		"mockServiceWorker.js",
+		"graphql-setup.js",
+		"next-env.d.ts",
+		"types/*.d.ts",
+		"src/types/index.ts",
 	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],
@@ -45,5 +53,6 @@ module.exports = {
 		"prettier/prettier": 0,
 		"react/jsx-uses-react": 1,
 		"react/jsx-uses-vars": 1,
+		"no-unused-vars": 2,
 	},
 };

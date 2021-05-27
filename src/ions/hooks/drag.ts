@@ -1,12 +1,5 @@
+import { UseDragProps } from "@/types";
 import React from "react";
-
-export interface UseDragProps {
-	x?: number;
-	y?: number;
-	onDragStart?(): void;
-	onDrag?(c: { dX: number; dY: number }): void;
-	onDragEnd?(c: { dX: number; dY: number }): void;
-}
 
 export const useDrag = <T extends Element>(
 	dragRef: React.MutableRefObject<T>,

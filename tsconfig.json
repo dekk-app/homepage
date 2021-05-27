@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "allowJs": true,
@@ -22,8 +21,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "exclude": ["node_modules", "cypress"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "types/emotion.d.ts", "**/*.ts", "**/*.tsx"]
 }

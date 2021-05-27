@@ -1,19 +1,10 @@
-import { IconSize, Renderer, Template } from "@/ions/enums";
-import { UseContextMenu } from "@/ions/hooks/context-menu";
+import { IconSize, Route } from "@/ions/enums";
+import { Session } from "next-auth";
+import { ClientSafeProvider } from "next-auth/client";
 import { LinkProps } from "next/link";
-import { ParsedUrlQuery } from "querystring";
-
 import React from "react";
-
-export interface PageProps {
-	locale: string;
-	args: string[];
-	template: Template;
-}
-
-export interface PageQuery extends ParsedUrlQuery {
-	args: string[];
-}
+import { RegisterOptions } from "react-hook-form";
+import { Except } from "type-fest";
 
 export type LocalizedValue<T = unknown> = Record<string, T>;
 
@@ -29,18 +20,6 @@ export interface RouteObject {
 	config: RouteConfig;
 }
 
-export interface DataTestId {
-	"data-test-id"?: string;
-}
-
-export type WithDataTestId<T = unknown> = DataTestId & T;
-
-export interface StyledLinkProps {
-	active?: boolean;
-}
-
-export interface ActiveLinkProps extends WithDataTestId<LinkProps> {}
-
 export interface ErrorComponentProps {
 	message: string;
 }
@@ -48,27 +27,6 @@ export interface ErrorComponentProps {
 export interface DataLogProps {
 	data: unknown;
 	logToConsole?: boolean;
-}
-
-export interface CanvasProps {
-	renderer: Renderer;
-}
-
-export interface DropdownProps {
-	button?: React.ForwardRefExoticComponent<any>;
-}
-
-export interface MenuItem {
-	label: string;
-	id: string;
-	disabled?: boolean;
-	onClick?(coords: { x: number; y: number }): void;
-}
-
-export interface ContextMenuProps {
-	items: MenuItem[][];
-	contextMenu: UseContextMenu;
-	onContextMenu?: React.MouseEventHandler;
 }
 
 export interface ContextMenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -128,13 +86,6 @@ export interface SidebarProps {
 	anchor: SidebarAnchor;
 }
 
-export interface ArtboardProps {
-	artboard: ArtboardType;
-	onMouseDown?(): void;
-	onClick?(): void;
-	onContextMenu?(): void;
-}
-
 export type IconName =
 	| "chevronDown"
 	| "chevronRight"
@@ -169,4 +120,56 @@ export interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement>
 	primary?: boolean;
 	active?: boolean;
 	type: "button";
+}
+
+export interface InputFieldProps extends React.HTMLProps<HTMLInputElement> {
+	fullWidth?: boolean;
+	validation: RegisterOptions;
+	args?: Record<string, string | number>;
+	testId?: string;
+	defaultValue?: string;
+}
+
+export interface LoginFormProps {
+	email: string;
+}
+
+export interface LoginProps {
+	providers: Record<string, ClientSafeProvider>;
+}
+
+export interface PositionContextProps {
+	x: number;
+	y: number;
+	z: number;
+	height: number;
+	width: number;
+	zoom(dir: number, m: number): void;
+	setX(n: number): void;
+	setY(n: number): void;
+	setZ(n: number): void;
+}
+
+export interface UseDragProps {
+	x?: number;
+	y?: number;
+	onDragStart?(): void;
+	onDrag?(c: { dX: number; dY: number }): void;
+	onDragEnd?(c: { dX: number; dY: number }): void;
+}
+
+/* eslint-enable no-unused-vars */
+export interface GetI18nRouteOptions {
+	locale: string;
+	defaultLocale: string;
+}
+
+export interface I18nLinkProps extends Except<LinkProps, "href"> {
+	route: Route;
+	subPath?: string;
+}
+
+export interface PageProps {
+	providers: Record<string, ClientSafeProvider>;
+	session: Session;
 }

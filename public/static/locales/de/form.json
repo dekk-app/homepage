@@ -1,0 +1,41 @@
+{
+  "button-labels": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "submit": "Abschicken"
+  },
+  "errors": {
+    "minLength": "Die Mindestlänge ist {{minLength}}.",
+    "passwordMatch": "Die Passwörter stimmen nicht überein.",
+    "pattern": "Überprüfe bitte deine Eingabe.",
+    "required": "Dieses Feld ist ein Pflichtfeld."
+  },
+  "fields-labels": {
+    "confirmPassword": "Passwort bestätigen",
+    "email": "E-Mail Adresse",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "password": "Passwort"
+  },
+  "texts": {
+    "continue-with": "oder mache weiter mit E-mail:",
+    "have-no-account": "Kein Konto? <toRegister>Hier kannst du dich registrieren</toRegister>!",
+    "forgot-password": "<toForgot>Passwort vergessen</toForgot>",
+    "policy-data-agreement": "Unsere <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> und <toDataProcessing>Datenbearbeitungsvereinbarung</toDataProcessing>."
+  },
+  "legends": {
+    "enter-email": "Trag bitte deine E-Mail Adresse ein",
+    "enter-email-password": "Trag bitte deine E-Mail Adresse und dein Passwort ein",
+    "enter-name-email": "Trag bitte deinen Namen und deine E-mail Adresse ein",
+    "enter-password-confirm": "Trag bitte dein Passwort ein und bestätige es",
+    "login": "Melde dich an"
+  },
+  "links": {
+    "to-login": "Zur Anmeldung",
+    "to-register": "Zur Registrierung",
+    "to-forgot": "Passwort vergessen"
+  },
+  "messages": {
+    "welcome-user": "Willkommen {{name}}!"
+  }
+}
