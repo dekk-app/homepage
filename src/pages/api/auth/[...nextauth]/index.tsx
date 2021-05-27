@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import providers from "next-auth/providers";
+import Providers from "next-auth/providers";
 import Adapters from "next-auth/adapters";
 import { PrismaClient } from "@dekk-app/dekk-backend/src/colonies/prisma/client";
 
@@ -18,19 +18,19 @@ export default NextAuth({
 		// 		keyId: process.env.APPLE_KEY_ID,
 		// 	},
 		// }),
-		providers.Google({
+		Providers.Google({
 			clientId: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		}),
-		providers.Facebook({
+		Providers.Facebook({
 			clientId: process.env.FACEBOOK_CLIENT_ID,
 			clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
 		}),
-		providers.GitHub({
+		Providers.GitHub({
 			clientId: process.env.GITHUB_CLIENT_ID,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET,
 		}),
-		providers.Email({
+		Providers.Email({
 			server: process.env.EMAIL_SERVER,
 			from: process.env.EMAIL_FROM,
 		}),
