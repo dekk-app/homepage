@@ -1486,10 +1486,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@dekk-app/dekk-backend@1.0.0":
-  version "1.0.0"
-  resolved "https://npm.pkg.github.com/download/@dekk-app/dekk-backend/1.0.0/f912bb60fb8545bea7c22dc94be0b77c0014ccebd05b623fa349c0ac4f577c06#d0bb4e6316c7c51373a455802bd66f56a0cf3539"
-  integrity sha512-aqr1KeTyvNPIll+DUlYZpbXAbF3hUiWysZybje/EcKPXukv7JndBX9VNWJL2pkaM+yCOPm3j3vcTfFEhOCynSg==
+"@dekk-app/dekk-backend@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@dekk-app/dekk-backend/1.1.0/ac55f5a3d3cd43583a7e77f3910e7353a71139c73cdba0ee5f97ef088d89593f#767bcd9934a638254958a2530aa6ede60f0cfb1b"
+  integrity sha512-lSG7RHGhc7a1QjZzxSt9TWEqov8SGTK4T2uOrSjmVnXvqAnYUUIz44i8emdsRlm9TDIn0u3flLS9Q82sxqnrFA==
   dependencies:
     "@prisma/client" "^2.23.0"
     apollo-server-express "^2.21.2"
@@ -1497,7 +1497,7 @@
     cors "^2.8.5"
     graphql "^15.5.0"
     isomorphic-fetch "^3.0.0"
-    next-auth "^3.14.0"
+    next-auth "^3.23.3"
     reflect-metadata "^0.1.13"
     type-graphql "^1.1.1"
 
@@ -9737,7 +9737,7 @@ neo-async@^2.6.0, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next-auth@3.23.3, next-auth@^3.14.0:
+next-auth@3.23.3, next-auth@^3.23.3:
   version "3.23.3"
   resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-3.23.3.tgz#810b6c0362bd48ee1be2831fef270b89359522fd"
   integrity sha512-e+As4q+uA4MnnL36P3JxKRKEvy2iPXn8AZ8A8v3wbAc91K6YVgjfDMs+uU30jYAV58u7CnWdypHCRUkF/5WDDA==
