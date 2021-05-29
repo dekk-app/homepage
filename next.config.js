@@ -16,9 +16,8 @@ module.exports = withPWA({
 	async rewrites() {
 		return [
 			{
-				// does not handle locales automatically since locale: false is set
 				source: "/de/wunschliste",
-				destination: "/wishlist",
+				destination: "/de/wishlist",
 				locale: false,
 			},
 		];
