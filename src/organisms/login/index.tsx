@@ -59,20 +59,6 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 									</StyledSocialButton>
 									<StyledSocialButton
 										type="button"
-										aria-label="facebook"
-										onClick={() => {
-											void signIn(providers.facebook.id);
-										}}
-									>
-										<img
-											src="/big-icons/Facebook.svg"
-											alt="Facebook"
-											height={36}
-											width={36}
-										/>
-									</StyledSocialButton>
-									<StyledSocialButton
-										type="button"
 										aria-label="github"
 										onClick={() => {
 											void signIn(providers.github.id);
@@ -100,7 +86,7 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 								/>
 							</StyledFieldset>
 							<StyledButtonWrapper>
-								<StyledButton type="submit">
+								<StyledButton fullWidth type="submit">
 									{t("form:button-labels.login")}
 								</StyledButton>
 							</StyledButtonWrapper>

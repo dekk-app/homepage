@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
@@ -54,34 +55,38 @@ export const StyledOverlayGrid = styled(Grid)`
 		&:nth-of-type(8) {
 			display: none;
 		}
-		@media screen and (min-width: 40rem) {
-			&:nth-of-type(5) {
-				display: unset;
+
+		${({ theme }) => css`
+			@media screen and ${theme.mq.m} {
+				&:nth-of-type(5) {
+					display: unset !important;
+				}
+				&:nth-of-type(6) {
+					display: unset !important;
+				}
+				&:nth-of-type(7) {
+					display: unset !important;
+				}
+				&:nth-of-type(8) {
+					display: unset !important;
+				}
 			}
-			&:nth-of-type(6) {
-				display: unset;
+
+			@media screen and ${theme.mq.l} {
+				&:nth-of-type(1) {
+					display: unset !important;
+				}
+				&:nth-of-type(2) {
+					display: unset !important;
+				}
+				&:nth-of-type(3) {
+					display: unset !important;
+				}
+				&:nth-of-type(4) {
+					display: unset !important;
+				}
 			}
-			&:nth-of-type(7) {
-				display: unset;
-			}
-			&:nth-of-type(8) {
-				display: unset;
-			}
-		}
-		@media screen and (min-width: 60rem) {
-			&:nth-of-type(1) {
-				display: unset;
-			}
-			&:nth-of-type(2) {
-				display: unset;
-			}
-			&:nth-of-type(3) {
-				display: unset;
-			}
-			&:nth-of-type(4) {
-				display: unset;
-			}
-		}
+		`};
 	}
 `;
 export const GridToggle = styled.button`
