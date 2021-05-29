@@ -15,6 +15,7 @@ module.exports = {
 		"next-env.d.ts",
 		"types/*.d.ts",
 		"src/types/index.ts",
+		"prepare/npm-setup.js",
 	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],
