@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes, ElementType, FC } from "react";
 import { StyledButton } from "./styled";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-	as: ElementType<unknown>;
+	as?: ElementType<unknown>;
 }
 
 const Button: FC<ButtonProps> = ({ children, ...props }) => (
