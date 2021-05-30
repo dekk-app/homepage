@@ -32,44 +32,34 @@ const routes: Record<Route, RouteConfig> = {
 			de: "Autorisierung",
 		},
 	},
-	[Route.register]: {
+	[Route.imprint]: {
 		dir: {
-			en: "auth/register",
-			de: "auth/registrieren",
+			en: "legal",
+			de: "rechtliches",
 		},
 		breadcrumb: {
-			en: "Register",
-			de: "Registrieren",
-		},
-	},
-	[Route.forgot]: {
-		dir: {
-			en: "auth/forgot-password",
-			de: "auth/passwort-vergessen",
-		},
-		breadcrumb: {
-			en: "Forgot password",
-			de: "Passwort vergessen",
+			en: "Imprint",
+			de: "Impressum",
 		},
 	},
 	[Route.policy]: {
 		dir: {
-			en: "data-policy",
-			de: "datenschutz",
+			en: "legal/privacy-policy",
+			de: "rechtliches/datenschutz",
 		},
 		breadcrumb: {
-			en: "Data policy",
-			de: "Datenschutz",
+			en: "legal/Data policy",
+			de: "rechtliches/Datenschutz",
 		},
 	},
-	[Route.dataProcessing]: {
+	[Route.terms]: {
 		dir: {
-			en: "data-processing",
-			de: "daten-bearbeitung",
+			en: "legal/terms-of-service",
+			de: "rechtliches/geschaeftsbedingungen",
 		},
 		breadcrumb: {
-			en: "Data processing",
-			de: "Datenbearbeitung",
+			en: "legal/Data policy",
+			de: "rechtliches/Datenschutz",
 		},
 	},
 };

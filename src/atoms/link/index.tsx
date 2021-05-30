@@ -9,6 +9,7 @@ export const I18nLink: React.FC<I18nLinkProps> = ({ children, route, subPath, ..
 	return (
 		<Link
 			{...props}
+			passHref
 			href={`${getI18nRoute(route, { locale, defaultLocale })}${
 				subPath ? `/${subPath}` : ""
 			}`}
