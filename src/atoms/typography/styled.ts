@@ -5,31 +5,11 @@ import { ElementType } from "react";
 
 export const StyledLink = styled.a`
 	color: currentColor;
-	font-weight: 600;
 	text-decoration: none;
 
 	&:hover {
 		text-decoration: underline;
 	}
-
-	${({
-		theme: {
-			ui: {
-				colors: {
-					primary: { background },
-				},
-			},
-		},
-	}) => css`
-		&:focus {
-			outline: 0;
-		}
-
-		&:focus-visible {
-			outline: 1px solid ${background};
-			outline-offset: 3px;
-		}
-	`};
 `;
 
 interface StyledTypographyProps {

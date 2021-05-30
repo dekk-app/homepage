@@ -20,6 +20,21 @@ module.exports = withPWA({
 				destination: "/de/wishlist",
 				locale: false,
 			},
+			{
+				source: "/de/rechtliches",
+				destination: "/de/legal",
+				locale: false,
+			},
+			{
+				source: "/de/rechtliches/datenschutz",
+				destination: "/de/legal/privacy-policy",
+				locale: false,
+			},
+			{
+				source: "/de/rechtliches/geschaeftsbedingungen",
+				destination: "/de/legal/terms-of-service",
+				locale: false,
+			},
 		];
 	},
 });

@@ -19,9 +19,7 @@
   },
   "texts": {
     "continue-with": "or continue with e-mail:",
-    "have-no-account": "No account? <toRegister>You can register here</toRegister>!",
-    "forgot-password": "<toForgot>Forgot password</toForgot>",
-    "policy-data-agreement": "Our <toPrivacyPolicy>Terms of Use, Privacy Policy</toPrivacyPolicy> and <toDataProcessing>Data Processing Agreement</toDataProcessing>."
+    "policy-data-agreement": "Our <toPrivacyPolicy>Privacy Policy</toPrivacyPolicy> and <toTermsOfService>Terms of Service</toDataProcessing>."
   },
   "legends": {
     "enter-email": "Please enter your e-mail address",

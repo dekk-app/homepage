@@ -19,9 +19,7 @@
   },
   "texts": {
     "continue-with": "oder mache weiter mit E-mail:",
-    "have-no-account": "Kein Konto? <toRegister>Hier kannst du dich registrieren</toRegister>!",
-    "forgot-password": "<toForgot>Passwort vergessen</toForgot>",
-    "policy-data-agreement": "Unsere <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> und <toDataProcessing>Datenbearbeitungsvereinbarung</toDataProcessing>."
+    "policy-data-agreement": "Unsere <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> und <toTermsOfService>Geschäftsbedingungen</toTermsOfService>."
   },
   "legends": {
     "enter-email": "Trag bitte deine E-Mail Adresse ein",

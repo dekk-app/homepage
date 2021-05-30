@@ -9,10 +9,9 @@ export enum Route {
 	auth = "auth",
 	create = "create",
 	dashboard = "dashboard",
-	dataProcessing = "dataProcessing",
-	forgot = "forgot",
-	register = "register",
+	imprint = "imprint",
 	policy = "policy",
+	terms = "terms",
 }
 
 export enum Renderer {
