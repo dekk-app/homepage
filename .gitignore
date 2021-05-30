@@ -131,6 +131,7 @@ dist
 # Generated files
 src/types/backend-api.ts
 .graphqlconfig
+.npmrc
 schema.graphql
 
 
