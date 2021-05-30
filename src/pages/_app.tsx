@@ -1,7 +1,9 @@
-import { useApollo } from "@/ions/services/apollo/client";
+// @todo add when Graphql is set up
+// import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
 import { darkTheme, lightTheme } from "@/ions/theme";
-import { ApolloProvider, NormalizedCacheObject } from "@apollo/client";
+// @todo add when Graphql is set up
+// import { ApolloProvider, NormalizedCacheObject } from "@apollo/client";
 import { CacheProvider, css, Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { Session } from "next-auth";
 import { Provider as NextAuthProvider } from "next-auth/client";
@@ -27,13 +29,15 @@ export const debugging = css`
 
 export interface PageProps {
 	session: Session;
-	initialApolloState: NormalizedCacheObject;
+	// @todo add when Graphql is set up
+	// initialApolloState: NormalizedCacheObject;
 }
 
 const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 	const { value: darkMode } = useDarkMode();
 	const [theme, setTheme] = useState(lightTheme);
-	const apolloClient = useApollo((pageProps as PageProps).initialApolloState);
+	// @todo add when Graphql is set up
+	// const apolloClient = useApollo((pageProps as PageProps).initialApolloState);
 
 	useEffect(() => {
 		setTheme(darkMode ? darkTheme : lightTheme);
@@ -77,11 +81,9 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 				<link rel="shortcut icon" href={`favicon.ico?${pkg.version}`} />
 			</Head>
 			<NextAuthProvider session={(pageProps as PageProps).session}>
-				<ApolloProvider client={apolloClient}>
-					<EmotionThemeProvider theme={theme}>
-						<Component {...pageProps} />
-					</EmotionThemeProvider>
-				</ApolloProvider>
+				<EmotionThemeProvider theme={theme}>
+					<Component {...pageProps} />
+				</EmotionThemeProvider>
 			</NextAuthProvider>
 		</CacheProvider>
 	);

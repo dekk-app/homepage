@@ -44,12 +44,14 @@ const padding: Sizes = {
 	xl: 0,
 };
 
+const columnBaseWidth = 80;
+
 export const breakpoints: Sizes = {
 	xs: 0,
-	s: 320,
-	m: 640,
-	l: 1280,
-	xl: 1280,
+	s: columnBaseWidth * 4,
+	m: columnBaseWidth * 9,
+	l: columnBaseWidth * 16,
+	xl: columnBaseWidth * 16,
 };
 
 export const getMediaQueries = (b: Sizes) =>

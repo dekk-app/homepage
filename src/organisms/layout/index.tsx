@@ -4,15 +4,14 @@ import { Global } from "@emotion/react";
 import dynamic from "next/dynamic";
 import React, { FC, memo } from "react";
 
-const Header = dynamic(async () => import("@/organisms/header"));
 const Main = dynamic(async () => import("@/organisms/main"));
 const Head = dynamic(async () => import("next/head"));
 
 export interface LayoutProps {
-	header?: React.ComponentType<unknown>;
+	className?: string;
 }
 
-const Layout: FC<LayoutProps> = ({ header: HeaderComponent, children }) => {
+const Layout: FC<LayoutProps> = ({ className, children }) => {
 	return (
 		<>
 			<Global styles={poppins} />
@@ -23,13 +22,8 @@ const Layout: FC<LayoutProps> = ({ header: HeaderComponent, children }) => {
 					content="Dekk reimagines presentations. Create and present by intuition. Make a difference, make a Dekk."
 				/>
 			</Head>
-			{HeaderComponent && (
-				<Header>
-					<HeaderComponent />
-				</Header>
-			)}
-			<Main>{children}</Main>
-			<OverlayGrid />
+			<Main className={className}>{children}</Main>
+			{process.env.NODE_ENV !== "production" && <OverlayGrid />}
 		</>
 	);
 };

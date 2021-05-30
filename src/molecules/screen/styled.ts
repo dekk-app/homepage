@@ -8,7 +8,6 @@ export const StyledScreenWrapper = styled.div`
 	align-content: center;
 	align-items: center;
 	justify-content: center;
-	max-width: ${pxToRem(386)};
 	margin: ${pxToRem(16)} auto;
 	padding: 0 ${pxToRem(16)};
 `;

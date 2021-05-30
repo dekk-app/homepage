@@ -15,12 +15,6 @@ export const StyledFieldset = styled.fieldset`
 export const StyledLegend = styled.legend`
 	margin: 0 auto;
 	padding: 0;
-	${({ theme: { mq } }) => css`
-		@media ${mq.m} {
-			width: ${pxToRem(600)};
-			margin: 0 ${pxToRem(-127)};
-		}
-	`}
 `;
 
 export const StyledFormWrapper = styled.div`
@@ -28,6 +22,9 @@ export const StyledFormWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
+	${({ theme }) => css`
+		margin: 0 0 ${pxToRem(theme.spaces.m)};
+	`};
 `;
 
 export const StyledForm = styled.form`

@@ -22,6 +22,7 @@ const GridBase = styled.div`
 	grid-column-gap: var(--gap-x, 1rem);
 	grid-row-gap: var(--gap-y, 1rem);
 	grid-template-columns: repeat(var(--col-count), 1fr);
+	width: 100%;
 	${({ theme }) => css`
 		--gap-x: ${pxToRem(theme.spaces.m)};
 		--gap-y: ${pxToRem(theme.spaces.m)};
@@ -51,8 +52,6 @@ const StyledGrid = styled(GridBase)`
 
 const StyledRow = styled(GridBase)`
 	--col-count: var(--col-span);
-
-	width: 100%;
 `;
 
 const StyledColumn = styled.div<StyledColumnProps>`

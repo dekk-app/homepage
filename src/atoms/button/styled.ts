@@ -1,7 +1,6 @@
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 
 export const StyledButtonWrapper = styled.div`
 	display: flex;
@@ -10,7 +9,8 @@ export const StyledButtonWrapper = styled.div`
 	align-items: center;
 	width: 100%;
 `;
-export const StyledButton = styled(motion.button)`
+
+export const StyledButton = styled.button<{ fullWidth?: boolean }>`
 	display: inline-flex;
 	position: relative;
 	align-content: center;
@@ -22,23 +22,19 @@ export const StyledButton = styled(motion.button)`
 	border-radius: ${pxToRem(10)};
 	font-size: ${pxToRem(14)};
 	font-weight: 600;
-	${({
-		theme: {
-			ui: {
-				colors: {
-					primary: { background, color },
-				},
-			},
-		},
-	}) => css`
-		background: ${background};
-		color: ${color};
+	text-decoration: none;
+	${({ fullWidth, theme }) => css`
+		width: ${fullWidth ? "100%" : "initial"};
+		background: ${theme.ui.colors.primary.background};
+		color: ${theme.ui.colors.primary.color};
 
 		&:focus {
 			outline: 0;
 		}
+
 		&:focus-visible {
-			box-shadow: 0 0 0 1px ${background};
+			box-shadow: 0 0 0 1px ${theme.ui.colors.dark.background},
+				0 0 0 2px ${theme.ui.colors.primary.background};
 		}
 	`};
 `;
@@ -71,10 +67,11 @@ export const StyledSocialButton = styled.button`
 		}
 	`};
 `;
+
 export const StyledSocialButtonWrapper = styled.div`
 	display: grid;
 	grid-column-gap: ${pxToRem(16)};
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	width: 100%;
 	margin: 0 auto;
 `;

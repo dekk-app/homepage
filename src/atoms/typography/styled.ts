@@ -4,9 +4,14 @@ import styled from "@emotion/styled";
 import { ElementType } from "react";
 
 export const StyledLink = styled.a`
-	color: #3f5df8;
+	color: currentColor;
 	font-weight: 600;
 	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
 	${({
 		theme: {
 			ui: {
@@ -19,6 +24,7 @@ export const StyledLink = styled.a`
 		&:focus {
 			outline: 0;
 		}
+
 		&:focus-visible {
 			outline: 1px solid ${background};
 			outline-offset: 3px;
@@ -36,7 +42,7 @@ export const StyledBodyText = styled.p<StyledTypographyProps>`
 	font-size: ${pxToRem(14)};
 	line-height: ${pxToRem(24)};
 	${({ centered, raw }) => css`
-		margin: 0 auto ${raw ? 0 : pxToRem(16)};
+		margin: 0 0 ${raw ? 0 : pxToRem(16)};
 		text-align: ${centered ? "center" : "initial"};
 	`}
 `;
@@ -47,7 +53,7 @@ export const StyledH1Text = styled.h1<StyledTypographyProps>`
 	font-weight: 700;
 	line-height: ${pxToRem(63)};
 	${({ centered, raw }) => css`
-		margin: 0 auto ${raw ? 0 : pxToRem(32)};
+		margin: 0 0 ${raw ? 0 : pxToRem(32)};
 		text-align: ${centered ? "center" : "initial"};
 	`}
 `;
@@ -58,7 +64,7 @@ export const StyledH2Text = styled.h2<StyledTypographyProps>`
 	font-weight: 700;
 	line-height: ${pxToRem(54)};
 	${({ centered, raw }) => css`
-		margin: 0 auto ${raw ? 0 : pxToRem(32)};
+		margin: 0 0 ${raw ? 0 : pxToRem(32)};
 		text-align: ${centered ? "center" : "initial"};
 	`}
 `;
