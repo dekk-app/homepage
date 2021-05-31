@@ -14,6 +14,6 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 
 
-[{*.json,*.md,*.yml,.*rc}]
+[{*.json,*.md,*.yml,.*rc,.*config}]
 indent_style = space
 indent_size = 2

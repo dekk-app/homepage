@@ -15,6 +15,8 @@ module.exports = {
 		"next-env.d.ts",
 		"types/*.d.ts",
 		"src/types/index.ts",
+		"src/types/contentful-api.ts",
+		"src/types/backend-api.ts",
 	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],

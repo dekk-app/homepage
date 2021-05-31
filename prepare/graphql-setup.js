@@ -6,32 +6,54 @@ config();
 
 const { writeFile } = pify(fs);
 
-const { BACKEND_URI } = process.env;
+const getContentfulUrl = environment =>
+	`https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${environment}?access_token=${process.env.NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY}`;
 
-const GRAPHQLCONFIG_FILE = ".graphqlconfig";
-
-const graphQlConfigTpl = schemaPath => `{
-  "name": "Backend Schema",
-  "schemaPath": "${schemaPath}",
-  "extensions": {
-    "endpoints": {
-      "local": {
-        "url": "${BACKEND_URI}",
-        "headers": {
-          "user-agent": "JS GraphQL"
-        },
-        "introspect": true
+const graphQlConfigTpl = `{
+  "name": "Graphql Schema",
+  "projects": {
+    "Contentful": {
+      "schemaPath": "contentful.graphql",
+      "extensions": {
+        "endpoints": {
+          "master": {
+            "url": "${getContentfulUrl("master")}",
+            "headers": {
+              "user-agent": "JS GraphQL"
+            },
+            "introspect": true
+          },
+          "development": {
+            "url": "${getContentfulUrl("development")}",
+            "headers": {
+              "user-agent": "JS GraphQL"
+            },
+            "introspect": true
+          }
+        }
+      }
+    },
+    "Dekk Backend": {
+      "schemaPath": "api.graphql",
+      "extensions": {
+        "endpoints": {
+          "local": {
+            "url": "${process.env.BACKEND_URI}",
+            "headers": {
+              "user-agent": "JS GraphQL"
+            },
+            "introspect": true
+          }
+        }
       }
     }
   }
 }
 `;
 
-const CWD = process.cwd();
-
 async function generate() {
-	await writeFile(path.resolve(CWD, GRAPHQLCONFIG_FILE), graphQlConfigTpl("schema.graphql"));
-	return `Wrote file ${GRAPHQLCONFIG_FILE}`;
+	await writeFile(path.resolve(process.cwd(), ".graphqlconfig"), graphQlConfigTpl);
+	return `Wrote file .graphqlconfig`;
 }
 
 generate()

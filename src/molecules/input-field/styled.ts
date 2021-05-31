@@ -46,6 +46,7 @@ export const StyledInput = styled.input<{ invalid?: boolean }>`
 	border-radius: ${pxToRem(10)};
 	background: red;
 	color: inherit;
+	font-size: ${pxToRem(16)};
 	line-height: ${pxToRem(16)};
 	caret-color: var(--focus-color);
 	${({
