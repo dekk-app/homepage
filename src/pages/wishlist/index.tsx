@@ -1,3 +1,4 @@
+import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";
@@ -12,13 +13,15 @@ const Page: NextPage<PageProps> = props => {
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
-	return {
+	const apolloClient = initializeApollo();
+	return addApolloState(apolloClient, {
 		props: {
 			...(await serverSideTranslations(context.locale)),
 			providers: await getProviders(),
-			session: await getSession(),
+			session: await getSession(context),
+			locale: context.locale,
 		},
-	};
+	});
 };
 
 export default Page;

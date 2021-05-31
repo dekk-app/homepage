@@ -1,4 +1,6 @@
+import { APOLLO_STATE_PROP_NAME } from "@/ions/contants";
 import { IconSize, Route } from "@/ions/enums";
+import { NormalizedCacheObject } from "@apollo/client";
 import { Session } from "next-auth";
 import { ClientSafeProvider } from "next-auth/client";
 import { LinkProps } from "next/link";
@@ -172,4 +174,6 @@ export interface I18nLinkProps extends Except<LinkProps, "href"> {
 export interface PageProps {
 	providers: Record<string, ClientSafeProvider>;
 	session: Session;
+	locale: string;
+	[APOLLO_STATE_PROP_NAME]?: NormalizedCacheObject;
 }
