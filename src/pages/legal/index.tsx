@@ -4,6 +4,7 @@ import {
 	initializeApollo,
 	useContentfulQuery,
 } from "@/ions/services/apollo/client";
+import { withLoadingAndError } from "@/organisms/with-loading-and-error";
 import { PageProps } from "@/types";
 import { PageCollection } from "@/types/contentful-api";
 import { gql } from "@apollo/client";
@@ -32,14 +33,19 @@ const GET_IMPRINT = gql`
 	}
 `;
 
-const Page: NextPage<PageProps> = props => {
-	const { data } = useContentfulQuery<{ pageCollection: PageCollection }>(GET_IMPRINT, {
-		variables: {
-			locale: props.locale,
-		},
-	});
+const WrappedLegalPage = withLoadingAndError(LegalPage);
 
-	return <LegalPage {...props} data={data} />;
+const Page: NextPage<PageProps> = props => {
+	const { data, error, loading } = useContentfulQuery<{ pageCollection: PageCollection }>(
+		GET_IMPRINT,
+		{
+			variables: {
+				locale: props.locale,
+			},
+		}
+	);
+
+	return <WrappedLegalPage {...props} data={data} error={error} loading={loading} />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
