@@ -1,15 +1,12 @@
+import Button from "@/atoms/button";
+import Typography from "@/atoms/typography";
+import { Column, Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
-import dynamic from "next/dynamic";
-import React from "react";
+import React, { FC } from "react";
 import { mock } from "./mock";
 import { StyledCard, StyledLayout, StyledWishWrapper } from "./styled";
 
-const Button = dynamic(async () => import("@/atoms/button"));
-const Typography = dynamic(async () => import("@/atoms/typography"));
-const Column = dynamic(async () => import("@/molecules/grid").then(mod => mod.Column));
-const Grid = dynamic(async () => import("@/molecules/grid").then(mod => mod.Grid));
-
-const Wishlist: React.FC = () => {
+const Wishlist: FC = () => {
 	const { t } = useTranslation(["wishlist"]);
 	return (
 		<StyledLayout>

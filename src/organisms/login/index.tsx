@@ -5,28 +5,27 @@ import {
 	StyledSocialButtonWrapper,
 } from "@/atoms/button/styled";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
+import Typography from "@/atoms/typography";
 import {
 	StyledFieldset,
 	StyledForm,
 	StyledFormWrapper,
 	StyledLegend,
 } from "@/molecules/form/styled";
+import InputField from "@/molecules/input-field";
 import { StyledScreenBackground, StyledScreenWrapper } from "@/molecules/screen/styled";
+import Transdown from "@/molecules/transdown";
 import { LoginFormProps, LoginProps } from "@/types";
 import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import dynamic from "next/dynamic";
-import React from "react";
+import Image from "next/image";
+import React, { FC, memo, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-const InputField = dynamic(async () => import("@/molecules/input-field"));
-const Transdown = dynamic(async () => import("@/molecules/transdown"));
-const Typography = dynamic(async () => import("@/atoms/typography"));
-
-const Login: React.FC<LoginProps> = ({ providers }) => {
+const Login: FC<LoginProps> = ({ providers }) => {
 	const { t } = useTranslation(["form"]);
 	const methods = useForm<LoginFormProps>();
-	const onSubmit = React.useCallback(data => {
+	const onSubmit = useCallback(data => {
 		console.log(data);
 	}, []);
 
@@ -50,7 +49,7 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 											void signIn(providers.google.id);
 										}}
 									>
-										<img
+										<Image
 											src="/big-icons/Google.svg"
 											alt="Google"
 											height={36}
@@ -64,7 +63,7 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 											void signIn(providers.github.id);
 										}}
 									>
-										<img
+										<Image
 											src="/big-icons/Github.svg"
 											alt="Github"
 											height={36}
@@ -101,4 +100,4 @@ const Login: React.FC<LoginProps> = ({ providers }) => {
 	);
 };
 
-export default React.memo(Login);
+export default memo(Login);

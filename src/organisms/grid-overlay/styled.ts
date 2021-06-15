@@ -1,16 +1,6 @@
+import { Column, Grid } from "@/molecules/grid";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import dynamic from "next/dynamic";
-import React, { useState } from "react";
-
-const Column = dynamic(async () => import("@/molecules/grid").then(mod => mod.Column));
-const Grid = dynamic(async () => import("@/molecules/grid").then(mod => mod.Grid));
-
-export const TextBox = styled(Column)`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-`;
 
 export const StyledGridOverlay = styled.div`
 	position: fixed;
@@ -22,10 +12,12 @@ export const StyledGridOverlay = styled.div`
 	opacity: 0.05;
 	pointer-events: none;
 `;
+
 export const StyledOverlayColumn = styled(Column)`
 	height: 100%;
 	background: magenta;
 `;
+
 export const StyledOverlayGrid = styled(Grid)`
 	height: 100%;
 	background: yellow;
@@ -89,7 +81,8 @@ export const StyledOverlayGrid = styled(Grid)`
 		`};
 	}
 `;
-export const GridToggle = styled.button`
+
+export const StyledGridToggle = styled.button`
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -97,35 +90,3 @@ export const GridToggle = styled.button`
 	height: 48px;
 	border: 0;
 `;
-export const OverlayGrid: React.FC = () => {
-	const [grid, setGrid] = useState(false);
-	return (
-		<>
-			<GridToggle
-				onClick={() => {
-					setGrid(previousState => !previousState);
-				}}
-			>
-				{grid ? "🚫" : "✅"}
-			</GridToggle>
-			{grid && (
-				<StyledGridOverlay>
-					<StyledOverlayGrid>
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-					</StyledOverlayGrid>
-				</StyledGridOverlay>
-			)}
-		</>
-	);
-};

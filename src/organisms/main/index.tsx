@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC } from "react";
 import { StyledMain } from "./styled";
 import { MainProps } from "./types";
 
@@ -10,4 +10,4 @@ const Main: FC<MainProps> = ({ children, className, innerRef, testId }) => {
 	);
 };
 
-export default memo(Main);
+export default Main;
