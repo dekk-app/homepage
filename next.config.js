@@ -8,9 +8,7 @@ const config = {
 		disable: process.env.NODE_ENV === "development",
 		dest: "public",
 	},
-	future: {
-		webpack5: true,
-	},
+	webpack5: true,
 	async redirects() {
 		return [];
 	},

@@ -10,8 +10,7 @@ module.exports = {
 		"migrations",
 		"*.config.js",
 		"node_modules",
-		"mockServiceWorker.js",
-		"graphql-setup.js",
+		"prepare/*",
 		"next-env.d.ts",
 		"types/*.d.ts",
 		"src/types/index.ts",
@@ -21,14 +20,6 @@ module.exports = {
 	plugins: ["prettier"],
 	env: ["browser", "node"],
 	overrides: [
-		{
-			files: "**/__tests__/*.{ts,tsx}",
-			globals: ["test", "expect"],
-			rules: {
-				"import/no-extraneous-dependencies": 0,
-				"unicorn/no-fn-reference-in-iterator": 0,
-			},
-		},
 		{
 			files: "**/*.stories.{ts,tsx}",
 			rules: {
@@ -52,9 +43,9 @@ module.exports = {
 	rules: {
 		"react/prop-types": 0,
 		"unicorn/no-array-reduce": 0,
-		"prettier/prettier": 0,
-		"react/jsx-uses-react": 1,
-		"react/jsx-uses-vars": 1,
+		// "prettier/prettier": 0,
+		// "react/jsx-uses-react": 1,
+		// "react/jsx-uses-vars": 1,
 		"no-unused-vars": 2,
 	},
 };
