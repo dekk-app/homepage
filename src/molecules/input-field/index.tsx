@@ -7,12 +7,12 @@ import {
 	StyledInputWrapper,
 	StyledRequiredIndicator,
 } from "@/molecules/input-field/styled";
-import { InputFieldProps } from "@/types";
+import { InputFieldProps } from "@/molecules/input-field/types";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import React, { FC, memo, RefCallback, useEffect, useRef, useState } from "react";
 import { FieldError, useFormContext } from "react-hook-form";
 
-const InputField: React.FC<InputFieldProps> = ({
+const InputField: FC<InputFieldProps> = ({
 	name,
 	id,
 	type,
@@ -22,18 +22,18 @@ const InputField: React.FC<InputFieldProps> = ({
 	validation = {},
 	args,
 }) => {
-	const inputRef = React.useRef<HTMLInputElement | null>(null);
+	const inputRef = useRef<HTMLInputElement | null>(null);
 	const {
 		register,
 		formState: { errors },
 	} = useFormContext();
-	const [filled, setFilled] = React.useState(defaultValue?.length > 0);
-	const [focused, setFocused] = React.useState(false);
+	const [filled, setFilled] = useState(defaultValue?.length > 0);
+	const [focused, setFocused] = useState(false);
 	const { t } = useTranslation(["form"]);
 	const { ref, onChange, onBlur } = register(name, validation);
-	const refCallback = ref as React.RefCallback<HTMLInputElement>;
+	const refCallback = ref as RefCallback<HTMLInputElement>;
 	const { current } = inputRef;
-	React.useEffect(() => {
+	useEffect(() => {
 		setFilled(current?.value?.length > 0);
 	}, [current]);
 	return (
@@ -87,4 +87,4 @@ const InputField: React.FC<InputFieldProps> = ({
 	);
 };
 
-export default React.memo(InputField);
+export default memo(InputField);

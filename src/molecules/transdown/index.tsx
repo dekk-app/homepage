@@ -3,15 +3,15 @@ import { Route } from "@/ions/enums";
 import { StyledTransDownLink } from "@/molecules/transdown/styled";
 import { I18nLinkProps } from "@/types";
 import { Trans, useTranslation } from "next-i18next";
-import React from "react";
+import React, { FC, memo } from "react";
 
-export const TransdownLink: React.FC<I18nLinkProps> = ({ children, route }) => (
+export const TransdownLink: FC<I18nLinkProps> = ({ children, route }) => (
 	<I18nLink passHref route={route}>
 		<StyledTransDownLink>{children}</StyledTransDownLink>
 	</I18nLink>
 );
 
-const Transdown: React.FC<{ i18nKey: string }> = ({ i18nKey }) => {
+const Transdown: FC<{ i18nKey: string }> = ({ i18nKey }) => {
 	const { t } = useTranslation(["form"]);
 	return (
 		<Trans
@@ -27,4 +27,4 @@ const Transdown: React.FC<{ i18nKey: string }> = ({ i18nKey }) => {
 	);
 };
 
-export default React.memo(Transdown);
+export default memo(Transdown);

@@ -8,7 +8,7 @@ import NextDocument, {
 	Main,
 	NextScript,
 } from "next/document";
-import React from "react";
+import React, { Children } from "react";
 
 const { extractCritical } = createEmotionServer(cache);
 
@@ -46,7 +46,7 @@ class Document extends NextDocument {
 			return {
 				...initialProps,
 				styles: [
-					...React.Children.toArray(initialProps.styles),
+					...Children.toArray(initialProps.styles),
 					<style
 						key="emotion"
 						// eslint-disable-next-line react/no-danger
