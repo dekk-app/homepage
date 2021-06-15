@@ -12,7 +12,6 @@ import {
 	TypedDocumentNode,
 	useQuery,
 } from "@apollo/client";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { QueryOptions } from "@apollo/client/core/watchQueryOptions";
 import merge from "deepmerge";
 import { DocumentNode } from "graphql";
