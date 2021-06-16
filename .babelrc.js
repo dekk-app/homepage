@@ -1,11 +1,12 @@
 module.exports = {
 	presets: [
-		"next/babel",
 		[
-			"@babel/preset-env",
+			"next/babel",
 			{
-				useBuiltIns: "usage",
-				corejs: "3.14.0",
+				"preset-env": {
+					useBuiltIns: "usage",
+					corejs: "3.14.0",
+				},
 			},
 		],
 	],
