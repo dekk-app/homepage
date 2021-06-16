@@ -21,7 +21,7 @@ export const StyledButton = styled.button<{ fullWidth?: boolean }>`
 	border: 0;
 	border-radius: ${pxToRem(10)};
 	font-size: ${pxToRem(14)};
-	font-weight: 700;
+	font-weight: 600;
 	text-decoration: none;
 	${({ fullWidth, theme }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
