@@ -2,5 +2,5 @@ import { StyledLink } from "@/atoms/typography/styled";
 import styled from "@emotion/styled";
 
 export const StyledTransDownLink = styled(StyledLink)`
-	font-weight: 700;
+	font-weight: 600;
 `;
