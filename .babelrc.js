@@ -8,8 +8,6 @@ module.exports = {
 				corejs: "3.14.0",
 			},
 		],
-		"@babel/preset-typescript",
-		"@babel/preset-react",
 	],
 	plugins: [
 		[

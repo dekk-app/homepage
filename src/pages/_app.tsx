@@ -19,7 +19,7 @@ import pkg from "../../package.json";
 
 export const fontFaces = css`
 	body {
-		font-family: poppins, sans-serif;
+		font-family: "Poppins", sans-serif;
 	}
 `;
 

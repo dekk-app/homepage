@@ -1,4 +1,4 @@
-import { globalStyles, poppins } from "@/ions/styles";
+import { globalStyles } from "@/ions/styles";
 import Footer from "@/organisms/footer";
 import Main from "@/organisms/main";
 import { Global } from "@emotion/react";
@@ -15,7 +15,6 @@ export interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ className, children }) => {
 	return (
 		<>
-			<Global styles={poppins} />
 			<Global styles={globalStyles} />
 			<Head>
 				<meta
