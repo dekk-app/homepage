@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "main": "n/a",
-  "license": "n/a",
+  "license": "UNLICENSED",
   "scripts": {
     "prebuild": "yarn mock:sw:clean",
     "build": "next build",
