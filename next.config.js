@@ -5,34 +5,60 @@ const { i18n } = require("./next-i18next.config");
 const config = {
 	i18n,
 	pwa: {
-		disable: process.env.NODE_ENV === "development",
 		dest: "public",
+		disable: process.env.NODE_ENV === "development",
 	},
 	webpack5: true,
+	optimizeFonts: true,
 	async redirects() {
-		return [];
+		return [
+			{
+				destination: "/de/wunschliste",
+				locale: false,
+				permanent: true,
+				source: "/de/wishlist",
+			},
+			{
+				destination: "/de/rechtliches",
+				locale: false,
+				permanent: true,
+				source: "/de/legal",
+			},
+			{
+				destination: "/de/rechtliches/datenschutz",
+				locale: false,
+				permanent: true,
+				source: "/de/legal/privacy-policy",
+			},
+			{
+				destination: "/de/rechtliches/geschaeftsbedingungen",
+				locale: false,
+				permanent: true,
+				source: "/de/legal/terms-of-service",
+			},
+		];
 	},
 	async rewrites() {
 		return [
 			{
-				source: "/de/wunschliste",
 				destination: "/de/wishlist",
 				locale: false,
+				source: "/de/wunschliste",
 			},
 			{
-				source: "/de/rechtliches",
 				destination: "/de/legal",
 				locale: false,
+				source: "/de/rechtliches",
 			},
 			{
-				source: "/de/rechtliches/datenschutz",
 				destination: "/de/legal/privacy-policy",
 				locale: false,
+				source: "/de/rechtliches/datenschutz",
 			},
 			{
-				source: "/de/rechtliches/geschaeftsbedingungen",
 				destination: "/de/legal/terms-of-service",
 				locale: false,
+				source: "/de/rechtliches/geschaeftsbedingungen",
 			},
 		];
 	},
