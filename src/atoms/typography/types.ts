@@ -1,15 +1,6 @@
 import { ElementType, ReactNode } from "react";
 
-export type TypographyVariant =
-	| "h1"
-	| "h2"
-	| "h3"
-	| "h4"
-	| "title"
-	| "heading"
-	| "subheading"
-	| "body"
-	| "caption";
+export type TypographyVariant = "body" | "body2" | "h1" | "h2" | "h3" | "title" | "subtitle";
 
 export interface TypographyProps {
 	id?: string;

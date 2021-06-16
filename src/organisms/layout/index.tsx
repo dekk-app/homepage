@@ -1,4 +1,4 @@
-import { globalStyles, poppins } from "@/ions/styles";
+import { globalStyles } from "@/ions/styles";
 import Footer from "@/organisms/footer";
 import Main from "@/organisms/main";
 import { Global } from "@emotion/react";
@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import React, { FC } from "react";
 
-const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"));
+const OverlayGrid = dynamic(() => import("@/organisms/grid-overlay"));
 
 export interface LayoutProps {
 	className?: string;
@@ -15,7 +15,6 @@ export interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ className, children }) => {
 	return (
 		<>
-			<Global styles={poppins} />
 			<Global styles={globalStyles} />
 			<Head>
 				<meta

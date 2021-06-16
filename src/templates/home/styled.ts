@@ -1,10 +1,8 @@
 import { pxToRem } from "@/ions/utils/unit";
+import { Column } from "@/molecules/grid";
+import Layout from "@/organisms/layout";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import dynamic from "next/dynamic";
-
-const Column = dynamic(async () => import("@/molecules/grid").then(mod => mod.Column));
-const Layout = dynamic(async () => import("@/organisms/layout"));
 
 export const StyledLayout = styled(Layout)`
 	display: flex;

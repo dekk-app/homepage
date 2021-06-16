@@ -19,7 +19,7 @@ export const StyledFloatingLabel = styled.span<{ floating?: boolean }>`
 	transition-property: color, font-size, transform;
 	transition-duration: 0.3s;
 	transition-timing-function: ease-in-out;
-	font-weight: 300;
+	font-weight: 400;
 	${({
 		floating,
 		theme: {
