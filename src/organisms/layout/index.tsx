@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import React, { FC } from "react";
 
-const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"));
+const OverlayGrid = dynamic(() => import("@/organisms/grid-overlay"));
 
 export interface LayoutProps {
 	className?: string;

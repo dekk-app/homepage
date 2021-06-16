@@ -4,10 +4,10 @@ import dynamic from "next/dynamic";
 import React, { FC, useEffect, useState } from "react";
 import { StyledColumn, StyledLayout } from "./styled";
 
-const ProBox = dynamic(async () => import("@/molecules/pro-box"));
-const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
-const WelcomeLottie = dynamic(async () => import("@/molecules/welcome-screen/lottie"));
-const Login = dynamic(async () => import("@/organisms/login"));
+const ProBox = dynamic(() => import("@/molecules/pro-box"));
+const WelcomeScreen = dynamic(() => import("@/molecules/welcome-screen"));
+const WelcomeLottie = dynamic(() => import("@/molecules/welcome-screen/lottie"));
+const Login = dynamic(() => import("@/organisms/login"));
 
 const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }> = ({
 	step,

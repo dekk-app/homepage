@@ -47,6 +47,17 @@ export const StyledTitleText = styled.h1<StyledTypographyProps>`
 	`}
 `;
 
+export const StyledSubTitleText = styled.h2<StyledTypographyProps>`
+	padding: 0;
+	font-size: ${pxToRem(20)};
+	font-weight: 600;
+	line-height: ${pxToRem(30)};
+	${({ centered, raw }) => css`
+		margin: 0 0 ${raw ? 0 : pxToRem(32)};
+		text-align: ${centered ? "center" : "initial"};
+	`}
+`;
+
 export const StyledH1Text = styled.h1<StyledTypographyProps>`
 	padding: 0;
 	font-size: ${pxToRem(48)};
