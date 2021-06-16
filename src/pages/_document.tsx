@@ -1,6 +1,6 @@
 import { cache } from "@/ions/services/emotion/cache";
 import createEmotionServer from "@emotion/server/create-instance";
-import NextDocument, {
+import Document, {
 	DocumentContext,
 	DocumentInitialProps,
 	Head,
@@ -12,7 +12,7 @@ import React, { Children } from "react";
 
 const { extractCritical } = createEmotionServer(cache);
 
-class Document extends NextDocument {
+class AppDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
 		// Resolution order
 		//
@@ -37,11 +37,9 @@ class Document extends NextDocument {
 		// 4. page.render
 
 		// Render app and page and get the context of the page with collected side effects.
-		// const materialUiSheets = new MaterialUiServerStyleSheet();
-		// const originalRenderPage = ctx.renderPage;
 
 		try {
-			const initialProps = await NextDocument.getInitialProps(ctx);
+			const initialProps = await Document.getInitialProps(ctx);
 			const styles = extractCritical(initialProps.html);
 			return {
 				...initialProps,
@@ -74,4 +72,4 @@ class Document extends NextDocument {
 	}
 }
 
-export default Document;
+export default AppDocument;
