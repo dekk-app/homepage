@@ -54,9 +54,6 @@ public/workbox-*.js.map
 # IntelliJ
 .idea
 
-# Git hooks
-.husky
-
 # Sentry
 sentry.properties
 
