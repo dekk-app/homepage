@@ -1,3 +1,4 @@
+import "@/ions/fonts/poppins.css";
 import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
 import { darkTheme, lightTheme } from "@/ions/theme";

@@ -2,10 +2,10 @@
 export interface Palette {
 	red: string;
 	green: string;
-	blue: string;
-	black: string;
-	white: string;
-	grey: string;
+	dark: string;
+	light: string;
+	purple: string;
+	darkPurple: string;
 }
 
 export type SpaceKey = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
@@ -23,9 +23,7 @@ export type Sizes = {
 export interface GridConfig {
 	gutter: Sizes;
 	gridPadding: Sizes;
-	padding: Sizes;
 	maxWidth: number;
-	stageLimit: number;
 	colSpan: Sizes;
 	debug?: boolean;
 }

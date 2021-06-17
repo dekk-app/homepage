@@ -2,26 +2,6 @@ import { Route } from "@/ions/enums";
 import { RouteConfig } from "@/types";
 
 const routes: Record<Route, RouteConfig> = {
-	[Route.dashboard]: {
-		dir: {
-			en: "dashboard",
-			de: "dashboard",
-		},
-		breadcrumb: {
-			en: "Dashboard",
-			de: "Dashboard",
-		},
-	},
-	[Route.create]: {
-		dir: {
-			en: "create",
-			de: "erstellen",
-		},
-		breadcrumb: {
-			en: "Create",
-			de: "Erstellen",
-		},
-	},
 	[Route.auth]: {
 		dir: {
 			en: "auth",
@@ -48,8 +28,8 @@ const routes: Record<Route, RouteConfig> = {
 			de: "rechtliches/datenschutz",
 		},
 		breadcrumb: {
-			en: "legal/Data policy",
-			de: "rechtliches/Datenschutz",
+			en: "Data policy",
+			de: "Datenschutz",
 		},
 	},
 	[Route.terms]: {
@@ -58,8 +38,8 @@ const routes: Record<Route, RouteConfig> = {
 			de: "rechtliches/geschaeftsbedingungen",
 		},
 		breadcrumb: {
-			en: "legal/Data policy",
-			de: "rechtliches/Datenschutz",
+			en: "Terms of service",
+			de: "Geschäftsbedingungen",
 		},
 	},
 };

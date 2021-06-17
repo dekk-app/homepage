@@ -11,6 +11,7 @@ export const globalStyles = css`
 	html {
 		font-size: 16px;
 	}
+
 	body {
 		width: 100%;
 		min-width: ${pxToRem(320)};

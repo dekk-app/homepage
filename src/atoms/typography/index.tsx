@@ -2,13 +2,13 @@ import { TypographyProps } from "@/atoms/typography/types";
 import dynamic from "next/dynamic";
 import React, { FC } from "react";
 
-const TitleText = dynamic(() => import("./title-text"));
-const SubTitleText = dynamic(() => import("./subtitle-text"));
-const H1Text = dynamic(() => import("./h1-text"));
-const H2Text = dynamic(() => import("./h2-text"));
-const H3Text = dynamic(() => import("./h3-text"));
-const BodyText = dynamic(() => import("./body-text"));
-const Body2Text = dynamic(() => import("./body2-text"));
+const TitleText = dynamic(async () => import("./title-text"));
+const SubTitleText = dynamic(async () => import("./subtitle-text"));
+const H1Text = dynamic(async () => import("./h1-text"));
+const H2Text = dynamic(async () => import("./h2-text"));
+const H3Text = dynamic(async () => import("./h3-text"));
+const BodyText = dynamic(async () => import("./body-text"));
+const Body2Text = dynamic(async () => import("./body2-text"));
 
 const Typography: FC<TypographyProps> = ({ children, component, variant, ...props }) => {
 	switch (variant) {

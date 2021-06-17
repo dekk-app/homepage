@@ -12,7 +12,6 @@ import { gql } from "@apollo/client";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import dynamic from "next/dynamic";
 import React from "react";
 
 const GET_POLICY = gql`
