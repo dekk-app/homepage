@@ -1,5 +1,7 @@
 const { withSentryConfig } = require("@sentry/nextjs");
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 const withPWA = require("next-pwa");
+const path = require("path");
 const { i18n } = require("./next-i18next.config");
 
 const config = {
@@ -8,8 +10,12 @@ const config = {
 		dest: "public",
 		disable: process.env.NODE_ENV === "development",
 	},
-	webpack5: true,
-	optimizeFonts: true,
+	webpack: config => {
+		config.plugins.push(new DuplicatePackageCheckerPlugin());
+		config.resolve.alias["tslib"] = path.resolve(__dirname, "node_modules", "tslib");
+
+		return config;
+	},
 	async redirects() {
 		return [
 			{

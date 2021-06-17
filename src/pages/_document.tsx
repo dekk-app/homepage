@@ -62,9 +62,18 @@ class AppDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<link href="/fonts/poppins-latin-400.woff2" rel="preload" as="font" />
-					<link href="/fonts/poppins-latin-600.woff2" rel="preload" as="font" />
-					<link href="/fonts/poppins-latin-700.woff2" rel="preload" as="font" />
+					<link
+						href="/fonts/poppins-latin-400.woff2"
+						rel="preload"
+						as="font"
+						crossOrigin="anonymous"
+					/>
+					<link
+						href="/fonts/poppins-latin-600.woff2"
+						rel="preload"
+						as="font"
+						crossOrigin="anonymous"
+					/>
 				</Head>
 				<body>
 					<script src="/noflash.js" />

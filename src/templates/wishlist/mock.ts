@@ -1,5 +1,3 @@
-import { shortId } from "@/ions/utils/id";
-
 const titles = [
 	"Nunquam locus abactus",
 	"Nunquam demitto species",
@@ -20,7 +18,7 @@ const descriptions = [
 	"Mirabilis cursuss ducunt ad brabeuta. Emeritis, fortis orgias etiam attrahendam de raptus, camerarius cursus.",
 ];
 export const mock = Array.from({ length: 12 }).map((_, index) => ({
-	id: shortId.encode(index),
+	id: index,
 	title: titles[index % titles.length],
 	description: descriptions[index % descriptions.length],
 }));
