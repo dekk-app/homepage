@@ -1,13 +1,13 @@
 import { pxToRem } from "@/ions/utils/unit";
 import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
 
-const palette: Palette = {
-	red: "hsl(0,50%,50%)",
-	green: "hsl(120,50%,50%)",
-	blue: "hsl(210,50%,50%)",
-	black: "hsl(0,0%,0%)",
-	white: "hsl(0,0%,100%)",
-	grey: "hsl(0,0%,50%)",
+export const palette: Palette = {
+	red: "rgb(217,3,3)",
+	green: "rgb(46,255,176)",
+	dark: "rgb(27,30,43)",
+	light: "rgb(248,249,253)",
+	purple: "rgb(106,40,234)",
+	darkPurple: "rgb(79,19,194)",
 };
 
 export const spaces: Spaces = {
@@ -20,7 +20,7 @@ export const spaces: Spaces = {
 	xxl: 64,
 };
 
-const gutter: Sizes = {
+export const gutter: Sizes = {
 	xs: 8,
 	s: 8,
 	m: 8,
@@ -28,7 +28,7 @@ const gutter: Sizes = {
 	xl: 12,
 };
 
-const gridPadding: Sizes = {
+export const gridPadding: Sizes = {
 	xs: 8,
 	s: 16,
 	m: 24,
@@ -36,22 +36,14 @@ const gridPadding: Sizes = {
 	xl: 24,
 };
 
-const padding: Sizes = {
-	xs: 0,
-	s: 0,
-	m: 0,
-	l: 0,
-	xl: 0,
-};
-
-const columnBaseWidth = 80;
+export const columnBaseWidth = 80;
 
 export const breakpoints: Sizes = {
 	xs: 0,
-	s: columnBaseWidth * 4,
-	m: columnBaseWidth * 9,
-	l: columnBaseWidth * 16,
-	xl: columnBaseWidth * 16,
+	s: columnBaseWidth * 4, // 320
+	m: columnBaseWidth * 9, // 720
+	l: columnBaseWidth * 16, // 1_280
+	xl: columnBaseWidth * 16, // 1_280
 };
 
 export const getMediaQueries = (b: Sizes) =>
@@ -68,9 +60,7 @@ export const mq: MediaQueries = getMediaQueries(breakpoints);
 export const grid: GridConfig = {
 	gutter,
 	gridPadding,
-	padding,
-	stageLimit: breakpoints.xl + breakpoints.s,
-	maxWidth: breakpoints.xl - (gridPadding.l + gutter.l) * 2,
+	maxWidth: breakpoints.l - (gridPadding.l + gutter.l) * 2,
 	colSpan: {
 		xs: 2,
 		s: 4,
@@ -137,44 +127,16 @@ export const lightTheme = {
 			},
 		},
 		molecules: {
-			artboard: {
-				background: "#ffffff",
-				color: "#000000",
-				border: "#e1e4ea",
-			},
-		},
-		organisms: {
 			inputField: {
 				background: "#ffffff",
 				color: "#000000",
 				focus: {
-					border: "#6a28ea",
+					border: palette.purple,
 				},
 				error: {
-					border: "#D90303",
-					color: "#D90303",
+					border: palette.red,
+					color: palette.red,
 				},
-			},
-		},
-		layout: {
-			sidebar: {
-				background: "#ffffff",
-				border: "#eeeeee",
-				color: "#000000",
-			},
-			header: {
-				background: "#ffffff",
-				border: "#eeeeee",
-				color: "#000000",
-			},
-			main: {
-				background: "#f7f7f8",
-				color: "#000000",
-			},
-			dropdown: {
-				background: "#ffffff",
-				border: "#eeeeee",
-				color: "#000000",
 			},
 		},
 	},
@@ -200,44 +162,16 @@ export const darkTheme = {
 			},
 		},
 		molecules: {
-			artboard: {
-				background: "#ffffff",
-				color: "#000000",
-				border: "#e1e4ea",
-			},
-		},
-		organisms: {
 			inputField: {
 				background: "#ffffff",
 				color: "#000000",
 				focus: {
-					border: "#6a28ea",
+					border: palette.purple,
 				},
 				error: {
-					border: "#D90303",
-					color: "#D90303",
+					border: palette.red,
+					color: palette.red,
 				},
-			},
-		},
-		layout: {
-			sidebar: {
-				background: "#232424",
-				border: "#2a2a2a",
-				color: "#ffffff",
-			},
-			header: {
-				background: "#232424",
-				border: "#2a2a2a",
-				color: "#ffffff",
-			},
-			main: {
-				background: "#1d1d1d",
-				color: "#ffffff",
-			},
-			dropdown: {
-				background: "#171717",
-				border: "#2a2a2a",
-				color: "#ffffff",
 			},
 		},
 	},

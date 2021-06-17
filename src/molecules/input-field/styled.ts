@@ -10,6 +10,7 @@ export const StyledInputWrapper = styled.label<{ focused?: boolean; fullWidth?: 
 		width: ${fullWidth ? "100%" : "auto"};
 	`}
 `;
+
 export const StyledFloatingLabel = styled.span<{ floating?: boolean }>`
 	display: flex;
 	position: absolute;
@@ -37,6 +38,7 @@ export const StyledFloatingLabel = styled.span<{ floating?: boolean }>`
 			color: ${floating ? focus.color : color};
 		`};
 `;
+
 export const StyledInput = styled.input<{ invalid?: boolean }>`
 	width: 100%;
 	height: ${pxToRem(60)};
@@ -53,7 +55,7 @@ export const StyledInput = styled.input<{ invalid?: boolean }>`
 		invalid,
 		theme: {
 			ui: {
-				organisms: {
+				molecules: {
 					inputField: { background, color, focus, error },
 				},
 			},
@@ -90,7 +92,7 @@ export const StyledError = styled.span`
 	${({
 		theme: {
 			ui: {
-				organisms: {
+				molecules: {
 					inputField: { error },
 				},
 			},
