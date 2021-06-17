@@ -62,10 +62,9 @@ class AppDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<link
-						href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-						rel="stylesheet"
-					/>
+					<link href="/fonts/poppins-latin-400.woff2" rel="preload" as="font" />
+					<link href="/fonts/poppins-latin-600.woff2" rel="preload" as="font" />
+					<link href="/fonts/poppins-latin-700.woff2" rel="preload" as="font" />
 				</Head>
 				<body>
 					<script src="/noflash.js" />
