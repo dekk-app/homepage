@@ -19,7 +19,6 @@ const Transdown: FC<{ i18nKey: string }> = ({ i18nKey }) => {
 			components={{
 				toLogin: <TransdownLink route={Route.auth} />,
 				toPrivacyPolicy: <TransdownLink route={Route.policy} />,
-				toTermsOfService: <TransdownLink route={Route.terms} />,
 			}}
 		>
 			{t(i18nKey)}

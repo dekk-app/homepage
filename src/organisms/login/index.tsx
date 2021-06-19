@@ -37,7 +37,7 @@ const Login: FC<LoginProps> = ({ providers }) => {
 						<StyledFormWrapper>
 							<StyledFieldset>
 								<StyledLegend>
-									<Typography centered variant="h1">
+									<Typography variant="title" component="h1">
 										{t("form:legends.login")}
 									</Typography>
 								</StyledLegend>

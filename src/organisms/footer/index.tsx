@@ -20,8 +20,8 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					<I18nLink route={Route.policy}>
 						<StyledLink>{t("navigation:policy")}</StyledLink>
 					</I18nLink>
-					<I18nLink route={Route.terms}>
-						<StyledLink>{t("navigation:terms")}</StyledLink>
+					<I18nLink route={Route.cookies}>
+						<StyledLink>{t("navigation:cookies")}</StyledLink>
 					</I18nLink>
 				</StyledFooterItems>
 			</Grid>

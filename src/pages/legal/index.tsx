@@ -1,3 +1,4 @@
+import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import {
 	addApolloState,
 	contentfulQuery,
@@ -61,6 +62,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			providers: await getProviders(),
 			session: await getSession(context),
 			locale: context.locale,
+			consent: getServerSideConsent(context),
 		},
 	});
 };

@@ -19,6 +19,7 @@ const InputField: FC<InputFieldProps> = ({
 	testId,
 	fullWidth,
 	defaultValue,
+	required,
 	validation = {},
 	args,
 }) => {
@@ -41,9 +42,7 @@ const InputField: FC<InputFieldProps> = ({
 			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_input`}>
 				<StyledFloatingLabel floating={focused || filled} id={`${id}_label`}>
 					{t(`form:fields-labels.${name}`)}
-					{Boolean(validation.required) && (
-						<StyledRequiredIndicator>*</StyledRequiredIndicator>
-					)}
+					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
 				</StyledFloatingLabel>
 				<StyledInput
 					ref={element => {

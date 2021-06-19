@@ -32,9 +32,14 @@ export const StyledButton = styled.button<{ fullWidth?: boolean }>`
 			outline: 0;
 		}
 
+		&:hover {
+			background: ${theme.palette.darkPurple};
+		}
+
 		&:focus-visible {
-			box-shadow: 0 0 0 1px ${theme.ui.colors.dark.background},
-				0 0 0 2px ${theme.ui.colors.primary.background};
+			background: ${theme.palette.darkPurple};
+			box-shadow: 0 0 0 2px ${theme.ui.colors.dark.background},
+				0 0 0 3px ${theme.ui.colors.primary.background};
 		}
 	`};
 `;

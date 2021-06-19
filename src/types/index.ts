@@ -34,9 +34,42 @@ export interface I18nLinkProps extends Except<LinkProps, "href"> {
 	subPath?: string;
 }
 
+export interface ConsentState {
+	advertising: boolean;
+	functional: boolean;
+	necessary: true;
+	performance: boolean;
+	timestamp: number;
+}
+
+export interface CookieFirst {
+	hasConsented: boolean;
+	stealthMode: boolean;
+	consent: ConsentState;
+	acceptAllCategories(): void;
+	acceptCategory(): void;
+	acceptPreselectedCategories(): void;
+	changeLanguage(): void;
+	closePanel(): void;
+	declineAllCategories(): void;
+	declineCategory(): void;
+	fetchLatestScan(): void;
+	openPanel(): void;
+	renderEmbeds(): void;
+	updateConsent(): void;
+	withdrawConsent(): void;
+}
+
 export interface PageProps {
 	providers: Record<string, ClientSafeProvider>;
 	session: Session;
 	locale: string;
 	[APOLLO_STATE_PROP_NAME]?: NormalizedCacheObject;
+	consent: ConsentState | null;
+}
+
+declare global {
+	interface Window {
+		CookieFirst?: CookieFirst;
+	}
 }

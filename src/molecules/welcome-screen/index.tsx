@@ -1,4 +1,3 @@
-import Button from "@/atoms/button";
 import Typography from "@/atoms/typography";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
@@ -15,7 +14,7 @@ const WelcomeScreen = () => {
 				{t("welcome:body-line2")}
 			</Typography>
 			<Link passHref href="/wishlist">
-				<Button as="a">{t("welcome:button")}</Button>
+				<a>{t("welcome:button")}</a>
 			</Link>
 		</>
 	);

@@ -1,4 +1,5 @@
 import "@/ions/fonts/poppins.css";
+import { ConsentProvider } from "@/ions/hooks/consent/context";
 import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
 import { darkTheme, lightTheme } from "@/ions/theme";
@@ -75,17 +76,19 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 					href={`/icons/icon-16x16.png?${pkg.version}`}
 				/>
 				<link rel="manifest" href="/manifest.json" />
-				<link rel="shortcut icon" href={`favicon.ico?${pkg.version}`} />
+				<link rel="shortcut icon" href={`/	favicon.ico?${pkg.version}`} />
 			</Head>
-			<NextAuthProvider session={(pageProps as PageProps).session}>
-				<ApolloProvider client={apolloClient}>
-					<EmotionCacheProvider value={cache}>
-						<EmotionThemeProvider theme={theme}>
-							<Component {...pageProps} />
-						</EmotionThemeProvider>
-					</EmotionCacheProvider>
-				</ApolloProvider>
-			</NextAuthProvider>
+			<ConsentProvider consent={(pageProps as PageProps).consent ?? null}>
+				<NextAuthProvider session={(pageProps as PageProps).session}>
+					<ApolloProvider client={apolloClient}>
+						<EmotionCacheProvider value={cache}>
+							<EmotionThemeProvider theme={theme}>
+								<Component {...pageProps} />
+							</EmotionThemeProvider>
+						</EmotionCacheProvider>
+					</ApolloProvider>
+				</NextAuthProvider>
+			</ConsentProvider>
 		</>
 	);
 };

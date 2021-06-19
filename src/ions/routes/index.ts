@@ -32,14 +32,14 @@ const routes: Record<Route, RouteConfig> = {
 			de: "Datenschutz",
 		},
 	},
-	[Route.terms]: {
+	[Route.cookies]: {
 		dir: {
-			en: "legal/terms-of-service",
-			de: "rechtliches/geschaeftsbedingungen",
+			en: "legal/cookie-policy",
+			de: "rechtliches/cookie-richtlinie",
 		},
 		breadcrumb: {
-			en: "Terms of service",
-			de: "Geschäftsbedingungen",
+			en: "Cookie policy",
+			de: "Cookie-Richtlinie",
 		},
 	},
 };

@@ -84,6 +84,7 @@ export const StyledOverlayGrid = styled(Grid)`
 
 export const StyledGridToggle = styled.button`
 	position: fixed;
+	z-index: 101;
 	bottom: 0;
 	left: 0;
 	width: 48px;

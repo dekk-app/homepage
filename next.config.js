@@ -1,7 +1,6 @@
 const { withSentryConfig } = require("@sentry/nextjs");
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 const withPWA = require("next-pwa");
-const path = require("path");
 const { i18n } = require("./next-i18next.config");
 
 const config = {
@@ -12,8 +11,6 @@ const config = {
 	},
 	webpack: config => {
 		config.plugins.push(new DuplicatePackageCheckerPlugin());
-		config.resolve.alias["tslib"] = path.resolve(__dirname, "node_modules", "tslib");
-
 		return config;
 	},
 	async redirects() {
@@ -37,10 +34,10 @@ const config = {
 				source: "/de/legal/privacy-policy",
 			},
 			{
-				destination: "/de/rechtliches/geschaeftsbedingungen",
+				destination: "/de/rechtliches/cookie-richtlinie",
 				locale: false,
 				permanent: true,
-				source: "/de/legal/terms-of-service",
+				source: "/de/legal/cookie-policy",
 			},
 		];
 	},
@@ -62,9 +59,9 @@ const config = {
 				source: "/de/rechtliches/datenschutz",
 			},
 			{
-				destination: "/de/legal/terms-of-service",
+				destination: "/de/legal/cookie-policy",
 				locale: false,
-				source: "/de/rechtliches/geschaeftsbedingungen",
+				source: "/de/rechtliches/cookie-richtlinie",
 			},
 		];
 	},
@@ -73,6 +70,7 @@ const config = {
 const pwa = withPWA(config);
 
 const SentryWebpackPluginOptions = {
+	silent: true, // Suppresses all logs
 	// Additional config options for the Sentry Webpack plugin. Keep in mind that
 	// the following options are set automatically, and overriding them is not
 	// recommended:
