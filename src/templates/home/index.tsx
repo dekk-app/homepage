@@ -1,4 +1,5 @@
 import { Grid } from "@/molecules/grid";
+import { css, Global, useTheme } from "@emotion/react";
 import { ClientSafeProvider, useSession } from "next-auth/client";
 import dynamic from "next/dynamic";
 import React, { FC, useEffect, useState } from "react";
@@ -28,7 +29,7 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 const Home: FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers }) => {
 	const [session] = useSession();
 	const [step, setStep] = useState(session ? 1 : 0);
-
+	const theme = useTheme();
 	useEffect(() => {
 		if (session) {
 			setStep(1);
@@ -37,6 +38,14 @@ const Home: FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers
 
 	return (
 		<StyledLayout>
+			<Global
+				styles={css`
+					body {
+						background-color: ${theme.ui.colors.dark.background};
+						color: ${theme.ui.colors.dark.color};
+					}
+				`}
+			/>
 			<Steps step={step} providers={providers} />
 		</StyledLayout>
 	);

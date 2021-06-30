@@ -16,30 +16,48 @@ export const StyledButton = styled.button<{ fullWidth?: boolean }>`
 	align-content: center;
 	align-items: center;
 	justify-content: center;
-	height: ${pxToRem(60)};
-	padding: ${pxToRem(24)} ${pxToRem(18)};
+	height: ${pxToRem(56)};
+	padding: ${pxToRem(16)} ${pxToRem(24)};
 	border: 0;
 	border-radius: ${pxToRem(10)};
-	font-size: ${pxToRem(14)};
+	font-size: ${pxToRem(16)};
 	font-weight: 600;
+	line-height: ${pxToRem(24)};
 	text-decoration: none;
+
+	&:focus {
+		outline: 0;
+	}
+
+	&::after {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+		bottom: -1px;
+		left: -1px;
+		border-radius: inherit;
+		pointer-events: none;
+	}
+
 	${({ fullWidth, theme }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
 		background: ${theme.ui.colors.primary.background};
 		color: ${theme.ui.colors.primary.color};
 
-		&:focus {
-			outline: 0;
-		}
-
 		&:hover {
 			background: ${theme.palette.darkPurple};
 		}
 
+		&:after {
+			box-shadow: 0 0 0 2px ${theme.ui.colors.primary.background};
+		}
+
 		&:focus-visible {
 			background: ${theme.palette.darkPurple};
-			box-shadow: 0 0 0 2px ${theme.ui.colors.dark.background},
-				0 0 0 3px ${theme.ui.colors.primary.background};
+
+			&:after {
+				content: "";
+			}
 		}
 	`};
 `;

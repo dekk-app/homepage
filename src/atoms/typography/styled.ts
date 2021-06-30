@@ -1,25 +1,19 @@
 import { a, h1, h2, h3, h4, p } from "@/atoms/typography/global";
+import { StyledLinkProps, StyledTypographyProps } from "@/atoms/typography/types";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ElementType } from "react";
 
-export const StyledLink = styled.a<{ bold?: boolean }>`
+export const StyledLink = styled.a<StyledLinkProps>`
 	${a};
 	${({ bold }) => css`
 		font-weight: ${bold ? 600 : 400};
 	`};
 `;
 
-interface StyledTypographyProps {
-	raw?: boolean;
-	centered?: boolean;
-	as: ElementType;
-}
-
 export const StyledBodyText = styled.p<StyledTypographyProps>`
 	${p};
-	${({ centered, raw }) => css`
+	${({ centered, raw, light }) => css`
 		${raw &&
 		css`
 			margin: 0;
@@ -27,14 +21,19 @@ export const StyledBodyText = styled.p<StyledTypographyProps>`
 		${centered &&
 		css`
 			text-align: center;
+		`};
+		${light &&
+		css`
+			opacity: 0.87;
 		`};
 	`}
 `;
 
 export const StyledBody2Text = styled.p<StyledTypographyProps>`
+	margin: ${pxToRem(16)} 0;
 	font-size: ${pxToRem(14)};
 	line-height: ${pxToRem(20)};
-	${({ centered, raw }) => css`
+	${({ centered, raw, light }) => css`
 		${raw &&
 		css`
 			margin: 0;
@@ -42,6 +41,10 @@ export const StyledBody2Text = styled.p<StyledTypographyProps>`
 		${centered &&
 		css`
 			text-align: center;
+		`};
+		${light &&
+		css`
+			opacity: 0.6;
 		`};
 	`}
 `;
@@ -68,7 +71,7 @@ export const StyledTitleText = styled.h1<StyledTypographyProps>`
 `;
 
 export const StyledSubTitleText = styled.h2<StyledTypographyProps>`
-	margin: 0;
+	margin: 0 0 ${pxToRem(16)};
 	font-size: ${pxToRem(20)};
 	font-weight: 600;
 	line-height: ${pxToRem(30)};

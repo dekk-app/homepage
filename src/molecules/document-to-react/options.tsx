@@ -1,4 +1,4 @@
-import { BreakLines } from "@/atoms/break";
+import { BreakLines } from "@/atoms/break-lines";
 import Typography from "@/atoms/typography";
 import { StyledLink } from "@/atoms/typography/styled";
 import { Options } from "@contentful/rich-text-react-renderer";

@@ -1,15 +1,6 @@
-import { I18nLink } from "@/atoms/link";
-import { Route } from "@/ions/enums";
-import { StyledTransDownLink } from "@/molecules/transdown/styled";
-import { I18nLinkProps } from "@/types";
+import I18nLink from "@/atoms/li18n-ink";
 import { Trans, useTranslation } from "next-i18next";
 import React, { FC, memo } from "react";
-
-export const TransdownLink: FC<I18nLinkProps> = ({ children, route }) => (
-	<I18nLink passHref route={route}>
-		<StyledTransDownLink>{children}</StyledTransDownLink>
-	</I18nLink>
-);
 
 const Transdown: FC<{ i18nKey: string }> = ({ i18nKey }) => {
 	const { t } = useTranslation(["form"]);
@@ -17,8 +8,7 @@ const Transdown: FC<{ i18nKey: string }> = ({ i18nKey }) => {
 		<Trans
 			i18nKey={i18nKey}
 			components={{
-				toLogin: <TransdownLink route={Route.auth} />,
-				toPrivacyPolicy: <TransdownLink route={Route.policy} />,
+				toPrivacyPolicy: <I18nLink bold href="/legal/privacy-policy" />,
 			}}
 		>
 			{t(i18nKey)}

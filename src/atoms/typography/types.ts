@@ -8,5 +8,17 @@ export interface TypographyProps {
 	variant?: TypographyVariant;
 	raw?: boolean;
 	centered?: boolean;
+	light?: boolean;
 	children?: ReactNode;
+}
+
+export interface StyledLinkProps {
+	bold?: boolean;
+}
+
+export interface StyledTypographyProps {
+	raw?: boolean;
+	centered?: boolean;
+	light?: boolean;
+	as: ElementType;
 }

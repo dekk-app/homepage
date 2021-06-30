@@ -2,7 +2,7 @@ import "@/ions/fonts/poppins.css";
 import { ConsentProvider } from "@/ions/hooks/consent/context";
 import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
-import { darkTheme, lightTheme } from "@/ions/theme";
+import { theme } from "@/ions/theme";
 import { PageProps } from "@/types";
 import { ApolloProvider } from "@apollo/client";
 import {
@@ -15,8 +15,7 @@ import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
-import useDarkMode from "use-dark-mode";
+import React from "react";
 import pkg from "../../package.json";
 
 export const fontFaces = css`
@@ -33,13 +32,7 @@ export const debugging = css`
 `;
 
 const App = ({ Component, pageProps }: AppProps<PageProps>) => {
-	const { value: darkMode } = useDarkMode();
-	const [theme, setTheme] = useState(lightTheme);
 	const apolloClient = useApollo(pageProps as PageProps);
-
-	useEffect(() => {
-		setTheme(darkMode ? darkTheme : lightTheme);
-	}, [darkMode]);
 
 	return (
 		<>

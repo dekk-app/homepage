@@ -2,7 +2,7 @@ import { HTMLProps } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { Except } from "type-fest";
 
-export interface InputFieldProps extends Except<HTMLProps<HTMLInputElement>, "onChange"> {
+export interface TextAreaFieldProps extends Except<HTMLProps<HTMLTextAreaElement>, "onChange"> {
 	fullWidth?: boolean;
 	validation: RegisterOptions;
 	args?: Record<string, string | number>;

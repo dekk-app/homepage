@@ -73,7 +73,9 @@ const Login: FC<LoginProps> = ({ providers }) => {
 								</StyledSocialButtonWrapper>
 								<StyledStripeWrapper>
 									<StyledStripe />
-									<Typography raw>{t(`form:texts.continue-with`)}</Typography>
+									<Typography raw light>
+										{t(`form:texts.continue-with`)}
+									</Typography>
 									<StyledStripe />
 								</StyledStripeWrapper>
 								<InputField
@@ -91,7 +93,7 @@ const Login: FC<LoginProps> = ({ providers }) => {
 							</StyledButtonWrapper>
 						</StyledFormWrapper>
 					</StyledForm>
-					<Typography centered raw>
+					<Typography centered raw light>
 						<Transdown i18nKey="form:texts.policy-data-agreement" />
 					</Typography>
 				</StyledScreenWrapper>

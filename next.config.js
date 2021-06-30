@@ -1,6 +1,4 @@
 const { withSentryConfig } = require("@sentry/nextjs");
-const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
-const withPWA = require("next-pwa");
 const { i18n } = require("./next-i18next.config");
 
 const config = {
@@ -10,7 +8,6 @@ const config = {
 		disable: process.env.NODE_ENV === "development",
 	},
 	webpack: config => {
-		config.plugins.push(new DuplicatePackageCheckerPlugin());
 		return config;
 	},
 	async redirects() {
@@ -67,8 +64,6 @@ const config = {
 	},
 };
 
-const pwa = withPWA(config);
-
 const SentryWebpackPluginOptions = {
 	silent: true, // Suppresses all logs
 	// Additional config options for the Sentry Webpack plugin. Keep in mind that
@@ -82,7 +77,7 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-const sentry = withSentryConfig(pwa, SentryWebpackPluginOptions);
+const sentry = withSentryConfig(config, SentryWebpackPluginOptions);
 
 const configWith = sentry;
 

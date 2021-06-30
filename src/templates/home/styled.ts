@@ -12,9 +12,6 @@ export const StyledLayout = styled(Layout)`
 	min-height: 100vh;
 	overflow: hidden;
 	${({ theme }) => css`
-		background-color: ${theme.ui.colors.dark.background};
-		color: ${theme.ui.colors.dark.color};
-
 		@media only screen and ${theme.mq.l} {
 			background-image: url(/illustrations/bg_1.svg);
 			background-repeat: no-repeat;

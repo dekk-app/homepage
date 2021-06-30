@@ -2,12 +2,12 @@ import { pxToRem } from "@/ions/utils/unit";
 import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
 
 export const palette: Palette = {
-	red: "rgb(217,3,3)",
-	green: "rgb(46,255,176)",
-	dark: "rgb(27,30,43)",
-	light: "rgb(248,249,253)",
-	purple: "rgb(106,40,234)",
-	darkPurple: "rgb(79,19,194)",
+	red: "#D90303",
+	green: "#2EFFB0",
+	dark: "#1B1E2B",
+	light: "#F8F9FD",
+	purple: "#6A28EA",
+	darkPurple: "#4F13C2",
 };
 
 export const spaces: Spaces = {
@@ -96,58 +96,13 @@ export const theme: Theme = {
 				color: "#ffffff",
 			},
 			light: {
-				background: "#ffffff",
+				background: "#F8F9FD",
 				color: "#000000",
 			},
 			dark: {
 				background: "#232424",
 				color: "#ffffff",
 			},
-		},
-	},
-};
-
-export const lightTheme = {
-	...theme,
-	ui: {
-		...theme.ui,
-		colors: {
-			...theme.ui.colors,
-			theme: {
-				background: "#ffffff",
-				color: "#000000",
-			},
-		},
-		atoms: {
-			inputLabel: {
-				color: "#000000",
-				focus: {
-					color: "#2a2a2a",
-				},
-			},
-		},
-		molecules: {
-			inputField: {
-				background: "#ffffff",
-				color: "#000000",
-				focus: {
-					border: palette.purple,
-				},
-				error: {
-					border: palette.red,
-					color: palette.red,
-				},
-			},
-		},
-	},
-};
-
-export const darkTheme = {
-	...theme,
-	ui: {
-		...theme.ui,
-		colors: {
-			...theme.ui.colors,
 			theme: {
 				background: "#232424",
 				color: "#ffffff",
@@ -155,18 +110,20 @@ export const darkTheme = {
 		},
 		atoms: {
 			inputLabel: {
-				color: "#000000",
+				color: "#ffffff",
 				focus: {
-					color: "#2a2a2a",
+					color: "#ffffff",
 				},
 			},
 		},
 		molecules: {
 			inputField: {
-				background: "#ffffff",
-				color: "#000000",
+				background: "rgba(255,255,255,0.1)",
+				color: "#ffffff",
 				focus: {
-					border: palette.purple,
+					border: palette.green,
+					color: "#fff",
+					background: "rgba(255,255,255,0.1)",
 				},
 				error: {
 					border: palette.red,

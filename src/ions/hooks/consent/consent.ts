@@ -10,7 +10,6 @@ export const useConsent = () => {
 	const [consent, setConsent] = useState<ConsentState>(consentContext);
 	useEffect(() => {
 		const subscribe = () => {
-			console.log("foo");
 			if (consent) {
 				return;
 			}

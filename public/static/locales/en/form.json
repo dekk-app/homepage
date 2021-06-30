@@ -15,7 +15,9 @@
     "email": "E-mail address",
     "firstName": "First name",
     "lastName": "Last name",
-    "password": "Password"
+    "password": "Password",
+    "wish-subject": "Subject",
+    "wish-body": "Body"
   },
   "texts": {
     "continue-with": "or continue with e-mail:",

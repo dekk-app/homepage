@@ -1,21 +1,31 @@
 import Typography from "@/atoms/typography";
 import { useTranslation } from "next-i18next";
-import React, { FC, memo, RefCallback, useEffect, useRef, useState } from "react";
+import React, {
+	FC,
+	LegacyRef,
+	memo,
+	Ref,
+	RefCallback,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { FieldError, useFormContext } from "react-hook-form";
+import TextareaAutosize from "react-textarea-autosize";
 import {
 	StyledError,
 	StyledFloatingLabel,
 	StyledHelpText,
-	StyledInput,
-	StyledInputWrapper,
 	StyledRequiredIndicator,
+	StyledTextArea,
+	StyledTextareaWrapper,
 } from "./styled";
-import { InputFieldProps } from "./types";
+import { TextAreaFieldProps } from "./types";
 
-const InputField: FC<InputFieldProps> = ({
+const TextArea: FC<TextAreaFieldProps> = ({
 	name,
 	id,
-	type,
 	testId,
 	fullWidth,
 	defaultValue,
@@ -23,7 +33,7 @@ const InputField: FC<InputFieldProps> = ({
 	validation = {},
 	onChange,
 }) => {
-	const inputRef = useRef<HTMLInputElement | null>(null);
+	const inputRef = useRef<HTMLTextAreaElement | null>(null);
 	const {
 		register,
 		formState: { errors },
@@ -32,29 +42,35 @@ const InputField: FC<InputFieldProps> = ({
 	const [focused, setFocused] = useState(false);
 	const { t } = useTranslation(["form"]);
 	const { ref, onChange: registeredOnChange, onBlur } = register(name, validation);
-	const refCallback = ref as RefCallback<HTMLInputElement>;
+	const refCallback = ref as RefCallback<HTMLTextAreaElement>;
 	const { current } = inputRef;
+	const textAreaRef: LegacyRef<HTMLTextAreaElement> & Ref<TextareaAutosize> = useCallback(
+		element => {
+			refCallback(element as unknown as HTMLTextAreaElement);
+			inputRef.current = element as unknown as HTMLTextAreaElement;
+		},
+		[refCallback, inputRef]
+	);
 	useEffect(() => {
 		setFilled(current?.value?.length > 0);
 	}, [current]);
+	useEffect(() => {
+		console.log(errors);
+	}, [errors]);
 	return (
 		<>
-			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
+			<StyledTextareaWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
 				<StyledFloatingLabel floating={focused || filled} id={`${id}_label`}>
 					{t(`form:fields-labels.${name}`)}
 					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
 				</StyledFloatingLabel>
-				<StyledInput
-					ref={element => {
-						refCallback(element);
-						inputRef.current = element;
-					}}
+				<StyledTextArea
+					ref={textAreaRef}
 					defaultValue={defaultValue}
 					id={`${id}_field`}
 					name={name}
 					required={Boolean(validation.required)}
 					invalid={Boolean(errors.name)}
-					type={type}
 					data-test-id={testId}
 					aria-labelledby={`${id}_label`}
 					aria-describedby={`${id}_help`}
@@ -74,7 +90,7 @@ const InputField: FC<InputFieldProps> = ({
 						void onBlur(event_);
 					}}
 				/>
-			</StyledInputWrapper>
+			</StyledTextareaWrapper>
 
 			<StyledHelpText>
 				<Typography id={`${id}_help`}>
@@ -91,4 +107,4 @@ const InputField: FC<InputFieldProps> = ({
 	);
 };
 
-export default memo(InputField);
+export default memo(TextArea);

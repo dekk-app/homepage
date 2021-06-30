@@ -13,6 +13,7 @@ module.exports = {
 		"prepare/*",
 		"next-env.d.ts",
 		"types/*.d.ts",
+		"src/**/types.ts",
 		"src/types/index.ts",
 		"src/types/contentful-api.ts",
 		"src/types/backend-api.ts",
