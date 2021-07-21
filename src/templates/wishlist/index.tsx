@@ -7,7 +7,12 @@ import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
 import { Column, Grid } from "@/molecules/grid";
 import InputField from "@/molecules/input-field";
 import TextArea from "@/molecules/textarea-field";
-import { CREATE_WISH, CREATE_WISH_VOTE, USER } from "@/templates/wishlist/queries";
+import {
+	CREATE_WISH,
+	CREATE_WISH_VOTE,
+	DELETE_WISH_VOTE,
+	USER,
+} from "@/templates/wishlist/queries";
 import { AddWishProps, ListOfWishesProps, WishFormProps } from "@/types";
 import { User, Wish, WishVote } from "@/types/backend-api";
 import { useMutation, useQuery } from "@apollo/client";
@@ -42,20 +47,46 @@ export const PurpleTypography = styled(Typography)`
 const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted, authorId } }) => {
 	const [session] = useSession();
 	const { t } = useTranslation(["wishlist"]);
+	const [localVotes, setLocalVotes] = useState(votes);
+	const [localVoted, setLocalVoted] = useState(voted);
+
 	const { data: userData, error: userError } = useQuery<{ user: User }>(USER, {
 		variables: {
 			email: session?.user.email,
 		},
 	});
-
-	const [createWishVote, { data }] = useMutation<{ createWishVote: WishVote }>(CREATE_WISH_VOTE, {
+	const [createWishVote, { data: dataCreateWishVote }] = useMutation<{
+		createWishVote: WishVote;
+	}>(CREATE_WISH_VOTE, {
+		variables: {
+			userId: userData?.user?.id,
+			wishId: id,
+		},
+	});
+	const [deleteWishVote, { data: dataDeleteWishVote }] = useMutation<{
+		deleteWishVote: WishVote;
+	}>(DELETE_WISH_VOTE, {
 		variables: {
 			userId: userData?.user?.id,
 			wishId: id,
 		},
 	});
 
-	const hasVote = Boolean(voted || data?.createWishVote);
+	useEffect(() => {
+		if (dataCreateWishVote?.createWishVote) {
+			console.log("dataCreateWishVote", dataCreateWishVote.createWishVote);
+			setLocalVotes(previousState => previousState + 1);
+			setLocalVoted(true);
+		}
+	}, [dataCreateWishVote]);
+
+	useEffect(() => {
+		if (dataDeleteWishVote?.deleteWishVote) {
+			console.log("deleteWishVote", dataDeleteWishVote.deleteWishVote);
+			setLocalVotes(previousState => previousState - 1);
+			setLocalVoted(false);
+		}
+	}, [dataDeleteWishVote]);
 
 	useEffect(() => {
 		console.log("userError", userError);
@@ -83,14 +114,14 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 				) : (
 					<StyledIconButton
 						aria-label={
-							hasVote ? t("wishlist:button.down-vote") : t("wishlist:button.up-vote")
+							localVoted
+								? t("wishlist:button.down-vote")
+								: t("wishlist:button.up-vote")
 						}
 						disabled={userData?.user?.id === authorId}
 						onClick={() => {
-							if (hasVote) {
-								console.log("hasVote");
-								// Add once implemented
-								// void removeWishVote();
+							if (localVoted) {
+								void deleteWishVote();
 							} else {
 								void createWishVote();
 							}
@@ -99,14 +130,14 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 						<svg height={24} width={24} viewBox="0 0 24 24">
 							<path
 								fill="currentColor"
-								d={hasVote ? hearts.filled : hearts.outlined}
+								d={localVoted ? hearts.filled : hearts.outlined}
 							/>
 						</svg>
 					</StyledIconButton>
 				)}
 
 				<Typography raw light variant="body2">
-					{votes + (data?.createWishVote ? 1 : 0)}
+					{localVotes}
 				</Typography>
 			</StyledVotes>
 		</StyledCard>
@@ -195,7 +226,9 @@ const Wishlist: FC<{ data: { wishes: Wish[] } }> = ({ data: { wishes } }) => {
 
 	const [session] = useSession();
 
-	const [createWish, { data, error }] = useMutation<{ createWish: Wish }>(CREATE_WISH, {
+	const [createWish, { data: dataCreateWish, error: errorCreateWish }] = useMutation<{
+		createWish: Wish;
+	}>(CREATE_WISH, {
 		variables: {
 			email: session?.user.email,
 			subject: wishSubject,
@@ -205,36 +238,37 @@ const Wishlist: FC<{ data: { wishes: Wish[] } }> = ({ data: { wishes } }) => {
 
 	// Add new wishes to the local state to get immediate feedback
 	useEffect(() => {
-		if (data?.createWish) {
-			setLocalWishes(previousState => [data.createWish, ...previousState]);
+		if (dataCreateWish?.createWish) {
+			setLocalWishes(previousState => [dataCreateWish.createWish, ...previousState]);
 		}
-	}, [data]);
+	}, [dataCreateWish]);
 
 	// In case of errors, report them
 	// ToDo handle errors and display them so the user is aware that something went wrong
 	useEffect(() => {
-		if (error) {
-			console.error(error);
+		if (errorCreateWish) {
+			console.error(errorCreateWish);
 		}
-	}, [error]);
+	}, [errorCreateWish]);
+
+	const allWishes = useMemo(
+		() =>
+			[...localWishes, ...wishes].reduce((wishes: Wish[], wish: Wish) => {
+				const isDuplicate = wishes.some(({ id }) => {
+					return wish.id === id;
+				});
+
+				return isDuplicate ? wishes : [...wishes, wish];
+			}, []),
+		[wishes, localWishes]
+	);
 
 	const wishlistState = useMemo(
 		() => ({
-			wishes: [...localWishes, ...wishes]
-				.filter(Boolean)
-				.reduce((previousValue: Wish[], currentValue) => {
-					const duplicate = previousValue.some(({ id }) => {
-						return currentValue.id === id;
-					});
-					if (duplicate) {
-						return previousValue;
-					}
-
-					return [...previousValue, currentValue];
-				}, []),
+			wishes: allWishes,
 			create: createWish,
 		}),
-		[wishes, localWishes, createWish]
+		[allWishes, createWish]
 	);
 
 	const wishState = useMemo(

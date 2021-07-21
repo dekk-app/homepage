@@ -23,6 +23,14 @@ export const CREATE_WISH_VOTE = gql`
 	}
 `;
 
+export const DELETE_WISH_VOTE = gql`
+	mutation deleteWishVote($userId: Int!, $wishId: Int!) {
+		deleteWishVote(where: { userId_wishId: { userId: $userId, wishId: $wishId } }) {
+			id
+		}
+	}
+`;
+
 export const CREATE_WISH = gql`
 	mutation createWish($subject: String!, $body: String!, $email: String) {
 		createWish(
