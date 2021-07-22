@@ -1,3 +1,4 @@
+import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import {
 	addApolloState,
 	contentfulQuery,
@@ -42,7 +43,6 @@ const Page: NextPage<PageProps> = props => {
 			},
 		}
 	);
-
 	return <WrappedLegalPage {...props} data={data} error={error} loading={loading} />;
 };
 
@@ -61,6 +61,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			providers: await getProviders(),
 			session: await getSession(context),
 			locale: context.locale,
+			consent: getServerSideConsent(context),
 		},
 	});
 };

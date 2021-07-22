@@ -13,7 +13,8 @@ export const StyledFieldset = styled.fieldset`
 `;
 
 export const StyledLegend = styled.legend`
-	margin: 0 auto;
+	display: block;
+	margin: 0;
 	padding: 0;
 `;
 

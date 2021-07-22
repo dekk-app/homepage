@@ -7,10 +7,11 @@ const SubTitleText = dynamic(async () => import("./subtitle-text"));
 const H1Text = dynamic(async () => import("./h1-text"));
 const H2Text = dynamic(async () => import("./h2-text"));
 const H3Text = dynamic(async () => import("./h3-text"));
+const H4Text = dynamic(async () => import("./h4-text"));
 const BodyText = dynamic(async () => import("./body-text"));
 const Body2Text = dynamic(async () => import("./body2-text"));
 
-const Typography: FC<TypographyProps> = ({ children, component, variant, ...props }) => {
+const Typography: FC<TypographyProps> = ({ children, variant, ...props }) => {
 	switch (variant) {
 		case "title":
 			return <TitleText {...props}>{children}</TitleText>;
@@ -22,6 +23,8 @@ const Typography: FC<TypographyProps> = ({ children, component, variant, ...prop
 			return <H2Text {...props}>{children}</H2Text>;
 		case "h3":
 			return <H3Text {...props}>{children}</H3Text>;
+		case "h4":
+			return <H4Text {...props}>{children}</H4Text>;
 		case "body2":
 			return <Body2Text {...props}>{children}</Body2Text>;
 		case "body":

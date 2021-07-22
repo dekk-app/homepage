@@ -8,23 +8,9 @@ const prisma = new PrismaClient();
 /* eslint-disable new-cap */
 export default NextAuth({
 	providers: [
-		// Activate once we have a developer account
-		// providers.Apple({
-		// 	clientId: process.env.APPLE_ID,
-		// 	clientSecret: {
-		// 		appleId: process.env.APPLE_ID,
-		// 		teamId: process.env.APPLE_TEAM_ID,
-		// 		privateKey: process.env.APPLE_PRIVATE_KEY,
-		// 		keyId: process.env.APPLE_KEY_ID,
-		// 	},
-		// }),
 		Providers.Google({
 			clientId: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-		}),
-		Providers.Facebook({
-			clientId: process.env.FACEBOOK_CLIENT_ID,
-			clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
 		}),
 		Providers.GitHub({
 			clientId: process.env.GITHUB_CLIENT_ID,

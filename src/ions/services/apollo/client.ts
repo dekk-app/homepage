@@ -94,6 +94,9 @@ export const addApolloState = (
 } => {
 	if (pageProps?.props) {
 		pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
+		console.log(">>> APOLLO_STATE");
+		console.log(JSON.stringify(pageProps.props[APOLLO_STATE_PROP_NAME], null, 4));
+		console.log("APOLLO_STATE <<<");
 	}
 
 	return pageProps;

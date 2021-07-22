@@ -1,15 +1,5 @@
 module.exports = {
-	presets: [
-		[
-			"next/babel",
-			{
-				"preset-env": {
-					useBuiltIns: "usage",
-					corejs: "3.14.0",
-				},
-			},
-		],
-	],
+	presets: ["next/babel"],
 	plugins: [
 		[
 			"@emotion/babel-plugin",

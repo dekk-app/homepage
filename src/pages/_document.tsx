@@ -62,14 +62,34 @@ class AppDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<link href="/fonts/poppins-latin-400.woff2" rel="preload" as="font" />
-					<link href="/fonts/poppins-latin-600.woff2" rel="preload" as="font" />
-					<link href="/fonts/poppins-latin-700.woff2" rel="preload" as="font" />
+					<link
+						href="/fonts/poppins-latin-400.woff2"
+						rel="preload"
+						as="font"
+						crossOrigin="anonymous"
+					/>
+					<link
+						href="/fonts/poppins-latin-600.woff2"
+						rel="preload"
+						as="font"
+						crossOrigin="anonymous"
+					/>
+					<link
+						href="/fonts/poppins-latin-700.woff2"
+						rel="preload"
+						as="font"
+						crossOrigin="anonymous"
+					/>
 				</Head>
 				<body>
 					<script src="/noflash.js" />
 					<Main />
 					<NextScript />
+					<script
+						src="https://consent.cookiefirst.com/banner.js"
+						data-cookiefirst-key="c73c25c4-8d39-4d4a-b9e3-cf2b09f3f059"
+						data-language={this.props.locale}
+					/>
 				</body>
 			</Html>
 		);

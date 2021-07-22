@@ -1,6 +1,12 @@
 {
-  "headline": "Sag uns was du von einer Präsentations Software erwartest",
+  "headline": "Sag uns was du von einer Präsentation Software erwartest",
   "button": {
-    "wish": "Ich habe einen Wunsch"
+    "wish": "Ich habe einen Wunsch",
+    "up-vote": "Anwählen",
+    "down-vote": "Abwählen"
+  },
+  "add-wish": {
+    "headline": "Nenne uns deinen Wunsch",
+    "body": "Als Dankeschön schenken wir dir ein Dekk Pro Konto"
   }
 }

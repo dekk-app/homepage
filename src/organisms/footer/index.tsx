@@ -1,6 +1,4 @@
-import { I18nLink } from "@/atoms/link";
-import { StyledLink } from "@/atoms/typography/styled";
-import { Route } from "@/ions/enums";
+import I18nLink from "@/atoms/li18n-ink";
 import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
 import React, { FC } from "react";
@@ -14,14 +12,14 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 			{children}
 			<Grid>
 				<StyledFooterItems>
-					<I18nLink route={Route.imprint}>
-						<StyledLink>{t("navigation:imprint")}</StyledLink>
+					<I18nLink passHref href="/legal">
+						{t("navigation:imprint")}
 					</I18nLink>
-					<I18nLink route={Route.policy}>
-						<StyledLink>{t("navigation:policy")}</StyledLink>
+					<I18nLink passHref href="/legal/privacy-policy">
+						{t("navigation:policy")}
 					</I18nLink>
-					<I18nLink route={Route.terms}>
-						<StyledLink>{t("navigation:terms")}</StyledLink>
+					<I18nLink passHref href="/legal/cookie-policy">
+						{t("navigation:cookies")}
 					</I18nLink>
 				</StyledFooterItems>
 			</Grid>

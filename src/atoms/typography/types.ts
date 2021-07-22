@@ -1,6 +1,6 @@
 import { ElementType, ReactNode } from "react";
 
-export type TypographyVariant = "body" | "body2" | "h1" | "h2" | "h3" | "title" | "subtitle";
+export type TypographyVariant = "body" | "body2" | "h1" | "h2" | "h3" | "h4" | "title" | "subtitle";
 
 export interface TypographyProps {
 	id?: string;
@@ -8,5 +8,17 @@ export interface TypographyProps {
 	variant?: TypographyVariant;
 	raw?: boolean;
 	centered?: boolean;
+	light?: boolean;
 	children?: ReactNode;
+}
+
+export interface StyledLinkProps {
+	bold?: boolean;
+}
+
+export interface StyledTypographyProps {
+	raw?: boolean;
+	centered?: boolean;
+	light?: boolean;
+	as: ElementType;
 }

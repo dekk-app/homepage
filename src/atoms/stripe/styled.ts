@@ -13,7 +13,8 @@ export const StyledStripe = styled.div`
 	flex: 1;
 	height: 1px;
 	margin: 0;
-	background: #eee;
+	opacity: 0.1;
+	background: #fff;
 
 	&:first-of-type {
 		margin-right: ${pxToRem(16)};
@@ -28,5 +29,6 @@ export const StyledFullStripe = styled.div`
 	width: 100%;
 	height: 1px;
 	margin: 0 auto ${pxToRem(16)};
-	background: #eee;
+	opacity: 0.1;
+	background: #fff;
 `;

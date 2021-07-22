@@ -1,5 +1,4 @@
 const { withSentryConfig } = require("@sentry/nextjs");
-const withPWA = require("next-pwa");
 const { i18n } = require("./next-i18next.config");
 
 const config = {
@@ -8,8 +7,9 @@ const config = {
 		dest: "public",
 		disable: process.env.NODE_ENV === "development",
 	},
-	webpack5: true,
-	optimizeFonts: true,
+	webpack: config => {
+		return config;
+	},
 	async redirects() {
 		return [
 			{
@@ -31,10 +31,10 @@ const config = {
 				source: "/de/legal/privacy-policy",
 			},
 			{
-				destination: "/de/rechtliches/geschaeftsbedingungen",
+				destination: "/de/rechtliches/cookie-richtlinie",
 				locale: false,
 				permanent: true,
-				source: "/de/legal/terms-of-service",
+				source: "/de/legal/cookie-policy",
 			},
 		];
 	},
@@ -56,17 +56,16 @@ const config = {
 				source: "/de/rechtliches/datenschutz",
 			},
 			{
-				destination: "/de/legal/terms-of-service",
+				destination: "/de/legal/cookie-policy",
 				locale: false,
-				source: "/de/rechtliches/geschaeftsbedingungen",
+				source: "/de/rechtliches/cookie-richtlinie",
 			},
 		];
 	},
 };
 
-const pwa = withPWA(config);
-
 const SentryWebpackPluginOptions = {
+	silent: true, // Suppresses all logs
 	// Additional config options for the Sentry Webpack plugin. Keep in mind that
 	// the following options are set automatically, and overriding them is not
 	// recommended:
@@ -78,7 +77,7 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-const sentry = withSentryConfig(pwa, SentryWebpackPluginOptions);
+const sentry = withSentryConfig(config, SentryWebpackPluginOptions);
 
 const configWith = sentry;
 

@@ -1,4 +1,7 @@
 import Typography from "@/atoms/typography";
+import { useTranslation } from "next-i18next";
+import React, { FC, memo, RefCallback, useEffect, useRef, useState } from "react";
+import { FieldError, useFormContext } from "react-hook-form";
 import {
 	StyledError,
 	StyledFloatingLabel,
@@ -6,11 +9,8 @@ import {
 	StyledInput,
 	StyledInputWrapper,
 	StyledRequiredIndicator,
-} from "@/molecules/input-field/styled";
-import { InputFieldProps } from "@/molecules/input-field/types";
-import { useTranslation } from "next-i18next";
-import React, { FC, memo, RefCallback, useEffect, useRef, useState } from "react";
-import { FieldError, useFormContext } from "react-hook-form";
+} from "./styled";
+import { InputFieldProps } from "./types";
 
 const InputField: FC<InputFieldProps> = ({
 	name,
@@ -19,8 +19,9 @@ const InputField: FC<InputFieldProps> = ({
 	testId,
 	fullWidth,
 	defaultValue,
+	required,
 	validation = {},
-	args,
+	onChange,
 }) => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const {
@@ -30,7 +31,7 @@ const InputField: FC<InputFieldProps> = ({
 	const [filled, setFilled] = useState(defaultValue?.length > 0);
 	const [focused, setFocused] = useState(false);
 	const { t } = useTranslation(["form"]);
-	const { ref, onChange, onBlur } = register(name, validation);
+	const { ref, onChange: registeredOnChange, onBlur } = register(name, validation);
 	const refCallback = ref as RefCallback<HTMLInputElement>;
 	const { current } = inputRef;
 	useEffect(() => {
@@ -38,12 +39,10 @@ const InputField: FC<InputFieldProps> = ({
 	}, [current]);
 	return (
 		<>
-			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_input`}>
+			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
 				<StyledFloatingLabel floating={focused || filled} id={`${id}_label`}>
 					{t(`form:fields-labels.${name}`)}
-					{Boolean(validation.required) && (
-						<StyledRequiredIndicator>*</StyledRequiredIndicator>
-					)}
+					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
 				</StyledFloatingLabel>
 				<StyledInput
 					ref={element => {
@@ -51,10 +50,10 @@ const InputField: FC<InputFieldProps> = ({
 						inputRef.current = element;
 					}}
 					defaultValue={defaultValue}
-					id={`${id}_input`}
+					id={`${id}_field`}
 					name={name}
 					required={Boolean(validation.required)}
-					invalid={Boolean(errors[name])}
+					invalid={Boolean(errors.name)}
 					type={type}
 					data-test-id={testId}
 					aria-labelledby={`${id}_label`}
@@ -62,7 +61,10 @@ const InputField: FC<InputFieldProps> = ({
 					onChange={event_ => {
 						setFocused(true);
 						setFilled(event_.target.value.length > 0);
-						void onChange(event_);
+						void registeredOnChange(event_);
+						if (onChange) {
+							onChange(event_.target.value);
+						}
 					}}
 					onFocus={() => {
 						setFocused(true);
@@ -78,7 +80,9 @@ const InputField: FC<InputFieldProps> = ({
 				<Typography id={`${id}_help`}>
 					{errors[name] && (
 						<StyledError>
-							{t(`form:errors.${(errors[name] as FieldError).type as string}`, args)}
+							{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
+								minLength: 2,
+							})}
 						</StyledError>
 					)}
 				</Typography>

@@ -15,11 +15,13 @@
     "email": "E-mail address",
     "firstName": "First name",
     "lastName": "Last name",
-    "password": "Password"
+    "password": "Password",
+    "wish-subject": "Subject",
+    "wish-body": "Body"
   },
   "texts": {
     "continue-with": "or continue with e-mail:",
-    "policy-data-agreement": "Our <toPrivacyPolicy>Privacy Policy</toPrivacyPolicy> and <toTermsOfService>Terms of Service</toDataProcessing>."
+    "policy-data-agreement": "By sending this form you agree to our <toPrivacyPolicy>Privacy Policy</toPrivacyPolicy>."
   },
   "legends": {
     "enter-email": "Please enter your e-mail address",

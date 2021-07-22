@@ -17,39 +17,34 @@ export const StyledFloatingLabel = styled.span<{ floating?: boolean }>`
 	top: 50%;
 	left: ${pxToRem(24)};
 	transform-origin: 0 0;
-	transition-property: color, font-size, transform;
-	transition-duration: 0.3s;
+	transition-property: transform;
+	will-change: transform;
+	transition-duration: 0.125s;
 	transition-timing-function: ease-in-out;
 	font-weight: 400;
-	${({
-		floating,
-		theme: {
-			ui: {
-				atoms: {
-					inputLabel: { color, focus },
-				},
-			},
-		},
-	}) =>
+	${({ floating }) =>
 		css`
 			transform: ${floating
 				? `scale3d(${10 / 14}, ${10 / 14}, 1) translate3d(0, ${pxToRem(-25)}, 0)`
 				: "scale3d(1, 1, 1) translate3d(0, -50%, 0)"};
-			color: ${floating ? focus.color : color};
 		`};
 `;
 
-export const StyledInput = styled.input<{ invalid?: boolean }>`
+export const disallowedProps: PropertyKey[] = ["invalid"];
+export const StyledInput = styled("input", {
+	shouldForwardProp(propName: PropertyKey): boolean {
+		return !disallowedProps.includes(propName);
+	},
+})<{ invalid?: boolean }>`
 	width: 100%;
-	height: ${pxToRem(60)};
+	height: ${pxToRem(56)};
 	margin: 0;
 	padding: ${pxToRem(32)} ${pxToRem(24)} ${pxToRem(12)};
 	border: 0;
 	border-radius: ${pxToRem(10)};
-	background: red;
-	color: inherit;
+	font-family: inherit;
 	font-size: ${pxToRem(16)};
-	line-height: ${pxToRem(16)};
+	line-height: ${pxToRem(24)};
 	caret-color: var(--focus-color);
 	${({
 		invalid,
@@ -63,13 +58,15 @@ export const StyledInput = styled.input<{ invalid?: boolean }>`
 	}) => css`
 		background: ${background};
 		color: ${color};
-		box-shadow: 0 0 0 1px ${invalid ? error.border : "transparent"};
+		box-shadow: inset 0 0 0 1px ${invalid ? error.border : "transparent"};
 
 		&:focus {
 			outline: 0;
+			box-shadow: inset 0 0 0 1px ${invalid ? error.border : focus.border};
 		}
 		&:focus-visible {
-			box-shadow: 0 0 0 1px ${focus.background};
+			background: ${focus.background};
+			box-shadow: inset 0 0 0 1px ${invalid ? error.border : focus.border};
 		}
 	`};
 `;

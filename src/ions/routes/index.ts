@@ -1,46 +1,19 @@
-import { Route } from "@/ions/enums";
-import { RouteConfig } from "@/types";
-
-const routes: Record<Route, RouteConfig> = {
-	[Route.auth]: {
-		dir: {
-			en: "auth",
-			de: "auth",
-		},
-		breadcrumb: {
-			en: "Authorization",
-			de: "Autorisierung",
-		},
+const routes = {
+	"/legal": {
+		de: "/rechtliches",
+		en: "/legal",
 	},
-	[Route.imprint]: {
-		dir: {
-			en: "legal",
-			de: "rechtliches",
-		},
-		breadcrumb: {
-			en: "Imprint",
-			de: "Impressum",
-		},
+	"/legal/privacy-policy": {
+		de: "/rechtliches/datenschutz",
+		en: "/legal/privacy-policy",
 	},
-	[Route.policy]: {
-		dir: {
-			en: "legal/privacy-policy",
-			de: "rechtliches/datenschutz",
-		},
-		breadcrumb: {
-			en: "Data policy",
-			de: "Datenschutz",
-		},
+	"/legal/cookie-policy": {
+		de: "/rechtliches/cookie-richtlinie",
+		en: "/legal/cookie-policy",
 	},
-	[Route.terms]: {
-		dir: {
-			en: "legal/terms-of-service",
-			de: "rechtliches/geschaeftsbedingungen",
-		},
-		breadcrumb: {
-			en: "Terms of service",
-			de: "Geschäftsbedingungen",
-		},
+	"/wishlist": {
+		de: "/wunschliste",
+		en: "/wishlist",
 	},
 };
 

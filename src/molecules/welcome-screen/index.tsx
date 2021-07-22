@@ -1,7 +1,6 @@
-import Button from "@/atoms/button";
+import I18nLink from "@/atoms/li18n-ink";
 import Typography from "@/atoms/typography";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import React from "react";
 
 const WelcomeScreen = () => {
@@ -14,9 +13,9 @@ const WelcomeScreen = () => {
 				<br />
 				{t("welcome:body-line2")}
 			</Typography>
-			<Link passHref href="/wishlist">
-				<Button as="a">{t("welcome:button")}</Button>
-			</Link>
+			<I18nLink passHref href="/wishlist">
+				<a>{t("welcome:button")}</a>
+			</I18nLink>
 		</>
 	);
 };
