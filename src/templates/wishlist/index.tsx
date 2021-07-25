@@ -131,6 +131,11 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 				<Typography raw light variant="body2">
 					{votes}
 				</Typography>
+				{userData?.user.id === authorId && (
+					<Typography raw light variant="body2">
+						{t("wishlist:my-wish")}
+					</Typography>
+				)}
 			</StyledVotes>
 		</StyledCard>
 	);
@@ -219,6 +224,7 @@ const ListOfWishes: FC<ListOfWishesProps> = () => {
 		<>
 			<Column colSpanL={8}>
 				<Typography variant="h1">{t("wishlist:headline")}</Typography>
+				<Typography variant="body">{t("wishlist:description")}</Typography>
 			</Column>
 			<StyledWishWrapper colSpanL={4}>
 				{session ? (

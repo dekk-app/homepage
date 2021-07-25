@@ -1,12 +1,17 @@
 import I18nLink from "@/atoms/i18n-link";
+import routes from "@/ions/routes";
 import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { StyledFooter, StyledFooterItems } from "./styled";
+import { DeFlag, UsFlag } from "./flags";
+import { StyledFooter, StyledFooterItems, StyledLanguageButton } from "./styled";
 import { FooterProps } from "./types";
 
 const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 	const { t } = useTranslation(["navigation"]);
+	const router = useRouter();
+	console.log(router);
 	return (
 		<StyledFooter ref={innerRef} className={className} data-test-id={testId}>
 			{children}
@@ -21,6 +26,36 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					<I18nLink passHref href="/legal/cookie-policy">
 						{t("navigation:cookies")}
 					</I18nLink>
+				</StyledFooterItems>
+				<StyledFooterItems>
+					<StyledLanguageButton
+						aria-label="Deutsch"
+						onClick={() => {
+							void router.replace(
+								routes[router.route as keyof typeof routes].de,
+								undefined,
+								{
+									locale: "de",
+								}
+							);
+						}}
+					>
+						<DeFlag />
+					</StyledLanguageButton>
+					<StyledLanguageButton
+						aria-label="English"
+						onClick={() => {
+							void router.replace(
+								routes[router.route as keyof typeof routes].en,
+								undefined,
+								{
+									locale: "en",
+								}
+							);
+						}}
+					>
+						<UsFlag />
+					</StyledLanguageButton>
 				</StyledFooterItems>
 			</Grid>
 		</StyledFooter>

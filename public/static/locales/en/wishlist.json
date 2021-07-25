@@ -1,5 +1,6 @@
 {
-  "headline": "Tell us what you expect from a presentation software",
+  "headline": "Your opinion matters",
+  "description": "Tell us what you expect from a presentation software.",
   "button": {
     "add-wish": "Add wish",
     "down-vote": "Downvote",
@@ -9,5 +10,6 @@
   "add-wish": {
     "headline": "Tell us your wish",
     "body": "As a thank-you we will gift you a Dekk Pro account"
-  }
+  },
+  "my-wish": "My wish"
 }

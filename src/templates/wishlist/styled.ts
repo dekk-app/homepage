@@ -25,8 +25,21 @@ export const StyledIconButton = styled.button`
 	width: ${pxToRem(48)};
 	height: ${pxToRem(48)};
 	margin: ${pxToRem(-12)};
+	padding: 0;
 	border: 0;
+	border-radius: 50%;
 	background: none;
+	color: black;
+
+	&:hover {
+		background-color: #00000020;
+		color: black;
+	}
+
+	&:active {
+		background-color: #00000030;
+		color: black;
+	}
 
 	&[disabled] {
 		opacity: 0.2;
@@ -54,10 +67,11 @@ export const StyledCard = styled(Column)`
 
 export const StyledVotes = styled.div`
 	display: grid;
-	grid-template-columns: ${pxToRem(24)} auto;
+	grid-template-columns: ${pxToRem(32)} ${pxToRem(16)} auto;
 	align-items: center;
+	justify-content: start;
 	${({ theme }) => css`
-		grid-column-gap: ${pxToRem(theme.spaces.xxs)};
+		grid-column-gap: ${pxToRem(theme.spaces.xs)};
 	`};
 `;
 

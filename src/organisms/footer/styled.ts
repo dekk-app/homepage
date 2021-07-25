@@ -17,3 +17,19 @@ export const StyledFooterItems = styled(Column)`
 		grid-gap: ${pxToRem(theme.spaces.m)};
 	`};
 `;
+
+export const StyledLanguageButton = styled.button`
+	display: inline-flex;
+	align-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: currentColor;
+	font-size: 1em;
+
+	&:hover {
+		text-decoration: underline;
+	}
+`;
