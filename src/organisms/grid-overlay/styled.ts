@@ -98,11 +98,38 @@ export const StyledOverlayGrid = styled(Grid)`
 `;
 
 export const StyledGridToggle = styled.button`
+	display: flex;
 	position: fixed;
 	z-index: 101;
 	bottom: 0;
 	left: 0;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
 	width: 48px;
 	height: 48px;
+	margin: 0;
+	padding: 0;
 	border: 0;
+	background: #fff;
+	color: #000;
+
+	&:hover {
+		background: #333;
+		color: #fff;
+	}
+
+	&:active {
+		background: #000;
+		color: #fff;
+	}
+
+	&:focus {
+		outline: 0;
+	}
+
+	&:focus-within {
+		background: #666;
+		color: #fff;
+	}
 `;

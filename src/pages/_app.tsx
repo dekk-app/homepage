@@ -68,8 +68,7 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 					sizes="16x16"
 					href={`/icons/icon-16x16.png?${pkg.version}`}
 				/>
-				<link rel="manifest" href="/manifest.json" />
-				<link rel="shortcut icon" href={`/	favicon.ico?${pkg.version}`} />
+				<link rel="shortcut icon" href={`/favicon.ico?${pkg.version}`} />
 			</Head>
 			<ConsentProvider consent={(pageProps as PageProps).consent ?? null}>
 				<NextAuthProvider session={(pageProps as PageProps).session}>

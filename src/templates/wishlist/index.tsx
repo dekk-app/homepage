@@ -22,7 +22,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import Head from "next/head";
 import Link from "next/link";
 import React, { FC, useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -249,9 +248,6 @@ const Wishlist = () => {
 	const theme = useTheme();
 	return (
 		<StyledLayout>
-			<Head>
-				<meta name="robots" content="noindex,nofollow" />
-			</Head>
 			<Global
 				styles={css`
 					body {
