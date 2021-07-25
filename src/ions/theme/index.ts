@@ -7,6 +7,7 @@ export const palette: Palette = {
 	dark: "#1B1E2B",
 	light: "#F8F9FD",
 	purple: "#6A28EA",
+	lightPurple: "#AD89F5",
 	darkPurple: "#4F13C2",
 };
 
@@ -115,6 +116,10 @@ export const theme: Theme = {
 					color: "#ffffff",
 				},
 			},
+			helpText: {
+				background: "#F8F9FD",
+				color: "#000000",
+			},
 		},
 		molecules: {
 			inputField: {
@@ -126,6 +131,7 @@ export const theme: Theme = {
 					background: "rgba(255,255,255,0.1)",
 				},
 				error: {
+					background: "#F8F9FD",
 					border: palette.red,
 					color: palette.red,
 				},

@@ -1,22 +1,30 @@
 import { GlobalTypography } from "@/atoms/typography/global";
+import Layout from "@/colonies/layout";
 import { DocumentToReact } from "@/molecules/document-to-react";
 import { Column, Grid } from "@/molecules/grid";
-import Layout from "@/organisms/layout";
 import { PageProps } from "@/types";
 import { PageCollection } from "@/types/contentful-api";
 import { Document as RichTextDocument } from "@contentful/rich-text-types";
+import { css, Global, useTheme } from "@emotion/react";
 import React, { FC } from "react";
 
 interface Props extends PageProps {
 	data: { pageCollection: PageCollection };
 }
 
-// Use abcq to encode numbers to strings
-
 const LegalPage: FC<Props> = ({ data, children }) => {
+	const theme = useTheme();
 	return (
 		<Layout>
 			<GlobalTypography />
+			<Global
+				styles={css`
+					body {
+						background-color: ${theme.ui.colors.light.background};
+						color: ${theme.ui.colors.light.color};
+					}
+				`}
+			/>
 			<Grid>
 				<Column>
 					<DocumentToReact
@@ -30,4 +38,3 @@ const LegalPage: FC<Props> = ({ data, children }) => {
 };
 
 export default LegalPage;
-export { CookiePolicy } from "@/templates/legal-page/cookie-policy";

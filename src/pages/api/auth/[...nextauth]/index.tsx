@@ -7,6 +7,10 @@ const prisma = new PrismaClient();
 
 /* eslint-disable new-cap */
 export default NextAuth({
+	pages: {
+		signIn: "/",
+		verifyRequest: "/auth/verify-request",
+	},
 	providers: [
 		Providers.Google({
 			clientId: process.env.GOOGLE_CLIENT_ID,

@@ -1,3 +1,4 @@
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -10,7 +11,7 @@ export const StyledButtonWrapper = styled.div`
 	width: 100%;
 `;
 
-export const StyledButton = styled.button<{ fullWidth?: boolean }>`
+export const StyledButton = styled.button<{ fullWidth?: boolean; text?: boolean }>`
 	display: inline-flex;
 	position: relative;
 	align-content: center;
@@ -39,23 +40,29 @@ export const StyledButton = styled.button<{ fullWidth?: boolean }>`
 		pointer-events: none;
 	}
 
-	${({ fullWidth, theme }) => css`
+	${({ fullWidth, text, theme }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
-		background: ${theme.ui.colors.primary.background};
+		background: ${text ? "none" : theme.ui.colors.primary.background};
 		color: ${theme.ui.colors.primary.color};
 
 		&:hover {
-			background: ${theme.palette.darkPurple};
+			background: ${text
+				? setOpacity(theme.palette.darkPurple, 30)
+				: theme.palette.darkPurple};
+			color: ${theme.ui.colors.primary.color};
 		}
 
-		&:after {
-			box-shadow: 0 0 0 2px ${theme.ui.colors.primary.background};
+		&::after {
+			box-shadow: 0 0 0 1px ${theme.palette.green};
 		}
 
 		&:focus-visible {
-			background: ${theme.palette.darkPurple};
+			background: ${text
+				? setOpacity(theme.palette.darkPurple, 30)
+				: theme.palette.darkPurple};
+			color: ${theme.ui.colors.primary.color};
 
-			&:after {
+			&::after {
 				content: "";
 			}
 		}
@@ -73,20 +80,20 @@ export const StyledSocialButton = styled.button`
 	border-radius: ${pxToRem(10)};
 	background: none;
 	box-shadow: inset 0 0 0 1px #eee;
-	${({
-		theme: {
-			ui: {
-				colors: {
-					primary: { background },
-				},
-			},
-		},
-	}) => css`
+	${({ theme }) => css`
+		&:hover {
+			background: ${setOpacity(theme.palette.darkPurple, 30)};
+			color: ${theme.ui.colors.primary.color};
+		}
+
 		&:focus {
 			outline: 0;
 		}
+
 		&:focus-visible {
-			box-shadow: 0 0 0 1px ${background};
+			background: ${setOpacity(theme.palette.darkPurple, 30)};
+			color: ${theme.ui.colors.primary.color};
+			box-shadow: 0 0 0 1px ${theme.palette.green};
 		}
 	`};
 `;

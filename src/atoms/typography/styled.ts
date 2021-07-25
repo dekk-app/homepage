@@ -24,7 +24,7 @@ export const StyledBodyText = styled.p<StyledTypographyProps>`
 		`};
 		${light &&
 		css`
-			opacity: 0.87;
+			opacity: 0.85;
 		`};
 	`}
 `;
@@ -44,13 +44,13 @@ export const StyledBody2Text = styled.p<StyledTypographyProps>`
 		`};
 		${light &&
 		css`
-			opacity: 0.6;
+			opacity: 0.8;
 		`};
 	`}
 `;
 
 export const StyledTitleText = styled.h1<StyledTypographyProps>`
-	margin: 0;
+	margin: ${pxToRem(32)} 0;
 	font-size: ${pxToRem(34)};
 	font-weight: 700;
 	line-height: ${pxToRem(38)};
@@ -71,7 +71,7 @@ export const StyledTitleText = styled.h1<StyledTypographyProps>`
 `;
 
 export const StyledSubTitleText = styled.h2<StyledTypographyProps>`
-	margin: 0 0 ${pxToRem(16)};
+	margin: ${pxToRem(16)} 0;
 	font-size: ${pxToRem(20)};
 	font-weight: 600;
 	line-height: ${pxToRem(30)};

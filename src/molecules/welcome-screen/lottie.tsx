@@ -17,8 +17,6 @@ const defaultOptions = {
 	className: styles,
 };
 
-const WelcomeLottie: FC = () => (
-	<Lottie options={defaultOptions} width={300} height={(300 / 700) * 950} />
-);
+const WelcomeLottie: FC = () => <Lottie options={defaultOptions} width="100%" />;
 
 export default WelcomeLottie;

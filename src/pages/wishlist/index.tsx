@@ -1,8 +1,9 @@
 import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { withLoadingAndError } from "@/organisms/with-loading-and-error";
-import Wishlist, { WISHES } from "@/templates/wishlist";
-import { USER } from "@/templates/wishlist/queries";
+import Wishlist from "@/templates/wishlist";
+import { USER, WISHES } from "@/templates/wishlist/queries";
+
 import { PageProps } from "@/types";
 import { Wish } from "@/types/backend-api";
 import { useQuery } from "@apollo/client";
@@ -22,12 +23,14 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 	const session = await getSession(context);
 	const apolloClient = initializeApollo();
 
-	const user = await apolloClient.query({
-		query: USER,
-		variables: {
-			email: session?.user.email,
-		},
-	});
+	const user = session?.user.email
+		? await apolloClient.query({
+				query: USER,
+				variables: {
+					email: session?.user.email,
+				},
+		  })
+		: null;
 
 	const wishes = await apolloClient.query({
 		query: WISHES,

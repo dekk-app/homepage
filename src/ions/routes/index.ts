@@ -1,4 +1,8 @@
 const routes = {
+	"/": {
+		de: "/",
+		en: "/",
+	},
 	"/legal": {
 		de: "/rechtliches",
 		en: "/legal",

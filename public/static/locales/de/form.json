@@ -19,8 +19,13 @@
     "wish-subject": "Betreff",
     "wish-body": "Beschreibung"
   },
+  "help-texts": {
+    "login-register": "Wenn du kein Konto hast erstellen wir eins für dich",
+    "wish-subject": "Halte dich kurz und aussagekräftig",
+    "wish-body": "Erklär uns genau was du erwartest"
+  },
   "texts": {
-    "continue-with": "oder mache weiter mit E-mail:",
+    "continue-with": "oder mach weiter mit E-mail:",
     "policy-data-agreement": "Durch absenden dieses Formulars stimmst du unserer <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> zu."
   },
   "legends": {
@@ -28,7 +33,7 @@
     "enter-email-password": "Trag bitte deine E-Mail Adresse und dein Passwort ein",
     "enter-name-email": "Trag bitte deinen Namen und deine E-mail Adresse ein",
     "enter-password-confirm": "Trag bitte dein Passwort ein und bestätige es",
-    "login": "Melde dich an"
+    "login": "Bei Dekk anmelden"
   },
   "links": {
     "to-login": "Zur Anmeldung",

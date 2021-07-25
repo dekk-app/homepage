@@ -1,14 +1,16 @@
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
+import Layout from "@/colonies/layout";
 import { useCookieFirst } from "@/ions/hooks/consent/cookie-first";
 import { Column, Grid } from "@/molecules/grid";
-import Layout from "@/organisms/layout";
+import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import React, { FC, useEffect, useRef } from "react";
 
 export const CookiePolicy: FC = () => {
 	const cookieRef = useRef<HTMLDivElement>();
 	const cookieFirst = useCookieFirst();
+	const theme = useTheme();
 	const { t } = useTranslation("legal");
 
 	useEffect(() => {
@@ -23,6 +25,14 @@ export const CookiePolicy: FC = () => {
 	return (
 		<Layout>
 			<GlobalTypography />
+			<Global
+				styles={css`
+					body {
+						background-color: ${theme.ui.colors.light.background};
+						color: ${theme.ui.colors.light.color};
+					}
+				`}
+			/>
 			<Grid>
 				<Column>
 					<Typography variant="h1">{t("legal:cookie-policy")}</Typography>
@@ -32,3 +42,5 @@ export const CookiePolicy: FC = () => {
 		</Layout>
 	);
 };
+
+export default CookiePolicy;

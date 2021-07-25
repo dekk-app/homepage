@@ -20,7 +20,7 @@ export const p = css`
 `;
 
 export const h1 = css`
-	margin: ${pxToRem(80)} 0 ${pxToRem(40)};
+	margin: ${pxToRem(32)} 0;
 	font-size: ${pxToRem(28)};
 	font-weight: 700;
 	line-height: ${pxToRem(36)};
@@ -31,7 +31,7 @@ export const h1 = css`
 `;
 
 export const h2 = css`
-	margin: ${pxToRem(40)} 0;
+	margin: ${pxToRem(32)} 0;
 	font-size: ${pxToRem(24)};
 	font-weight: 600;
 	line-height: ${pxToRem(30)};
@@ -42,7 +42,7 @@ export const h2 = css`
 `;
 
 export const h3 = css`
-	margin: ${pxToRem(40)} 0 ${pxToRem(16)};
+	margin: ${pxToRem(24)} 0;
 	font-size: ${pxToRem(20)};
 	font-weight: 600;
 	line-height: ${pxToRem(28)};

@@ -1,9 +1,10 @@
 {
   "headline": "Sag uns was du von einer Präsentation Software erwartest",
   "button": {
-    "wish": "Ich habe einen Wunsch",
+    "add-wish": "Wunsch abgeben",
+    "down-vote": "Abwählen",
     "up-vote": "Anwählen",
-    "down-vote": "Abwählen"
+    "wish": "Ich habe einen Wunsch"
   },
   "add-wish": {
     "headline": "Nenne uns deinen Wunsch",

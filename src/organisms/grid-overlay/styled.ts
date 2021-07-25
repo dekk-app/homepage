@@ -47,8 +47,23 @@ export const StyledOverlayGrid = styled(Grid)`
 		&:nth-of-type(8) {
 			display: none;
 		}
+		&:nth-of-type(9) {
+			display: none;
+		}
+		&:nth-of-type(10) {
+			display: none;
+		}
 
 		${({ theme }) => css`
+			@media screen and ${theme.mq.s} {
+				&:nth-of-type(9) {
+					display: unset !important;
+				}
+				&:nth-of-type(10) {
+					display: unset !important;
+				}
+			}
+
 			@media screen and ${theme.mq.m} {
 				&:nth-of-type(5) {
 					display: unset !important;

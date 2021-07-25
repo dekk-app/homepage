@@ -19,6 +19,11 @@
     "wish-subject": "Subject",
     "wish-body": "Body"
   },
+  "help-texts": {
+    "login-register": "If you don't have an account we will create one for you",
+    "wish-subject": "Keep it short and concise",
+    "wish-body": "Tell us exactly what you expect"
+  },
   "texts": {
     "continue-with": "or continue with e-mail:",
     "policy-data-agreement": "By sending this form you agree to our <toPrivacyPolicy>Privacy Policy</toPrivacyPolicy>."

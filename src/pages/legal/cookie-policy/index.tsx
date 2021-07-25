@@ -1,6 +1,6 @@
 import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
-import { CookiePolicy } from "@/templates/legal-page";
+import CookiePolicy from "@/templates/legal-page/cookie-policy";
 import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";

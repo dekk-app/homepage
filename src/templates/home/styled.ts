@@ -1,6 +1,6 @@
+import Layout from "@/colonies/layout";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
-import Layout from "@/organisms/layout";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -9,16 +9,7 @@ export const StyledLayout = styled(Layout)`
 	flex-direction: column;
 	justify-content: center;
 	width: 100vw;
-	min-height: 100vh;
 	overflow: hidden;
-	${({ theme }) => css`
-		@media only screen and ${theme.mq.l} {
-			background-image: url(/illustrations/bg_1.svg);
-			background-repeat: no-repeat;
-			background-position: 50% 50%;
-			background-size: auto 540px;
-		}
-	`};
 `;
 
 export const StyledProBox = styled.div`

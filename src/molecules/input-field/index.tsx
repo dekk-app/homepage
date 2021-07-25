@@ -1,15 +1,12 @@
+import { StyledFloatingLabel } from "@/atoms/floating-label/styled";
+import { StyledError, StyledHelpText } from "@/atoms/help-text/styled";
+import { StyledInputWrapper } from "@/atoms/input-wrapper/styled";
+import { StyledRequiredIndicator } from "@/atoms/required-indicator/styled";
 import Typography from "@/atoms/typography";
 import { useTranslation } from "next-i18next";
 import React, { FC, memo, RefCallback, useEffect, useRef, useState } from "react";
 import { FieldError, useFormContext } from "react-hook-form";
-import {
-	StyledError,
-	StyledFloatingLabel,
-	StyledHelpText,
-	StyledInput,
-	StyledInputWrapper,
-	StyledRequiredIndicator,
-} from "./styled";
+import { StyledInput } from "./styled";
 import { InputFieldProps } from "./types";
 
 const InputField: FC<InputFieldProps> = ({
@@ -19,6 +16,7 @@ const InputField: FC<InputFieldProps> = ({
 	testId,
 	fullWidth,
 	defaultValue,
+	helpText,
 	required,
 	validation = {},
 	onChange,
@@ -77,13 +75,15 @@ const InputField: FC<InputFieldProps> = ({
 			</StyledInputWrapper>
 
 			<StyledHelpText>
-				<Typography id={`${id}_help`}>
-					{errors[name] && (
+				<Typography raw id={`${id}_help`}>
+					{errors[name] ? (
 						<StyledError>
 							{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
 								minLength: 2,
 							})}
 						</StyledError>
+					) : (
+						helpText
 					)}
 				</Typography>
 			</StyledHelpText>
