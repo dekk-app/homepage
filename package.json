@@ -4,7 +4,6 @@
   "main": "n/a",
   "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "yarn mock:sw:clean",
     "build": "next build",
     "cypress:run": "npx cypress run --record",
     "cypress:run-local": "npx cypress run",
