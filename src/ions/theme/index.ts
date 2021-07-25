@@ -4,7 +4,7 @@ import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from 
 export const palette: Palette = {
 	red: "#D90303",
 	green: "#2EFFB0",
-	dark: "#1B1E2B",
+	dark: "#232424",
 	light: "#F8F9FD",
 	purple: "#6A28EA",
 	lightPurple: "#AD89F5",
@@ -93,19 +93,19 @@ export const theme: Theme = {
 	ui: {
 		colors: {
 			primary: {
-				background: "#6a28ea",
+				background: palette.purple,
 				color: "#ffffff",
 			},
 			light: {
-				background: "#F8F9FD",
+				background: palette.light,
 				color: "#000000",
 			},
 			dark: {
-				background: "#232424",
+				background: palette.dark,
 				color: "#ffffff",
 			},
 			theme: {
-				background: "#232424",
+				background: palette.dark,
 				color: "#ffffff",
 			},
 		},
@@ -117,8 +117,12 @@ export const theme: Theme = {
 				},
 			},
 			helpText: {
-				background: "#F8F9FD",
-				color: "#000000",
+				background: palette.dark,
+				color: "#ffffff",
+			},
+			errorText: {
+				background: palette.light,
+				color: palette.red,
 			},
 		},
 		molecules: {
@@ -127,11 +131,10 @@ export const theme: Theme = {
 				color: "#ffffff",
 				focus: {
 					border: palette.green,
-					color: "#fff",
+					color: "#ffffff",
 					background: "rgba(255,255,255,0.1)",
 				},
 				error: {
-					background: "#F8F9FD",
 					border: palette.red,
 					color: palette.red,
 				},

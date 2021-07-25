@@ -1,5 +1,6 @@
+import { StyledErrorText } from "@/atoms/error-text/styled";
 import { StyledFloatingLabel } from "@/atoms/floating-label/styled";
-import { StyledError, StyledHelpText } from "@/atoms/help-text/styled";
+import { StyledHelpText } from "@/atoms/help-text/styled";
 import { StyledInputWrapper } from "@/atoms/input-wrapper/styled";
 import { StyledRequiredIndicator } from "@/atoms/required-indicator/styled";
 import Typography from "@/atoms/typography";
@@ -90,19 +91,21 @@ const TextArea: FC<TextAreaFieldProps> = ({
 				/>
 			</StyledInputWrapper>
 
-			<StyledHelpText>
-				<Typography raw id={`${id}_help`}>
-					{errors[name] ? (
-						<StyledError>
-							{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
-								minLength: 2,
-							})}
-						</StyledError>
-					) : (
-						helpText
-					)}
-				</Typography>
-			</StyledHelpText>
+			{errors[name] ? (
+				<StyledErrorText>
+					<Typography raw id={`${id}_help`}>
+						{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
+							minLength: 2,
+						})}
+					</Typography>
+				</StyledErrorText>
+			) : (
+				<StyledHelpText>
+					<Typography raw id={`${id}_help`}>
+						{helpText}
+					</Typography>
+				</StyledHelpText>
+			)}
 		</>
 	);
 };
