@@ -1,9 +1,10 @@
 {
   "headline": "Tell us what you expect from a presentation software",
   "button": {
-    "wish": "I have a wish",
+    "add-wish": "Add wish",
+    "down-vote": "Downvote",
     "up-vote": "Upvote",
-    "down-vote": "Downvote"
+    "wish": "I have a wish"
   },
   "add-wish": {
     "headline": "Tell us your wish",

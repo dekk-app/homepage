@@ -56,12 +56,6 @@ declare global {
 	}
 }
 
-export interface AddWishProps {
-	onChangeBody(value: string): void;
-	onChangeSubject(value: string): void;
-	onSubmit(): void;
-}
+export interface AddWishProps {}
 
-export interface ListOfWishesProps {
-	onAddWish(): void;
-}
+export interface ListOfWishesProps {}

@@ -1,6 +1,6 @@
+import Layout from "@/colonies/layout";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
-import Layout from "@/organisms/layout";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -31,6 +31,15 @@ export const StyledIconButton = styled.button`
 	&[disabled] {
 		opacity: 0.2;
 	}
+`;
+
+export const StyledButtonGroup = styled.div`
+	display: grid;
+	grid-template-columns: auto 1fr;
+	justify-content: start;
+	${({ theme }) => css`
+		grid-column-gap: ${pxToRem(theme.spaces.xs)};
+	`};
 `;
 
 export const StyledCard = styled(Column)`

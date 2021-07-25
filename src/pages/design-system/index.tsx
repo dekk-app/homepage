@@ -1,12 +1,12 @@
 import { Space } from "@/atoms/space";
 import Typography from "@/atoms/typography";
+import Layout from "@/colonies/layout";
 import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { spaces } from "@/ions/theme";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column, Grid } from "@/molecules/grid";
 import OverlayGrid from "@/organisms/grid-overlay";
-import Layout from "@/organisms/layout";
 import { PageProps } from "@/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -39,11 +39,6 @@ const Page: NextPage<PageProps> = () => {
 				</Column>
 				<Column colSpanL={4}>
 					<StyledTypographySpace>
-						<StyledTypography variant="title" component="div">
-							Title
-						</StyledTypography>
-					</StyledTypographySpace>
-					<StyledTypographySpace>
 						<StyledTypography variant="h1" component="div">
 							Headline 1
 						</StyledTypography>
@@ -61,6 +56,11 @@ const Page: NextPage<PageProps> = () => {
 					<StyledTypographySpace>
 						<StyledTypography variant="h4" component="div">
 							Headline 4
+						</StyledTypography>
+					</StyledTypographySpace>
+					<StyledTypographySpace>
+						<StyledTypography variant="title" component="div">
+							Title
 						</StyledTypography>
 					</StyledTypographySpace>
 					<StyledTypographySpace>
@@ -86,13 +86,20 @@ const Page: NextPage<PageProps> = () => {
 					<Typography variant="h3" component="div">
 						Halitosis is an evil reef.
 					</Typography>
-					<Typography>
-						The cannibal vandalizes with life, view the brig until it screams. The
-						plunder commands with grace, fear the seychelles until it waves. The
-						bucaneer breaks with faith, ransack the bahamas until it stutters. The shark
-						ransacks with fortune, drink the pacific ocean until it whines. The jolly
-						roger burns with treasure, love the bikini atoll until it whines. The lagoon
-						trades with beauty.
+					<Typography light>
+						The shark ransacks with fortune, drink the pacific ocean until it whines.
+						The jolly roger burns with treasure, love the bikini atoll until it whines.
+						The lagoon trades with beauty.
+					</Typography>
+					<Typography variant="h4" component="div">
+						Light Versions
+					</Typography>
+					<Typography light>
+						The cannibal vandalizes with life, view the brig until it screams.
+					</Typography>
+					<Typography light variant="body2">
+						The plunder commands with grace, fear the seychelles until it waves. The
+						bucaneer breaks with faith, ransack the bahamas until it stutters.
 					</Typography>
 					<Typography variant="h4" component="div">
 						Scrawny, proud comrades quirky rob a coal-black, jolly mainland.

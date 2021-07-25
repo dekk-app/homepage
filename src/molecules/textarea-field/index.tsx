@@ -1,3 +1,7 @@
+import { StyledFloatingLabel } from "@/atoms/floating-label/styled";
+import { StyledError, StyledHelpText } from "@/atoms/help-text/styled";
+import { StyledInputWrapper } from "@/atoms/input-wrapper/styled";
+import { StyledRequiredIndicator } from "@/atoms/required-indicator/styled";
 import Typography from "@/atoms/typography";
 import { useTranslation } from "next-i18next";
 import React, {
@@ -13,14 +17,7 @@ import React, {
 } from "react";
 import { FieldError, useFormContext } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
-import {
-	StyledError,
-	StyledFloatingLabel,
-	StyledHelpText,
-	StyledRequiredIndicator,
-	StyledTextArea,
-	StyledTextareaWrapper,
-} from "./styled";
+import { StyledTextArea } from "./styled";
 import { TextAreaFieldProps } from "./types";
 
 const TextArea: FC<TextAreaFieldProps> = ({
@@ -29,6 +26,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	testId,
 	fullWidth,
 	defaultValue,
+	helpText,
 	required,
 	validation = {},
 	onChange,
@@ -59,7 +57,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	}, [errors]);
 	return (
 		<>
-			<StyledTextareaWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
+			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
 				<StyledFloatingLabel floating={focused || filled} id={`${id}_label`}>
 					{t(`form:fields-labels.${name}`)}
 					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
@@ -90,16 +88,18 @@ const TextArea: FC<TextAreaFieldProps> = ({
 						void onBlur(event_);
 					}}
 				/>
-			</StyledTextareaWrapper>
+			</StyledInputWrapper>
 
 			<StyledHelpText>
-				<Typography id={`${id}_help`}>
-					{errors[name] && (
+				<Typography raw id={`${id}_help`}>
+					{errors[name] ? (
 						<StyledError>
 							{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
 								minLength: 2,
 							})}
 						</StyledError>
+					) : (
+						helpText
 					)}
 				</Typography>
 			</StyledHelpText>

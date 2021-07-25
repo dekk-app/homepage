@@ -1,7 +1,10 @@
 import Button from "@/atoms/button";
+import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
 import { StyledLink } from "@/atoms/typography/styled";
-import { WishlistProvider, WishProvider } from "@/ions/hooks/wishes/context";
+import { WishlistProvider, WishModalProvider, WishProvider } from "@/ions/hooks/wishes/context";
+import { useWish } from "@/ions/hooks/wishes/wish";
+import { useWishModal } from "@/ions/hooks/wishes/wish-modal";
 import { useWishlist } from "@/ions/hooks/wishes/wishlist";
 import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
 import { Column, Grid } from "@/molecules/grid";
@@ -17,14 +20,14 @@ import { AddWishProps, ListOfWishesProps, WishFormProps } from "@/types";
 import { User, Wish, WishVote } from "@/types/backend-api";
 import { useMutation, useQuery } from "@apollo/client";
 import { css, Global, useTheme } from "@emotion/react";
-import styled from "@emotion/styled";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import {
 	StyledArticle,
+	StyledButtonGroup,
 	StyledCard,
 	StyledIconButton,
 	StyledLayout,
@@ -38,23 +41,17 @@ const hearts = {
 	filled: "M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z",
 };
 
-export const PurpleTypography = styled(Typography)`
-	${({ theme }) => css`
-		color: ${theme.palette.purple};
-	`};
-`;
-
 const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted, authorId } }) => {
 	const [session] = useSession();
 	const { t } = useTranslation(["wishlist"]);
-	const [localVotes, setLocalVotes] = useState(votes);
-	const [localVoted, setLocalVoted] = useState(voted);
+	const { update: updateWish } = useWishlist();
 
-	const { data: userData, error: userError } = useQuery<{ user: User }>(USER, {
+	const { data: userData } = useQuery<{ user: User }>(USER, {
 		variables: {
 			email: session?.user.email,
 		},
 	});
+
 	const [createWishVote, { data: dataCreateWishVote }] = useMutation<{
 		createWishVote: WishVote;
 	}>(CREATE_WISH_VOTE, {
@@ -63,6 +60,7 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 			wishId: id,
 		},
 	});
+
 	const [deleteWishVote, { data: dataDeleteWishVote }] = useMutation<{
 		deleteWishVote: WishVote;
 	}>(DELETE_WISH_VOTE, {
@@ -74,79 +72,99 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 
 	useEffect(() => {
 		if (dataCreateWishVote?.createWishVote) {
-			console.log("dataCreateWishVote", dataCreateWishVote.createWishVote);
-			setLocalVotes(previousState => previousState + 1);
-			setLocalVoted(true);
+			updateWish(id, (previousState: Wish) => ({
+				voted: true,
+				votes: previousState.votes + 1,
+			}));
 		}
-	}, [dataCreateWishVote]);
+	}, [id, updateWish, dataCreateWishVote]);
 
 	useEffect(() => {
 		if (dataDeleteWishVote?.deleteWishVote) {
-			console.log("deleteWishVote", dataDeleteWishVote.deleteWishVote);
-			setLocalVotes(previousState => previousState - 1);
-			setLocalVoted(false);
+			updateWish(id, (previousState: Wish) => ({
+				voted: false,
+				votes: previousState.votes - 1,
+			}));
 		}
-	}, [dataDeleteWishVote]);
-
-	useEffect(() => {
-		console.log("userError", userError);
-	}, [userError]);
-
-	useEffect(() => {
-		console.log("userData", userData);
-	}, [userData]);
+	}, [id, updateWish, dataDeleteWishVote]);
 
 	return (
-		<StyledCard key={id} colSpanS={4} colSpanL={6}>
+		<StyledCard colSpanS={4} colSpanL={6}>
 			<StyledArticle>
-				<PurpleTypography variant="subtitle" component="h2">
+				<Typography variant="subtitle" component="h2">
 					{subject}
-				</PurpleTypography>
+				</Typography>
 				<Typography light variant="body2">
 					{body}
 				</Typography>
 			</StyledArticle>
 			<StyledVotes>
-				{userData?.user?.id === authorId ? (
-					<svg height={24} width={24} viewBox="0 0 24 24">
-						<path fill="currentColor" d={hearts.filled} />
-					</svg>
-				) : (
-					<StyledIconButton
-						aria-label={
-							localVoted
-								? t("wishlist:button.down-vote")
-								: t("wishlist:button.up-vote")
-						}
-						disabled={userData?.user?.id === authorId}
-						onClick={() => {
-							if (localVoted) {
-								void deleteWishVote();
-							} else {
-								void createWishVote();
-							}
-						}}
-					>
+				{session &&
+					(userData?.user?.id === authorId ? (
 						<svg height={24} width={24} viewBox="0 0 24 24">
-							<path
-								fill="currentColor"
-								d={localVoted ? hearts.filled : hearts.outlined}
-							/>
+							<path fill="currentColor" d={hearts.filled} />
 						</svg>
-					</StyledIconButton>
-				)}
-
+					) : (
+						<StyledIconButton
+							aria-label={
+								voted
+									? t("wishlist:button.down-vote")
+									: t("wishlist:button.up-vote")
+							}
+							disabled={userData?.user?.id === authorId}
+							onClick={() => {
+								if (voted) {
+									void deleteWishVote();
+								} else {
+									void createWishVote();
+								}
+							}}
+						>
+							<svg height={24} width={24} viewBox="0 0 24 24">
+								<path
+									fill="currentColor"
+									d={voted ? hearts.filled : hearts.outlined}
+								/>
+							</svg>
+						</StyledIconButton>
+					))}
 				<Typography raw light variant="body2">
-					{localVotes}
+					{votes}
 				</Typography>
 			</StyledVotes>
 		</StyledCard>
 	);
 };
 
-const AddWish: FC<AddWishProps> = ({ onChangeBody, onChangeSubject, onSubmit }) => {
-	const { t } = useTranslation(["wishlist"]);
+const AddWish: FC<AddWishProps> = () => {
+	const [session] = useSession();
+	const { t } = useTranslation(["cancel", "form", "wishlist"]);
 	const methods = useForm<WishFormProps>();
+	const { body, subject, changeBody, changeSubject } = useWish();
+	const { add: addWish } = useWishlist();
+	const { close: closeModal } = useWishModal();
+
+	const [createWish, { data: dataCreateWish }] = useMutation<{
+		createWish: Wish;
+	}>(CREATE_WISH, {
+		variables: {
+			email: session?.user.email,
+			subject,
+			body,
+		},
+	});
+
+	const handleSubmit = useCallback(async () => {
+		await createWish();
+		closeModal();
+	}, [createWish, closeModal]);
+
+	// Add new wishes
+	useEffect(() => {
+		if (dataCreateWish?.createWish) {
+			addWish(dataCreateWish.createWish);
+		}
+	}, [addWish, dataCreateWish]);
 
 	return (
 		<FormProvider {...methods}>
@@ -157,59 +175,67 @@ const AddWish: FC<AddWishProps> = ({ onChangeBody, onChangeSubject, onSubmit }) 
 				<Typography centered>{t("wishlist:add-wish.body")}</Typography>
 			</Column>
 			<Column colSpanL={6} colStartL={4} colSpanM={4} colStartM={3}>
-				<StyledForm noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+				<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 					<StyledFieldset>
 						<InputField
 							fullWidth
 							id="form:wishlist:wish-subject"
 							name="wish-subject"
+							helpText={t("form:help-texts.wish-subject")}
 							validation={{
 								required: true,
 								minLength: 2,
 							}}
-							onChange={value => {
-								onChangeSubject(value);
-							}}
+							onChange={changeSubject}
 						/>
 						<TextArea
 							fullWidth
 							id="form:wishlist:wish-body"
 							name="wish-body"
+							helpText={t("form:help-texts.wish-body")}
 							validation={{ required: true, minLength: 2 }}
-							onChange={value => {
-								onChangeBody(value);
-							}}
+							onChange={changeBody}
 						/>
 					</StyledFieldset>
-					<Button type="submit">Add wish</Button>
+					<StyledButtonGroup>
+						<Button text type="button" onClick={closeModal}>
+							{t("common:cancel")}
+						</Button>
+						<Button type="submit">{t("wishlist:button.add-wish")}</Button>
+					</StyledButtonGroup>
 				</StyledForm>
 			</Column>
 		</FormProvider>
 	);
 };
 
-const ListOfWishes: FC<ListOfWishesProps> = ({ onAddWish }) => {
-	const { t } = useTranslation(["wishlist"]);
+const ListOfWishes: FC<ListOfWishesProps> = () => {
+	const { t } = useTranslation(["cancel", "wishlist"]);
 	const [session] = useSession();
 	const { wishes } = useWishlist();
+	const { open: openModal } = useWishModal();
+
 	return (
 		<>
-			<Column colSpanL={6}>
-				<Typography raw variant="h1">
-					{t("wishlist:headline")}
-				</Typography>
+			<Column colSpanL={8}>
+				<Typography variant="h1">{t("wishlist:headline")}</Typography>
 			</Column>
-			<StyledWishWrapper colSpanL={6}>
+			<StyledWishWrapper colSpanL={4}>
 				{session ? (
-					<Button type="button" onClick={onAddWish}>
+					<Button type="button" onClick={openModal}>
 						{t("wishlist:button.wish")}
 					</Button>
 				) : (
 					<Link passHref href="/">
-						<StyledLink>Login</StyledLink>
+						<StyledLink>{t("common:cancel")}</StyledLink>
 					</Link>
 				)}
 			</StyledWishWrapper>
+			<Column>
+				<StyledStripeWrapper>
+					<StyledStripe />
+				</StyledStripeWrapper>
+			</Column>
 			{wishes.map(wish => (
 				<WishCard key={wish.id} wish={wish} />
 			))}
@@ -217,107 +243,35 @@ const ListOfWishes: FC<ListOfWishesProps> = ({ onAddWish }) => {
 	);
 };
 
-const Wishlist: FC<{ data: { wishes: Wish[] } }> = ({ data: { wishes } }) => {
-	const [localWishes, setLocalWishes] = useState<Wish[]>([]);
-	const [addingWish, setAddingWish] = useState(false);
-	const [wishSubject, setWishSubject] = useState<string | undefined>();
-	const [wishBody, setWishBody] = useState<string | undefined>();
+const Wishlist = () => {
+	const { isOpen } = useWishModal();
 	const theme = useTheme();
-
-	const [session] = useSession();
-
-	const [createWish, { data: dataCreateWish, error: errorCreateWish }] = useMutation<{
-		createWish: Wish;
-	}>(CREATE_WISH, {
-		variables: {
-			email: session?.user.email,
-			subject: wishSubject,
-			body: wishBody,
-		},
-	});
-
-	// Add new wishes to the local state to get immediate feedback
-	useEffect(() => {
-		if (dataCreateWish?.createWish) {
-			setLocalWishes(previousState => [dataCreateWish.createWish, ...previousState]);
-		}
-	}, [dataCreateWish]);
-
-	// In case of errors, report them
-	// ToDo handle errors and display them so the user is aware that something went wrong
-	useEffect(() => {
-		if (errorCreateWish) {
-			console.error(errorCreateWish);
-		}
-	}, [errorCreateWish]);
-
-	const allWishes = useMemo(
-		() =>
-			[...localWishes, ...wishes].reduce((wishes: Wish[], wish: Wish) => {
-				const isDuplicate = wishes.some(({ id }) => {
-					return wish.id === id;
-				});
-
-				return isDuplicate ? wishes : [...wishes, wish];
-			}, []),
-		[wishes, localWishes]
-	);
-
-	const wishlistState = useMemo(
-		() => ({
-			wishes: allWishes,
-			create: createWish,
-		}),
-		[allWishes, createWish]
-	);
-
-	const wishState = useMemo(
-		() => ({
-			body: wishBody,
-			subject: wishSubject,
-		}),
-		[wishBody, wishSubject]
-	);
-
 	return (
-		<WishlistProvider value={wishlistState}>
-			<WishProvider wish={wishState}>
-				<StyledLayout>
-					<Global
-						styles={css`
-							body {
-								background-color: ${theme.palette.dark};
-								color: ${theme.ui.colors.dark.color};
-							}
-						`}
-					/>
-					<Grid>
-						{addingWish ? (
-							<AddWish
-								onChangeBody={(value: string) => {
-									setWishBody(value);
-								}}
-								onChangeSubject={(value: string) => {
-									setWishSubject(value);
-								}}
-								onSubmit={() => {
-									void createWish();
-									setAddingWish(false);
-								}}
-							/>
-						) : (
-							<ListOfWishes
-								onAddWish={() => {
-									setAddingWish(true);
-								}}
-							/>
-						)}
-					</Grid>
-				</StyledLayout>
-			</WishProvider>
-		</WishlistProvider>
+		<StyledLayout>
+			<Global
+				styles={css`
+					body {
+						background-color: ${theme.ui.colors.dark.background};
+						color: ${theme.ui.colors.dark.color};
+					}
+				`}
+			/>
+			<Grid>{isOpen ? <AddWish /> : <ListOfWishes />}</Grid>
+		</StyledLayout>
 	);
 };
 
-export default Wishlist;
+const StatefulWishlist: FC<{ data: { wishes: Wish[] } }> = props => {
+	return (
+		<WishModalProvider>
+			<WishlistProvider initialState={props.data.wishes}>
+				<WishProvider>
+					<Wishlist />
+				</WishProvider>
+			</WishlistProvider>
+		</WishModalProvider>
+	);
+};
+
+export default StatefulWishlist;
 export { WISHES } from "@/templates/wishlist/queries";

@@ -25,9 +25,12 @@ import { FormProvider, useForm } from "react-hook-form";
 const Login: FC<LoginProps> = ({ providers }) => {
 	const { t } = useTranslation(["form"]);
 	const methods = useForm<LoginFormProps>();
-	const onSubmit = useCallback(data => {
-		console.log(data);
-	}, []);
+	const onSubmit = useCallback(
+		(data: LoginFormProps) => {
+			void signIn(providers.email.id, { email: data.email });
+		},
+		[providers]
+	);
 
 	return (
 		<FormProvider {...methods}>
@@ -37,7 +40,7 @@ const Login: FC<LoginProps> = ({ providers }) => {
 						<StyledFormWrapper>
 							<StyledFieldset>
 								<StyledLegend>
-									<Typography variant="title" component="h1">
+									<Typography variant="h2" component="h1">
 										{t("form:legends.login")}
 									</Typography>
 								</StyledLegend>
@@ -81,6 +84,7 @@ const Login: FC<LoginProps> = ({ providers }) => {
 								<InputField
 									fullWidth
 									id="form:signIn:email"
+									helpText={t("form:help-texts.login-register")}
 									name="email"
 									type="email"
 									validation={{ required: true, pattern: /.*@.*\..*/ }}
@@ -88,7 +92,7 @@ const Login: FC<LoginProps> = ({ providers }) => {
 							</StyledFieldset>
 							<StyledButtonWrapper>
 								<StyledButton fullWidth type="submit">
-									{t("form:button-labels.login")}
+									{t("form:button-labels.submit")}
 								</StyledButton>
 							</StyledButtonWrapper>
 						</StyledFormWrapper>

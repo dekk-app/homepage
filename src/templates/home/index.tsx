@@ -16,10 +16,10 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 }) => {
 	return (
 		<Grid>
-			<StyledColumn colSpanS={4}>
+			<StyledColumn colSpanS={4} colSpanM={3} colSpanL={4}>
 				{step === 0 ? <Login providers={providers} /> : <WelcomeScreen />}
 			</StyledColumn>
-			<StyledColumn colSpanS={4} colStartL={9}>
+			<StyledColumn colSpanS={4} colSpanM={5} colSpanL={8} colStartM={4} colStartL={5}>
 				{step === 0 ? <ProBox /> : <WelcomeLottie />}
 			</StyledColumn>
 		</Grid>

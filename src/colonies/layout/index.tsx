@@ -1,5 +1,6 @@
 import { globalStyles } from "@/ions/styles";
 import Footer from "@/organisms/footer";
+import Header from "@/organisms/header";
 import Main from "@/organisms/main";
 import { Global } from "@emotion/react";
 import dynamic from "next/dynamic";
@@ -22,6 +23,7 @@ const Layout: FC<LayoutProps> = ({ className, children }) => {
 					content="Dekk reimagines presentations. Create and present by intuition. Make a difference, make a Dekk."
 				/>
 			</Head>
+			<Header />
 			<Main className={className}>{children}</Main>
 			<Footer />
 			{process.env.NODE_ENV !== "production" && <OverlayGrid />}

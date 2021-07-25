@@ -5,6 +5,7 @@ export interface Palette {
 	dark: string;
 	light: string;
 	purple: string;
+	lightPurple: string;
 	darkPurple: string;
 }
 

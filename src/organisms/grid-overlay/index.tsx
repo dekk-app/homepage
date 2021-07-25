@@ -29,18 +29,18 @@ const OverlayGrid: FC = () => {
 			{grid && (
 				<StyledGridOverlay>
 					<StyledOverlayGrid>
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
-						<StyledOverlayColumn colSpanS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
+						<StyledOverlayColumn colSpanXS={1} />
 					</StyledOverlayGrid>
 				</StyledGridOverlay>
 			)}

@@ -1,4 +1,4 @@
-import I18nLink from "@/atoms/li18n-ink";
+import I18nLink from "@/atoms/i18n-link";
 import { Trans, useTranslation } from "next-i18next";
 import React, { FC, memo } from "react";
 
