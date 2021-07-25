@@ -6,6 +6,7 @@ import Login from "@/organisms/login";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
@@ -15,6 +16,9 @@ const ErrorPage: FC<PageProps> = ({ providers }) => {
 	const { t } = useTranslation();
 	return (
 		<Layout>
+			<Head>
+				<meta name="robots" content="noindex,nofollow" />
+			</Head>
 			<GlobalTypography />
 			<Global
 				styles={css`

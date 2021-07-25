@@ -5,6 +5,7 @@ import { useCookieFirst } from "@/ions/hooks/consent/cookie-first";
 import { Column, Grid } from "@/molecules/grid";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
+import Head from "next/head";
 import React, { FC, useEffect, useRef } from "react";
 
 export const CookiePolicy: FC = () => {
@@ -24,6 +25,9 @@ export const CookiePolicy: FC = () => {
 	}, [cookieRef, cookieFirst]);
 	return (
 		<Layout>
+			<Head>
+				<meta name="robots" content="noindex,nofollow" />
+			</Head>
 			<GlobalTypography />
 			<Global
 				styles={css`

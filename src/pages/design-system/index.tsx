@@ -13,6 +13,7 @@ import styled from "@emotion/styled";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
 import React from "react";
 
 const StyledTypographySpace = styled.div`
@@ -32,6 +33,9 @@ const StyledTypography = styled(Typography)`
 const Page: NextPage<PageProps> = () => {
 	return (
 		<Layout>
+			<Head>
+				<meta name="robots" content="noindex,nofollow" />
+			</Head>
 			<Grid>
 				<Column>
 					<Typography variant="h1">Design System</Typography>

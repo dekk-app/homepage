@@ -6,6 +6,7 @@ import { Column, Grid } from "@/molecules/grid";
 import { css, Global, useTheme } from "@emotion/react";
 import { signOut, useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -21,6 +22,9 @@ const SignOut = () => {
 	}, [session, router]);
 	return (
 		<Layout>
+			<Head>
+				<meta name="robots" content="noindex,nofollow" />
+			</Head>
 			<GlobalTypography />
 			<Global
 				styles={css`

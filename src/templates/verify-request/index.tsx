@@ -5,6 +5,7 @@ import { Column, Grid } from "@/molecules/grid";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
+import Head from "next/head";
 import React, { FC } from "react";
 
 const VerifyRequest: FC<PageProps> = () => {
@@ -12,6 +13,9 @@ const VerifyRequest: FC<PageProps> = () => {
 	const { t } = useTranslation(["auth"]);
 	return (
 		<Layout>
+			<Head>
+				<meta name="robots" content="noindex,nofollow" />
+			</Head>
 			<GlobalTypography />
 			<Global
 				styles={css`
