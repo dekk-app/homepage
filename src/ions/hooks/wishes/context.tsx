@@ -1,5 +1,5 @@
 import { Wish } from "@/types/backend-api";
-import React, { createContext, FC, useCallback, useMemo, useState } from "react";
+import React, { createContext, FC, useCallback, useEffect, useMemo, useState } from "react";
 import { UpdateCallback, WishlistState, WishModalState, WishState } from "./types";
 
 export const WishlistContext = createContext<WishlistState>({
@@ -31,6 +31,10 @@ export const WishlistProvider: FC<{ initialState: Wish[] }> = ({ children, initi
 			})
 		);
 	}, []);
+
+	useEffect(() => {
+		setWishes(initialState);
+	}, [initialState]);
 
 	const context = useMemo(
 		() => ({
@@ -91,7 +95,14 @@ export const WishModalContext = createContext<WishModalState>({
 
 export const WishModalProvider: FC = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const open = useCallback(() => {
+	const [id, setId] = useState<number | undefined>();
+	const [body, setBody] = useState<string | undefined>();
+	const [subject, setSubject] = useState<string | undefined>();
+
+	const open = useCallback((wishId, previousSubject, previousBody) => {
+		setId(wishId);
+		setSubject(previousSubject);
+		setBody(previousBody);
 		setIsOpen(true);
 	}, []);
 
@@ -112,8 +123,11 @@ export const WishModalProvider: FC = ({ children }) => {
 			open,
 			close,
 			toggle,
+			body,
+			subject,
+			id,
 		}),
-		[isOpen, open, close, toggle]
+		[isOpen, open, close, toggle, body, subject, id]
 	);
 
 	return <WishModalContext.Provider value={context}>{children}</WishModalContext.Provider>;

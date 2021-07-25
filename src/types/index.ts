@@ -8,8 +8,8 @@ export interface LoginFormProps {
 }
 
 export interface WishFormProps {
-	subject: string;
-	body: string;
+	"wish-subject": string;
+	"wish-body": string;
 }
 
 export interface LoginProps {

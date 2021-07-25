@@ -25,7 +25,7 @@ const InputField: FC<InputFieldProps> = ({
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const {
 		register,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = useFormContext();
 	const [filled, setFilled] = useState(defaultValue?.length > 0);
 	const [focused, setFocused] = useState(false);
@@ -39,7 +39,11 @@ const InputField: FC<InputFieldProps> = ({
 	return (
 		<>
 			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
-				<StyledFloatingLabel floating={focused || filled} id={`${id}_label`}>
+				<StyledFloatingLabel
+					floating={focused || filled || isValid}
+					initial={isValid}
+					id={`${id}_label`}
+				>
 					{t(`form:fields-labels.${name}`)}
 					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
 				</StyledFloatingLabel>
@@ -48,7 +52,6 @@ const InputField: FC<InputFieldProps> = ({
 						refCallback(element);
 						inputRef.current = element;
 					}}
-					defaultValue={defaultValue}
 					id={`${id}_field`}
 					name={name}
 					required={Boolean(validation.required)}

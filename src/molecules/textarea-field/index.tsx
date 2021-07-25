@@ -35,7 +35,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	const inputRef = useRef<HTMLTextAreaElement | null>(null);
 	const {
 		register,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = useFormContext();
 	const [filled, setFilled] = useState(defaultValue?.length > 0);
 	const [focused, setFocused] = useState(false);
@@ -53,19 +53,20 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	useEffect(() => {
 		setFilled(current?.value?.length > 0);
 	}, [current]);
-	useEffect(() => {
-		console.log(errors);
-	}, [errors]);
+
 	return (
 		<>
 			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
-				<StyledFloatingLabel floating={focused || filled} id={`${id}_label`}>
+				<StyledFloatingLabel
+					floating={focused || filled || isValid}
+					initial={isValid}
+					id={`${id}_label`}
+				>
 					{t(`form:fields-labels.${name}`)}
 					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
 				</StyledFloatingLabel>
 				<StyledTextArea
 					ref={textAreaRef}
-					defaultValue={defaultValue}
 					id={`${id}_field`}
 					name={name}
 					required={Boolean(validation.required)}

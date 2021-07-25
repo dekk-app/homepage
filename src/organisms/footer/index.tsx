@@ -11,7 +11,6 @@ import { FooterProps } from "./types";
 const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 	const { t } = useTranslation(["navigation"]);
 	const router = useRouter();
-	console.log(router);
 	return (
 		<StyledFooter ref={innerRef} className={className} data-test-id={testId}>
 			{children}

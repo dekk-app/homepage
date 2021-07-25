@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const WISHES = gql`
 	query wishes {
-		wishes {
+		wishes(orderBy: { createdAt: desc }) {
 			authorId
 			body
 			id
@@ -36,6 +36,19 @@ export const CREATE_WISH = gql`
 		createWish(
 			data: { author: { connect: { email: $email } }, subject: $subject, body: $body }
 		) {
+			authorId
+			body
+			id
+			subject
+			voted
+			votes
+		}
+	}
+`;
+
+export const UPDATE_WISH = gql`
+	mutation updateWish($subject: String!, $body: String!, $id: Int) {
+		updateWish(where: { id: $id }, data: { subject: $subject, body: $body }) {
 			authorId
 			body
 			id

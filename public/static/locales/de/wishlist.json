@@ -3,8 +3,10 @@
   "description": "Sag uns was du von einer Präsentation Software erwartest.",
   "button": {
     "add-wish": "Wunsch abgeben",
+    "edit": "Bearbeiten",
     "down-vote": "Abwählen",
     "up-vote": "Anwählen",
+    "update-wish": "Wunsch anpassen",
     "wish": "Ich habe einen Wunsch"
   },
   "add-wish": {
