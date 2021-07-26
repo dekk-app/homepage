@@ -15,7 +15,9 @@ import React from "react";
 const WrappedWishlist = withLoadingAndError(Wishlist);
 
 const Page: NextPage<PageProps> = props => {
-	const { data, error, loading } = useQuery<{ wishes: Wish[] }>(WISHES);
+	const { data, error, loading } = useQuery<{ wishes: Wish[] }>(WISHES, {
+		pollInterval: 60_000,
+	});
 	return <WrappedWishlist {...props} data={data} error={error} loading={loading} />;
 };
 

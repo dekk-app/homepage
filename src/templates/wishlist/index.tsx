@@ -17,7 +17,6 @@ import {
 	DELETE_WISH_VOTE,
 	UPDATE_WISH,
 	USER,
-	WISHES,
 } from "@/templates/wishlist/queries";
 import { AddWishProps, ListOfWishesProps, WishFormProps } from "@/types";
 import { User, Wish, WishVote } from "@/types/backend-api";
@@ -298,10 +297,7 @@ const Wishlist = () => {
 	);
 };
 
-const StatefulWishlist = () => {
-	const { data } = useQuery<{ wishes: Wish[] }>(WISHES, {
-		pollInterval: 60_000,
-	});
+const StatefulWishlist: FC<{ data: { wishes: Wish[] } }> = ({ data }) => {
 	return (
 		<WishModalProvider>
 			<WishlistProvider initialState={data?.wishes}>
