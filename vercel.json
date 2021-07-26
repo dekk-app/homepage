@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "src/pages/en/api/[...nextauth]/index.js": {
+      "excludeFiles": "**/query-engine*"
+    },
+    "src/pages/de/api/[...nextauth]/index.js": {
+      "excludeFiles": "**/query-engine*"
+    },
+    "src/pages/*/api/**/*": {
+      "excludeFiles": "node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-darwin"
+    },
+    "src/pages/api/auth/[...nextauth]/index.tsx": {
+      "excludeFiles": "**/query-engine*"
+    }
+  }
+}
