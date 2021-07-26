@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
 				{t("welcome:body-line2")}
 			</Typography>
 			<I18nLink passHref bold href="/wishlist">
-				<a>{t("welcome:button")}</a>
+				{t("welcome:button")}
 			</I18nLink>
 		</>
 	);
