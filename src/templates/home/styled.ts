@@ -8,7 +8,6 @@ export const StyledLayout = styled(Layout)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 100vw;
 	overflow: hidden;
 `;
 
