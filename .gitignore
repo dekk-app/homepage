@@ -58,8 +58,6 @@ public/workbox-*.js.map
 sentry.properties
 
 # Generated files
-src/types/backend-api.ts
-src/types/contentful-api.ts
 .graphqlconfig
 .npmrc
 contentful.graphql
