@@ -29,21 +29,32 @@ export const StyledIconButton = styled.button`
 	border: 0;
 	border-radius: 50%;
 	background: none;
-	color: black;
+	color: currentColor;
 
-	&:hover {
-		background-color: #00000020;
-		color: black;
-	}
-
-	&:active {
-		background-color: #00000030;
-		color: black;
+	&:focus {
+		outline: 0;
 	}
 
 	&[disabled] {
 		opacity: 0.2;
 	}
+
+	${({ theme }) => css`
+		&:hover {
+			background-color: ${theme.ui.atoms.button.hover.background};
+			color: currentColor;
+		}
+
+		&:active {
+			background-color: ${theme.ui.atoms.button.active.background};
+			color: currentColor;
+		}
+
+		&:focus-visible {
+			background-color: ${theme.ui.atoms.button.focus.background};
+			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
+		}
+	`};
 `;
 
 export const StyledButtonGroup = styled.div`
@@ -59,10 +70,11 @@ export const StyledCard = styled(Column)`
 	display: flex;
 	flex-direction: column;
 	padding: ${pxToRem(24)};
-	border-radius: ${pxToRem(10)};
 	background-color: white;
-	box-shadow: 0 10px 20px rgba(106, 106, 106, 0.1);
 	color: black;
+	${({ theme }) => css`
+		border-radius: ${theme.shapes.s};
+	`};
 `;
 
 export const StyledVotes = styled.div`

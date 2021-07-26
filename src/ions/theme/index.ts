@@ -1,13 +1,26 @@
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
-import { GridConfig, Layout, MediaQueries, Palette, Sizes, Spaces, Theme } from "../../types/theme";
+import {
+	Borders,
+	GridConfig,
+	Layout,
+	MediaQueries,
+	Palette,
+	Shapes,
+	Sizes,
+	Spaces,
+	Theme,
+	UIPatterns,
+} from "../../types/theme";
 
 export const palette: Palette = {
 	red: "#D90303",
 	green: "#2EFFB0",
+	blue: "#2E93FF",
+	yellow: "#FFD22E",
 	dark: "#232424",
 	light: "#F8F9FD",
 	purple: "#6A28EA",
-	lightPurple: "#AD89F5",
 	darkPurple: "#4F13C2",
 };
 
@@ -83,62 +96,94 @@ export const layout: Layout = {
 	},
 };
 
-export const theme: Theme = {
-	layout,
-	palette,
-	spaces,
-	breakpoints,
-	mq,
-	grid,
-	ui: {
-		colors: {
-			primary: {
-				background: palette.purple,
-				color: "#ffffff",
-			},
-			light: {
-				background: palette.light,
-				color: "#000000",
-			},
-			dark: {
-				background: palette.dark,
-				color: "#ffffff",
-			},
-			theme: {
-				background: palette.dark,
+export const borders: Borders = {
+	focusRing: "2px",
+};
+
+export const shapes: Shapes = {
+	xs: pxToRem(4),
+	s: pxToRem(4),
+	m: pxToRem(8),
+	l: pxToRem(12),
+	xl: pxToRem(16),
+};
+
+export const ui: UIPatterns = {
+	colors: {
+		primary: {
+			background: palette.purple,
+			color: "#ffffff",
+		},
+		light: {
+			background: palette.light,
+			color: "#000000",
+		},
+		dark: {
+			background: palette.dark,
+			color: "#ffffff",
+		},
+		theme: {
+			background: palette.dark,
+			color: "#ffffff",
+		},
+		focusRing: {
+			background: setOpacity(palette.purple, 20),
+			border: palette.blue,
+		},
+	},
+	atoms: {
+		inputLabel: {
+			color: "#ffffff",
+			focus: {
 				color: "#ffffff",
 			},
 		},
-		atoms: {
-			inputLabel: {
-				color: "#ffffff",
-				focus: {
-					color: "#ffffff",
-				},
-			},
-			helpText: {
-				background: palette.dark,
-				color: "#ffffff",
-			},
-			errorText: {
-				background: palette.light,
-				color: palette.red,
-			},
+		helpText: {
+			background: palette.dark,
+			color: "#ffffff",
 		},
-		molecules: {
-			inputField: {
-				background: "rgba(255,255,255,0.1)",
-				color: "#ffffff",
-				focus: {
-					border: palette.green,
-					color: "#ffffff",
-					background: "rgba(255,255,255,0.1)",
-				},
-				error: {
-					border: palette.red,
-					color: palette.red,
-				},
+		errorText: {
+			background: palette.light,
+			color: palette.red,
+		},
+		button: {
+			background: "none",
+			color: "currentColor",
+			hover: {
+				background: setOpacity(palette.purple, 20),
+			},
+			focus: {
+				background: setOpacity(palette.purple, 30),
+			},
+			active: {
+				background: setOpacity(palette.purple, 40),
 			},
 		},
 	},
+	molecules: {
+		inputField: {
+			background: "rgba(255,255,255,0.1)",
+			color: "#ffffff",
+			focus: {
+				border: palette.blue,
+				color: "#ffffff",
+				background: "rgba(255,255,255,0.1)",
+			},
+			error: {
+				border: palette.red,
+				color: palette.red,
+			},
+		},
+	},
+};
+export const theme: Theme = {
+	borders,
+	breakpoints,
+	grid,
+	layout,
+	mq,
+	palette,
+	shapes,
+	spaces,
+	ui,
 };

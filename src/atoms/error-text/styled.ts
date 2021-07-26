@@ -7,8 +7,8 @@ export const StyledErrorText = styled.div`
 	margin-top: ${pxToRem(-6)};
 	margin-bottom: ${pxToRem(12)};
 	padding-left: ${pxToRem(16)};
-	border-radius: ${pxToRem(10)};
 	${({ theme }) => css`
+		border-radius: ${theme.shapes.s};
 		padding: ${pxToRem(6)} ${pxToRem(24)};
 		background: ${theme.ui.atoms.errorText.background};
 		color: ${theme.ui.atoms.errorText.color};

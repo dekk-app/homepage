@@ -1,6 +1,6 @@
+import { StyledErrorText } from "@/atoms/error-text/styled";
 import { StyledFloatingLabel } from "@/atoms/floating-label/styled";
 import { StyledHelpText } from "@/atoms/help-text/styled";
-import { StyledErrorText } from "@/atoms/error-text/styled";
 import { StyledInputWrapper } from "@/atoms/input-wrapper/styled";
 import { StyledRequiredIndicator } from "@/atoms/required-indicator/styled";
 import Typography from "@/atoms/typography";

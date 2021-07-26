@@ -7,9 +7,9 @@ export const StyledHelpText = styled.div`
 	margin-top: ${pxToRem(-6)};
 	margin-bottom: ${pxToRem(12)};
 	padding-left: ${pxToRem(16)};
-	border-radius: ${pxToRem(10)};
 	${({ theme }) => css`
 		padding: ${pxToRem(6)} ${pxToRem(24)};
+		border-radius: ${theme.shapes.s};
 		background: ${theme.ui.atoms.helpText.background};
 		color: ${theme.ui.atoms.helpText.color};
 	`};

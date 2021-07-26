@@ -128,7 +128,7 @@ export const StyledGridToggle = styled.button`
 		outline: 0;
 	}
 
-	&:focus-within {
+	&:focus-visible {
 		background: #666;
 		color: #fff;
 	}

@@ -1,4 +1,3 @@
-import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -20,7 +19,6 @@ export const StyledButton = styled.button<{ fullWidth?: boolean; text?: boolean 
 	height: ${pxToRem(56)};
 	padding: ${pxToRem(16)} ${pxToRem(24)};
 	border: 0;
-	border-radius: ${pxToRem(10)};
 	font-size: ${pxToRem(16)};
 	font-weight: 600;
 	line-height: ${pxToRem(24)};
@@ -42,24 +40,28 @@ export const StyledButton = styled.button<{ fullWidth?: boolean; text?: boolean 
 
 	${({ fullWidth, text, theme }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
+		border-radius: ${theme.shapes.s};
 		background: ${text ? "none" : theme.ui.colors.primary.background};
 		color: ${theme.ui.colors.primary.color};
 
 		&:hover {
+			background: ${text ? theme.ui.atoms.button.hover.background : theme.palette.darkPurple};
+			color: ${theme.ui.colors.primary.color};
+		}
+
+		&:active {
 			background: ${text
-				? setOpacity(theme.palette.darkPurple, 30)
+				? theme.ui.atoms.button.active.background
 				: theme.palette.darkPurple};
 			color: ${theme.ui.colors.primary.color};
 		}
 
 		&::after {
-			box-shadow: 0 0 0 1px ${theme.palette.green};
+			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
 		}
 
 		&:focus-visible {
-			background: ${text
-				? setOpacity(theme.palette.darkPurple, 30)
-				: theme.palette.darkPurple};
+			background: ${text ? theme.ui.atoms.button.focus.background : theme.palette.darkPurple};
 			color: ${theme.ui.colors.primary.color};
 
 			&::after {
@@ -77,23 +79,35 @@ export const StyledSocialButton = styled.button`
 	justify-self: stretch;
 	height: ${pxToRem(60)};
 	border: 0;
-	border-radius: ${pxToRem(10)};
 	background: none;
 	box-shadow: inset 0 0 0 1px #eee;
+
+	&:hover {
+		color: currentColor;
+	}
+
+	&:focus {
+		outline: 0;
+	}
+
+	&:focus-visible {
+		color: currentColor;
+	}
+
 	${({ theme }) => css`
+		border-radius: ${theme.shapes.s};
+
 		&:hover {
-			background: ${setOpacity(theme.palette.darkPurple, 30)};
-			color: ${theme.ui.colors.primary.color};
+			background: ${theme.ui.atoms.button.hover.background};
 		}
 
-		&:focus {
-			outline: 0;
+		&:active {
+			background: ${theme.ui.atoms.button.active.background};
 		}
 
 		&:focus-visible {
-			background: ${setOpacity(theme.palette.darkPurple, 30)};
-			color: ${theme.ui.colors.primary.color};
-			box-shadow: 0 0 0 1px ${theme.palette.green};
+			background: ${theme.ui.atoms.button.focus.background};
+			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
 		}
 	`};
 `;

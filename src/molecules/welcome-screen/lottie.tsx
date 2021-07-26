@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { FC } from "react";
+import React from "react";
 import Lottie from "react-lottie";
 import animationData from "./data.json";
 
@@ -17,6 +17,6 @@ const defaultOptions = {
 	className: styles,
 };
 
-const WelcomeLottie: FC = () => <Lottie options={defaultOptions} width="100%" />;
+const WelcomeLottie = () => <Lottie options={defaultOptions} width="100%" />;
 
 export default WelcomeLottie;

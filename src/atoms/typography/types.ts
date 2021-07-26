@@ -14,6 +14,7 @@ export interface TypographyProps {
 
 export interface StyledLinkProps {
 	bold?: boolean;
+	isActive?: boolean;
 }
 
 export interface StyledTypographyProps {

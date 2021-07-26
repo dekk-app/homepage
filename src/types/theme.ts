@@ -2,10 +2,11 @@
 export interface Palette {
 	red: string;
 	green: string;
+	blue: string;
+	yellow: string;
 	dark: string;
 	light: string;
 	purple: string;
-	lightPurple: string;
 	darkPurple: string;
 }
 
@@ -50,6 +51,18 @@ export interface ElementTheme {
 	active?: ElementTheme;
 }
 
+export interface Borders {
+	focusRing: string;
+}
+
+export interface Shapes {
+	xs: string;
+	s: string;
+	m: string;
+	l: string;
+	xl: string;
+}
+
 export type Patterns = Record<string, ElementTheme>;
 
 export type UIPatterns = Record<string, Patterns>;
@@ -58,7 +71,9 @@ export interface Theme {
 	layout: Layout;
 	palette: Palette;
 	spaces: Spaces;
+	shapes: Shapes;
 	breakpoints: Sizes;
+	borders: Borders;
 	mq: MediaQueries;
 	grid: GridConfig;
 	ui: UIPatterns;

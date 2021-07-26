@@ -8,11 +8,15 @@ import React, { FC } from "react";
 const I18nLink: FC<
 	LinkProps & StyledLinkProps & { href: keyof typeof routes; noFollow?: boolean }
 > = ({ bold, children, href, noFollow }) => {
-	const { locale } = useRouter();
+	const { locale, route } = useRouter();
 	const i18nHref = routes[href as keyof typeof routes][locale] as string;
 	return (
 		<Link passHref href={i18nHref}>
-			<StyledLink bold={bold} rel={noFollow && "nofollow"}>
+			<StyledLink
+				bold={bold}
+				rel={noFollow && "nofollow"}
+				isActive={route === href && route !== "/"}
+			>
 				{children}
 			</StyledLink>
 		</Link>

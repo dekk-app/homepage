@@ -1,13 +1,51 @@
 import { a, h1, h2, h3, h4, p } from "@/atoms/typography/global";
 import { StyledLinkProps, StyledTypographyProps } from "@/atoms/typography/types";
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const StyledLink = styled.a<StyledLinkProps>`
 	${a};
-	${({ bold }) => css`
+	display: inline-flex;
+	position: relative;
+
+	&::after {
+		position: absolute;
+		pointer-events: none;
+	}
+
+	&:focus {
+		outline: 0;
+	}
+
+	${({ theme, bold, isActive }) => css`
 		font-weight: ${bold ? 600 : 400};
+
+		&:hover {
+			&::after {
+				content: "";
+				background: ${setOpacity(theme.palette.purple, 30)};
+			}
+		}
+
+		&:focus-visible {
+			&::after {
+				content: "";
+				box-shadow: inset 0 0 0 ${theme.borders.focusRing}
+					${theme.ui.colors.focusRing.border};
+			}
+		}
+
+		&::after {
+			content: ${isActive ? "''" : "initial"};
+			top: ${pxToRem(-theme.spaces.xs)};
+			right: ${pxToRem(-theme.spaces.xs)};
+			bottom: ${pxToRem(-theme.spaces.xs)};
+			left: ${pxToRem(-theme.spaces.xs)};
+			border-radius: ${theme.shapes.s};
+			background: ${theme.ui.atoms.button.focus.background};
+		}
 	`};
 `;
 
