@@ -168,8 +168,8 @@ const AddWish: FC<AddWishProps> = () => {
 	}>(UPDATE_WISH, {
 		variables: {
 			id,
-			subject: subject || previousSubject,
-			body: body || previousBody,
+			subject,
+			body,
 		},
 	});
 

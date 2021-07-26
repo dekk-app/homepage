@@ -47,7 +47,7 @@ export const CREATE_WISH = gql`
 `;
 
 export const UPDATE_WISH = gql`
-	mutation updateWish($subject: String!, $body: String!, $id: Int) {
+	mutation updateWish($subject: String, $body: String, $id: Int) {
 		updateWish(where: { id: $id }, data: { subject: $subject, body: $body }) {
 			authorId
 			body
