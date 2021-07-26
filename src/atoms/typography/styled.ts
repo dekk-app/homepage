@@ -1,6 +1,5 @@
 import { a, h1, h2, h3, h4, p } from "@/atoms/typography/global";
 import { StyledLinkProps, StyledTypographyProps } from "@/atoms/typography/types";
-import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -22,13 +21,6 @@ export const StyledLink = styled.a<StyledLinkProps>`
 
 	${({ theme, bold, isActive }) => css`
 		font-weight: ${bold ? 600 : 400};
-
-		&:hover {
-			&::after {
-				content: "";
-				background: ${setOpacity(theme.palette.purple, 30)};
-			}
-		}
 
 		&:focus-visible {
 			&::after {
