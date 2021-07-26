@@ -2,7 +2,7 @@ import React from "react";
 
 export const DeFlag = () => {
 	return (
-		<svg viewBox="0 0 5 3">
+		<svg height="1em" viewBox="0 0 5 3">
 			<path d="M0 0h5v3H0z" />
 			<path fill="#D00" d="M0 1h5v2H0z" />
 			<path fill="#FFCE00" d="M0 2h5v1H0z" />
@@ -12,7 +12,7 @@ export const DeFlag = () => {
 
 export const UsFlag = () => {
 	return (
-		<svg viewBox="0 0 7410 3900">
+		<svg height="1em" viewBox="0 0 7410 3900">
 			<defs />
 			<path fill="#b22234" d="M0 0h7410v3900H0z" />
 			<path
