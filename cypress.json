@@ -3,7 +3,7 @@
   "fixturesFolder": false,
   "projectId": "pv4qcq",
   "supportFile": "./cypress/support/index.js",
+  "pluginsFile": "./cypress/plugins/index.js",
   "retries": 0,
-  "testFiles": "**/*.feature",
-  "typescript": true
+  "testFiles": "**/*.feature"
 }

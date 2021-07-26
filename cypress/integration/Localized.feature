@@ -1,13 +1,13 @@
 Feature: Localized UI
 
-	As a user I want to see a localized UI
-	in order to better understand it.
+	As a user I want to see a localized UI,
+	so that I can understand it.
 
 	@focus
-	Scenario: Seeing a localized UI
+	Scenario: The page exists in english and german
 
 		When I prefer "en" as language
-		Then I see "Create" on the page
+		Then I see "Wishlist" on the page
 
 		When I prefer "de" as language
-		Then I see "Erstellen" on the page
+		Then I see "Wunschliste" on the page

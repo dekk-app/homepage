@@ -3,6 +3,6 @@
   "extensions": [".ts", ".tsx"],
   "ignorePatterns": ["**/node_modules/**"],
   "ignoreUnresolved": ["type-fest"],
-  "ignoreUnimported": [],
-  "ignoreUnused": ["tslib", "@emotion/core", "@apollo/react-hooks"]
+  "ignoreUnimported": ["src/ions/fonts/styles.ts"],
+  "ignoreUnused": ["tslib", "@emotion/core", "@apollo/react-hooks", "@sentry/nextjs", "react-is"]
 }
