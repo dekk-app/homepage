@@ -10,7 +10,7 @@ const Player = ({ animationData, creator }: PlayerProps) => {
 	return (
 		<>
 			<Lottie options={options} />
-			<Typography>
+			<Typography variant="caption" light>
 				Animation by{" "}
 				<StyledLink href={creator.url} rel="nofollow" target="_blank">
 					{creator.name}
