@@ -1,6 +1,7 @@
 import { Grid } from "@/molecules/grid";
 import { css, Global, useTheme } from "@emotion/react";
 import { ClientSafeProvider, useSession } from "next-auth/client";
+import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import React, { FC, useEffect, useState } from "react";
 import { StyledColumn, StyledLayout } from "./styled";
@@ -30,6 +31,7 @@ const Home: FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers
 	const [session] = useSession();
 	const [step, setStep] = useState(session ? 1 : 0);
 	const theme = useTheme();
+	const { t } = useTranslation(["meta"]);
 	useEffect(() => {
 		if (session) {
 			setStep(1);
@@ -37,7 +39,7 @@ const Home: FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers
 	}, [session]);
 
 	return (
-		<StyledLayout>
+		<StyledLayout title={t("meta:home.title")} description={t("meta:home.description")}>
 			<Global
 				styles={css`
 					body {

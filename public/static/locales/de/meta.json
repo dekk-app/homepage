@@ -1,0 +1,43 @@
+{
+  "wishlist": {
+    "title": "Wunschliste",
+    "description": "Sag uns was du brauchst um die perfekte Präsentation zu erstellen."
+  },
+  "home": {
+    "title": "Präsentation der Zukunft",
+    "description": "Dekk denkt um. Wir ermöglichen dir die besten Präsentationen zu erstellen und dabei die beste Erfahrung zu machen"
+  },
+  "error": {
+    "404": {
+      "title": "Seite nicht gefunden"
+    },
+    "500": {
+      "title": "Sever Fehler"
+    }
+  },
+  "legal": {
+    "cookie-policy": {
+      "title": "Cookies"
+    },
+    "imprint": {
+      "title": "Impressum"
+    },
+    "privacy-policy": {
+      "title": "Datenschutz"
+    }
+  },
+  "auth": {
+    "error": {
+      "title": "Fehler bei der Anmeldung"
+    },
+    "signin": {
+      "title": "Anmelden"
+    },
+    "signout": {
+      "title": "Abmelden"
+    },
+    "verify-request": {
+      "title": "Bestätigung"
+    }
+  }
+}

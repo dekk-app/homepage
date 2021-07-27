@@ -282,8 +282,9 @@ const ListOfWishes: FC<ListOfWishesProps> = () => {
 const Wishlist = () => {
 	const { isOpen } = useWishModal();
 	const theme = useTheme();
+	const { t } = useTranslation(["meta"]);
 	return (
-		<StyledLayout>
+		<StyledLayout title={t("meta:wishlist.title")} description={t("meta:wishlist.description")}>
 			<Global
 				styles={css`
 					body {

@@ -6,6 +6,8 @@ import { PageProps } from "@/types";
 import { PageCollection } from "@/types/contentful-api";
 import { Document as RichTextDocument } from "@contentful/rich-text-types";
 import { css, Global, useTheme } from "@emotion/react";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
 
 interface Props extends PageProps {
@@ -14,8 +16,16 @@ interface Props extends PageProps {
 
 const LegalPage: FC<Props> = ({ data, children }) => {
 	const theme = useTheme();
+	const { t } = useTranslation(["meta"]);
+	const { route } = useRouter();
 	return (
-		<Layout>
+		<Layout
+			title={
+				route === "/legal/privacy-policy"
+					? t("meta:legal.privacy-policy.title")
+					: t("meta:legal.imprint.title")
+			}
+		>
 			<GlobalTypography />
 			<Global
 				styles={css`

@@ -10,9 +10,9 @@ import React from "react";
 
 const Error404 = () => {
 	const theme = useTheme();
-	const { t } = useTranslation(["auth"]);
+	const { t } = useTranslation(["error", "meta"]);
 	return (
-		<Layout>
+		<Layout title={t("meta:error.404.title")}>
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>

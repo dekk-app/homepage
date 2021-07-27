@@ -11,17 +11,17 @@ const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"));
 
 export interface LayoutProps {
 	className?: string;
+	title: string;
+	description?: string;
 }
 
-const Layout: FC<LayoutProps> = ({ className, children }) => {
+const Layout: FC<LayoutProps> = ({ className, children, title, description }) => {
 	return (
 		<>
 			<Global styles={globalStyles} />
 			<Head>
-				<meta
-					name="description"
-					content="Dekk reimagines presentations. Create and present by intuition. Make a difference, make a Dekk."
-				/>
+				<title>Dekk | {title}</title>
+				{description && <meta name="description" content={description} />}
 			</Head>
 			<Header />
 			<Main className={className}>{children}</Main>

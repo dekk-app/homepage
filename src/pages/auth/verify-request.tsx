@@ -1,6 +1,6 @@
 import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
-import VerifyRequest from "@/templates/verify-request";
+import VerifyRequest from "@/templates/auth/verify-request";
 import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";

@@ -1,0 +1,43 @@
+{
+  "wishlist": {
+    "title": "Wishlist",
+    "description": "Tell us what you need to create the perfect presentation."
+  },
+  "home": {
+    "title": "Presentations of the future",
+    "description": "Dekk rethinks. We enable you to create the best presentation and make the best experience while you do."
+  },
+  "error": {
+    "404": {
+      "title": "Page not found"
+    },
+    "500": {
+      "title": "Sever Error"
+    }
+  },
+  "legal": {
+    "cookie-policy": {
+      "title": "Cookies"
+    },
+    "imprint": {
+      "title": "Imprint"
+    },
+    "privacy-policy": {
+      "title": "Privacy"
+    }
+  },
+  "auth": {
+    "error": {
+      "title": "Error signing in"
+    },
+    "signin": {
+      "title": "Sign in"
+    },
+    "signout": {
+      "title": "Sign out"
+    },
+    "verify-request": {
+      "title": "Verify"
+    }
+  }
+}

@@ -12,7 +12,7 @@ export const CookiePolicy: FC = () => {
 	const cookieRef = useRef<HTMLDivElement>();
 	const cookieFirst = useCookieFirst();
 	const theme = useTheme();
-	const { t } = useTranslation("legal");
+	const { t } = useTranslation(["legal", "meta"]);
 
 	useEffect(() => {
 		const subscribe = () => {
@@ -24,7 +24,7 @@ export const CookiePolicy: FC = () => {
 		subscribe();
 	}, [cookieRef, cookieFirst]);
 	return (
-		<Layout>
+		<Layout title={t("meta:legal.cookie-policy.title")}>
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
