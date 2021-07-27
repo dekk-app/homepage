@@ -84,11 +84,6 @@ class AppDocument extends Document {
 				<body>
 					<Main />
 					<NextScript />
-					<script
-						src="https://consent.cookiefirst.com/banner.js"
-						data-cookiefirst-key="c73c25c4-8d39-4d4a-b9e3-cf2b09f3f059"
-						data-language={this.props.locale}
-					/>
 				</body>
 			</Html>
 		);

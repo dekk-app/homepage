@@ -17,6 +17,7 @@ import { appWithTranslation } from "next-i18next";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Script from "next/script";
 import React from "react";
 import pkg from "../../package.json";
 
@@ -35,7 +36,7 @@ export const debugging = css`
 
 const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 	const apolloClient = useApollo(pageProps as PageProps);
-	const { locales, defaultLocale, route } = useRouter();
+	const { locale, locales, defaultLocale, route } = useRouter();
 	return (
 		<>
 			<Global styles={fontFaces} />
@@ -108,6 +109,10 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 					</ApolloProvider>
 				</NextAuthProvider>
 			</ConsentProvider>
+			<Script
+				src={`https://consent.cookiefirst.com/banner.js?cookiefirst-key=${process.env.NEXT_PUBLIC_COOKIEFIRST_KEY}&language=${locale}`}
+				strategy="lazyOnload"
+			/>
 		</>
 	);
 };
