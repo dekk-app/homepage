@@ -82,6 +82,11 @@ const Page: NextPage<PageProps> = () => {
 							Body 2
 						</StyledTypography>
 					</StyledTypographySpace>
+					<StyledTypographySpace>
+						<StyledTypography variant="caption" component="div">
+							Caption
+						</StyledTypography>
+					</StyledTypographySpace>
 				</Column>
 				<Column colSpanM={4} colSpanL={6} colStartL={5}>
 					<Typography variant="h2" component="div">
