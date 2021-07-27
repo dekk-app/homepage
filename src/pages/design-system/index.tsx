@@ -32,7 +32,7 @@ const StyledTypography = styled(Typography)`
 
 const Page: NextPage<PageProps> = () => {
 	return (
-		<Layout>
+		<Layout title="Design System">
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
