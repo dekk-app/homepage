@@ -12,7 +12,7 @@ const Player = ({ animationData, creator }: PlayerProps) => {
 			<Lottie options={options} />
 			<Typography>
 				Animation by{" "}
-				<StyledLink href={creator.url} rel="nofollow">
+				<StyledLink href={creator.url} rel="nofollow" target="_blank">
 					{creator.name}
 				</StyledLink>
 				.
