@@ -1,7 +1,1 @@
-import { css } from "@emotion/react";
-
-export const styles = css`
-	max-width: 100%;
-	margin: auto;
-	pointer-events: none;
-`;
+export const styles = { width: "100%", height: "auto" };

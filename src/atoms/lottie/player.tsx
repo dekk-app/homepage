@@ -1,15 +1,14 @@
 import Typography from "@/atoms/typography";
 import { StyledLink } from "@/atoms/typography/styled";
-import React, { useMemo } from "react";
-import Lottie, { Options } from "react-lottie";
-import { options as defaultOptions } from "./options";
+import React from "react";
+import Lottie from "react-lottie-player";
+import { styles } from "./styles";
 import { PlayerProps } from "./types";
 
 const Player = ({ animationData, creator }: PlayerProps) => {
-	const options: Options = useMemo(() => ({ ...defaultOptions, animationData }), [animationData]);
 	return (
 		<>
-			<Lottie options={options} />
+			<Lottie loop play style={styles} animationData={animationData} />
 			<Typography light variant="caption">
 				Animation by{" "}
 				<StyledLink href={creator.url} rel="nofollow" target="_blank">
