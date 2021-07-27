@@ -22,7 +22,7 @@ import Image from "next/image";
 import React, { FC, memo, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-const Login: FC<LoginProps> = ({ providers }) => {
+const Signin: FC<LoginProps> = ({ providers }) => {
 	const { t } = useTranslation(["form"]);
 	const methods = useForm<LoginFormProps>();
 	const onSubmit = useCallback(
@@ -40,8 +40,8 @@ const Login: FC<LoginProps> = ({ providers }) => {
 						<StyledFormWrapper>
 							<StyledFieldset>
 								<StyledLegend>
-									<Typography variant="h2" component="h1">
-										{t("form:legends.login")}
+									<Typography centered variant="h2" component="h1">
+										{t("form:legends.signin")}
 									</Typography>
 								</StyledLegend>
 								<StyledSocialButtonWrapper>
@@ -84,7 +84,7 @@ const Login: FC<LoginProps> = ({ providers }) => {
 								<InputField
 									fullWidth
 									id="form:signIn:email"
-									helpText={t("form:help-texts.login-register")}
+									helpText={t("form:help-texts.signin-register")}
 									name="email"
 									type="email"
 									validation={{ required: true, pattern: /.*@.*\..*/ }}
@@ -106,4 +106,4 @@ const Login: FC<LoginProps> = ({ providers }) => {
 	);
 };
 
-export default memo(Login);
+export default memo(Signin);

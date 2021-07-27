@@ -14,6 +14,7 @@ export const StyledFieldset = styled.fieldset`
 
 export const StyledLegend = styled.legend`
 	display: block;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 `;

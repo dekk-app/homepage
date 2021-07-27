@@ -32,7 +32,7 @@ Chore commits should be used in the following cases:
 1. Update NPM packages
 2. Update NPM scripts
 3. Update files outside the [Source folder](../src)
-4. Update configuration files 
+4. Update configuration files
 
 **Updating npm packages:**
 
@@ -57,7 +57,7 @@ chore(hooks): add pre-commit hook
 Docs commits should be used in the following cases:
 
 1. Update [documentation files](./)
-2. Update comments or doc-blocks in [Source files](../src) 
+2. Update comments or doc-blocks in [Source files](../src)
 
 **Update documentation:**
 
@@ -76,9 +76,9 @@ Test commits should be used in the following cases:
 **Update test:**
 
 ```
-test: add test for login
+test: add test for signin
 ## OR
-test(login): added new test case
+test(signin): added new test case
 ```
 
 #### Fix
@@ -97,7 +97,7 @@ fix(checkbox): state was inverted
 checking a checkbox was wrong when the outside state changed
 
 fixes: #123
- 
+
 ```
 
 #### Feat
@@ -108,9 +108,9 @@ Each story is on feature.
 **Add feature:**
 
 ```
-feat(EDK-123): add login screen
+feat(signup): add signup screen
 #OR
-feat(EDK-234): tighten password rules
+feat(signup): tighten password rules
 
 BREAKING CHANGE Users might need to update their password
 ```

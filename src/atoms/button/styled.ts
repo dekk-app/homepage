@@ -1,3 +1,4 @@
+import { StyledButtonProps } from "@/atoms/button/types";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -10,7 +11,7 @@ export const StyledButtonWrapper = styled.div`
 	width: 100%;
 `;
 
-export const StyledButton = styled.button<{ fullWidth?: boolean; text?: boolean }>`
+export const StyledButton = styled.button<StyledButtonProps>`
 	display: inline-flex;
 	position: relative;
 	align-content: center;

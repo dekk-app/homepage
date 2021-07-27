@@ -1,6 +1,6 @@
 {
   "button-labels": {
-    "login": "Login",
+    "signin": "Sign in",
     "register": "Register",
     "submit": "Submit"
   },
@@ -20,7 +20,7 @@
     "wish-body": "Body"
   },
   "help-texts": {
-    "login-register": "If you don't have an account we will create one for you",
+    "signin-register": "If you don't have an account we will create one for you",
     "wish-subject": "Keep it short and concise",
     "wish-body": "Tell us exactly what you expect"
   },
@@ -33,10 +33,10 @@
     "enter-email-password": "Please enter your e-mail address and password",
     "enter-name-email": "Please enter your name and e-mail address",
     "enter-password-confirm": "Please enter your password and confirm it",
-    "login": "Login to Dekk"
+    "signin": "Sign in to Dekk"
   },
   "links": {
-    "to-login": "Login",
+    "to-signin": "Sing in",
     "to-register": "Register",
     "to-forgot": "Forgot password"
   },

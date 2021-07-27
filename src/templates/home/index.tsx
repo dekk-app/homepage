@@ -9,7 +9,7 @@ import { StyledColumn, StyledLayout } from "./styled";
 const ProBox = dynamic(async () => import("@/molecules/pro-box"));
 const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
 const Come = dynamic(async () => import("@/atoms/lottie/animations/come"));
-const Login = dynamic(async () => import("@/organisms/login"));
+const Login = dynamic(async () => import("@/organisms/signin"));
 
 const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }> = ({
 	step,

@@ -2,7 +2,7 @@ import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { Column, Grid } from "@/molecules/grid";
-import Login from "@/organisms/login";
+import Login from "@/organisms/signin";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
@@ -31,7 +31,7 @@ const ErrorPage: FC<PageProps> = ({ providers }) => {
 			<Grid>
 				<Column colSpanM={4} colStartM={3} colStartL={5}>
 					{query.error && (
-						<Typography variant="subtitle" component="h1">
+						<Typography centered variant="subtitle" component="h1">
 							{t(`auth:errors.${query.error as string}`)}
 						</Typography>
 					)}

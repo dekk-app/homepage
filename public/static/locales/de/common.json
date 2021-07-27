@@ -9,8 +9,8 @@
   "expand": "Ausklappen",
   "hello": "Hallo",
   "home": "Home",
-  "login": "Anmelden",
-  "logout": "Abmelden",
+  "signin": "Anmelden",
+  "signout": "Abmelden",
   "try-now": "Jetzt Probieren",
   "welcome-to-dekk": "Willkommen zu Dekk"
 }

@@ -9,8 +9,8 @@
   "expand": "Expand",
   "hello": "Hello",
   "home": "Home",
-  "login": "Login",
-  "logout": "Logout",
+  "singin": "Sign in",
+  "signout": "Sign out",
   "try-now": "Try now",
   "welcome-to-dekk": "Welcome to Dekk"
 }

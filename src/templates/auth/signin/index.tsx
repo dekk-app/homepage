@@ -1,7 +1,7 @@
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { Column, Grid } from "@/molecules/grid";
-import Login from "@/organisms/login";
+import Login from "@/organisms/signin";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";

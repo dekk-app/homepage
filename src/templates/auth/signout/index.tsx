@@ -36,16 +36,17 @@ const SignOut = () => {
 			/>
 			<Grid>
 				<Column colSpanM={4} colStartM={3} colStartL={5}>
-					<Typography variant="subtitle" component="h1">
-						{t("auth:logout")}
+					<Typography centered variant="subtitle" component="h1">
+						{t("auth:signout.headline")}
 					</Typography>
 					<Button
+						fullWidth
 						type="button"
 						onClick={() => {
 							void signOut();
 						}}
 					>
-						{t("common:logout")}
+						{t("common:signout")}
 					</Button>
 				</Column>
 			</Grid>

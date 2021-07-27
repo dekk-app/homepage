@@ -27,7 +27,7 @@ const Error500 = () => {
 			/>
 			<Grid>
 				<Column colSpanM={4} colStartM={3} colStartL={5}>
-					<Typography variant="subtitle" component="h1">
+					<Typography centered variant="subtitle" component="h1">
 						{t("error:500.headline")}
 					</Typography>
 					<Locked />

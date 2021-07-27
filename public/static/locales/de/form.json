@@ -1,6 +1,6 @@
 {
   "button-labels": {
-    "login": "Anmelden",
+    "signin": "Anmelden",
     "register": "Registrieren",
     "submit": "Abschicken"
   },
@@ -20,7 +20,7 @@
     "wish-body": "Beschreibung"
   },
   "help-texts": {
-    "login-register": "Wenn du kein Konto hast erstellen wir eins für dich",
+    "signin-register": "Wenn du kein Konto hast erstellen wir eins für dich",
     "wish-subject": "Halte dich kurz und aussagekräftig",
     "wish-body": "Erklär uns genau was du erwartest"
   },
@@ -33,10 +33,10 @@
     "enter-email-password": "Trag bitte deine E-Mail Adresse und dein Passwort ein",
     "enter-name-email": "Trag bitte deinen Namen und deine E-mail Adresse ein",
     "enter-password-confirm": "Trag bitte dein Passwort ein und bestätige es",
-    "login": "Bei Dekk anmelden"
+    "signin": "Bei Dekk anmelden"
   },
   "links": {
-    "to-login": "Zur Anmeldung",
+    "to-signin": "Zur Anmeldung",
     "to-register": "Zur Registrierung",
     "to-forgot": "Passwort vergessen"
   },
