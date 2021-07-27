@@ -1,4 +1,3 @@
-import routes from "@/ions/routes";
 import { ElementType, ReactNode } from "react";
 
 export type TypographyVariant =

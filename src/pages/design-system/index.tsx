@@ -1,7 +1,6 @@
 import { Space } from "@/atoms/space";
 import Typography from "@/atoms/typography";
 import Layout from "@/colonies/layout";
-import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { spaces } from "@/ions/theme";
 import { pxToRem } from "@/ions/utils/unit";
@@ -10,8 +9,7 @@ import OverlayGrid from "@/organisms/grid-overlay";
 import { PageProps, StaticPageProps } from "@/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
-import { getProviders, getSession } from "next-auth/client";
+import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import React from "react";
