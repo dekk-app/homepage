@@ -19,7 +19,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 		outline: 0;
 	}
 
-	${({ theme, bold, isActive }) => css`
+	${({ theme, bold }) => css`
 		font-weight: ${bold ? 600 : 400};
 
 		&:focus-visible {
@@ -31,13 +31,11 @@ export const StyledLink = styled.a<StyledLinkProps>`
 		}
 
 		&::after {
-			content: ${isActive ? "''" : "initial"};
 			top: ${pxToRem(-theme.spaces.xs)};
 			right: ${pxToRem(-theme.spaces.xs)};
 			bottom: ${pxToRem(-theme.spaces.xs)};
 			left: ${pxToRem(-theme.spaces.xs)};
 			border-radius: ${theme.shapes.s};
-			background: ${theme.ui.atoms.button.focus.background};
 		}
 	`};
 `;

@@ -5,9 +5,12 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-const I18nLink: FC<
-	LinkProps & StyledLinkProps & { href: keyof typeof routes; noFollow?: boolean }
-> = ({ bold, children, href, noFollow }) => {
+const I18nLink: FC<LinkProps & StyledLinkProps & { href: keyof typeof routes }> = ({
+	bold,
+	children,
+	href,
+	noFollow,
+}) => {
 	const { locale, route } = useRouter();
 	const i18nHref = routes[href as keyof typeof routes][locale] as string;
 	return (
