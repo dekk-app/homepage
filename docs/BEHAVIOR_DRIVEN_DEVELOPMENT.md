@@ -83,9 +83,9 @@ Feature: Collapsable Navigation Menu
 The keywords `And` and `But` are syntactic sugar for `Given`, `When` and `Then`. They should not be
 used in step definitions, use the corresponding keyword instead.
 
-We only add step definitions that are not common:
+We separate steps and assertions:
 
-**Example:** `/cypress/integration/CollapsableNavigationMenu/index.js`
+**Example:** `/cypress/integration/common/steps.js`
 
 ```js
 const { dataTestId } = require("../../utils");
@@ -106,6 +106,18 @@ When("the menu drawer is open", function () {
   cy.get(dataTestId("open-drawer-button")).click();
   cy.get(dataTestId("drawer-open")).should("exist");
 });
+
+Then("the menu titles should not be visible", function () {
+  cy.get(dataTestId("drawer-menu-title")).each(element => {
+    cy.wrap(element).should("not.be.visible");
+  });
+});
+```
+
+**Example:** `/cypress/integration/common/assert.js`
+
+```js
+const { dataTestId } = require("../../utils");
 
 Then("the menu titles should not be visible", function () {
   cy.get(dataTestId("drawer-menu-title")).each(element => {
@@ -154,8 +166,6 @@ To ensure a flawless development process we decided to follow some simple steps.
 1. Copy the Gherkin description into a feature file (i.e. `cypress/integration/MyFeature.feature`)
 1. Write the test for your feature in a javascript file
    (i.e. `cypress/integration/MyFeature/index.js`)
-1. Push your branch. (ensures that the environment has been prepared, which usually takes more than
-   15 minutes, therefore this will help speed up further steps of our process)
 1. Implement the feature until all assertions are satisfied
 1. Push your feature
 1. Request a review
