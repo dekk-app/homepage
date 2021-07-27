@@ -80,6 +80,26 @@ export const StyledBody2Text = styled.p<StyledTypographyProps>`
 	`}
 `;
 
+export const StyledCaptionText = styled.p<StyledTypographyProps>`
+	margin: ${pxToRem(8)} 0;
+	font-size: ${pxToRem(10)};
+	line-height: ${pxToRem(14)};
+	${({ centered, raw, light }) => css`
+		${raw &&
+		css`
+			margin: 0;
+		`};
+		${centered &&
+		css`
+			text-align: center;
+		`};
+		${light &&
+		css`
+			opacity: 0.6;
+		`};
+	`}
+`;
+
 export const StyledTitleText = styled.h1<StyledTypographyProps>`
 	margin: ${pxToRem(32)} 0;
 	font-size: ${pxToRem(34)};

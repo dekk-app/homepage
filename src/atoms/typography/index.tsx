@@ -10,6 +10,7 @@ const H3Text = dynamic(async () => import("./h3-text"));
 const H4Text = dynamic(async () => import("./h4-text"));
 const BodyText = dynamic(async () => import("./body-text"));
 const Body2Text = dynamic(async () => import("./body2-text"));
+const CaptionText = dynamic(async () => import("./caption-text"));
 
 const Typography: FC<TypographyProps> = ({ children, variant, ...props }) => {
 	switch (variant) {
@@ -27,6 +28,8 @@ const Typography: FC<TypographyProps> = ({ children, variant, ...props }) => {
 			return <H4Text {...props}>{children}</H4Text>;
 		case "body2":
 			return <Body2Text {...props}>{children}</Body2Text>;
+		case "caption":
+			return <CaptionText {...props}>{children}</CaptionText>;
 		case "body":
 		default:
 			return <BodyText {...props}>{children}</BodyText>;
