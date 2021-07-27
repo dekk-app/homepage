@@ -5,12 +5,12 @@ import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { spaces } from "@/ions/theme";
 import { pxToRem } from "@/ions/utils/unit";
-import { Column, Grid } from "@/molecules/grid";
+import { Column, Grid, Row } from "@/molecules/grid";
 import OverlayGrid from "@/organisms/grid-overlay";
-import { PageProps } from "@/types";
+import { PageProps, StaticPageProps } from "@/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { GetServerSideProps, NextPage } from "next";
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
@@ -28,6 +28,14 @@ const StyledTypographySpace = styled.div`
 const StyledTypography = styled(Typography)`
 	width: 100%;
 	background: hsl(230, 80%, 70%);
+`;
+
+const StyledColumn = styled(Column)`
+	min-height: 4em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	background: hsla(180, 50%, 70%, 0.15);
+	box-shadow: inset 0 0 0 2px hsl(180, 50%, 70%);
 `;
 
 const Page: NextPage<PageProps> = () => {
@@ -251,21 +259,69 @@ const Page: NextPage<PageProps> = () => {
 					<Typography variant="h3">XXL ({spaces.xxl})</Typography>
 					<Space space="xxl" />
 				</Column>
+				<Column>
+					<Typography variant="h2">Grid</Typography>
+				</Column>
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={2} />
+				<StyledColumn colSpanXS={2} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={1} />
+				<StyledColumn colSpanXS={2} colSpanS={4} colSpanM={6} />
+				<StyledColumn colSpanXS={2} colSpanS={4} colSpanM={6} />
+				<StyledColumn colSpanL={1} colStartL={4} />
+				<StyledColumn colSpanL={1} colStartL={6} />
+				<StyledColumn colSpanL={1} />
+				<StyledColumn colSpanL={1} colStartL={9} />
+				<StyledColumn colSpanL={3} colStartL={4} />
+				<StyledColumn colSpanL={3} />
+				<StyledColumn colSpanM={6}>
+					<Row>
+						<StyledColumn colSpanL={3} />
+						<StyledColumn colSpanM="calc(var(--col-count) - 1)" />
+						<StyledColumn colSpanM="calc(var(--col-count) - 2)" />
+						<StyledColumn colSpanM="calc(var(--col-count) - 3)" />
+						<StyledColumn colSpanM="calc(var(--col-count) - 4)" />
+						<StyledColumn colSpanM="calc(var(--col-count) - 5)" />
+					</Row>
+				</StyledColumn>
+				<StyledColumn colSpanM={2} colSpanL={6}>
+					<Row>
+						<StyledColumn colSpanM={6}>
+							<Row>
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1}>
+									<Row>
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+									</Row>
+								</StyledColumn>
+							</Row>
+						</StyledColumn>
+					</Row>
+				</StyledColumn>
 			</Grid>
 			{process.env.NODE_ENV === "production" && <OverlayGrid />}
 		</Layout>
 	);
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
+export const getStaticProps: GetStaticProps<StaticPageProps> = async context => {
 	const apolloClient = initializeApollo();
-	return addApolloState(apolloClient, {
+	return addApolloState<StaticPageProps>(apolloClient, {
 		props: {
 			...(await serverSideTranslations(context.locale)),
-			providers: await getProviders(),
-			session: await getSession(context),
 			locale: context.locale,
-			consent: getServerSideConsent(context),
 		},
 	});
 };
