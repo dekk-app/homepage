@@ -1,8 +1,8 @@
 import Button from "@/atoms/button";
+import I18nLink from "@/atoms/i18n-link";
 import Icon from "@/atoms/icon";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
-import { StyledLink } from "@/atoms/typography/styled";
 import { WishlistProvider, WishModalProvider, WishProvider } from "@/ions/hooks/wishes/context";
 import { useWish } from "@/ions/hooks/wishes/wish";
 import { useWishModal } from "@/ions/hooks/wishes/wish-modal";
@@ -24,7 +24,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import React, { FC, useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import {
@@ -240,7 +239,7 @@ const AddWish: FC<AddWishProps> = () => {
 };
 
 const ListOfWishes: FC<ListOfWishesProps> = () => {
-	const { t } = useTranslation(["cancel", "wishlist"]);
+	const { t } = useTranslation(["common", "wishlist"]);
 	const [session] = useSession();
 	const { wishes } = useWishlist();
 	const { open: openModal } = useWishModal();
@@ -262,9 +261,9 @@ const ListOfWishes: FC<ListOfWishesProps> = () => {
 						{t("wishlist:button.wish")}
 					</Button>
 				) : (
-					<Link passHref href="/">
-						<StyledLink>{t("common:cancel")}</StyledLink>
-					</Link>
+					<I18nLink passHref href="/">
+						{t("common:signin")}
+					</I18nLink>
 				)}
 			</StyledWishWrapper>
 			<Column>
