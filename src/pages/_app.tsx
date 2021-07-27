@@ -73,6 +73,10 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 				<link rel="shortcut icon" href={`/favicon.ico?${pkg.version}`} />
 				<link rel="canonical" href={`https://dekk.app${route === "/" ? "" : route}`} />
 				{locales.map(localeCode => {
+					if (!routes[route as keyof typeof routes]) {
+						return null;
+					}
+
 					const href =
 						localeCode === defaultLocale
 							? `https://dekk.app${route}`
