@@ -1,0 +1,8 @@
+{
+  "404": {
+    "headline": "Looks like you got lost"
+  },
+  "500": {
+    "headline": "Our server experienced an error"
+  }
+}

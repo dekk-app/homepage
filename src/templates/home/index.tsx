@@ -7,7 +7,7 @@ import { StyledColumn, StyledLayout } from "./styled";
 
 const ProBox = dynamic(async () => import("@/molecules/pro-box"));
 const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
-const WelcomeLottie = dynamic(async () => import("@/molecules/welcome-screen/lottie"));
+const Come = dynamic(async () => import("@/atoms/lottie/animations/come"));
 const Login = dynamic(async () => import("@/organisms/login"));
 
 const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }> = ({
@@ -20,7 +20,7 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 				{step === 0 ? <Login providers={providers} /> : <WelcomeScreen />}
 			</StyledColumn>
 			<StyledColumn colSpanS={4} colSpanM={5} colSpanL={7} colStartM={4} colStartL={6}>
-				{step === 0 ? <ProBox /> : <WelcomeLottie />}
+				{step === 0 ? <ProBox /> : <Come />}
 			</StyledColumn>
 		</Grid>
 	);

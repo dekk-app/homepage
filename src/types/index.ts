@@ -50,6 +50,11 @@ export interface PageProps {
 	consent: ConsentState | null;
 }
 
+export interface StaticPageProps {
+	locale: string;
+	[APOLLO_STATE_PROP_NAME]?: NormalizedCacheObject;
+}
+
 declare global {
 	interface Window {
 		CookieFirst?: CookieFirst;
