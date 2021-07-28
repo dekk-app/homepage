@@ -41,6 +41,10 @@ const config = {
 	async rewrites() {
 		return [
 			{
+				source: "/sitemap.xml",
+				destination: "/api/sitemap",
+			},
+			{
 				destination: "/de/wishlist",
 				locale: false,
 				source: "/de/wunschliste",
