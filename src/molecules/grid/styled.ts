@@ -17,6 +17,7 @@ const StyledGridBase = styled.div`
 `;
 export const StyledGrid = styled(StyledGridBase)`
 	--col-count: 2;
+	--grid-padding: 1rem;
 
 	margin: 0 auto;
 	padding: 0 calc(var(--gap-x, 1rem) / 2 + var(--grid-padding, 1rem));

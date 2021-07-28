@@ -51,6 +51,7 @@ export const StyledCard = styled(Column)`
 	color: black;
 	${({ theme }) => css`
 		border-radius: ${theme.shapes.s};
+		box-shadow: ${theme.shadows.s};
 	`};
 `;
 

@@ -1,14 +1,13 @@
 import Button from "@/atoms/button";
 import Typography from "@/atoms/typography";
-import { useWish } from "@/ions/hooks/wishes/wish";
-import { useWishModal } from "@/ions/hooks/wishes/wish-modal";
-import { useWishlist } from "@/ions/hooks/wishes/wishlist";
+import { useModal } from "@/ions/contexts/modal";
+import { useWish } from "@/ions/contexts/wish";
+import { useWishlist } from "@/ions/contexts/wishlist";
+import { useLockBodyScroll } from "@/ions/hooks/body-scroll-lock";
 import { CREATE_WISH, UPDATE_WISH } from "@/ions/queries/wishes";
 import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
-import { Column } from "@/molecules/grid";
 import InputField from "@/molecules/input-field";
 import TextArea from "@/molecules/textarea-field";
-import { StyledButtonGroup } from "@/organisms/add-wish/styled";
 import { WishFormProps } from "@/types";
 import { Wish } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
@@ -16,13 +15,15 @@ import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { StyledButtonGroup, StyledModal, StyledModalBackdrop } from "./styled";
 
 const AddWish = () => {
 	const [session] = useSession();
 	const { t } = useTranslation(["cancel", "form", "wishlist"]);
 	const { body, subject, changeBody, changeSubject } = useWish();
 	const { add: addWish } = useWishlist();
-	const { close: closeModal, id, body: previousBody, subject: previousSubject } = useWishModal();
+	const { close: closeModal, id, body: previousBody, subject: previousSubject } = useModal();
+	useLockBodyScroll();
 	const methods = useForm<WishFormProps>({
 		defaultValues: {
 			"wish-subject": previousSubject,
@@ -74,47 +75,51 @@ const AddWish = () => {
 	}, [id, updateMyWish, dataUpdateWish]);
 
 	return (
-		<FormProvider {...methods}>
-			<Column colSpanL={8} colStartL={3}>
-				<Typography centered variant="h1">
-					{t("wishlist:add-wish.headline")}
-				</Typography>
-				<Typography centered>{t("wishlist:add-wish.body")}</Typography>
-			</Column>
-			<Column colSpanL={6} colStartL={4} colSpanM={4} colStartM={3}>
-				<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
-					<StyledFieldset>
-						<InputField
-							fullWidth
-							id="form:wishlist:wish-subject"
-							name="wish-subject"
-							helpText={t("form:help-texts.wish-subject")}
-							validation={{
-								required: true,
-								minLength: 2,
-							}}
-							onChange={changeSubject}
-						/>
-						<TextArea
-							fullWidth
-							id="form:wishlist:wish-body"
-							name="wish-body"
-							helpText={t("form:help-texts.wish-body")}
-							validation={{ required: true, minLength: 2 }}
-							onChange={changeBody}
-						/>
-					</StyledFieldset>
-					<StyledButtonGroup>
-						<Button text type="button" onClick={closeModal}>
-							{t("common:cancel")}
-						</Button>
-						<Button type="submit">
-							{id ? t("wishlist:button.update-wish") : t("wishlist:button.add-wish")}
-						</Button>
-					</StyledButtonGroup>
-				</StyledForm>
-			</Column>
-		</FormProvider>
+		<>
+			<StyledModalBackdrop onClick={closeModal} />
+			<StyledModal>
+				<FormProvider {...methods}>
+					<Typography centered variant="h1">
+						{t("wishlist:add-wish.headline")}
+					</Typography>
+					<Typography centered>{t("wishlist:add-wish.body")}</Typography>
+					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
+						<StyledFieldset>
+							<InputField
+								autoFocus
+								fullWidth
+								id="form:wishlist:wish-subject"
+								name="wish-subject"
+								helpText={t("form:help-texts.wish-subject")}
+								validation={{
+									required: true,
+									minLength: 2,
+								}}
+								onChange={changeSubject}
+							/>
+							<TextArea
+								fullWidth
+								id="form:wishlist:wish-body"
+								name="wish-body"
+								helpText={t("form:help-texts.wish-body")}
+								validation={{ required: true, minLength: 2 }}
+								onChange={changeBody}
+							/>
+						</StyledFieldset>
+						<StyledButtonGroup>
+							<Button type="submit">
+								{id
+									? t("wishlist:button.update-wish")
+									: t("wishlist:button.add-wish")}
+							</Button>
+							<Button text type="button" onClick={closeModal}>
+								{t("common:cancel")}
+							</Button>
+						</StyledButtonGroup>
+					</StyledForm>
+				</FormProvider>
+			</StyledModal>
+		</>
 	);
 };
 

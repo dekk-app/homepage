@@ -1,7 +1,7 @@
 import Icon from "@/atoms/icon";
 import Typography from "@/atoms/typography";
-import { useWishModal } from "@/ions/hooks/wishes/wish-modal";
-import { useWishlist } from "@/ions/hooks/wishes/wishlist";
+import { useModal } from "@/ions/contexts/modal";
+import { useWishlist } from "@/ions/contexts/wishlist";
 import { CREATE_WISH_VOTE, DELETE_WISH_VOTE, USER } from "@/ions/queries/wishes";
 import {
 	StyledArticle,
@@ -19,7 +19,7 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 	const [session] = useSession();
 	const { t } = useTranslation(["wishlist"]);
 	const { update: updateWish } = useWishlist();
-	const { open } = useWishModal();
+	const { open } = useModal();
 
 	const { data: userData } = useQuery<{ user: User }>(USER, {
 		variables: {

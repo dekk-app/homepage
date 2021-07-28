@@ -17,6 +17,7 @@ const InputField: FC<InputFieldProps> = ({
 	testId,
 	fullWidth,
 	defaultValue,
+	autoFocus,
 	helpText,
 	required,
 	validation = {},
@@ -33,9 +34,11 @@ const InputField: FC<InputFieldProps> = ({
 	const { ref, onChange: registeredOnChange, onBlur } = register(name, validation);
 	const refCallback = ref as RefCallback<HTMLInputElement>;
 	const { current } = inputRef;
+
 	useEffect(() => {
 		setFilled(current?.value?.length > 0);
 	}, [current]);
+
 	return (
 		<>
 			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
@@ -54,6 +57,7 @@ const InputField: FC<InputFieldProps> = ({
 					}}
 					id={`${id}_field`}
 					name={name}
+					autoFocus={autoFocus}
 					required={Boolean(validation.required)}
 					invalid={Boolean(errors.name)}
 					type={type}
