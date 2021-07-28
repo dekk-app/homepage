@@ -16,12 +16,3 @@ export const StyledLayout = styled(Layout)`
 		padding-bottom: ${pxToRem(theme.spaces.xxl * 2)};
 	`};
 `;
-
-export const StyledButtonGroup = styled.div`
-	display: grid;
-	grid-template-columns: auto 1fr;
-	justify-content: start;
-	${({ theme }) => css`
-		grid-column-gap: ${pxToRem(theme.spaces.xs)};
-	`};
-`;

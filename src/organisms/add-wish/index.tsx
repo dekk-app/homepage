@@ -8,7 +8,7 @@ import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
 import { Column } from "@/molecules/grid";
 import InputField from "@/molecules/input-field";
 import TextArea from "@/molecules/textarea-field";
-import { StyledButtonGroup } from "@/templates/wishlist/styled";
+import { StyledButtonGroup } from "@/organisms/add-wish/styled";
 import { WishFormProps } from "@/types";
 import { Wish } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
