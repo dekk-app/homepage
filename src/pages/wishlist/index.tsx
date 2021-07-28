@@ -2,7 +2,7 @@ import { getServerSideConsent } from "@/ions/hooks/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { withLoadingAndError } from "@/organisms/with-loading-and-error";
 import Wishlist from "@/templates/wishlist";
-import { USER, WISHES } from "@/templates/wishlist/queries";
+import { USER, WISHES } from "@/ions/queries/wishes";
 import { PageProps } from "@/types";
 import { Wish } from "@/types/backend-api";
 import { useQuery } from "@apollo/client";

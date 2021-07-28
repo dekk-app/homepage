@@ -60,7 +60,3 @@ declare global {
 		CookieFirst?: CookieFirst;
 	}
 }
-
-export interface AddWishProps {}
-
-export interface ListOfWishesProps {}
