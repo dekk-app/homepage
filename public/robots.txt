@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /api/
+Disallow: /_next/data/
+
+Sitemap: https://dekk.app/sitemap.xml
