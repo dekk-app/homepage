@@ -6,6 +6,7 @@ import {
 	Layout,
 	MediaQueries,
 	Palette,
+	Shadows,
 	Shapes,
 	Sizes,
 	Spaces,
@@ -108,6 +109,17 @@ export const shapes: Shapes = {
 	xl: pxToRem(16),
 };
 
+export const shadows: Shadows = {
+	s: `0 ${pxToRem(1)} ${pxToRem(2)} rgba(0,0,0,0.1), 0 ${pxToRem(3)} ${pxToRem(
+		5
+	)} rgba(0,0,0,0.2)`,
+	m: `0 ${pxToRem(3)} ${pxToRem(4)} rgba(0,0,0,0.1), 0 ${pxToRem(7)} ${pxToRem(
+		10
+	)} rgba(0,0,0,0.2)`,
+	l: `0 ${pxToRem(5)} ${pxToRem(7)} rgba(0,0,0,0.1), 0 ${pxToRem(10)} ${pxToRem(
+		15
+	)} rgba(0,0,0,0.3)`,
+};
 export const ui: UIPatterns = {
 	colors: {
 		primary: {
@@ -185,5 +197,6 @@ export const theme: Theme = {
 	palette,
 	shapes,
 	spaces,
+	shadows,
 	ui,
 };

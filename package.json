@@ -45,6 +45,7 @@
     "@emotion/server": "11.4.0",
     "@emotion/styled": "11.3.0",
     "@sentry/nextjs": "6.10.0",
+    "@xobotyi/scrollbar-width": "^1.9.5",
     "deepmerge": "4.2.2",
     "graphql": "15.5.1",
     "lodash.isequal": "4.5.0",

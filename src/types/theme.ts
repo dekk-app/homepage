@@ -63,6 +63,12 @@ export interface Shapes {
 	xl: string;
 }
 
+export interface Shadows {
+	s: string;
+	m: string;
+	l: string;
+}
+
 export type Patterns = Record<string, ElementTheme>;
 
 export type UIPatterns = Record<string, Patterns>;
@@ -72,6 +78,7 @@ export interface Theme {
 	palette: Palette;
 	spaces: Spaces;
 	shapes: Shapes;
+	shadows: Shadows;
 	breakpoints: Sizes;
 	borders: Borders;
 	mq: MediaQueries;

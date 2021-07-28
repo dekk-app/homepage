@@ -18,6 +18,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	align-items: center;
 	justify-content: center;
 	height: ${pxToRem(56)};
+	margin: 0;
 	padding: ${pxToRem(16)} ${pxToRem(24)};
 	border: 0;
 	font-size: ${pxToRem(16)};
@@ -43,7 +44,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		width: ${fullWidth ? "100%" : "initial"};
 		border-radius: ${theme.shapes.s};
 		background: ${text ? "none" : theme.ui.colors.primary.background};
-		color: ${theme.ui.colors.primary.color};
+		color: ${text ? "currentColor" : theme.ui.colors.primary.color};
 
 		&:hover {
 			background: ${text ? theme.ui.atoms.button.hover.background : theme.palette.darkPurple};

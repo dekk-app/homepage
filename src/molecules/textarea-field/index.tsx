@@ -27,6 +27,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	testId,
 	fullWidth,
 	defaultValue,
+	autoFocus,
 	helpText,
 	required,
 	validation = {},
@@ -69,6 +70,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 					ref={textAreaRef}
 					id={`${id}_field`}
 					name={name}
+					autoFocus={autoFocus}
 					required={Boolean(validation.required)}
 					invalid={Boolean(errors.name)}
 					data-test-id={testId}

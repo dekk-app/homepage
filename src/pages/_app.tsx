@@ -1,3 +1,4 @@
+import { ScrollBarWidthProvider } from "@/ions/contexts/scrollbar-width";
 import "@/ions/fonts/poppins.css";
 import { ConsentProvider } from "@/ions/hooks/consent/context";
 import routes from "@/ions/routes";
@@ -103,7 +104,9 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 					<ApolloProvider client={apolloClient}>
 						<EmotionCacheProvider value={cache}>
 							<EmotionThemeProvider theme={theme}>
-								<Component {...pageProps} />
+								<ScrollBarWidthProvider>
+									<Component {...pageProps} />
+								</ScrollBarWidthProvider>
 							</EmotionThemeProvider>
 						</EmotionCacheProvider>
 					</ApolloProvider>
