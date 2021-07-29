@@ -4,17 +4,26 @@ import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
+import Signin from "@/organisms/signin";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
+import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
-const ErrorPage: FC<PageProps> = () => {
+const ErrorPage: FC<PageProps> = ({ providers }) => {
 	const theme = useTheme();
 	const { query } = useRouter();
 	const { t } = useTranslation(["auth", "meta"]);
+	const router = useRouter();
+	const [session] = useSession();
+	useEffect(() => {
+		if (session) {
+			void router.replace("/");
+		}
+	}, [session, router]);
 	return (
 		<Layout title={t("meta:auth.error.title")}>
 			<Head>
@@ -32,10 +41,11 @@ const ErrorPage: FC<PageProps> = () => {
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					{query.error && (
-						<Typography centered variant="h1">
+						<Typography centered>
 							{t(`auth:errors.${query.error as string}`)}
 						</Typography>
 					)}
+					<Signin providers={providers} />
 				</StyledCenteredColumn>
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Crash />
