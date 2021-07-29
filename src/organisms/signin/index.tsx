@@ -5,6 +5,7 @@ import {
 	StyledSocialButtonLabel,
 	StyledSocialButtonWrapper,
 } from "@/atoms/button/styled";
+import Icon from "@/atoms/icon";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
 import {
@@ -53,12 +54,7 @@ const Signin: FC<LoginProps> = ({ providers }) => {
 											void signIn(providers.google.id);
 										}}
 									>
-										<Image
-											src="/big-icons/Google.svg"
-											alt="Google"
-											height={36}
-											width={36}
-										/>
+										<Icon icon="google" />
 										<StyledSocialButtonLabel>Google</StyledSocialButtonLabel>
 									</StyledSocialButton>
 									<StyledSocialButton
@@ -68,12 +64,7 @@ const Signin: FC<LoginProps> = ({ providers }) => {
 											void signIn(providers.github.id);
 										}}
 									>
-										<Image
-											src="/big-icons/Github.svg"
-											alt="Github"
-											height={36}
-											width={36}
-										/>
+										<Icon icon="github" />
 										<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
 									</StyledSocialButton>
 								</StyledSocialButtonWrapper>
