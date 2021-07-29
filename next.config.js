@@ -31,6 +31,12 @@ const config = {
 				source: "/de/legal/privacy-policy",
 			},
 			{
+				destination: "/de/rechtliches/allgemeine-geschaeftsbedingungen",
+				locale: false,
+				permanent: true,
+				source: "/de/legal/terms-of-service",
+			},
+			{
 				destination: "/de/rechtliches/cookie-richtlinie",
 				locale: false,
 				permanent: true,
@@ -53,6 +59,11 @@ const config = {
 				destination: "/de/legal",
 				locale: false,
 				source: "/de/rechtliches",
+			},
+			{
+				destination: "/de/legal/terms-of-service",
+				locale: false,
+				source: "/de/rechtliches/allgemeine-geschaeftsbedingungen",
 			},
 			{
 				destination: "/de/legal/privacy-policy",

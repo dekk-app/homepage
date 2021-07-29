@@ -11,11 +11,36 @@ export const StyledFooter = styled.footer`
 `;
 
 export const StyledFooterItems = styled(Column)`
-	display: grid;
+	a {
+		display: block;
+	}
+
+	${({ theme }) => css`
+		@media only screen and ${theme.mq.m} {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			a {
+				display: inline-block;
+				margin-left: ${pxToRem(theme.spaces.m)};
+			}
+		}
+	`};
+`;
+
+export const StyledFooterInlineItems = styled(Column)`
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
 	justify-content: flex-end;
 	${({ theme }) => css`
-		grid-template-columns: repeat(auto-fit, minmax(${pxToRem(theme.spaces.m)}, auto));
-		grid-gap: ${pxToRem(theme.spaces.m)};
+		a {
+			display: inline-flex;
+			align-content: center;
+			align-items: center;
+			margin-left: ${pxToRem(theme.spaces.m)};
+		}
 	`};
 `;
 
@@ -41,6 +66,8 @@ export const StyledLanguageButton = styled.button`
 	}
 
 	${({ theme }) => css`
+		margin-left: ${pxToRem(theme.spaces.m)};
+
 		&:hover {
 			&::after {
 				content: "";

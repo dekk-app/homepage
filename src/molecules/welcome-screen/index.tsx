@@ -9,11 +9,12 @@ import Link from "next/link";
 import React from "react";
 
 export const StyledLinksWrapper = styled.div`
-	display: grid;
-	grid-template-columns: auto auto;
-	width: max-content;
+	display: flex;
+	flex-wrap: wrap;
 	${({ theme }) => css`
-		grid-gap: ${pxToRem(theme.spaces.m)};
+		a {
+			margin-right: ${pxToRem(theme.spaces.m)};
+		}
 	`};
 `;
 

@@ -7,7 +7,12 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { DeFlag, UsFlag } from "./flags";
-import { StyledFooter, StyledFooterItems, StyledLanguageButton } from "./styled";
+import {
+	StyledFooter,
+	StyledFooterInlineItems,
+	StyledFooterItems,
+	StyledLanguageButton,
+} from "./styled";
 import { FooterProps } from "./types";
 
 const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
@@ -18,17 +23,26 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 			{children}
 			<Grid>
 				<StyledFooterItems>
+					{/*
+					Enable when implemented
+					<I18nLink passHref href="/contact">
+						{t("navigation:contact")}
+					</I18nLink>
+					*/}
 					<I18nLink passHref href="/legal">
 						{t("navigation:imprint")}
 					</I18nLink>
 					<I18nLink passHref href="/legal/privacy-policy">
 						{t("navigation:policy")}
 					</I18nLink>
+					<I18nLink passHref href="/legal/terms-of-service">
+						{t("navigation:terms")}
+					</I18nLink>
 					<I18nLink passHref href="/legal/cookie-policy">
 						{t("navigation:cookies")}
 					</I18nLink>
 				</StyledFooterItems>
-				<StyledFooterItems>
+				<StyledFooterInlineItems>
 					<StyledLanguageButton
 						aria-label="Deutsch"
 						onClick={() => {
@@ -60,7 +74,7 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					<StyledLink rel="nofollow" aria-label="Visit Dekk on Github">
 						<Icon icon="github" />
 					</StyledLink>
-				</StyledFooterItems>
+				</StyledFooterInlineItems>
 			</Grid>
 		</StyledFooter>
 	);

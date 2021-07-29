@@ -23,6 +23,8 @@ const LegalPage: FC<Props> = ({ data, children }) => {
 			title={
 				route === "/legal/privacy-policy"
 					? t("meta:legal.privacy-policy.title")
+					: route === "/legal/terms-of-service"
+					? t("meta:legal.terms-of-service.title")
 					: t("meta:legal.imprint.title")
 			}
 		>

@@ -17,13 +17,16 @@
   },
   "legal": {
     "cookie-policy": {
-      "title": "Cookies"
+      "title": "Cookie Richtlinie"
+    },
+    "terms-of-service": {
+      "title": "Allgemeine Geschäftsbedingungen"
     },
     "imprint": {
       "title": "Impressum"
     },
     "privacy-policy": {
-      "title": "Datenschutz"
+      "title": "Datenschutzrichtlinie"
     }
   },
   "auth": {

@@ -19,11 +19,14 @@
     "cookie-policy": {
       "title": "Cookies"
     },
+    "terms-of-service": {
+      "title": "Terms of Service"
+    },
     "imprint": {
       "title": "Imprint"
     },
     "privacy-policy": {
-      "title": "Privacy"
+      "title": "Privacy Policy"
     }
   },
   "auth": {

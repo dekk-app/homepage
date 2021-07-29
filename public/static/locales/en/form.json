@@ -26,7 +26,7 @@
   },
   "texts": {
     "continue-with": "or continue with e-mail:",
-    "policy-data-agreement": "By sending this form you agree to our <toPrivacyPolicy>Privacy Policy</toPrivacyPolicy>."
+    "policy-data-agreement": "By sending this form you agree to our <toPrivacyPolicy>Privacy Policy</toPrivacyPolicy> and <toTerms>Terns of Service</toTerms>."
   },
   "legends": {
     "enter-email": "Please enter your e-mail address",

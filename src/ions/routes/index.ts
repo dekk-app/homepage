@@ -15,9 +15,17 @@ const routes = {
 		de: "/rechtliches/cookie-richtlinie",
 		en: "/legal/cookie-policy",
 	},
+	"/legal/terms-of-service": {
+		de: "/rechtliches/allgemeine-geschaeftsbedingungen",
+		en: "/legal/terms-of-service",
+	},
 	"/wishlist": {
 		de: "/wunschliste",
 		en: "/wishlist",
+	},
+	"/contact": {
+		de: "/contact",
+		en: "/kontakt",
 	},
 };
 

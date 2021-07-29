@@ -26,7 +26,7 @@
   },
   "texts": {
     "continue-with": "oder mach weiter mit E-mail:",
-    "policy-data-agreement": "Durch absenden dieses Formulars stimmst du unserer <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> zu."
+    "policy-data-agreement": "Durch absenden dieses Formulars stimmst du unserer <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> und unseren <toTerms>Geschäftsbedingungen</toTerms> zu."
   },
   "legends": {
     "enter-email": "Trag bitte deine E-Mail Adresse ein",
