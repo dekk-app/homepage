@@ -22,7 +22,7 @@ const WelcomeScreen = () => {
 	const { t } = useTranslation(["common", "welcome"]);
 	return (
 		<>
-			<Typography variant="h2">{t("welcome:headline")}</Typography>
+			<Typography variant="h1">{t("welcome:headline")}</Typography>
 			<Typography>
 				{t("welcome:body-line1")}
 				<br />
