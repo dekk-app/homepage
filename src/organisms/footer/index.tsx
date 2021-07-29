@@ -1,4 +1,6 @@
 import I18nLink from "@/atoms/i18n-link";
+import Icon from "@/atoms/icon";
+import { StyledLink } from "@/atoms/typography/styled";
 import routes from "@/ions/routes";
 import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
@@ -55,6 +57,9 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					>
 						<UsFlag />
 					</StyledLanguageButton>
+					<StyledLink rel="nofollow" aria-label="Visit Dekk on Github">
+						<Icon icon="github" />
+					</StyledLink>
 				</StyledFooterItems>
 			</Grid>
 		</StyledFooter>
