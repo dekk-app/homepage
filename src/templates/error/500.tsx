@@ -2,7 +2,8 @@ import Way from "@/atoms/lottie/animations/way";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
-import { Column, Grid } from "@/molecules/grid";
+import { Grid } from "@/molecules/grid";
+import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -26,12 +27,20 @@ const Error500 = () => {
 				`}
 			/>
 			<Grid>
-				<Column colSpanM={4} colStartM={3} colStartL={5}>
+				<StyledCenteredColumn colSpanS={4} colSpanM={3} colSpanL={5}>
 					<Typography centered variant="subtitle" component="h1">
 						{t("error:500.headline")}
 					</Typography>
+				</StyledCenteredColumn>
+				<StyledVerticalFlexColumn
+					colSpanS={4}
+					colSpanM={5}
+					colSpanL={7}
+					colStartM={4}
+					colStartL={6}
+				>
 					<Way />
-				</Column>
+				</StyledVerticalFlexColumn>
 			</Grid>
 		</Layout>
 	);
