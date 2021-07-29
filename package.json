@@ -4,7 +4,7 @@
   "main": "n/a",
   "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "npx rimraf@3.0.2 node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-darwin node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-debian-openssl-1.1.x node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-rhel-openssl-1.0.x",
+    "prebuild": "npx rimraf@3.0.2 node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-darwin node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-debian-openssl-1.1.x",
     "build": "next build",
     "cypress:run": "npx cypress@8.0.0 run --record",
     "cypress:run-local": "npx cypress@8.0.0 run",
