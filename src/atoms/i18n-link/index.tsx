@@ -1,18 +1,18 @@
 import { StyledLink } from "@/atoms/typography/styled";
 import { StyledLinkProps } from "@/atoms/typography/types";
-import routes from "@/ions/routes";
+import routes, { Route } from "@/ions/routes";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-const I18nLink: FC<LinkProps & StyledLinkProps & { href: keyof typeof routes }> = ({
+const I18nLink: FC<LinkProps & StyledLinkProps & { href: Route }> = ({
 	bold,
 	children,
 	href,
 	noFollow,
 }) => {
 	const { locale, route } = useRouter();
-	const i18nHref = routes[href as keyof typeof routes][locale] as string;
+	const i18nHref = routes[href as Route][locale] as string;
 	return (
 		<Link passHref href={i18nHref}>
 			<StyledLink

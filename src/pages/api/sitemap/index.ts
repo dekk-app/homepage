@@ -1,4 +1,4 @@
-import routes from "@/ions/routes";
+import routes, { Route } from "@/ions/routes";
 import { NextApiRequest, NextApiResponse } from "next";
 import { SitemapStream, streamToPromise } from "sitemap";
 
@@ -26,7 +26,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 
 		const defaultLocale = "en";
 		const locales: Array<"de" | "en"> = ["en", "de"];
-		const indexedRoutes: Array<keyof typeof routes> = ["/", "/wishlist"];
+		const indexedRoutes: Route[] = ["/", "/wishlist"];
 		for (const locale of locales) {
 			for (const route of indexedRoutes) {
 				smStream.write({

@@ -1,7 +1,7 @@
 import I18nLink from "@/atoms/i18n-link";
 import Icon from "@/atoms/icon";
 import { StyledLink } from "@/atoms/typography/styled";
-import routes from "@/ions/routes";
+import routes, { Route } from "@/ions/routes";
 import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -46,13 +46,9 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					<StyledLanguageButton
 						aria-label="Deutsch"
 						onClick={() => {
-							void router.replace(
-								routes[router.route as keyof typeof routes].de,
-								undefined,
-								{
-									locale: "de",
-								}
-							);
+							void router.replace(routes[router.route as Route].de, undefined, {
+								locale: "de",
+							});
 						}}
 					>
 						<DeFlag />
@@ -60,18 +56,19 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					<StyledLanguageButton
 						aria-label="English"
 						onClick={() => {
-							void router.replace(
-								routes[router.route as keyof typeof routes].en,
-								undefined,
-								{
-									locale: "en",
-								}
-							);
+							void router.replace(routes[router.route as Route].en, undefined, {
+								locale: "en",
+							});
 						}}
 					>
 						<UsFlag />
 					</StyledLanguageButton>
-					<StyledLink rel="nofollow" aria-label="Visit Dekk on Github">
+					<StyledLink
+						href="https://github.com/dekk-app"
+						rel="nofollow"
+						target="_blank"
+						aria-label="Visit Dekk on Github"
+					>
 						<Icon icon="github" />
 					</StyledLink>
 				</StyledFooterInlineItems>

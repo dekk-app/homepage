@@ -1,7 +1,7 @@
 import { ScrollBarWidthProvider } from "@/ions/contexts/scrollbar-width";
 import "@/ions/fonts/poppins.css";
 import { ConsentProvider } from "@/ions/hooks/consent/context";
-import routes from "@/ions/routes";
+import routes, { Route } from "@/ions/routes";
 import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
 import { theme } from "@/ions/theme";
@@ -75,7 +75,7 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 				<link rel="shortcut icon" href={`/favicon.ico?${pkg.version}`} />
 				<link rel="canonical" href={`https://dekk.app${route === "/" ? "" : route}`} />
 				{locales.map(localeCode => {
-					if (!routes[route as keyof typeof routes]) {
+					if (!routes[route as Route]) {
 						return null;
 					}
 
@@ -83,7 +83,7 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 						localeCode === defaultLocale
 							? `https://dekk.app${route}`
 							: `https://dekk.app/${localeCode}${
-									routes[route as keyof typeof routes][localeCode] as string
+									routes[route as Route][localeCode] as string
 							  }`;
 					const hrefRoot =
 						localeCode === defaultLocale

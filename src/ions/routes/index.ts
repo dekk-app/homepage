@@ -29,4 +29,6 @@ const routes = {
 	},
 };
 
+export type Route = keyof typeof routes;
+
 export default routes;
