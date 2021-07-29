@@ -80,6 +80,7 @@ export const StyledSocialButton = styled.button`
 	justify-content: center;
 	justify-self: stretch;
 	height: ${pxToRem(60)};
+	margin: 0;
 	border: 0;
 	background: none;
 	box-shadow: inset 0 0 0 1px #eee;
