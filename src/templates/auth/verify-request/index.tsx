@@ -2,8 +2,8 @@ import Contact from "@/atoms/lottie/animations/contact";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
-import { Grid } from "@/molecules/grid";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
+import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
@@ -27,7 +27,7 @@ const VerifyRequest: FC<PageProps> = () => {
 					}
 				`}
 			/>
-			<Grid>
+			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography centered variant="subtitle" component="h1">
 						{t("auth:verify-email")}
@@ -36,7 +36,7 @@ const VerifyRequest: FC<PageProps> = () => {
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Contact />
 				</StyledCenteredColumn>
-			</Grid>
+			</StyledFlexedGrid>
 		</Layout>
 	);
 };

@@ -3,8 +3,8 @@ import Locked from "@/atoms/lottie/animations/locked";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
-import { Grid } from "@/molecules/grid";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
+import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import Transdown from "@/molecules/transdown";
 import { css, Global, useTheme } from "@emotion/react";
 import { signOut, useSession } from "next-auth/client";
@@ -37,9 +37,9 @@ const SignOut = () => {
 					}
 				`}
 			/>
-			<Grid>
+			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
-					<Typography centered variant="subtitle" component="h1">
+					<Typography centered variant="h1">
 						{t("auth:signout.headline")}
 					</Typography>
 
@@ -61,7 +61,7 @@ const SignOut = () => {
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Locked />
 				</StyledCenteredColumn>
-			</Grid>
+			</StyledFlexedGrid>
 		</Layout>
 	);
 };

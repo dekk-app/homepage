@@ -2,8 +2,8 @@ import Way from "@/atoms/lottie/animations/way";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
-import { Grid } from "@/molecules/grid";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
+import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -26,16 +26,16 @@ const Error404 = () => {
 					}
 				`}
 			/>
-			<Grid>
+			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
-					<Typography centered variant="subtitle" component="h1">
+					<Typography centered variant="h1">
 						{t("error:404.headline")}
 					</Typography>
 				</StyledCenteredColumn>
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Way />
 				</StyledCenteredColumn>
-			</Grid>
+			</StyledFlexedGrid>
 		</Layout>
 	);
 };

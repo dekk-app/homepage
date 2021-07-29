@@ -15,6 +15,7 @@ const StyledGridBase = styled.div`
 		max-width: ${pxToRem(theme.breakpoints.l)};
 	`};
 `;
+
 export const StyledGrid = styled(StyledGridBase)`
 	--col-count: 2;
 	--grid-padding: 1rem;

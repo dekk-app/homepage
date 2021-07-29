@@ -1,8 +1,8 @@
 import Locked from "@/atoms/lottie/animations/locked";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
-import { Grid } from "@/molecules/grid";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
+import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import Login from "@/organisms/signin";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
@@ -36,14 +36,14 @@ const SignIn: FC<PageProps> = ({ providers }) => {
 					}
 				`}
 			/>
-			<Grid>
+			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Login providers={providers} />
 				</StyledCenteredColumn>
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Locked />
 				</StyledCenteredColumn>
-			</Grid>
+			</StyledFlexedGrid>
 		</Layout>
 	);
 };

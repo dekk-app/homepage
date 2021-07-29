@@ -1,10 +1,9 @@
-import Locked from "@/atoms/lottie/animations/locked";
+import Crash from "@/atoms/lottie/animations/crash";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
-import { Grid } from "@/molecules/grid";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
-import Login from "@/organisms/signin";
+import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
@@ -12,7 +11,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-const ErrorPage: FC<PageProps> = ({ providers }) => {
+const ErrorPage: FC<PageProps> = () => {
 	const theme = useTheme();
 	const { query } = useRouter();
 	const { t } = useTranslation(["auth", "meta"]);
@@ -30,19 +29,18 @@ const ErrorPage: FC<PageProps> = ({ providers }) => {
 					}
 				`}
 			/>
-			<Grid>
+			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					{query.error && (
-						<Typography centered variant="subtitle" component="h1">
+						<Typography centered variant="h1">
 							{t(`auth:errors.${query.error as string}`)}
 						</Typography>
 					)}
-					<Login providers={providers} />
 				</StyledCenteredColumn>
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
-					<Locked />
+					<Crash />
 				</StyledCenteredColumn>
-			</Grid>
+			</StyledFlexedGrid>
 		</Layout>
 	);
 };

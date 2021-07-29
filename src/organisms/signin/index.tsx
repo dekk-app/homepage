@@ -41,7 +41,7 @@ const Signin: FC<LoginProps> = ({ providers }) => {
 						<StyledFormWrapper>
 							<StyledFieldset>
 								<StyledLegend>
-									<Typography centered variant="h2" component="h1">
+									<Typography centered variant="h1">
 										{t("form:legends.signin")}
 									</Typography>
 								</StyledLegend>
