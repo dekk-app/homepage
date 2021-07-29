@@ -3,7 +3,7 @@ import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { Grid } from "@/molecules/grid";
-import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
+import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
