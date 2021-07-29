@@ -83,7 +83,9 @@ export const StyledSocialButton = styled.button`
 	margin: 0;
 	border: 0;
 	background: none;
-	box-shadow: inset 0 0 0 1px #eee;
+	color: currentColor;
+	font-family: inherit;
+	font-size: 1em;
 
 	&:hover {
 		color: currentColor;
@@ -99,6 +101,7 @@ export const StyledSocialButton = styled.button`
 
 	${({ theme }) => css`
 		border-radius: ${theme.shapes.s};
+		box-shadow: inset 0 0 0 1px currentColor;
 
 		&:hover {
 			background: ${theme.ui.atoms.button.hover.background};
@@ -112,6 +115,13 @@ export const StyledSocialButton = styled.button`
 			background: ${theme.ui.atoms.button.focus.background};
 			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
 		}
+	`};
+`;
+
+export const StyledSocialButtonLabel = styled.span`
+	${({ theme }) => css`
+		margin-left: ${pxToRem(theme.spaces.s)};
+		color: currentColor;
 	`};
 `;
 

@@ -2,6 +2,7 @@ import {
 	StyledButton,
 	StyledButtonWrapper,
 	StyledSocialButton,
+	StyledSocialButtonLabel,
 	StyledSocialButtonWrapper,
 } from "@/atoms/button/styled";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
@@ -58,6 +59,7 @@ const Signin: FC<LoginProps> = ({ providers }) => {
 											height={36}
 											width={36}
 										/>
+										<StyledSocialButtonLabel>Google</StyledSocialButtonLabel>
 									</StyledSocialButton>
 									<StyledSocialButton
 										type="button"
@@ -72,6 +74,7 @@ const Signin: FC<LoginProps> = ({ providers }) => {
 											height={36}
 											width={36}
 										/>
+										<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
 									</StyledSocialButton>
 								</StyledSocialButtonWrapper>
 								<StyledStripeWrapper>
