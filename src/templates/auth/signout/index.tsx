@@ -38,7 +38,7 @@ const SignOut = () => {
 				`}
 			/>
 			<Grid>
-				<StyledCenteredColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography centered variant="subtitle" component="h1">
 						{t("auth:signout.headline")}
 					</Typography>
@@ -58,15 +58,9 @@ const SignOut = () => {
 						</Button>
 					</div>
 				</StyledCenteredColumn>
-				<StyledVerticalFlexColumn
-					colSpanS={4}
-					colSpanM={5}
-					colSpanL={7}
-					colStartM={4}
-					colStartL={6}
-				>
+				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Locked />
-				</StyledVerticalFlexColumn>
+				</StyledCenteredColumn>
 			</Grid>
 		</Layout>
 	);

@@ -37,18 +37,12 @@ const SignIn: FC<PageProps> = ({ providers }) => {
 				`}
 			/>
 			<Grid>
-				<StyledCenteredColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Login providers={providers} />
 				</StyledCenteredColumn>
-				<StyledVerticalFlexColumn
-					colSpanS={4}
-					colSpanM={5}
-					colSpanL={7}
-					colStartM={4}
-					colStartL={6}
-				>
+				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Locked />
-				</StyledVerticalFlexColumn>
+				</StyledCenteredColumn>
 			</Grid>
 		</Layout>
 	);

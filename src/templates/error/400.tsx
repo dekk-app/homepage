@@ -27,20 +27,14 @@ const Error404 = () => {
 				`}
 			/>
 			<Grid>
-				<StyledCenteredColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography centered variant="subtitle" component="h1">
 						{t("error:404.headline")}
 					</Typography>
 				</StyledCenteredColumn>
-				<StyledVerticalFlexColumn
-					colSpanS={4}
-					colSpanM={5}
-					colSpanL={7}
-					colStartM={4}
-					colStartL={6}
-				>
+				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Way />
-				</StyledVerticalFlexColumn>
+				</StyledCenteredColumn>
 			</Grid>
 		</Layout>
 	);

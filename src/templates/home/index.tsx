@@ -19,22 +19,16 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 	return (
 		<Grid>
 			{step === 0 ? (
-				<StyledVerticalFlexColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+				<StyledVerticalFlexColumn colSpanM={4} colSpanL={5}>
 					<Login providers={providers} />
 				</StyledVerticalFlexColumn>
 			) : (
-				<StyledCenteredColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+				<StyledCenteredColumn colSpanL={5}>
 					<WelcomeScreen />
 				</StyledCenteredColumn>
 			)}
 
-			<StyledVerticalFlexColumn
-				colSpanS={4}
-				colSpanM={5}
-				colSpanL={7}
-				colStartM={4}
-				colStartL={6}
-			>
+			<StyledVerticalFlexColumn colSpanM={4} colSpanL={7}>
 				{step === 0 ? <ProBox /> : <Come />}
 			</StyledVerticalFlexColumn>
 		</Grid>
