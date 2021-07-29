@@ -15,7 +15,7 @@ import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { StyledModalActions, StyledModal, StyledModalBackdrop, StyledModalHeader } from "./styled";
+import Modal, { ModalActions, ModalContent, ModalHeader } from "../../molecules/modal";
 
 const AddWish = () => {
 	const [session] = useSession();
@@ -75,15 +75,14 @@ const AddWish = () => {
 	}, [id, updateMyWish, dataUpdateWish]);
 
 	return (
-		<>
-			<StyledModalBackdrop onClick={closeModal} />
-			<StyledModal>
+		<Modal>
+			<ModalHeader>
+				<Typography centered raw variant="h3">
+					{t("wishlist:add-wish.headline")}
+				</Typography>
+			</ModalHeader>
+			<ModalContent>
 				<FormProvider {...methods}>
-					<StyledModalHeader>
-						<Typography centered variant="h1">
-							{t("wishlist:add-wish.headline")}
-						</Typography>
-					</StyledModalHeader>
 					<Typography centered>{t("wishlist:add-wish.body")}</Typography>
 					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 						<StyledFieldset>
@@ -108,7 +107,7 @@ const AddWish = () => {
 								onChange={changeBody}
 							/>
 						</StyledFieldset>
-						<StyledModalActions>
+						<ModalActions>
 							<Button type="submit">
 								{id
 									? t("wishlist:button.update-wish")
@@ -117,11 +116,11 @@ const AddWish = () => {
 							<Button text type="button" onClick={closeModal}>
 								{t("common:cancel")}
 							</Button>
-						</StyledModalActions>
+						</ModalActions>
 					</StyledForm>
 				</FormProvider>
-			</StyledModal>
-		</>
+			</ModalContent>
+		</Modal>
 	);
 };
 

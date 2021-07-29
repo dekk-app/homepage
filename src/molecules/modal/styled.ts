@@ -1,4 +1,3 @@
-import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -7,13 +6,13 @@ export const StyledModalActions = styled.footer`
 	display: grid;
 	position: sticky;
 	z-index: 1;
-	bottom: 0;
+	bottom: calc(var(--padding-y) * -1);
 	grid-template-columns: 1fr auto;
 	justify-content: start;
+	margin: 0 calc(var(--padding-x) * -1) calc(var(--padding-y) * -1);
+	padding: var(--padding-y) var(--padding-x);
 	${({ theme }) => css`
 		grid-column-gap: ${pxToRem(theme.spaces.xs)};
-		margin: 0 calc(var(--padding-x) * -1);
-		padding: ${pxToRem(theme.spaces.m)} var(--padding-x) ${pxToRem(theme.spaces.l)};
 		background: ${theme.ui.colors.dark.background};
 		color: ${theme.ui.colors.dark.color};
 	`};
@@ -22,13 +21,19 @@ export const StyledModalActions = styled.footer`
 export const StyledModalHeader = styled.header`
 	position: sticky;
 	z-index: 1;
-	top: 0;
+	top: calc(var(--padding-y) * -1);
+	margin: calc(var(--padding-y) * -1) calc(var(--padding-x) * -1) 0;
+	padding: var(--padding-y) var(--padding-x);
 	${({ theme }) => css`
-		margin: 0 calc(var(--padding-x) * -1);
-		padding: ${pxToRem(theme.spaces.m)} var(--padding-x) ${pxToRem(theme.spaces.l)};
 		background: ${theme.ui.colors.dark.background};
 		color: ${theme.ui.colors.dark.color};
 	`};
+`;
+
+export const StyledModalContent = styled.div`
+	display: flex;
+	flex: 1;
+	flex-direction: column;
 `;
 
 export const StyledModal = styled.div`
@@ -44,7 +49,9 @@ export const StyledModal = styled.div`
 	overflow: auto;
 	transform: translate(-50%, -50%);
 	${({ theme }) => css`
-		padding: 0 var(--padding-x);
+		--padding-y: ${pxToRem(theme.spaces.l)};
+
+		padding: var(--padding-y) var(--padding-x);
 		background: ${theme.ui.colors.dark.background};
 		color: ${theme.ui.colors.dark.color};
 
