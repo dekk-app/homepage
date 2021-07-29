@@ -10,7 +10,7 @@ import React, { FC, useEffect, useState } from "react";
 const ProBox = dynamic(async () => import("@/molecules/pro-box"));
 const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
 const Come = dynamic(async () => import("@/atoms/lottie/animations/come"));
-const Login = dynamic(async () => import("@/organisms/signin"));
+const Signin = dynamic(async () => import("@/organisms/signin"));
 
 const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }> = ({
 	step,
@@ -20,7 +20,7 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 		<StyledFlexedGrid>
 			{step === 0 ? (
 				<StyledVerticalFlexColumn colSpanM={4} colSpanL={5}>
-					<Login providers={providers} />
+					<Signin providers={providers} />
 				</StyledVerticalFlexColumn>
 			) : (
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
