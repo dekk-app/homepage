@@ -4,17 +4,17 @@
   "button": {
     "add-wish": "Add wish",
     "edit": "Edit",
-    "down-vote": "Downvote",
-    "up-vote": "Upvote",
+    "down-vote": "Remove vote",
+    "up-vote": "Add vote",
     "update-wish": "Update wish",
     "wish": "I have a wish"
   },
   "tooltip": {
-    "disabled": "Editing of wishes with votes is not allowed."
+    "disabled": "Can't edit wishes with votes."
   },
   "add-wish": {
     "headline": "Tell us your wish",
-    "body": "As a thank-you we will gift you a Dekk Pro account"
+    "body": "As a thank-you we will gift you a Dekk pro account"
   },
   "my-wish": "My wish"
 }

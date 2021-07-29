@@ -4,13 +4,13 @@
   "button": {
     "add-wish": "Wunsch abgeben",
     "edit": "Bearbeiten",
-    "down-vote": "Abwählen",
-    "up-vote": "Anwählen",
+    "down-vote": "Stimme abgeben",
+    "up-vote": "Stimme entfernen",
     "update-wish": "Wunsch anpassen",
     "wish": "Ich habe einen Wunsch"
   },
   "tooltip": {
-    "disabled": "Bearbeiten von Wünschen mit Stimmen ist nicht erlaubt."
+    "disabled": "Wünsche mit Stimmen können nicht bearbeitet werden."
   },
   "add-wish": {
     "headline": "Nenne uns deinen Wunsch",
