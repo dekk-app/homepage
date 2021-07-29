@@ -8,10 +8,11 @@ export const StyledInput = styled("input", {
 		return !disallowedProps.includes(propName);
 	},
 })<{ invalid?: boolean }>`
+	display: flex;
 	width: 100%;
-	height: ${pxToRem(56)};
+	height: ${pxToRem(60)};
 	margin: 0;
-	padding: ${pxToRem(32)} ${pxToRem(24)} ${pxToRem(12)};
+	padding: ${pxToRem(24)} ${pxToRem(24)} ${pxToRem(12)};
 	border: 0;
 	font-family: inherit;
 	font-size: ${pxToRem(16)};

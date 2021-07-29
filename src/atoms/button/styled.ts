@@ -17,7 +17,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	align-content: center;
 	align-items: center;
 	justify-content: center;
-	height: ${pxToRem(56)};
+	height: ${pxToRem(60)};
 	margin: 0;
 	padding: ${pxToRem(16)} ${pxToRem(24)};
 	border: 0;

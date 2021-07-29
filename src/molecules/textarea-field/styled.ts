@@ -10,10 +10,11 @@ export const StyledTextArea = styled(TextareaAutosize, {
 		return !disallowedProps.includes(propName);
 	},
 })<{ invalid?: boolean }>`
+	display: flex;
 	width: 100%;
-	min-height: ${pxToRem(200)};
+	min-height: ${pxToRem(150)};
 	margin: 0;
-	padding: ${pxToRem(32)} ${pxToRem(24)} ${pxToRem(12)};
+	padding: ${pxToRem(24)} ${pxToRem(24)} ${pxToRem(12)};
 	border: 0;
 	border-radius: ${pxToRem(10)};
 	font-family: inherit;
