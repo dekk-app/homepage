@@ -8,7 +8,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 	${a};
 	display: inline-flex;
 	position: relative;
-	width: max-content;
+	word-break: break-all;
 
 	&::after {
 		position: absolute;
