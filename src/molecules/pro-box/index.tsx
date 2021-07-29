@@ -1,15 +1,14 @@
 import { ListItem, UnorderedList } from "@/atoms/list";
 import { CheckBullet } from "@/atoms/list/bullets";
-import Typography from "@/atoms/typography";
-import { StyledProBox } from "@/templates/home/styled";
 import { useTranslation } from "next-i18next";
 import React from "react";
+import { StyledProHeadline, StyledProBox } from "./styled";
 
 const ProBox = () => {
 	const { t } = useTranslation(["welcome"]);
 	return (
 		<StyledProBox>
-			<Typography variant="h2">{t("welcome:pro.headline")}</Typography>
+			<StyledProHeadline>{t("welcome:pro.headline")}</StyledProHeadline>
 			<UnorderedList>
 				<ListItem>
 					<CheckBullet />

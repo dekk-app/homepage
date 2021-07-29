@@ -31,5 +31,5 @@ export interface StyledTypographyProps {
 	raw?: boolean;
 	centered?: boolean;
 	light?: boolean;
-	as: ElementType;
+	as?: ElementType;
 }
