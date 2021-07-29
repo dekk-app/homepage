@@ -2,7 +2,7 @@ import { ListItem, UnorderedList } from "@/atoms/list";
 import { CheckBullet } from "@/atoms/list/bullets";
 import { useTranslation } from "next-i18next";
 import React from "react";
-import { StyledProHeadline, StyledProBox } from "./styled";
+import { StyledProBox, StyledProHeadline } from "./styled";
 
 const ProBox = () => {
 	const { t } = useTranslation(["welcome"]);

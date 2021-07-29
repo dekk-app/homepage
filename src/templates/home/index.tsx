@@ -1,10 +1,11 @@
 import { Grid } from "@/molecules/grid";
+import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
 import { css, Global, useTheme } from "@emotion/react";
 import { ClientSafeProvider, useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import React, { FC, useEffect, useState } from "react";
-import { StyledColumn, StyledLayout } from "./styled";
+import { StyledLayout } from "./styled";
 
 const ProBox = dynamic(async () => import("@/molecules/pro-box"));
 const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
@@ -17,12 +18,25 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 }) => {
 	return (
 		<Grid>
-			<StyledColumn colSpanS={4} colSpanM={3} colSpanL={5}>
-				{step === 0 ? <Login providers={providers} /> : <WelcomeScreen />}
-			</StyledColumn>
-			<StyledColumn colSpanS={4} colSpanM={5} colSpanL={7} colStartM={4} colStartL={6}>
+			{step === 0 ? (
+				<StyledVerticalFlexColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+					<Login providers={providers} />
+				</StyledVerticalFlexColumn>
+			) : (
+				<StyledCenteredColumn colSpanS={4} colSpanM={3} colSpanL={5}>
+					<WelcomeScreen />
+				</StyledCenteredColumn>
+			)}
+
+			<StyledVerticalFlexColumn
+				colSpanS={4}
+				colSpanM={5}
+				colSpanL={7}
+				colStartM={4}
+				colStartL={6}
+			>
 				{step === 0 ? <ProBox /> : <Come />}
-			</StyledColumn>
+			</StyledVerticalFlexColumn>
 		</Grid>
 	);
 };

@@ -1,4 +1,4 @@
-import Locked from "@/atoms/lottie/animations/locked";
+import Way from "@/atoms/lottie/animations/way";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
@@ -30,7 +30,7 @@ const Error500 = () => {
 					<Typography centered variant="subtitle" component="h1">
 						{t("error:500.headline")}
 					</Typography>
-					<Locked />
+					<Way />
 				</Column>
 			</Grid>
 		</Layout>
