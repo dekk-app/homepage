@@ -15,7 +15,7 @@ import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { StyledButtonGroup, StyledModal, StyledModalBackdrop } from "./styled";
+import { StyledModalActions, StyledModal, StyledModalBackdrop, StyledModalHeader } from "./styled";
 
 const AddWish = () => {
 	const [session] = useSession();
@@ -79,9 +79,11 @@ const AddWish = () => {
 			<StyledModalBackdrop onClick={closeModal} />
 			<StyledModal>
 				<FormProvider {...methods}>
-					<Typography centered variant="h1">
-						{t("wishlist:add-wish.headline")}
-					</Typography>
+					<StyledModalHeader>
+						<Typography centered variant="h1">
+							{t("wishlist:add-wish.headline")}
+						</Typography>
+					</StyledModalHeader>
 					<Typography centered>{t("wishlist:add-wish.body")}</Typography>
 					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 						<StyledFieldset>
@@ -106,7 +108,7 @@ const AddWish = () => {
 								onChange={changeBody}
 							/>
 						</StyledFieldset>
-						<StyledButtonGroup>
+						<StyledModalActions>
 							<Button type="submit">
 								{id
 									? t("wishlist:button.update-wish")
@@ -115,7 +117,7 @@ const AddWish = () => {
 							<Button text type="button" onClick={closeModal}>
 								{t("common:cancel")}
 							</Button>
-						</StyledButtonGroup>
+						</StyledModalActions>
 					</StyledForm>
 				</FormProvider>
 			</StyledModal>

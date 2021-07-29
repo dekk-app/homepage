@@ -1,2 +1,2 @@
 export const setOpacity = (hexColor: string, opacity: number) =>
-	`${hexColor}${`${opacity}`.padStart(2, "0")}`;
+	`${hexColor}${Math.round((255 / 100) * opacity).toString(16)}`;

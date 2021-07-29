@@ -50,8 +50,7 @@ export const StyledCard = styled(Column)`
 	background-color: white;
 	color: black;
 	${({ theme }) => css`
-		border-radius: ${theme.shapes.s};
-		box-shadow: ${theme.shadows.s};
+		border-radius: ${theme.shapes.m};
 	`};
 `;
 

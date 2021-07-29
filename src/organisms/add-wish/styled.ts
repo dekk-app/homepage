@@ -1,31 +1,50 @@
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledButtonGroup = styled.div`
+export const StyledModalActions = styled.footer`
 	display: grid;
 	position: sticky;
+	z-index: 1;
 	bottom: 0;
 	grid-template-columns: 1fr auto;
 	justify-content: start;
 	${({ theme }) => css`
 		grid-column-gap: ${pxToRem(theme.spaces.xs)};
-		padding: ${pxToRem(theme.spaces.m)} 0 ${pxToRem(theme.spaces.l)};
+		margin: 0 calc(var(--padding-x) * -1);
+		padding: ${pxToRem(theme.spaces.m)} var(--padding-x) ${pxToRem(theme.spaces.l)};
+		background: ${theme.ui.colors.dark.background};
+		color: ${theme.ui.colors.dark.color};
+	`};
+`;
+
+export const StyledModalHeader = styled.header`
+	position: sticky;
+	z-index: 1;
+	top: 0;
+	${({ theme }) => css`
+		margin: 0 calc(var(--padding-x) * -1);
+		padding: ${pxToRem(theme.spaces.m)} var(--padding-x) ${pxToRem(theme.spaces.l)};
 		background: ${theme.ui.colors.dark.background};
 		color: ${theme.ui.colors.dark.color};
 	`};
 `;
 
 export const StyledModal = styled.div`
+	--padding-x: calc(var(--gap-x) / 2 + var(--grid-padding));
+
+	display: flex;
 	position: fixed;
 	top: 50%;
 	left: 50%;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
 	transform: translate(-50%, -50%);
 	${({ theme }) => css`
-		padding: ${pxToRem(theme.spaces.l)} calc(var(--gap-x) / 2 + var(--grid-padding)) 0;
+		padding: 0 var(--padding-x);
 		background: ${theme.ui.colors.dark.background};
 		color: ${theme.ui.colors.dark.color};
 

@@ -36,7 +36,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	const inputRef = useRef<HTMLTextAreaElement | null>(null);
 	const {
 		register,
-		formState: { errors, isValid },
+		formState: { errors, isValid, isDirty },
 	} = useFormContext();
 	const [filled, setFilled] = useState(defaultValue?.length > 0);
 	const [focused, setFocused] = useState(false);
@@ -60,7 +60,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
 				<StyledFloatingLabel
 					floating={focused || filled || isValid}
-					initial={isValid}
+					initial={isValid || !isDirty}
 					id={`${id}_label`}
 				>
 					{t(`form:fields-labels.${name}`)}

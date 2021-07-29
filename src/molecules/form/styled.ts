@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 export const StyledFieldset = styled.fieldset`
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	align-content: center;
 	align-items: center;
@@ -30,5 +31,8 @@ export const StyledFormWrapper = styled.div`
 `;
 
 export const StyledForm = styled.form`
+	display: flex;
+	flex: 1;
+	flex-direction: column;
 	width: 100%;
 `;
