@@ -39,7 +39,7 @@ const Wishlist = () => {
 					<Typography variant="h1">{t("wishlist:headline")}</Typography>
 					<Typography variant="body">{t("wishlist:description")}</Typography>
 				</Column>
-				<StyledWishWrapper colSpanL={4}>
+				<StyledWishWrapper>
 					{session ? (
 						<Button
 							type="button"
@@ -55,11 +55,6 @@ const Wishlist = () => {
 						</I18nLink>
 					)}
 				</StyledWishWrapper>
-				<Column>
-					<StyledStripeWrapper>
-						<StyledStripe />
-					</StyledStripeWrapper>
-				</Column>
 				{wishes.map(wish => (
 					<WishCard key={wish.id} wish={wish} />
 				))}

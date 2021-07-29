@@ -41,6 +41,7 @@ export const StyledModal = styled.div`
 
 	display: flex;
 	position: fixed;
+	z-index: 10;
 	top: 50%;
 	left: 50%;
 	flex-direction: column;
@@ -69,6 +70,7 @@ export const StyledModal = styled.div`
 export const StyledModalBackdrop = styled.div`
 	display: none;
 	position: fixed;
+	z-index: 10;
 	top: 0;
 	right: 0;
 	bottom: 0;
