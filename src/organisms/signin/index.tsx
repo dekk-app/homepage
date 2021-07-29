@@ -20,7 +20,6 @@ import Transdown from "@/molecules/transdown";
 import { LoginFormProps, LoginProps } from "@/types";
 import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import React, { FC, memo, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
