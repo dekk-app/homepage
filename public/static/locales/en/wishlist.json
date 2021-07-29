@@ -9,6 +9,9 @@
     "update-wish": "Update wish",
     "wish": "I have a wish"
   },
+  "tooltip": {
+    "disabled": "Editing of wishes with votes is not allowed."
+  },
   "add-wish": {
     "headline": "Tell us your wish",
     "body": "As a thank-you we will gift you a Dekk Pro account"

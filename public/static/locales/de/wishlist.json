@@ -9,6 +9,9 @@
     "update-wish": "Wunsch anpassen",
     "wish": "Ich habe einen Wunsch"
   },
+  "tooltip": {
+    "disabled": "Bearbeiten von Wünschen mit Stimmen ist nicht erlaubt."
+  },
   "add-wish": {
     "headline": "Nenne uns deinen Wunsch",
     "body": "Als Dankeschön schenken wir dir ein Dekk Pro Konto"

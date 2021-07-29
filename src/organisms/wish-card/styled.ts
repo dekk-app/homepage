@@ -1,3 +1,4 @@
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
 import { css } from "@emotion/react";
@@ -66,4 +67,36 @@ export const StyledVotes = styled.div`
 
 export const StyledArticle = styled.article`
 	flex: 1;
+`;
+
+export const StyledTooltip = styled.div`
+	visibility: hidden;
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	width: ${pxToRem(200)};
+	transition-property: visibility, opacity, transform;
+	transition-duration: 0.125s;
+	will-change: visibility, opacity, transform;
+	opacity: 0;
+	font-size: ${pxToRem(12)};
+	${({ theme }) => css`
+		padding: ${pxToRem(theme.spaces.s)};
+		border-radius: ${theme.shapes.m};
+		transform: translate3d(-50%, ${pxToRem(theme.spaces.s)}, 0);
+		background: ${setOpacity(theme.ui.colors.dark.background, 90)};
+		color: ${theme.ui.colors.dark.color};
+	`};
+`;
+
+export const StyledIconButtonWrapper = styled.span`
+	display: inline-flex;
+	position: relative;
+	&:hover {
+		${StyledTooltip} {
+			visibility: visible;
+			transform: translate3d(-50%, 0, 0);
+			opacity: 1;
+		}
+	}
 `;

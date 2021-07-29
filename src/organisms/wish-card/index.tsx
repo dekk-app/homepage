@@ -7,6 +7,8 @@ import {
 	StyledArticle,
 	StyledCard,
 	StyledIconButton,
+	StyledIconButtonWrapper,
+	StyledTooltip,
 	StyledVotes,
 } from "@/organisms/wish-card/styled";
 import { User, Wish, WishVote } from "@/types/backend-api";
@@ -74,8 +76,8 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 				</Typography>
 			</StyledArticle>
 			<StyledVotes>
-				{session &&
-					(userData?.user?.id === authorId ? (
+				{session ? (
+					userData?.user?.id === authorId ? (
 						<Icon icon="heartFilled" />
 					) : (
 						<StyledIconButton
@@ -94,22 +96,30 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 						>
 							<Icon icon={voted ? "heartFilled" : "heartOutlined"} />
 						</StyledIconButton>
-					))}
+					)
+				) : (
+					<Icon icon="heartOutlined" />
+				)}
 				<Typography raw light variant="body2">
 					{votes}
 				</Typography>
 				{userData?.user.id === authorId && (
-					<StyledIconButton
-						aria-label={t("wishlist:button.edit")}
-						disabled={votes > 0}
-						onClick={() => {
-							if (votes < 1) {
-								open(id, subject, body);
-							}
-						}}
-					>
-						<Icon icon="edit" />
-					</StyledIconButton>
+					<StyledIconButtonWrapper>
+						<StyledIconButton
+							aria-label={t("wishlist:button.edit")}
+							disabled={votes > 0}
+							onClick={() => {
+								if (votes < 1) {
+									open(id, subject, body);
+								}
+							}}
+						>
+							<Icon icon="edit" />
+						</StyledIconButton>
+						{votes > 0 && (
+							<StyledTooltip>{t("wishlist:tooltip.disabled")}</StyledTooltip>
+						)}
+					</StyledIconButtonWrapper>
 				)}
 			</StyledVotes>
 		</StyledCard>
