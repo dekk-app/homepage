@@ -1,4 +1,4 @@
-import Locked from "@/atoms/lottie/animations/locked";
+import Contact from "@/atoms/lottie/animations/contact";
 import Typography from "@/atoms/typography";
 import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
@@ -40,7 +40,7 @@ const VerifyRequest: FC<PageProps> = () => {
 					colStartM={4}
 					colStartL={6}
 				>
-					<Locked />
+					<Contact />
 				</StyledVerticalFlexColumn>
 			</Grid>
 		</Layout>
