@@ -1,6 +1,5 @@
 import Button from "@/atoms/button";
 import I18nLink from "@/atoms/i18n-link";
-import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
 import { ModalProvider, useModal } from "@/ions/contexts/modal";
 import { WishProvider } from "@/ions/contexts/wish";
