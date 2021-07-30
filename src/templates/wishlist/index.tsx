@@ -47,6 +47,7 @@ const Wishlist = () => {
 				<StyledWishWrapper>
 					{session ? (
 						<Button
+							primary
 							type="button"
 							onClick={() => {
 								openAddWishModal();
@@ -56,6 +57,7 @@ const Wishlist = () => {
 						</Button>
 					) : (
 						<Button
+							primary
 							type="button"
 							onClick={() => {
 								openSigninModal();

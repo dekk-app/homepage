@@ -58,7 +58,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		}
 
 		&:active {
-			background: ${theme.palette.darkPurple
+			background: ${primary
 				? theme.palette.darkPurple
 				: theme.ui.atoms.button.active.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
