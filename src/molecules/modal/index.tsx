@@ -1,4 +1,5 @@
 import { useModal } from "@/ions/contexts/modal";
+import { useEscapeKey } from "@/ions/hooks/escapeKey";
 import React, { FC } from "react";
 import {
 	StyledModal,
@@ -10,7 +11,7 @@ import {
 
 const Modal: FC = ({ children }) => {
 	const { close } = useModal();
-
+	useEscapeKey(close);
 	return (
 		<>
 			<StyledModalBackdrop onClick={close} />
