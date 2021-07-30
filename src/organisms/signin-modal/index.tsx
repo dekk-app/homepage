@@ -80,7 +80,6 @@ const SigninModal = () => {
 								</StyledStripeWrapper>
 								<InputField
 									fullWidth
-									autoFocus
 									id="form:signIn:email"
 									helpText={t("form:help-texts.signin-register")}
 									name="email"

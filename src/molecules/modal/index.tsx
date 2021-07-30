@@ -18,12 +18,12 @@ const Modal: FC<ModalProps> = ({ children, onClose }) => {
 			<div>
 				<StyledModalBackdrop onClick={onClose} />
 				<StyledModal>
+					{children}
 					<StyledModalIconButtonWrapper>
 						<StyledModalIconButton onClick={onClose}>
 							<Icon icon="close" />
 						</StyledModalIconButton>
 					</StyledModalIconButtonWrapper>
-					{children}
 				</StyledModal>
 			</div>
 		</FocusTrap>

@@ -94,6 +94,7 @@ export const StyledModalIconButtonWrapper = styled.div`
 	position: sticky;
 	z-index: 2;
 	justify-content: flex-end;
+	order: -1;
 	pointer-events: none;
 	${({ theme }) => css`
 		top: ${pxToRem(theme.spaces.xs)};

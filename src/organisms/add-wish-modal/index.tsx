@@ -90,7 +90,6 @@ const AddWishModal = () => {
 						<StyledFieldset>
 							<InputField
 								fullWidth
-								autoFocus
 								id="form:wishlist:wish-subject"
 								name="wish-subject"
 								helpText={t("form:help-texts.wish-subject")}
