@@ -39,9 +39,7 @@ const SignOut = () => {
 			/>
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
-					<Typography centered variant="h1">
-						{t("auth:signout.headline")}
-					</Typography>
+					<Typography variant="h1">{t("auth:signout.headline")}</Typography>
 
 					<Typography>
 						<Transdown i18nKey="auth:signout.body" />

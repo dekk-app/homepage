@@ -29,7 +29,7 @@ const VerifyRequest: FC<PageProps> = () => {
 			/>
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
-					<Typography centered variant="subtitle" component="h1">
+					<Typography centered variant="h1">
 						{t("auth:verify-email")}
 					</Typography>
 				</StyledCenteredColumn>
