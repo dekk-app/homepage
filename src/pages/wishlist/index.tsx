@@ -13,11 +13,11 @@ import React from "react";
 
 const WrappedWishlist = withLoadingAndError(Wishlist);
 
-const Page: NextPage<PageProps> = props => {
+const Page: NextPage<PageProps> = () => {
 	const { data, error, loading } = useQuery<{ wishes: Wish[] }>(WISHES, {
 		pollInterval: 60_000,
 	});
-	return <WrappedWishlist {...props} data={data} error={error} loading={loading} />;
+	return <WrappedWishlist data={data} error={error} loading={loading} />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {

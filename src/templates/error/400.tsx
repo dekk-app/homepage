@@ -7,7 +7,7 @@ import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
-import React from "react";
+import React, { memo } from "react";
 
 const Error404 = () => {
 	const theme = useTheme();
@@ -40,4 +40,4 @@ const Error404 = () => {
 	);
 };
 
-export default Error404;
+export default memo(Error404);

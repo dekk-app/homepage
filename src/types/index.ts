@@ -3,17 +3,13 @@ import { NormalizedCacheObject } from "@apollo/client";
 import { Session } from "next-auth";
 import { ClientSafeProvider } from "next-auth/client";
 
-export interface LoginFormProps {
+export interface SigninFormProps {
 	email: string;
 }
 
 export interface WishFormProps {
 	"wish-subject": string;
 	"wish-body": string;
-}
-
-export interface LoginProps {
-	providers: Record<string, ClientSafeProvider>;
 }
 
 export interface ConsentState {

@@ -1,9 +1,10 @@
 import Button from "@/atoms/button";
 import Typography from "@/atoms/typography";
-import { useModal } from "@/ions/contexts/modal";
+import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWish } from "@/ions/contexts/wish";
 import { useWishlist } from "@/ions/contexts/wishlist";
 import { useLockBodyScroll } from "@/ions/hooks/body-scroll-lock";
+import { useEscapeKey } from "@/ions/hooks/escapeKey";
 import { CREATE_WISH, UPDATE_WISH } from "@/ions/queries/wishes";
 import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
@@ -17,12 +18,13 @@ import React, { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Modal, { ModalActions, ModalContent, ModalHeader } from "../../molecules/modal";
 
-const AddWish = () => {
+const AddWishModal = () => {
 	const [session] = useSession();
 	const { t } = useTranslation(["cancel", "form", "wishlist"]);
 	const { body, subject, changeBody, changeSubject } = useWish();
 	const { add: addWish } = useWishlist();
-	const { close: closeModal, id, body: previousBody, subject: previousSubject } = useModal();
+	const { close, id, body: previousBody, subject: previousSubject } = useAddWishModal();
+	useEscapeKey(close);
 	useLockBodyScroll();
 	const methods = useForm<WishFormProps>({
 		defaultValues: {
@@ -54,8 +56,8 @@ const AddWish = () => {
 
 	const handleSubmit = useCallback(async () => {
 		await (id ? updateWish() : createWish());
-		closeModal();
-	}, [id, updateWish, createWish, closeModal]);
+		close();
+	}, [id, updateWish, createWish, close]);
 
 	// Add new wish
 	useEffect(() => {
@@ -75,9 +77,9 @@ const AddWish = () => {
 	}, [id, updateMyWish, dataUpdateWish]);
 
 	return (
-		<Modal>
+		<Modal onClose={close}>
 			<ModalHeader>
-				<Typography centered raw variant="h3">
+				<Typography centered raw variant="h2">
 					{t("wishlist:add-wish.headline")}
 				</Typography>
 			</ModalHeader>
@@ -87,8 +89,8 @@ const AddWish = () => {
 					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 						<StyledFieldset>
 							<InputField
-								autoFocus
 								fullWidth
+								autoFocus
 								id="form:wishlist:wish-subject"
 								name="wish-subject"
 								helpText={t("form:help-texts.wish-subject")}
@@ -107,13 +109,13 @@ const AddWish = () => {
 								onChange={changeBody}
 							/>
 						</StyledFieldset>
-						<ModalActions>
-							<Button type="submit">
+						<ModalActions sticky>
+							<Button primary type="submit">
 								{id
 									? t("wishlist:button.update-wish")
 									: t("wishlist:button.add-wish")}
 							</Button>
-							<Button text type="button" onClick={closeModal}>
+							<Button text type="button" onClick={close}>
 								{t("common:cancel")}
 							</Button>
 						</ModalActions>
@@ -124,4 +126,4 @@ const AddWish = () => {
 	);
 };
 
-export default AddWish;
+export default AddWishModal;

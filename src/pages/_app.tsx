@@ -1,3 +1,4 @@
+import { ProvidersProvider } from "@/ions/contexts/providers";
 import { ScrollBarWidthProvider } from "@/ions/contexts/scrollbar-width";
 import "@/ions/fonts/poppins.css";
 import { ConsentProvider } from "@/ions/hooks/consent/context";
@@ -101,15 +102,17 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 			</Head>
 			<ConsentProvider consent={(pageProps as PageProps).consent ?? null}>
 				<NextAuthProvider session={(pageProps as PageProps).session}>
-					<ApolloProvider client={apolloClient}>
-						<EmotionCacheProvider value={cache}>
-							<EmotionThemeProvider theme={theme}>
-								<ScrollBarWidthProvider>
-									<Component {...pageProps} />
-								</ScrollBarWidthProvider>
-							</EmotionThemeProvider>
-						</EmotionCacheProvider>
-					</ApolloProvider>
+					<ProvidersProvider providers={(pageProps as PageProps).providers}>
+						<ApolloProvider client={apolloClient}>
+							<EmotionCacheProvider value={cache}>
+								<EmotionThemeProvider theme={theme}>
+									<ScrollBarWidthProvider>
+										<Component {...pageProps} />
+									</ScrollBarWidthProvider>
+								</EmotionThemeProvider>
+							</EmotionCacheProvider>
+						</ApolloProvider>
+					</ProvidersProvider>
 				</NextAuthProvider>
 			</ConsentProvider>
 			<Script

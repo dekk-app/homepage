@@ -14,12 +14,30 @@ export type SpaceKey = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
 
 export type SizeKey = "xs" | "s" | "m" | "l" | "xl";
 
+export type ShapeKey = "xs" | "s" | "m" | "l" | "xl";
+
+export type ShadowKey = "s" | "m" | "l";
+
+export type SpeedKey = "fast" | "normal" | "slow";
+
 export type Spaces = {
 	[key in SpaceKey]: number;
 };
 
 export type Sizes = {
 	[key in SizeKey]: number;
+};
+
+export type Shapes = {
+	[key in ShapeKey]: string;
+};
+
+export type Shadows = {
+	[key in ShadowKey]: string;
+};
+
+export type Speeds = {
+	[key in SpeedKey]: string;
 };
 
 export interface GridConfig {
@@ -37,6 +55,7 @@ export type MediaQueries = {
 export interface HeaderLayout {
 	height: Sizes;
 }
+
 export interface Layout {
 	header: HeaderLayout;
 }
@@ -55,20 +74,6 @@ export interface Borders {
 	focusRing: string;
 }
 
-export interface Shapes {
-	xs: string;
-	s: string;
-	m: string;
-	l: string;
-	xl: string;
-}
-
-export interface Shadows {
-	s: string;
-	m: string;
-	l: string;
-}
-
 export type Patterns = Record<string, ElementTheme>;
 
 export type UIPatterns = Record<string, Patterns>;
@@ -79,6 +84,7 @@ export interface Theme {
 	spaces: Spaces;
 	shapes: Shapes;
 	shadows: Shadows;
+	speeds: Speeds;
 	breakpoints: Sizes;
 	borders: Borders;
 	mq: MediaQueries;

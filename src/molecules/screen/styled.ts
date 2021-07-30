@@ -10,12 +10,3 @@ export const StyledScreenWrapper = styled.div`
 	width: 100%;
 	margin: ${pxToRem(16)} auto;
 `;
-
-export const StyledScreenBackground = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-`;

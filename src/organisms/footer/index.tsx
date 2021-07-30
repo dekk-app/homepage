@@ -5,7 +5,7 @@ import routes, { Route } from "@/ions/routes";
 import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { DeFlag, UsFlag } from "./flags";
 import {
 	StyledFooter,
@@ -77,4 +77,4 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 	);
 };
 
-export default Footer;
+export default memo(Footer);

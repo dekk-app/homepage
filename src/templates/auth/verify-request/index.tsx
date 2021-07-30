@@ -4,13 +4,12 @@ import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
-import React, { FC } from "react";
+import React, { memo } from "react";
 
-const VerifyRequest: FC<PageProps> = () => {
+const VerifyRequest = () => {
 	const theme = useTheme();
 	const { t } = useTranslation(["auth", "meta"]);
 	return (
@@ -41,4 +40,4 @@ const VerifyRequest: FC<PageProps> = () => {
 	);
 };
 
-export default VerifyRequest;
+export default memo(VerifyRequest);

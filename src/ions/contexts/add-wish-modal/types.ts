@@ -1,4 +1,4 @@
-export interface ModalState {
+export interface AddWishModalState {
 	isOpen?: boolean;
 	id?: number;
 	body?: string;

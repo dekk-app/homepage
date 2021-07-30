@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import React from "react";
+import React, { memo } from "react";
 
 export const StyledLinksWrapper = styled.div`
 	display: flex;
@@ -40,4 +40,4 @@ const WelcomeScreen = () => {
 	);
 };
 
-export default WelcomeScreen;
+export default memo(WelcomeScreen);

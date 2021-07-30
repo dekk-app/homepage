@@ -41,7 +41,7 @@ const Page: NextPage<PageProps> = props => {
 			},
 		}
 	);
-	return <WrappedLegalPage {...props} data={data} error={error} loading={loading} />;
+	return <WrappedLegalPage data={data} error={error} loading={loading} />;
 };
 
 export const getStaticProps: GetStaticProps = async context => {

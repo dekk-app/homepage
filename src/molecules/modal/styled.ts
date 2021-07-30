@@ -1,18 +1,20 @@
+import { StyledIconButton } from "@/atoms/icon-button/styled";
 import { pxToRem } from "@/ions/utils/unit";
+import { ModalActionProps } from "@/molecules/modal/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledModalActions = styled.footer`
+export const StyledModalActions = styled.footer<ModalActionProps>`
 	display: grid;
-	position: sticky;
 	z-index: 1;
 	bottom: calc(var(--padding-y) * -1);
 	grid-template-columns: 1fr auto;
 	justify-content: start;
-	margin: 0 calc(var(--padding-x) * -1) calc(var(--padding-y) * -1);
-	padding: var(--padding-y) var(--padding-x);
-	${({ theme }) => css`
+	${({ theme, sticky }) => css`
+		position: ${sticky ? "sticky" : "static"};
 		grid-column-gap: ${pxToRem(theme.spaces.xs)};
+		margin: 0 calc(var(--padding-x) * -1) ${sticky ? "calc(var(--padding-y) * -1)" : ""};
+		padding: ${sticky ? "var(--padding-y)" : 0} var(--padding-x);
 		background: ${theme.ui.colors.dark.background};
 		color: ${theme.ui.colors.dark.color};
 	`};
@@ -50,7 +52,7 @@ export const StyledModal = styled.div`
 	overflow: auto;
 	transform: translate(-50%, -50%);
 	${({ theme }) => css`
-		--padding-y: ${pxToRem(theme.spaces.l)};
+		--padding-y: ${pxToRem(theme.spaces.m)};
 
 		padding: var(--padding-y) var(--padding-x);
 		background: ${theme.ui.colors.dark.background};
@@ -80,5 +82,21 @@ export const StyledModalBackdrop = styled.div`
 		@media screen and ${theme.mq.m} {
 			display: block;
 		}
+	`};
+`;
+
+export const StyledModalIconButton = styled(StyledIconButton)`
+	pointer-events: all;
+`;
+
+export const StyledModalIconButtonWrapper = styled.div`
+	display: flex;
+	position: sticky;
+	z-index: 2;
+	justify-content: flex-end;
+	pointer-events: none;
+	${({ theme }) => css`
+		top: ${pxToRem(theme.spaces.xs)};
+		right: ${pxToRem(theme.spaces.s)};
 	`};
 `;

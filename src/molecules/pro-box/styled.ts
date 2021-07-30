@@ -10,14 +10,9 @@ export const StyledProHeadline = styled(StyledH2Text)`
 export const StyledProBox = styled.div`
 	flex: 1;
 	width: 100%;
-	border-radius: 18px;
-	background-image: radial-gradient(
-		circle at 350px 150px,
-		rgba(0, 0, 0, 0.1) 257px,
-		transparent 257px
-	);
 	${({ theme }) => css`
 		padding: ${pxToRem(theme.spaces.xl)} ${pxToRem(theme.spaces.l)};
+		border-radius: ${theme.shapes.l};
 		background-color: ${theme.ui.colors.primary.background};
 		color: ${theme.ui.colors.primary.color};
 	`};

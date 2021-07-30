@@ -43,6 +43,7 @@
     "@sentry/nextjs": "6.10.0",
     "@xobotyi/scrollbar-width": "1.9.5",
     "deepmerge": "4.2.2",
+    "focus-trap-react": "^8.7.0",
     "graphql": "15.5.1",
     "lodash.isequal": "4.5.0",
     "next": "11.0.1",

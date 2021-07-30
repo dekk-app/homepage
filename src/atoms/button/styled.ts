@@ -40,22 +40,28 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		pointer-events: none;
 	}
 
-	${({ fullWidth, text, theme }) => css`
+	${({ fullWidth, text, primary, theme }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
 		border-radius: ${theme.shapes.s};
-		background: ${text ? "none" : theme.ui.colors.primary.background};
-		color: ${text ? "currentColor" : theme.ui.colors.primary.color};
+		background: ${primary
+			? theme.ui.colors.primary.background
+			: text
+			? "none"
+			: "rgba(0,0,0,0.1)"};
+		color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 
 		&:hover {
-			background: ${text ? theme.ui.atoms.button.hover.background : theme.palette.darkPurple};
-			color: ${theme.ui.colors.primary.color};
+			background: ${primary
+				? theme.palette.darkPurple
+				: theme.ui.atoms.button.hover.background};
+			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
 
 		&:active {
-			background: ${text
-				? theme.ui.atoms.button.active.background
-				: theme.palette.darkPurple};
-			color: ${theme.ui.colors.primary.color};
+			background: ${theme.palette.darkPurple
+				? theme.palette.darkPurple
+				: theme.ui.atoms.button.active.background};
+			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
 
 		&::after {
@@ -63,8 +69,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		}
 
 		&:focus-visible {
-			background: ${text ? theme.ui.atoms.button.focus.background : theme.palette.darkPurple};
-			color: ${theme.ui.colors.primary.color};
+			background: ${primary
+				? theme.palette.darkPurple
+				: theme.ui.atoms.button.focus.background};
+			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 
 			&::after {
 				content: "";

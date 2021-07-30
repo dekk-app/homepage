@@ -5,15 +5,14 @@ import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import Signin from "@/organisms/signin";
-import { PageProps } from "@/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { FC, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 
-const ErrorPage: FC<PageProps> = ({ providers }) => {
+const ErrorPage = () => {
 	const theme = useTheme();
 	const { query } = useRouter();
 	const { t } = useTranslation(["auth", "meta"]);
@@ -45,7 +44,7 @@ const ErrorPage: FC<PageProps> = ({ providers }) => {
 							{t(`auth:errors.${query.error as string}`)}
 						</Typography>
 					)}
-					<Signin providers={providers} />
+					<Signin />
 				</StyledCenteredColumn>
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Crash />
@@ -55,4 +54,4 @@ const ErrorPage: FC<PageProps> = ({ providers }) => {
 	);
 };
 
-export default ErrorPage;
+export default memo(ErrorPage);

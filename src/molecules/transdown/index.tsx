@@ -8,8 +8,8 @@ const Transdown: FC<{ i18nKey: string }> = ({ i18nKey }) => {
 		<Trans
 			i18nKey={i18nKey}
 			components={{
-				toPrivacyPolicy: <I18nLink bold href="/legal/privacy-policy" />,
-				toTerms: <I18nLink bold href="/legal/terms-of-service" />,
+				toPrivacyPolicy: <I18nLink bold href="/legal/privacy-policy" target="_blank" />,
+				toTerms: <I18nLink bold href="/legal/terms-of-service" target="_blank" />,
 				toContact: <I18nLink bold href="/contact" />,
 				toWishlist: <I18nLink bold href="/wishlist" />,
 			}}
