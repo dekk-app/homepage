@@ -1,9 +1,11 @@
 {
   "home": "Homepage",
-  "cookies": "Cookies",
+  "cookies": "Cookie Policy",
   "imprint": "Imprint",
-  "policy": "Privacy",
-  "terms": "Terms",
+  "policy": "Privacy Policy",
+  "terms": "Terms & Conditions",
   "contact": "Contact",
-  "wishlist": "Wishlist"
+  "wishlist": "Wishlist",
+  "business": "Business",
+  "legal": "Legal"
 }

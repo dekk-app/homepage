@@ -7,6 +7,9 @@
     "title": "Presentations of the future",
     "description": "Dekk rethinks. We enable you to create the best presentation and make the best experience while you do."
   },
+  "contact": {
+    "title": "Contact"
+  },
   "error": {
     "404": {
       "title": "Page not found"

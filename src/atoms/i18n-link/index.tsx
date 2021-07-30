@@ -11,12 +11,14 @@ const I18nLink: FC<LinkProps & StyledLinkProps & { href: Route }> = ({
 	href,
 	noFollow,
 	target,
+	...props
 }) => {
 	const { locale, route } = useRouter();
 	const i18nHref = routes[href as Route][locale] as string;
 	return (
 		<Link passHref href={i18nHref}>
 			<StyledLink
+				{...props}
 				bold={bold}
 				rel={noFollow && "nofollow"}
 				isActive={route === href && route !== "/"}

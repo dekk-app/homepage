@@ -1,5 +1,6 @@
-import I18nLink from "@/atoms/i18n-link";
+import { StyledButtonGroup, StyledLanguageButton } from "@/atoms/button/styled";
 import Icon from "@/atoms/icon";
+import Typography from "@/atoms/typography";
 import { StyledLink } from "@/atoms/typography/styled";
 import routes, { Route } from "@/ions/routes";
 import { Grid } from "@/molecules/grid";
@@ -7,12 +8,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { FC, memo } from "react";
 import { DeFlag, UsFlag } from "./flags";
-import {
-	StyledFooter,
-	StyledFooterInlineItems,
-	StyledFooterItems,
-	StyledLanguageButton,
-} from "./styled";
+import { StyledFooter, StyledFooterColumn, StyledFooterItems, StyledFooterLink } from "./styled";
 import { FooterProps } from "./types";
 
 const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
@@ -22,47 +18,59 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 		<StyledFooter ref={innerRef} className={className} data-test-id={testId}>
 			{children}
 			<Grid>
-				<StyledFooterItems>
+				<StyledFooterColumn colSpanM={4} colSpanL={3} colStartL={7}>
+					<Typography variant="h3">{t("navigation:business")}</Typography>
 					{/*
 					Enable when implemented
-					<I18nLink passHref href="/contact">
-						{t("navigation:contact")}
+					<I18nLink passHref href="/about">
+						{t("navigation:about")}
 					</I18nLink>
 					*/}
-					<I18nLink passHref href="/legal">
+					{/*
+					Enable when implemented
+					<StyledFooterLink passHref href="/contact">
+						{t("navigation:contact")}
+					</StyledFooterLink>
+					*/}
+				</StyledFooterColumn>
+				<StyledFooterColumn colSpanM={4} colSpanL={3}>
+					<Typography variant="h3">{t("navigation:legal")}</Typography>
+					<StyledFooterLink passHref href="/legal">
 						{t("navigation:imprint")}
-					</I18nLink>
-					<I18nLink passHref href="/legal/privacy-policy">
+					</StyledFooterLink>
+					<StyledFooterLink passHref href="/legal/privacy-policy">
 						{t("navigation:policy")}
-					</I18nLink>
-					<I18nLink passHref href="/legal/terms-of-service">
-						{t("navigation:terms")}
-					</I18nLink>
-					<I18nLink passHref href="/legal/cookie-policy">
+					</StyledFooterLink>
+					<StyledFooterLink passHref href="/legal/cookie-policy">
 						{t("navigation:cookies")}
-					</I18nLink>
-				</StyledFooterItems>
-				<StyledFooterInlineItems>
-					<StyledLanguageButton
-						aria-label="Deutsch"
-						onClick={() => {
-							void router.replace(routes[router.route as Route].de, undefined, {
-								locale: "de",
-							});
-						}}
-					>
-						<DeFlag />
-					</StyledLanguageButton>
-					<StyledLanguageButton
-						aria-label="English"
-						onClick={() => {
-							void router.replace(routes[router.route as Route].en, undefined, {
-								locale: "en",
-							});
-						}}
-					>
-						<UsFlag />
-					</StyledLanguageButton>
+					</StyledFooterLink>
+					<StyledFooterLink passHref href="/legal/terms-of-service">
+						{t("navigation:terms")}
+					</StyledFooterLink>
+				</StyledFooterColumn>
+				<StyledFooterItems colSpanL={3} colStartL={10}>
+					<StyledButtonGroup>
+						<StyledLanguageButton
+							aria-label="Deutsch"
+							onClick={() => {
+								void router.replace(routes[router.route as Route].de, undefined, {
+									locale: "de",
+								});
+							}}
+						>
+							<DeFlag />
+						</StyledLanguageButton>
+						<StyledLanguageButton
+							aria-label="English"
+							onClick={() => {
+								void router.replace(routes[router.route as Route].en, undefined, {
+									locale: "en",
+								});
+							}}
+						>
+							<UsFlag />
+						</StyledLanguageButton>
+					</StyledButtonGroup>
 					<StyledLink
 						href="https://github.com/dekk-app"
 						rel="nofollow"
@@ -71,7 +79,7 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					>
 						<Icon icon="github" />
 					</StyledLink>
-				</StyledFooterInlineItems>
+				</StyledFooterItems>
 			</Grid>
 		</StyledFooter>
 	);

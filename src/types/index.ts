@@ -7,6 +7,11 @@ export interface SigninFormProps {
 	email: string;
 }
 
+export interface ContactFormProps {
+	email: string;
+	body: string;
+}
+
 export interface WishFormProps {
 	"wish-subject": string;
 	"wish-body": string;

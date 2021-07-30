@@ -16,24 +16,30 @@
     "firstName": "Vorname",
     "lastName": "Nachname",
     "password": "Passwort",
+    "subject": "Betreff",
+    "body": "Kommentar",
     "wish-subject": "Betreff",
     "wish-body": "Beschreibung"
   },
   "help-texts": {
     "signin-register": "Wenn du kein Konto hast erstellen wir eins für dich",
     "wish-subject": "Halte dich kurz und aussagekräftig",
-    "wish-body": "Erklär uns genau was du erwartest"
+    "wish-body": "Erklär uns genau was du erwartest",
+    "contact-email": "Deine E-mail Adresse",
+    "contact-subject": "Halte dich kurz und aussagekräftig",
+    "contact-body": "Deine Nachricht an uns"
   },
   "texts": {
     "continue-with": "oder mach weiter mit E-mail:",
-    "policy-data-agreement": "Durch absenden dieses Formulars stimmst du unserer <toPrivacyPolicy>Datenschutzrichtlinie</toPrivacyPolicy> und unseren <toTerms>Geschäftsbedingungen</toTerms> zu."
+    "policy-data-agreement": "Durch absenden dieses Formulars stimmst du unsereren <toPrivacyPolicy>Datenschutzrichtlinien</toPrivacyPolicy> und <toTerms>Geschäftsbedingungen</toTerms> zu."
   },
   "legends": {
     "enter-email": "Trag bitte deine E-Mail Adresse ein",
     "enter-email-password": "Trag bitte deine E-Mail Adresse und dein Passwort ein",
     "enter-name-email": "Trag bitte deinen Namen und deine E-mail Adresse ein",
     "enter-password-confirm": "Trag bitte dein Passwort ein und bestätige es",
-    "signin": "Bei Dekk anmelden"
+    "signin": "Bei Dekk anmelden",
+    "contact": "Schreib uns"
   },
   "links": {
     "to-signin": "Zur Anmeldung",
@@ -41,6 +47,8 @@
     "to-forgot": "Passwort vergessen"
   },
   "messages": {
-    "welcome-user": "Willkommen {{name}}!"
+    "welcome-user": "Willkommen {{name}}!",
+    "contact-success": "Danke dass du uns kontaktiert hast.",
+    "contact-error": "Oops, das hat leider niucht funktioniert."
   }
 }

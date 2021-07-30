@@ -1,9 +1,9 @@
 import Button from "@/atoms/button";
 import {
+	StyledButtonGroup,
 	StyledButtonWrapper,
 	StyledSocialButton,
 	StyledSocialButtonLabel,
-	StyledSocialButtonWrapper,
 } from "@/atoms/button/styled";
 import { StyledFormText } from "@/atoms/form-text/styled";
 import Icon from "@/atoms/icon";
@@ -58,7 +58,7 @@ const Signin = () => {
 									{t("form:legends.signin")}
 								</Typography>
 							</StyledLegend>
-							<StyledSocialButtonWrapper>
+							<StyledButtonGroup>
 								<StyledSocialButton
 									disabled={loadingGoogle}
 									type="button"
@@ -91,7 +91,7 @@ const Signin = () => {
 									)}
 									<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
 								</StyledSocialButton>
-							</StyledSocialButtonWrapper>
+							</StyledButtonGroup>
 							<StyledStripeWrapper>
 								<StyledStripe />
 								<Typography raw light>

@@ -13,6 +13,12 @@ const config = {
 	async redirects() {
 		return [
 			{
+				destination: "/de/kontakt",
+				locale: false,
+				permanent: true,
+				source: "/de/contact",
+			},
+			{
 				destination: "/de/wunschliste",
 				locale: false,
 				permanent: true,
@@ -54,6 +60,11 @@ const config = {
 				destination: "/de/wishlist",
 				locale: false,
 				source: "/de/wunschliste",
+			},
+			{
+				destination: "/de/contact",
+				locale: false,
+				source: "/de/kontakt",
 			},
 			{
 				destination: "/de/legal",
