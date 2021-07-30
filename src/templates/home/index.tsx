@@ -2,25 +2,25 @@ import Layout from "@/colonies/layout";
 import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { css, Global, useTheme } from "@emotion/react";
-import { ClientSafeProvider, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 
 const ProBox = dynamic(async () => import("@/molecules/pro-box"));
 const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
 const Come = dynamic(async () => import("@/atoms/lottie/animations/come"));
 const Signin = dynamic(async () => import("@/organisms/signin"));
 
-const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }> = ({
-	step,
-	providers,
-}) => {
+export interface StepsProps {
+	step: number;
+}
+const Steps: FC<StepsProps> = ({ step }) => {
 	return (
 		<StyledFlexedGrid>
 			{step === 0 ? (
 				<StyledVerticalFlexColumn colSpanM={4} colSpanL={5}>
-					<Signin providers={providers} />
+					<Signin />
 				</StyledVerticalFlexColumn>
 			) : (
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
@@ -35,7 +35,7 @@ const Steps: FC<{ step: number; providers: Record<string, ClientSafeProvider> }>
 	);
 };
 
-const Home: FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers }) => {
+const Home = () => {
 	const [session] = useSession();
 	const [step, setStep] = useState(session ? 1 : 0);
 	const theme = useTheme();
@@ -56,9 +56,9 @@ const Home: FC<{ providers: Record<string, ClientSafeProvider> }> = ({ providers
 					}
 				`}
 			/>
-			<Steps step={step} providers={providers} />
+			<Steps step={step} />
 		</Layout>
 	);
 };
 
-export default Home;
+export default memo(Home);

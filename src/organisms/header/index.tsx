@@ -2,7 +2,7 @@ import I18nLink from "@/atoms/i18n-link";
 import Logo from "@/atoms/logo";
 import { Column, Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { StyledHeader, StyledHeaderItems } from "./styled";
 import { HeaderProps } from "./types";
 
@@ -27,4 +27,4 @@ const Header: FC<HeaderProps> = ({ children, className, innerRef, testId }) => {
 	);
 };
 
-export default Header;
+export default memo(Header);

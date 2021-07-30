@@ -7,8 +7,8 @@ import { getProviders, getSession } from "next-auth/client";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
-const Page: NextPage<PageProps> = props => {
-	return <VerifyRequest {...props} />;
+const Page: NextPage<PageProps> = () => {
+	return <VerifyRequest />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {

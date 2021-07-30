@@ -10,6 +10,7 @@ const I18nLink: FC<LinkProps & StyledLinkProps & { href: Route }> = ({
 	children,
 	href,
 	noFollow,
+	target,
 }) => {
 	const { locale, route } = useRouter();
 	const i18nHref = routes[href as Route][locale] as string;
@@ -19,6 +20,7 @@ const I18nLink: FC<LinkProps & StyledLinkProps & { href: Route }> = ({
 				bold={bold}
 				rel={noFollow && "nofollow"}
 				isActive={route === href && route !== "/"}
+				target={target}
 			>
 				{children}
 			</StyledLink>

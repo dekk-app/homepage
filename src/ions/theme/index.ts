@@ -10,9 +10,10 @@ import {
 	Shapes,
 	Sizes,
 	Spaces,
+	Speeds,
 	Theme,
 	UIPatterns,
-} from "../../types/theme";
+} from "@/types/theme";
 
 export const palette: Palette = {
 	red: "#D90303",
@@ -109,6 +110,12 @@ export const shapes: Shapes = {
 	xl: pxToRem(16),
 };
 
+export const speeds: Speeds = {
+	fast: "0.125s",
+	normal: "0.25s",
+	slow: "0.375s",
+};
+
 export const shadows: Shadows = {
 	s: `0 ${pxToRem(1)} ${pxToRem(2)} rgba(0,0,0,0.1), 0 ${pxToRem(3)} ${pxToRem(
 		5
@@ -198,5 +205,6 @@ export const theme: Theme = {
 	shapes,
 	spaces,
 	shadows,
+	speeds,
 	ui,
 };

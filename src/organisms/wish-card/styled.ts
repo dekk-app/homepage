@@ -4,46 +4,6 @@ import { Column } from "@/molecules/grid";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledIconButton = styled.button`
-	display: flex;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
-	width: ${pxToRem(48)};
-	height: ${pxToRem(48)};
-	margin: ${pxToRem(-12)};
-	padding: 0;
-	border: 0;
-	border-radius: 50%;
-	background: none;
-	color: currentColor;
-
-	&:focus {
-		outline: 0;
-	}
-
-	&[disabled] {
-		opacity: 0.2;
-	}
-
-	${({ theme }) => css`
-		&:hover {
-			background-color: ${theme.ui.atoms.button.hover.background};
-			color: currentColor;
-		}
-
-		&:active {
-			background-color: ${theme.ui.atoms.button.active.background};
-			color: currentColor;
-		}
-
-		&:focus-visible {
-			background-color: ${theme.ui.atoms.button.focus.background};
-			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
-		}
-	`};
-`;
-
 export const StyledCard = styled(Column)`
 	display: flex;
 	flex-direction: column;
@@ -76,7 +36,6 @@ export const StyledTooltip = styled.div`
 	left: 50%;
 	width: ${pxToRem(200)};
 	transition-property: visibility, opacity, transform;
-	transition-duration: 0.125s;
 	will-change: visibility, opacity, transform;
 	opacity: 0;
 	font-size: ${pxToRem(12)};
@@ -84,6 +43,7 @@ export const StyledTooltip = styled.div`
 		padding: ${pxToRem(theme.spaces.s)};
 		border-radius: ${theme.shapes.m};
 		transform: translate3d(-50%, ${pxToRem(theme.spaces.s)}, 0);
+		transition-duration: ${theme.speeds.fast};
 		background: ${setOpacity(theme.ui.colors.dark.background, 90)};
 		color: ${theme.ui.colors.dark.color};
 	`};

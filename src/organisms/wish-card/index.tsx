@@ -1,12 +1,12 @@
 import Icon from "@/atoms/icon";
+import { StyledIconButton } from "@/atoms/icon-button/styled";
 import Typography from "@/atoms/typography";
-import { useModal } from "@/ions/contexts/modal";
+import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWishlist } from "@/ions/contexts/wishlist";
 import { CREATE_WISH_VOTE, DELETE_WISH_VOTE, USER } from "@/ions/queries/wishes";
 import {
 	StyledArticle,
 	StyledCard,
-	StyledIconButton,
 	StyledIconButtonWrapper,
 	StyledTooltip,
 	StyledVotes,
@@ -15,13 +15,13 @@ import { User, Wish, WishVote } from "@/types/backend-api";
 import { useMutation, useQuery } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import React, { FC, useEffect } from "react";
+import React, { FC, memo, useEffect } from "react";
 
 const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted, authorId } }) => {
 	const [session] = useSession();
 	const { t } = useTranslation(["wishlist"]);
 	const { update: updateWish } = useWishlist();
-	const { open } = useModal();
+	const { open } = useAddWishModal();
 
 	const { data: userData } = useQuery<{ user: User }>(USER, {
 		variables: {
@@ -126,4 +126,4 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 	);
 };
 
-export default WishCard;
+export default memo(WishCard);

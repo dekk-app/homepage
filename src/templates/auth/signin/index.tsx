@@ -3,16 +3,15 @@ import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import Login from "@/organisms/signin";
-import { PageProps } from "@/types";
+import SigninForm from "@/organisms/signin";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { FC, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 
-const SignIn: FC<PageProps> = ({ providers }) => {
+const Signin = () => {
 	const theme = useTheme();
 	const { t } = useTranslation(["meta"]);
 	const router = useRouter();
@@ -38,7 +37,7 @@ const SignIn: FC<PageProps> = ({ providers }) => {
 			/>
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
-					<Login providers={providers} />
+					<SigninForm />
 				</StyledCenteredColumn>
 				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Locked />
@@ -48,4 +47,4 @@ const SignIn: FC<PageProps> = ({ providers }) => {
 	);
 };
 
-export default SignIn;
+export default memo(Signin);

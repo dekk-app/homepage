@@ -1,7 +1,7 @@
 import Button from "@/atoms/button";
-import I18nLink from "@/atoms/i18n-link";
 import Typography from "@/atoms/typography";
-import { ModalProvider, useModal } from "@/ions/contexts/modal";
+import { AddWishModalProvider, useAddWishModal } from "@/ions/contexts/add-wish-modal";
+import { SigninModalProvider, useSigninModal } from "@/ions/contexts/signin-modal";
 import { WishProvider } from "@/ions/contexts/wish";
 import { useWishlist, WishlistProvider } from "@/ions/contexts/wishlist";
 import { Column, Grid } from "@/molecules/grid";
@@ -11,15 +11,21 @@ import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { StyledLayout, StyledWishWrapper } from "./styled";
 
-const AddWish = dynamic(async () => import("@/organisms/add-wish"));
+const AddWishModal = dynamic(async () => import("@/organisms/add-wish-modal"));
+const SigninModal = dynamic(async () => import("@/organisms/signin-modal"));
+
+export interface WishlistProps {
+	data: { wishes: Wish[] };
+}
 
 const Wishlist = () => {
 	const [session] = useSession();
 	const { wishes } = useWishlist();
-	const { open: openModal, isOpen } = useModal();
+	const { open: openAddWishModal, isOpen: isAddWishModalOpen } = useAddWishModal();
+	const { open: openSigninModal, isOpen: isSigninModalOpen } = useSigninModal();
 	const theme = useTheme();
 
 	const { t } = useTranslation(["common", "wishlist", "meta"]);
@@ -43,35 +49,45 @@ const Wishlist = () => {
 						<Button
 							type="button"
 							onClick={() => {
-								openModal();
+								openAddWishModal();
 							}}
 						>
 							{t("wishlist:button.wish")}
 						</Button>
 					) : (
-						<I18nLink passHref href="/">
+						<Button
+							type="button"
+							onClick={() => {
+								openSigninModal();
+							}}
+						>
 							{t("common:signin")}
-						</I18nLink>
+						</Button>
 					)}
 				</StyledWishWrapper>
 				{wishes.map(wish => (
 					<WishCard key={wish.id} wish={wish} />
 				))}
-				{isOpen && <AddWish />}
+				{isAddWishModalOpen && <AddWishModal />}
+				{isSigninModalOpen && <SigninModal />}
 			</Grid>
 		</StyledLayout>
 	);
 };
 
-const StatefulWishlist: FC<{ data: { wishes: Wish[] } }> = ({ data }) => {
+const MemoizedWishlist = memo(Wishlist);
+
+const StatefulWishlist: FC<WishlistProps> = ({ data }) => {
 	return (
-		<ModalProvider>
-			<WishlistProvider initialState={data?.wishes}>
-				<WishProvider>
-					<Wishlist />
-				</WishProvider>
-			</WishlistProvider>
-		</ModalProvider>
+		<SigninModalProvider>
+			<AddWishModalProvider>
+				<WishlistProvider initialState={data?.wishes}>
+					<WishProvider>
+						<MemoizedWishlist />
+					</WishProvider>
+				</WishlistProvider>
+			</AddWishModalProvider>
+		</SigninModalProvider>
 	);
 };
 

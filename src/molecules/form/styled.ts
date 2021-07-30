@@ -1,5 +1,3 @@
-import { pxToRem } from "@/ions/utils/unit";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const StyledFieldset = styled.fieldset`
@@ -25,9 +23,6 @@ export const StyledFormWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	${({ theme }) => css`
-		margin: 0 0 ${pxToRem(theme.spaces.m)};
-	`};
 `;
 
 export const StyledForm = styled.form`

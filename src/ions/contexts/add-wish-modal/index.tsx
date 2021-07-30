@@ -1,7 +1,7 @@
 import React, { createContext, FC, useCallback, useContext, useMemo, useState } from "react";
-import { ModalState } from "./types";
+import { AddWishModalState } from "./types";
 
-export const ModalContext = createContext<ModalState>({
+export const AddWishModalContext = createContext<AddWishModalState>({
 	open() {
 		/**/
 	},
@@ -13,7 +13,7 @@ export const ModalContext = createContext<ModalState>({
 	},
 });
 
-export const ModalProvider: FC = ({ children }) => {
+export const AddWishModalProvider: FC = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [id, setId] = useState<number | undefined>();
 	const [body, setBody] = useState<string | undefined>();
@@ -50,7 +50,7 @@ export const ModalProvider: FC = ({ children }) => {
 		[isOpen, open, close, toggle, body, subject, id]
 	);
 
-	return <ModalContext.Provider value={context}>{children}</ModalContext.Provider>;
+	return <AddWishModalContext.Provider value={context}>{children}</AddWishModalContext.Provider>;
 };
 
-export const useModal = () => useContext(ModalContext);
+export const useAddWishModal = () => useContext(AddWishModalContext);

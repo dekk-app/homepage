@@ -11,7 +11,7 @@ import { signOut, useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 
 const SignOut = () => {
 	const theme = useTheme();
@@ -46,7 +46,6 @@ const SignOut = () => {
 					</Typography>
 					<div>
 						<Button
-							text
 							type="button"
 							onClick={() => {
 								void signOut();
@@ -64,4 +63,4 @@ const SignOut = () => {
 	);
 };
 
-export default SignOut;
+export default memo(SignOut);

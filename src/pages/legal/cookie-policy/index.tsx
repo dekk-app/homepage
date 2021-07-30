@@ -5,8 +5,8 @@ import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
-const Page: NextPage<PageProps> = props => {
-	return <CookiePolicy {...props} />;
+const Page: NextPage<PageProps> = () => {
+	return <CookiePolicy />;
 };
 
 export const getStaticProps: GetStaticProps = async context => {

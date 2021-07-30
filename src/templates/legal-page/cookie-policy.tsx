@@ -6,9 +6,9 @@ import { Column, Grid } from "@/molecules/grid";
 import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
-import React, { FC, useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 
-export const CookiePolicy: FC = () => {
+export const CookiePolicy = () => {
 	const cookieRef = useRef<HTMLDivElement>();
 	const cookieFirst = useCookieFirst();
 	const theme = useTheme();
@@ -47,4 +47,4 @@ export const CookiePolicy: FC = () => {
 	);
 };
 
-export default CookiePolicy;
+export default memo(CookiePolicy);
