@@ -79,5 +79,26 @@ export default NextAuth({
 		// async encode({ secret, token, maxAge }) {},
 		// async decode({ secret, token, maxAge }) {},
 	},
+
+	// Callbacks are asynchronous functions you can use to control what happens
+	// when an action is performed.
+	// https://next-auth.js.org/configuration/callbacks
+	callbacks: {
+
+		async jwt(token, user, account, profile, isNewUser) {
+			// Add the user into the token so that it can be used in the session
+			// "user" is defined when the user signs in
+			if (user !== undefined) {
+				token.user = user
+			}
+			return token
+		},
+
+		async session(session, token) {
+			// Add the user into the session
+			session.user = token.user
+			return Promise.resolve(session)
+		},
+	},
 });
 /* eslint-enable new-cap */
