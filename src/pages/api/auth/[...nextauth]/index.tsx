@@ -84,20 +84,20 @@ export default NextAuth({
 	// when an action is performed.
 	// https://next-auth.js.org/configuration/callbacks
 	callbacks: {
-
-		async jwt(token, user, account, profile, isNewUser) {
+		async jwt(token, user) {
 			// Add the user into the token so that it can be used in the session
 			// "user" is defined when the user signs in
 			if (user !== undefined) {
-				token.user = user
+				token.user = user;
 			}
-			return token
+
+			return token;
 		},
 
 		async session(session, token) {
 			// Add the user into the session
-			session.user = token.user
-			return Promise.resolve(session)
+			session.user = token.user;
+			return Promise.resolve(session);
 		},
 	},
 });
