@@ -12,13 +12,23 @@ const Page: NextPage<PageProps> = () => {
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
+	const session = await getSession(context);
 	const apolloClient = initializeApollo();
+
+	if (!session) {
+		return {
+			redirect: {
+				permanent: false,
+				destination: "/",
+			},
+		};
+	}
 
 	return addApolloState(apolloClient, {
 		props: {
 			...(await serverSideTranslations(context.locale)),
 			providers: await getProviders(),
-			session: await getSession(context),
+			session,
 			locale: context.locale,
 			consent: getServerSideConsent(context),
 		},

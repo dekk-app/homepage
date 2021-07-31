@@ -10,6 +10,7 @@ import Icon from "@/atoms/icon";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
 import { useProviders } from "@/ions/contexts/providers";
+import { pxToRem } from "@/ions/utils/unit";
 import {
 	StyledFieldset,
 	StyledForm,
@@ -22,50 +23,72 @@ import Transdown from "@/molecules/transdown";
 import { SigninFormProps } from "@/types";
 import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import React, { memo, useCallback } from "react";
+import dynamic from "next/dynamic";
+import React, { memo, useCallback, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
+const Spinner = dynamic(async () => import("@/atoms/spinner"));
 
 const Signin = () => {
 	const { providers } = useProviders();
 	const { t } = useTranslation(["form"]);
 	const methods = useForm<SigninFormProps>();
-	const onSubmit = useCallback(
+	const [loadingGoogle, setLoadingGoogle] = useState(false);
+	const [loadingGithub, setLoadingGithub] = useState(false);
+
+	const handleSubmit = useCallback(
 		(data: SigninFormProps) => {
 			void signIn(providers.email.id, { email: data.email });
 		},
 		[providers]
 	);
 
+	const { isSubmitting, isSubmitSuccessful } = methods.formState;
+	const loading = isSubmitting || isSubmitSuccessful;
+
 	return (
 		<FormProvider {...methods}>
 			<StyledScreenWrapper>
-				<StyledForm noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+				<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 					<StyledFormWrapper>
 						<StyledFieldset>
 							<StyledLegend>
-								<Typography centered variant="h2" component="h2">
+								<Typography centered variant="h1">
 									{t("form:legends.signin")}
 								</Typography>
 							</StyledLegend>
 							<StyledSocialButtonWrapper>
 								<StyledSocialButton
+									disabled={loadingGoogle}
 									type="button"
 									aria-label="google"
 									onClick={() => {
+										setLoadingGoogle(true);
 										void signIn(providers.google.id);
 									}}
 								>
-									<Icon icon="google" />
+									{loadingGoogle ? (
+										<Spinner size={pxToRem(24)} />
+									) : (
+										<Icon icon="google" />
+									)}
 									<StyledSocialButtonLabel>Google</StyledSocialButtonLabel>
 								</StyledSocialButton>
 								<StyledSocialButton
+									disabled={loadingGithub}
 									type="button"
 									aria-label="github"
 									onClick={() => {
+										setLoadingGithub(true);
 										void signIn(providers.github.id);
 									}}
 								>
-									<Icon icon="github" />
+									{loadingGithub ? (
+										<Spinner size={pxToRem(24)} />
+									) : (
+										<Icon icon="github" />
+									)}
 									<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
 								</StyledSocialButton>
 							</StyledSocialButtonWrapper>
@@ -86,7 +109,8 @@ const Signin = () => {
 							/>
 						</StyledFieldset>
 						<StyledButtonWrapper>
-							<Button fullWidth primary type="submit">
+							<Button fullWidth primary disabled={loading} type="submit">
+								{loading && <ButtonSpinner />}
 								{t("form:button-labels.submit")}
 							</Button>
 						</StyledButtonWrapper>

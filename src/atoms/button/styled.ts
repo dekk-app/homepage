@@ -122,6 +122,11 @@ export const StyledSocialButton = styled.button`
 		color: currentColor;
 	}
 
+	&[disabled] {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
 	${({ theme }) => css`
 		border-radius: ${theme.shapes.s};
 		box-shadow: inset 0 0 0 1px currentColor;

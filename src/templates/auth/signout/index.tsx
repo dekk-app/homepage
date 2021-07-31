@@ -7,22 +7,19 @@ import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import Transdown from "@/molecules/transdown";
 import { css, Global, useTheme } from "@emotion/react";
-import { signOut, useSession } from "next-auth/client";
+import { signOut } from "next-auth/client";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { memo, useEffect } from "react";
+import React, { memo, useState } from "react";
+
+const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
 
 const SignOut = () => {
 	const theme = useTheme();
 	const { t } = useTranslation(["auth", "common", "meta"]);
-	const router = useRouter();
-	const [session] = useSession();
-	useEffect(() => {
-		if (!session) {
-			void router.replace("/");
-		}
-	}, [session, router]);
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<Layout title={t("meta:auth.signout.title")}>
 			<Head>
@@ -48,9 +45,11 @@ const SignOut = () => {
 						<Button
 							type="button"
 							onClick={() => {
+								setLoading(true);
 								void signOut();
 							}}
 						>
+							{loading && <ButtonSpinner />}
 							{t("common:signout")}
 						</Button>
 					</div>

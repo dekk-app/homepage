@@ -1,9 +1,10 @@
+import { StyledListItemProps, StyledSvgProps } from "@/atoms/list/types";
 import Typography from "@/atoms/typography";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledListItem = styled(Typography)<{ flat?: boolean }>`
+export const StyledListItem = styled(Typography)<StyledListItemProps>`
 	padding: 0;
 	list-style: none;
 	${({ flat, theme }) => css`
@@ -20,7 +21,7 @@ export const StyledList = styled(Typography)`
 	list-style: none;
 `;
 
-export const StyledSvg = styled.svg<{ dedent?: boolean }>`
+export const StyledSvg = styled.svg<StyledSvgProps>`
 	display: inline;
 	vertical-align: middle;
 	${({ theme, dedent }) => css`

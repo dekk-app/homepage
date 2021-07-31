@@ -1,5 +1,6 @@
 import { spin } from "@/atoms/spinner/styles";
 import { SpinnerProps } from "@/atoms/spinner/types";
+import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -38,5 +39,11 @@ export const StyledSpinner = styled.div<SpinnerProps>`
 			animation: ${spin} ${theme.speeds.extremelySlow} infinite
 				cubic-bezier(0.17, 0.67, 0.6, 0.66);
 		}
+	`};
+`;
+
+export const StyledButtonSpinner = styled(StyledSpinner)`
+	${({ theme }) => css`
+		margin-right: ${pxToRem(theme.spaces.xs)};
 	`};
 `;

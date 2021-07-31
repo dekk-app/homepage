@@ -12,21 +12,29 @@ import { useProviders } from "@/ions/contexts/providers";
 import { useSigninModal } from "@/ions/contexts/signin-modal";
 import { useLockBodyScroll } from "@/ions/hooks/body-scroll-lock";
 import { useEscapeKey } from "@/ions/hooks/escapeKey";
+import { pxToRem } from "@/ions/utils/unit";
 import { StyledFieldset, StyledForm, StyledFormWrapper } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
 import Transdown from "@/molecules/transdown";
 import { SigninFormProps } from "@/types";
 import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import React, { memo, useCallback } from "react";
+import dynamic from "next/dynamic";
+import React, { memo, useCallback, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Modal, { ModalActions, ModalContent, ModalHeader } from "../../molecules/modal";
+
+const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
+const Spinner = dynamic(async () => import("@/atoms/spinner"));
 
 const SigninModal = () => {
 	const { providers } = useProviders();
 	const { t } = useTranslation(["cancel", "form", "wishlist"]);
 	const { close } = useSigninModal();
 	const methods = useForm<SigninFormProps>();
+	const [loadingGoogle, setLoadingGoogle] = useState(false);
+	const [loadingGithub, setLoadingGithub] = useState(false);
+
 	useLockBodyScroll();
 	useEscapeKey(close);
 
@@ -37,6 +45,10 @@ const SigninModal = () => {
 		},
 		[providers, close]
 	);
+
+	const { isSubmitting, isSubmitSuccessful } = methods.formState;
+	const loading = isSubmitting || isSubmitSuccessful;
+
 	return (
 		<Modal onClose={close}>
 			<ModalHeader>
@@ -54,20 +66,30 @@ const SigninModal = () => {
 										type="button"
 										aria-label="google"
 										onClick={() => {
+											setLoadingGoogle(true);
 											void signIn(providers.google.id);
 										}}
 									>
-										<Icon icon="google" />
+										{loadingGoogle ? (
+											<Spinner size={pxToRem(24)} />
+										) : (
+											<Icon icon="google" />
+										)}{" "}
 										<StyledSocialButtonLabel>Google</StyledSocialButtonLabel>
 									</StyledSocialButton>
 									<StyledSocialButton
 										type="button"
 										aria-label="github"
 										onClick={() => {
+											setLoadingGithub(true);
 											void signIn(providers.github.id);
 										}}
 									>
-										<Icon icon="github" />
+										{loadingGithub ? (
+											<Spinner size={pxToRem(24)} />
+										) : (
+											<Icon icon="github" />
+										)}
 										<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
 									</StyledSocialButton>
 								</StyledSocialButtonWrapper>
@@ -89,6 +111,7 @@ const SigninModal = () => {
 							</StyledFieldset>
 							<ModalActions>
 								<Button primary type="submit">
+									{loading && <ButtonSpinner />}
 									{t("form:button-labels.submit")}
 								</Button>
 								<Button text type="button" onClick={close}>

@@ -1,36 +1,45 @@
+import Typography from "@/atoms/typography";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
+import { StepsProps } from "@/templates/home/types";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import React, { FC, memo, useEffect, useState } from "react";
 
-const ProBox = dynamic(async () => import("@/molecules/pro-box"));
 const WelcomeScreen = dynamic(async () => import("@/molecules/welcome-screen"));
 const Come = dynamic(async () => import("@/atoms/lottie/animations/come"));
+const Giveaway = dynamic(async () => import("@/atoms/lottie/animations/giveaway"));
 const Signin = dynamic(async () => import("@/organisms/signin"));
 
-export interface StepsProps {
-	step: number;
-}
 const Steps: FC<StepsProps> = ({ step }) => {
+	const { t } = useTranslation();
 	return (
 		<StyledFlexedGrid>
 			{step === 0 ? (
-				<StyledVerticalFlexColumn colSpanM={4} colSpanL={5}>
+				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<Signin />
-				</StyledVerticalFlexColumn>
+				</StyledCenteredColumn>
 			) : (
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<WelcomeScreen />
 				</StyledCenteredColumn>
 			)}
 
-			<StyledVerticalFlexColumn colSpanM={4} colSpanL={7}>
-				{step === 0 ? <ProBox /> : <Come />}
-			</StyledVerticalFlexColumn>
+			{step === 0 ? (
+				<StyledCenteredColumn colSpanM={4} colSpanL={5} colStartL={7}>
+					<Giveaway />
+					<Typography centered variant="subtitle" component="h2">
+						{t("welcome:pro.headline")}
+					</Typography>
+				</StyledCenteredColumn>
+			) : (
+				<StyledVerticalFlexColumn colSpanM={4} colSpanL={7}>
+					<Come />
+				</StyledVerticalFlexColumn>
+			)}
 		</StyledFlexedGrid>
 	);
 };
