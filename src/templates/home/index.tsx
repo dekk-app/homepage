@@ -1,10 +1,10 @@
 import Typography from "@/atoms/typography";
 import Layout from "@/colonies/layout";
+import { useSession } from "@/ions/hooks/session";
 import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { StepsProps } from "@/templates/home/types";
 import { css, Global, useTheme } from "@emotion/react";
-import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import React, { FC, memo, useEffect, useState } from "react";
