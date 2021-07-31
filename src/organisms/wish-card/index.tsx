@@ -3,7 +3,8 @@ import { StyledIconButton } from "@/atoms/icon-button/styled";
 import Typography from "@/atoms/typography";
 import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWishlist } from "@/ions/contexts/wishlist";
-import { CREATE_WISH_VOTE, DELETE_WISH_VOTE, USER } from "@/ions/queries/wishes";
+import { useSession } from "@/ions/hooks/session";
+import { CREATE_WISH_VOTE, DELETE_WISH_VOTE } from "@/ions/queries/wishes";
 import {
 	StyledArticle,
 	StyledCard,
@@ -11,9 +12,8 @@ import {
 	StyledTooltip,
 	StyledVotes,
 } from "@/organisms/wish-card/styled";
-import { User, Wish, WishVote } from "@/types/backend-api";
-import { useMutation, useQuery } from "@apollo/client";
-import { useSession } from "next-auth/client";
+import { Wish, WishVote } from "@/types/backend-api";
+import { useMutation } from "@apollo/client";
 import { useTranslation } from "next-i18next";
 import React, { FC, memo, useEffect } from "react";
 
@@ -23,17 +23,11 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 	const { update: updateWish } = useWishlist();
 	const { open } = useAddWishModal();
 
-	const { data: userData } = useQuery<{ user: User }>(USER, {
-		variables: {
-			email: session?.user.email,
-		},
-	});
-
 	const [createWishVote, { data: dataCreateWishVote }] = useMutation<{
 		createWishVote: WishVote;
 	}>(CREATE_WISH_VOTE, {
 		variables: {
-			userId: userData?.user?.id,
+			userId: session?.user.id,
 			wishId: id,
 		},
 	});
@@ -42,7 +36,7 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 		deleteWishVote: WishVote;
 	}>(DELETE_WISH_VOTE, {
 		variables: {
-			userId: userData?.user?.id,
+			userId: session?.user.id,
 			wishId: id,
 		},
 	});
@@ -77,7 +71,7 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 			</StyledArticle>
 			<StyledVotes>
 				{session ? (
-					userData?.user?.id === authorId ? (
+					session?.user.id === authorId ? (
 						<Icon icon="heartFilled" />
 					) : (
 						<StyledIconButton
@@ -103,7 +97,7 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 				<Typography raw light variant="body2">
 					{votes}
 				</Typography>
-				{userData?.user.id === authorId && (
+				{session?.user.id === authorId && (
 					<StyledIconButtonWrapper>
 						<StyledIconButton
 							aria-label={t("wishlist:button.edit")}

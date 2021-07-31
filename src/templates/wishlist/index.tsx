@@ -4,11 +4,11 @@ import { AddWishModalProvider, useAddWishModal } from "@/ions/contexts/add-wish-
 import { SigninModalProvider, useSigninModal } from "@/ions/contexts/signin-modal";
 import { WishProvider } from "@/ions/contexts/wish";
 import { useWishlist, WishlistProvider } from "@/ions/contexts/wishlist";
+import { useSession } from "@/ions/hooks/session";
 import { Column, Grid } from "@/molecules/grid";
 import WishCard from "@/organisms/wish-card";
 import { Wish } from "@/types/backend-api";
 import { css, Global, useTheme } from "@emotion/react";
-import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import React, { FC, memo } from "react";
