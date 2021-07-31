@@ -18,7 +18,7 @@ export type ShapeKey = "xs" | "s" | "m" | "l" | "xl";
 
 export type ShadowKey = "s" | "m" | "l";
 
-export type SpeedKey = "fast" | "normal" | "slow";
+export type SpeedKey = "fast" | "normal" | "slow" | "verySlow" | "extremelySlow";
 
 export type Spaces = {
 	[key in SpaceKey]: number;

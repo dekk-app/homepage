@@ -1,5 +1,8 @@
-export type IconName = "edit" | "heartOutlined" | "heartFilled" | "google" | "github" | "close";
+import { IconName } from "@/ions/icons/types";
+import { CSSProperties } from "react";
 
 export interface IconProps {
 	icon: IconName;
+	style?: CSSProperties;
+	className?: string;
 }

@@ -25,6 +25,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-weight: 600;
 	line-height: ${pxToRem(24)};
 	text-decoration: none;
+	vertical-align: bottom;
 
 	&:focus {
 		outline: 0;
@@ -37,6 +38,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		bottom: -1px;
 		left: -1px;
 		border-radius: inherit;
+		pointer-events: none;
+	}
+
+	&[disabled] {
+		opacity: 0.5;
 		pointer-events: none;
 	}
 
@@ -77,6 +83,15 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			&::after {
 				content: "";
 			}
+		}
+	`};
+`;
+
+export const StyledButtonGroup = styled.div`
+	${({ theme }) => css`
+		margin: 0 ${pxToRem(-theme.spaces.xs)};
+		${StyledButton} {
+			margin: 0 ${pxToRem(theme.spaces.xs)};
 		}
 	`};
 `;

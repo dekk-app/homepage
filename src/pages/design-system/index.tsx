@@ -1,4 +1,8 @@
+import Button from "@/atoms/button";
+import { StyledButtonGroup } from "@/atoms/button/styled";
+import Icon from "@/atoms/icon";
 import { Space } from "@/atoms/space";
+import Spinner from "@/atoms/spinner";
 import Typography from "@/atoms/typography";
 import Layout from "@/colonies/layout";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
@@ -7,7 +11,7 @@ import { pxToRem } from "@/ions/utils/unit";
 import { Column, Grid, Row } from "@/molecules/grid";
 import OverlayGrid from "@/organisms/grid-overlay";
 import { PageProps, StaticPageProps } from "@/types";
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -37,6 +41,8 @@ const StyledColumn = styled(Column)`
 `;
 
 const Page: NextPage<PageProps> = () => {
+	const theme = useTheme();
+
 	return (
 		<Layout title="Design System">
 			<Head>
@@ -308,7 +314,97 @@ const Page: NextPage<PageProps> = () => {
 						</StyledColumn>
 					</Row>
 				</StyledColumn>
+				<Column>
+					<Typography variant="h2">Spinner</Typography>
+				</Column>
+				<Column>
+					<Spinner />
+					<Spinner color={theme.palette.blue} />
+					<Spinner color={theme.palette.red} />
+					<Spinner color={theme.palette.purple} />
+					<Spinner strokeWidth={pxToRem(4)} />
+					<Spinner size={pxToRem(100)} strokeWidth={pxToRem(5)} />
+					<Spinner strokeWidth="1px" size="1em" />
+				</Column>
+				<Column>
+					<Typography variant="h2">Button</Typography>
+				</Column>
+				<Column>
+					<Typography variant="h3">Primary</Typography>
+				</Column>
+				<Column>
+					<StyledButtonGroup>
+						<Button primary>Primary Button</Button>
+						<Button primary disabled>
+							Primary Button
+						</Button>
+						<Button primary>
+							<Spinner strokeWidth="1px" size="1em" style={{ marginRight: "1em" }} />{" "}
+							Loading...
+						</Button>
+					</StyledButtonGroup>
+				</Column>
+				<Column>
+					<Typography variant="h3">Default</Typography>
+				</Column>
+				<Column>
+					<Button>Default Button</Button>
+				</Column>
+				<Column>
+					<Typography variant="h3">Text</Typography>
+				</Column>
+				<Column>
+					<StyledButtonGroup>
+						<Button text>Text Button</Button>
+						<Button text>
+							<Icon icon="heartOutlined" style={{ marginRight: "1em" }} />
+							Like
+						</Button>
+					</StyledButtonGroup>
+				</Column>
 			</Grid>
+			<div
+				style={{
+					paddingTop: pxToRem(theme.spaces.m),
+					paddingBottom: pxToRem(theme.spaces.m),
+					background: theme.ui.colors.light.background,
+					color: theme.ui.colors.light.color,
+				}}
+			>
+				<Grid>
+					<Column>
+						<Typography variant="h3">Mixed on Light Background</Typography>
+					</Column>
+					<Column>
+						<StyledButtonGroup>
+							<Button primary>Submit</Button>
+							<Button>Reset</Button>
+							<Button text>Cancel</Button>
+						</StyledButtonGroup>
+					</Column>
+				</Grid>
+			</div>
+			<div
+				style={{
+					paddingTop: pxToRem(theme.spaces.m),
+					paddingBottom: pxToRem(theme.spaces.m),
+					background: theme.ui.colors.dark.background,
+					color: theme.ui.colors.dark.color,
+				}}
+			>
+				<Grid>
+					<Column>
+						<Typography variant="h3">Mixed on Dark Background</Typography>
+					</Column>
+					<Column>
+						<StyledButtonGroup>
+							<Button primary>Submit</Button>
+							<Button>Reset</Button>
+							<Button text>Cancel</Button>
+						</StyledButtonGroup>
+					</Column>
+				</Grid>
+			</div>
 			{process.env.NODE_ENV === "production" && <OverlayGrid />}
 		</Layout>
 	);

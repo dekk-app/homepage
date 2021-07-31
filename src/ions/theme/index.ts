@@ -114,6 +114,8 @@ export const speeds: Speeds = {
 	fast: "0.125s",
 	normal: "0.25s",
 	slow: "0.375s",
+	verySlow: "0.75s",
+	extremelySlow: "1.5s",
 };
 
 export const shadows: Shadows = {
