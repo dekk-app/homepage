@@ -97,7 +97,7 @@ export default NextAuth({
 		async session(session, token) {
 			// Add the user into the session
 			session.user = token.user;
-			return Promise.resolve(session);
+			return session;
 		},
 	},
 });
