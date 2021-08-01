@@ -1,7 +1,6 @@
 import Button from "@/atoms/button";
 import Locked from "@/atoms/lottie/animations/locked";
 import Typography from "@/atoms/typography";
-import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
@@ -25,7 +24,6 @@ const SignOut = () => {
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
-			<GlobalTypography />
 			<Global
 				styles={css`
 					body {

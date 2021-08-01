@@ -1,6 +1,6 @@
 import I18nLink from "@/atoms/i18n-link";
 import Logo from "@/atoms/logo";
-import { Column, Grid } from "@/molecules/grid";
+import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
 import React, { FC, memo } from "react";
 import { StyledHeader, StyledHeaderColumn, StyledHeaderItemsColumn } from "./styled";

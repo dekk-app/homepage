@@ -1,6 +1,5 @@
 import Crash from "@/atoms/lottie/animations/crash";
 import Typography from "@/atoms/typography";
-import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
@@ -17,7 +16,6 @@ const Error500 = () => {
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
-			<GlobalTypography />
 			<Global
 				styles={css`
 					body {

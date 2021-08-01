@@ -1,3 +1,4 @@
+import { GlobalTypography } from "@/atoms/typography/global";
 import { globalStyles } from "@/ions/styles";
 import Footer from "@/organisms/footer";
 import Header from "@/organisms/header";
@@ -19,6 +20,7 @@ const Layout: FC<LayoutProps> = ({ className, children, title, description }) =>
 	return (
 		<>
 			<Global styles={globalStyles} />
+			<GlobalTypography />
 			<Head>
 				<title>Dekk | {title}</title>
 				{description && <meta name="description" content={description} />}

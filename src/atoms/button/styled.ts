@@ -146,14 +146,6 @@ export const StyledSocialButtonLabel = styled.span`
 	`};
 `;
 
-export const StyledSocialButtonWrapper = styled.div`
-	display: grid;
-	grid-column-gap: ${pxToRem(16)};
-	grid-template-columns: repeat(2, 1fr);
-	width: 100%;
-	margin: 0 auto;
-`;
-
 export const StyledLanguageButton = styled.button`
 	display: inline-flex;
 	position: relative;

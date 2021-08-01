@@ -1,5 +1,4 @@
 import Locked from "@/atoms/lottie/animations/locked";
-import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
@@ -18,7 +17,6 @@ const Signin = () => {
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
-			<GlobalTypography />
 			<Global
 				styles={css`
 					body {

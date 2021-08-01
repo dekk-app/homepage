@@ -1,5 +1,4 @@
 import Typography from "@/atoms/typography";
-import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { useCookieFirst } from "@/ions/hooks/consent/cookie-first";
 import { Column, Grid } from "@/molecules/grid";
@@ -28,7 +27,6 @@ export const CookiePolicy = () => {
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
-			<GlobalTypography />
 			<Global
 				styles={css`
 					body {

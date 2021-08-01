@@ -1,4 +1,3 @@
-import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { DocumentToReact } from "@/molecules/document-to-react";
 import { Column, Grid } from "@/molecules/grid";
@@ -27,7 +26,6 @@ const LegalPage: FC<LegalPageProps> = ({ data, children }) => {
 					: t("meta:legal.imprint.title")
 			}
 		>
-			<GlobalTypography />
 			<Global
 				styles={css`
 					body {

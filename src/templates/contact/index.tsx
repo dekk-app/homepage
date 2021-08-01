@@ -1,5 +1,4 @@
 import Mail from "@/atoms/lottie/animations/mail";
-import { GlobalTypography } from "@/atoms/typography/global";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
@@ -18,7 +17,6 @@ const Contact = () => {
 			<Head>
 				<meta name="robots" content="noindex,nofollow" />
 			</Head>
-			<GlobalTypography />
 			<Global
 				styles={css`
 					body {

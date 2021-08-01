@@ -1,4 +1,5 @@
-import { mq, palette } from "@/ions/theme";
+import { mq, palette, shapes } from "@/ions/theme";
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css, Global } from "@emotion/react";
 import React from "react";
@@ -89,14 +90,16 @@ export const globalTypography = css`
 
 	button {
 		margin-right: ${pxToRem(12)};
-		padding: ${pxToRem(12)} ${pxToRem(18)};
+		padding: ${pxToRem(14)};
 		border: 0;
-		background: none;
-		color: ${palette.purple};
-		font-size: ${pxToRem(14)};
+		border-radius: ${shapes.s};
+		background: rgba(0, 0, 0, 0.1);
+		color: currentColor;
+		font-size: 1em;
+		font-weight: bold;
 
 		&:hover {
-			color: ${palette.darkPurple};
+			background: ${setOpacity(palette.purple, 20)};
 		}
 	}
 `;
