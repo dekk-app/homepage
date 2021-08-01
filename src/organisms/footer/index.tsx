@@ -19,7 +19,10 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 			{children}
 			<Grid>
 				<StyledFooterColumn colSpanM={4} colSpanL={3} colStartL={7}>
+					{/*
+					Enable when this column has links
 					<Typography variant="h3">{t("navigation:business")}</Typography>
+					*/}
 					{/*
 					Enable when implemented
 					<I18nLink passHref href="/about">
