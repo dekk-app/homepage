@@ -69,7 +69,6 @@
     "@graphql-codegen/cli": "^1.21.8",
     "@graphql-codegen/typescript": "^1.23.0",
     "@graphql-codegen/typescript-operations": "^1.18.4",
-    "@types/enzyme": "^3.10.9",
     "@types/faker": "^5.5.7",
     "@types/jasmine": "^3.8.2",
     "@types/jasmine-matchers": "^0.2.32",

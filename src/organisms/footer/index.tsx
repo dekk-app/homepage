@@ -19,22 +19,12 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 			{children}
 			<Grid>
 				<StyledFooterColumn colSpanM={4} colSpanL={3} colStartL={7}>
-					{/*
-					Enable when this column has links
-					<Typography variant="h3">{t("navigation:business")}</Typography>
-					*/}
-					{/*
-					Enable when implemented
-					<I18nLink passHref href="/about">
-						{t("navigation:about")}
-					</I18nLink>
-					*/}
-					{/*
-					Enable when implemented
+					<Typography variant="subtitle" component="div">
+						{t("navigation:business")}
+					</Typography>
 					<StyledFooterLink passHref href="/contact">
 						{t("navigation:contact")}
 					</StyledFooterLink>
-					*/}
 				</StyledFooterColumn>
 				<StyledFooterColumn colSpanM={4} colSpanL={3}>
 					<Typography variant="subtitle" component="div">

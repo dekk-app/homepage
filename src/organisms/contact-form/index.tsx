@@ -1,38 +1,53 @@
 import Button from "@/atoms/button";
+import { StyledFormText } from "@/atoms/form-text/styled";
 import Typography from "@/atoms/typography";
 import { StyledFieldset, StyledForm, StyledLegend } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
 import TextArea from "@/molecules/textarea-field";
+import Transdown from "@/molecules/transdown";
 import { ContactFormProps } from "@/types";
 import axios from "axios";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useState } from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import React, { memo, useCallback, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
 
 const ContactForm = () => {
 	const { t } = useTranslation(["form"]);
+	const { locale } = useRouter();
 	const methods = useForm<ContactFormProps>();
+	const [loading, setLoading] = useState(false);
 	const [contactSuccess, setContactSuccess] = useState(false);
 	const [contactError, setContactError] = useState(false);
 
-	const handleSubmit = useCallback(async (data: ContactFormProps) => {
-		try {
-			const response = await axios.post<{ success?: boolean; error?: boolean }>(
-				"/api/mail",
-				data
-			);
-			if (response.data.success) {
-				setContactSuccess(true);
-				setContactError(false);
-			} else {
+	const handleSubmit = useCallback(
+		async (data: ContactFormProps) => {
+			setLoading(true);
+			try {
+				const response = await axios.post<{ status?: number; error?: unknown }>(
+					`/api/mail?locale=${locale}`,
+					data
+				);
+				switch (response.data.status) {
+					case 200:
+						setContactSuccess(true);
+						setContactError(false);
+						break;
+					case 500:
+					default:
+						setContactSuccess(false);
+						setContactError(true);
+				}
+			} catch {
 				setContactSuccess(false);
 				setContactError(true);
 			}
-		} catch {
-			setContactSuccess(false);
-			setContactError(true);
-		}
-	}, []);
+		},
+		[locale]
+	);
 
 	if (contactSuccess) {
 		return <Typography variant="h1">{t(`form:messages.contact-success`)}</Typography>;
@@ -67,10 +82,17 @@ const ContactForm = () => {
 						validation={{ required: true, minLength: 2 }}
 					/>
 				</StyledFieldset>
-				<Button type="submit">Send</Button>
+				<Button primary disabled={loading} type="submit">
+					{loading && <ButtonSpinner />} Send
+				</Button>
+				<StyledFormText>
+					<Typography centered>
+						<Transdown i18nKey="form:texts.policy-data-agreement" />
+					</Typography>
+				</StyledFormText>
 			</StyledForm>
 		</FormProvider>
 	);
 };
 
-export default ContactForm;
+export default memo(ContactForm);

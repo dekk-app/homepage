@@ -44,6 +44,7 @@ module.exports = {
 	rules: {
 		"react/prop-types": 0,
 		"unicorn/no-array-reduce": 0,
+		"unicorn/prefer-node-protocol": 0,
 		// "prettier/prettier": 0,
 		// "react/jsx-uses-react": 1,
 		// "react/jsx-uses-vars": 1,

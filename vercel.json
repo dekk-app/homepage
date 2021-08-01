@@ -1,0 +1,6 @@
+{
+  "env": {
+    "GOOGLE_ENCRYPTION_IV": "@google-encryption-iv",
+    "GOOGLE_ENCRYPTION_KEY": "@google-encryption-secret"
+  }
+}
