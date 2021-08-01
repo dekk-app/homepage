@@ -24,10 +24,10 @@ export interface TypographyProps {
 export interface StyledLinkProps {
 	bold?: boolean;
 	isActive?: boolean;
-	noFollow?: boolean;
 	target?: string;
 	as?: ElementType;
 	className?: string;
+	rel?: string;
 	style?: CSSProperties;
 }
 

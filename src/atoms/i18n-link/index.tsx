@@ -9,7 +9,7 @@ const I18nLink: FC<LinkProps & StyledLinkProps & { href: Route }> = ({
 	bold,
 	children,
 	href,
-	noFollow,
+	rel,
 	target,
 	...props
 }) => {
@@ -20,7 +20,7 @@ const I18nLink: FC<LinkProps & StyledLinkProps & { href: Route }> = ({
 			<StyledLink
 				{...props}
 				bold={bold}
-				rel={noFollow && "nofollow"}
+				rel={rel}
 				isActive={route === href && route !== "/"}
 				target={target}
 			>

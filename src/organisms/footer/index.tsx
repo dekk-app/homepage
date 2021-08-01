@@ -76,7 +76,7 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					</StyledButtonGroup>
 					<StyledLink
 						href="https://github.com/dekk-app"
-						rel="nofollow"
+						rel="noreferrer"
 						target="_blank"
 						aria-label="Visit Dekk on Github"
 					>
