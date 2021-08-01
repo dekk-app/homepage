@@ -4,9 +4,12 @@ import { css, Global } from "@emotion/react";
 import React from "react";
 
 export const a = css`
+	display: inline-flex;
 	color: currentColor;
 	font-weight: 600;
+	line-height: ${pxToRem(28)};
 	text-decoration: none;
+	vertical-align: baseline;
 
 	&:hover {
 		text-decoration: underline;

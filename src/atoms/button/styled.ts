@@ -159,7 +159,8 @@ export const StyledLanguageButton = styled.button`
 	position: relative;
 	align-content: center;
 	align-items: center;
-	height: ${pxToRem(24)};
+	min-width: ${pxToRem(48)};
+	min-height: ${pxToRem(48)};
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -174,6 +175,11 @@ export const StyledLanguageButton = styled.button`
 
 	&:focus {
 		outline: 0;
+	}
+
+	svg {
+		min-width: ${pxToRem(24)};
+		min-height: ${pxToRem(24)};
 	}
 
 	${({ theme }) => css`
@@ -200,7 +206,19 @@ export const StyledLanguageButton = styled.button`
 			border-radius: ${theme.shapes.s};
 			background: ${theme.ui.atoms.button.focus.background};
 		}
-	`}; ;
+
+		@media only screen and ${theme.mq.m} {
+			min-width: unset;
+			min-height: unset;
+
+			svg {
+				display: inline-flex;
+				min-width: unset;
+				min-height: ${pxToRem(24)};
+				height: ${pxToRem(24)};
+			}
+		}
+	`};
 `;
 
 export const StyledButtonGroup = styled.div`

@@ -9,13 +9,12 @@ export const StyledHeader = styled.header`
 	`};
 `;
 
-export const StyledHeaderItems = styled(Column)`
-	display: grid;
+export const StyledHeaderColumn = styled(Column)`
+	display: flex;
 	align-content: center;
 	align-items: center;
+`;
+
+export const StyledHeaderItemsColumn = styled(StyledHeaderColumn)`
 	justify-content: flex-end;
-	${({ theme }) => css`
-		grid-template-columns: repeat(auto-fit, minmax(${pxToRem(theme.spaces.m)}, auto));
-		grid-gap: ${pxToRem(theme.spaces.m)};
-	`};
 `;
