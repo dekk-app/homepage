@@ -4,8 +4,11 @@
     "description": "Sag uns was du brauchst um die perfekte Präsentation zu erstellen."
   },
   "home": {
-    "title": "Präsentation der Zukunft",
+    "title": "Präsentationen der Zukunft",
     "description": "Dekk denkt um. Wir ermöglichen dir die besten Präsentationen zu erstellen und dabei die beste Erfahrung zu machen"
+  },
+  "contact": {
+    "title": "Kontakt"
   },
   "error": {
     "404": {

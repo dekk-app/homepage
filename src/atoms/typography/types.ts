@@ -1,4 +1,4 @@
-import { ElementType, ReactNode } from "react";
+import { CSSProperties, ElementType, ReactNode } from "react";
 
 export type TypographyVariant =
 	| "body"
@@ -26,6 +26,9 @@ export interface StyledLinkProps {
 	isActive?: boolean;
 	noFollow?: boolean;
 	target?: string;
+	as?: ElementType;
+	className?: string;
+	style?: CSSProperties;
 }
 
 export interface StyledTypographyProps {

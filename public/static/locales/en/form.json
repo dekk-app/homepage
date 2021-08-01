@@ -16,13 +16,18 @@
     "firstName": "First name",
     "lastName": "Last name",
     "password": "Password",
+    "subject": "Subject",
+    "body": "Comment",
     "wish-subject": "Subject",
     "wish-body": "Body"
   },
   "help-texts": {
     "signin-register": "If you don't have an account we will create one for you",
     "wish-subject": "Keep it short and concise",
-    "wish-body": "Tell us exactly what you expect"
+    "wish-body": "Tell us exactly what you expect",
+    "contact-email": "Your email address",
+    "contact-subject": "Keep it short and concise",
+    "contact-body": "Your message to us"
   },
   "texts": {
     "continue-with": "or continue with e-mail:",
@@ -33,7 +38,8 @@
     "enter-email-password": "Please enter your e-mail address and password",
     "enter-name-email": "Please enter your name and e-mail address",
     "enter-password-confirm": "Please enter your password and confirm it",
-    "signin": "Sign in to Dekk"
+    "signin": "Sign in to Dekk",
+    "contact": "Contact us"
   },
   "links": {
     "to-signin": "Sing in",
@@ -41,6 +47,8 @@
     "to-forgot": "Forgot password"
   },
   "messages": {
-    "welcome-user": "Welcome {{name}}!"
+    "welcome-user": "Welcome {{name}}!",
+    "contact-success": "Thank you for contacting us.",
+    "contact-error": "Oops, sadly that didn't work."
   }
 }

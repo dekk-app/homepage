@@ -1,8 +1,8 @@
 import Button from "@/atoms/button";
 import {
+	StyledButtonGroup,
 	StyledSocialButton,
 	StyledSocialButtonLabel,
-	StyledSocialButtonWrapper,
 } from "@/atoms/button/styled";
 import { StyledFormText } from "@/atoms/form-text/styled";
 import Icon from "@/atoms/icon";
@@ -61,7 +61,7 @@ const SigninModal = () => {
 					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 						<StyledFormWrapper>
 							<StyledFieldset>
-								<StyledSocialButtonWrapper>
+								<StyledButtonGroup>
 									<StyledSocialButton
 										type="button"
 										aria-label="google"
@@ -92,7 +92,7 @@ const SigninModal = () => {
 										)}
 										<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
 									</StyledSocialButton>
-								</StyledSocialButtonWrapper>
+								</StyledButtonGroup>
 								<StyledStripeWrapper>
 									<StyledStripe />
 									<Typography raw light>

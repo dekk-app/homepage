@@ -1,9 +1,11 @@
 {
   "home": "Startseite",
-  "cookies": "Cookies",
+  "cookies": "Cookierichtlinie",
   "imprint": "Impressum",
   "policy": "Datenschutz",
-  "terms": "Geschäftsbedingungen",
+  "terms": "AGB",
   "contact": "Kontakt",
-  "wishlist": "Wunschliste"
+  "wishlist": "Wunschliste",
+  "business": "Unternehmen",
+  "legal": "Rechtliches"
 }

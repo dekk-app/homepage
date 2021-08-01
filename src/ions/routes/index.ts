@@ -24,8 +24,8 @@ const routes = {
 		en: "/wishlist",
 	},
 	"/contact": {
-		de: "/contact",
-		en: "/kontakt",
+		de: "/kontakt",
+		en: "/contact",
 	},
 };
 
