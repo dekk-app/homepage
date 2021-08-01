@@ -37,7 +37,9 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 					*/}
 				</StyledFooterColumn>
 				<StyledFooterColumn colSpanM={4} colSpanL={3}>
-					<Typography variant="h3">{t("navigation:legal")}</Typography>
+					<Typography variant="subtitle" component="div">
+						{t("navigation:legal")}
+					</Typography>
 					<StyledFooterLink passHref href="/legal">
 						{t("navigation:imprint")}
 					</StyledFooterLink>
