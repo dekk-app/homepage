@@ -97,7 +97,7 @@ export const StyledModalIconButtonWrapper = styled.div`
 	order: -1;
 	pointer-events: none;
 	${({ theme }) => css`
-		top: ${pxToRem(theme.spaces.xs)};
-		right: ${pxToRem(theme.spaces.s)};
+		top: ${pxToRem(theme.spaces.xxs)};
+		right: ${pxToRem(theme.spaces.xs)};
 	`};
 `;
