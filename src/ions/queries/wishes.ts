@@ -32,10 +32,8 @@ export const DELETE_WISH_VOTE = gql`
 `;
 
 export const CREATE_WISH = gql`
-	mutation createWish($subject: String!, $body: String!, $email: String) {
-		createWish(
-			data: { author: { connect: { email: $email } }, subject: $subject, body: $body }
-		) {
+	mutation createWish($subject: String!, $body: String!, $id: Int!) {
+		createWish(data: { author: { connect: { id: $id } }, subject: $subject, body: $body }) {
 			authorId
 			body
 			id

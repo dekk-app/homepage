@@ -38,7 +38,7 @@ const AddWishModal = () => {
 		createWish: Wish;
 	}>(CREATE_WISH, {
 		variables: {
-			email: session?.user.email,
+			id: session?.user.id,
 			subject,
 			body,
 		},
