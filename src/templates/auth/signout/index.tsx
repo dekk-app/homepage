@@ -18,7 +18,7 @@ const SignOut = () => {
 	const [loading, setLoading] = useState(false);
 
 	return (
-		<Layout title={t("meta:auth.signout.title")}>
+		<Layout dark title={t("meta:auth.signout.title")}>
 			<Head>
 				<meta key="robots" name="robots" content="noindex,nofollow" />
 			</Head>
