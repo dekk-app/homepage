@@ -170,8 +170,7 @@ export const StyledLanguageButton = styled.button`
 	}
 
 	svg {
-		min-width: ${pxToRem(24)};
-		min-height: ${pxToRem(24)};
+		height: ${pxToRem(24)};
 	}
 
 	${({ theme }) => css`
@@ -205,9 +204,7 @@ export const StyledLanguageButton = styled.button`
 
 			svg {
 				display: inline-flex;
-				min-width: unset;
-				min-height: ${pxToRem(24)};
-				height: ${pxToRem(24)};
+				height: ${pxToRem(16)};
 			}
 		}
 	`};
