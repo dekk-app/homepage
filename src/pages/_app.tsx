@@ -43,7 +43,7 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 		<>
 			<Global styles={fontFaces} />
 			<Head>
-				<title>Dekk</title>
+				<title key="title">Dekk</title>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<meta name="version" content={pkg.version} />

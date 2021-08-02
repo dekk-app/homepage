@@ -4,7 +4,6 @@ import { useSession } from "@/ions/hooks/session";
 import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { StepsProps } from "@/templates/home/types";
-import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import React, { FC, memo, useEffect, useState } from "react";
@@ -47,7 +46,6 @@ const Steps: FC<StepsProps> = ({ step }) => {
 const Home = () => {
 	const [session] = useSession();
 	const [step, setStep] = useState(session ? 1 : 0);
-	const theme = useTheme();
 	const { t } = useTranslation(["meta"]);
 	useEffect(() => {
 		if (session) {
@@ -56,15 +54,7 @@ const Home = () => {
 	}, [session]);
 
 	return (
-		<Layout title={t("meta:home.title")} description={t("meta:home.description")}>
-			<Global
-				styles={css`
-					body {
-						background-color: ${theme.ui.colors.dark.background};
-						color: ${theme.ui.colors.dark.color};
-					}
-				`}
-			/>
+		<Layout dark title={t("meta:home.title")} description={t("meta:home.description")}>
 			<Steps step={step} />
 		</Layout>
 	);

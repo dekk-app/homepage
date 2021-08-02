@@ -3,27 +3,17 @@ import Typography from "@/atoms/typography";
 import Layout from "@/colonies/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import { css, Global, useTheme } from "@emotion/react";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import React, { memo } from "react";
 
 const VerifyRequest = () => {
-	const theme = useTheme();
 	const { t } = useTranslation(["auth", "meta"]);
 	return (
-		<Layout title={t("meta:auth.verify-request.title")}>
+		<Layout dark title={t("meta:auth.verify-request.title")}>
 			<Head>
-				<meta name="robots" content="noindex,nofollow" />
+				<meta key="robots" name="robots" content="noindex,nofollow" />
 			</Head>
-			<Global
-				styles={css`
-					body {
-						background-color: ${theme.ui.colors.dark.background};
-						color: ${theme.ui.colors.dark.color};
-					}
-				`}
-			/>
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography centered variant="h1">
