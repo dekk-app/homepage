@@ -96,8 +96,7 @@ export const globalTypography = css`
 		background: rgba(0, 0, 0, 0.1);
 		color: currentColor;
 		font-size: 1em;
-		font-weight: 400;
-		text-transform: uppercase;
+		font-weight: 600;
 
 		&:hover {
 			background: ${setOpacity(palette.purple, 20)};

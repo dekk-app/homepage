@@ -23,10 +23,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	padding: ${pxToRem(16)} ${pxToRem(24)};
 	border: 0;
 	font-size: ${pxToRem(16)};
-	font-weight: 400;
+	font-weight: 600;
 	line-height: ${pxToRem(24)};
 	text-decoration: none;
-	text-transform: uppercase;
 	vertical-align: bottom;
 
 	&:focus {
@@ -103,8 +102,7 @@ export const StyledSocialButton = styled.button`
 	color: currentColor;
 	font-family: inherit;
 	font-size: 1em;
-	font-weight: 400;
-	text-transform: uppercase;
+	font-weight: 600;
 
 	&:hover {
 		color: currentColor;
