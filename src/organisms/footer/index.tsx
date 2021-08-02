@@ -1,14 +1,19 @@
 import { StyledButtonGroup, StyledLanguageButton } from "@/atoms/button/styled";
+import { DeFlag, UsFlag } from "@/atoms/flags";
 import Icon from "@/atoms/icon";
 import Typography from "@/atoms/typography";
-import { StyledLink } from "@/atoms/typography/styled";
 import routes, { Route } from "@/ions/routes";
 import { Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { FC, memo } from "react";
-import { DeFlag, UsFlag } from "./flags";
-import { StyledFooter, StyledFooterColumn, StyledFooterItems, StyledFooterLink } from "./styled";
+import {
+	StyledFooter,
+	StyledFooterColumn,
+	StyledFooterIconLink,
+	StyledFooterItems,
+	StyledFooterLink,
+} from "./styled";
 import { FooterProps } from "./types";
 
 const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
@@ -66,14 +71,14 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
 							<UsFlag />
 						</StyledLanguageButton>
 					</StyledButtonGroup>
-					<StyledLink
+					<StyledFooterIconLink
 						href="https://github.com/dekk-app"
 						rel="noreferrer"
 						target="_blank"
 						aria-label="Visit Dekk on Github"
 					>
 						<Icon icon="github" />
-					</StyledLink>
+					</StyledFooterIconLink>
 				</StyledFooterItems>
 			</Grid>
 		</StyledFooter>

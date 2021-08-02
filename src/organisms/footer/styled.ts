@@ -37,6 +37,23 @@ export const StyledFooterLink = styled(I18nLink)`
 	width: max-content;
 `;
 
+export const StyledFooterIconLink = styled.a`
+	display: inline-flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	min-width: ${pxToRem(48)};
+	height: ${pxToRem(48)};
+	color: currentColor;
+	text-decoration: none;
+	${({ theme }) => css`
+		@media only screen and ${theme.mq.m} {
+			min-width: auto;
+			height: auto;
+		}
+	`};
+`;
+
 export const StyledFooterColumn = styled(Column)`
 	display: flex;
 	flex-direction: column;
