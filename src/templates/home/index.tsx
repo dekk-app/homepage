@@ -1,7 +1,7 @@
 import Typography from "@/atoms/typography";
 import Layout from "@/colonies/layout";
 import { useSession } from "@/ions/hooks/session";
-import { StyledCenteredColumn, StyledVerticalFlexColumn } from "@/molecules/grid/styled-column";
+import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
 import { StepsProps } from "@/templates/home/types";
 import { useTranslation } from "next-i18next";
@@ -35,9 +35,9 @@ const Steps: FC<StepsProps> = ({ step }) => {
 					</Typography>
 				</StyledCenteredColumn>
 			) : (
-				<StyledVerticalFlexColumn colSpanM={4} colSpanL={7}>
+				<StyledCenteredColumn colSpanM={4} colSpanL={7}>
 					<Come />
-				</StyledVerticalFlexColumn>
+				</StyledCenteredColumn>
 			)}
 		</StyledFlexedGrid>
 	);
