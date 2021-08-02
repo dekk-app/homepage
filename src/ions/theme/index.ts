@@ -129,6 +129,7 @@ export const shadows: Shadows = {
 		15
 	)} rgba(0,0,0,0.3)`,
 };
+
 export const ui: UIPatterns = {
 	colors: {
 		primary: {
@@ -160,12 +161,12 @@ export const ui: UIPatterns = {
 			},
 		},
 		helpText: {
-			background: palette.dark,
-			color: "#ffffff",
+			background: "none",
+			color: "currentColor",
 		},
 		errorText: {
-			background: palette.light,
-			color: palette.red,
+			background: palette.red,
+			color: "#ffffff",
 		},
 		button: {
 			background: "none",
@@ -183,12 +184,12 @@ export const ui: UIPatterns = {
 	},
 	molecules: {
 		inputField: {
-			background: "rgba(255,255,255,0.1)",
-			color: "#ffffff",
+			background: "rgba(0, 0, 0, 0.1)",
+			color: "currentColor",
 			focus: {
 				border: palette.blue,
-				color: "#ffffff",
-				background: "rgba(255,255,255,0.1)",
+				color: "currentColor",
+				background: "rgba(0, 0, 0, 0.1)",
 			},
 			error: {
 				border: palette.red,

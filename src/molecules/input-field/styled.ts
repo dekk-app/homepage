@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const disallowedProps: PropertyKey[] = ["invalid"];
+
 export const StyledInput = styled("input", {
 	shouldForwardProp(propName: PropertyKey): boolean {
 		return !disallowedProps.includes(propName);
@@ -22,12 +23,16 @@ export const StyledInput = styled("input", {
 		background: ${theme.ui.molecules.inputField.background};
 		color: ${theme.ui.molecules.inputField.color};
 		box-shadow: inset 0 0 0 1px
-			${invalid ? theme.ui.molecules.inputField.border : "transparent"};
+			${invalid
+				? theme.ui.molecules.inputField.error.border
+				: theme.ui.molecules.inputField.border};
 
 		&:focus {
 			outline: 0;
 			box-shadow: inset 0 0 0 1px
-				${invalid ? theme.ui.molecules.inputField.border : theme.ui.colors.focusRing.border};
+				${invalid
+					? theme.ui.molecules.inputField.error.border
+					: theme.ui.colors.focusRing.border};
 		}
 
 		&:focus-visible {

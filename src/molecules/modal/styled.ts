@@ -10,13 +10,13 @@ export const StyledModalActions = styled.footer<ModalActionProps>`
 	bottom: calc(var(--padding-y) * -1);
 	grid-template-columns: 1fr auto;
 	justify-content: start;
+	background: var(--background);
+	color: var(--color);
 	${({ theme, sticky }) => css`
 		position: ${sticky ? "sticky" : "static"};
 		grid-column-gap: ${pxToRem(theme.spaces.xs)};
 		margin: 0 calc(var(--padding-x) * -1) ${sticky ? "calc(var(--padding-y) * -1)" : ""};
 		padding: ${sticky ? "var(--padding-y)" : 0} var(--padding-x);
-		background: ${theme.ui.colors.dark.background};
-		color: ${theme.ui.colors.dark.color};
 	`};
 `;
 
@@ -26,10 +26,8 @@ export const StyledModalHeader = styled.header`
 	top: calc(var(--padding-y) * -1);
 	margin: calc(var(--padding-y) * -1) calc(var(--padding-x) * -1) 0;
 	padding: var(--padding-y) var(--padding-x);
-	${({ theme }) => css`
-		background: ${theme.ui.colors.dark.background};
-		color: ${theme.ui.colors.dark.color};
-	`};
+	background: var(--background);
+	color: var(--color);
 `;
 
 export const StyledModalContent = styled.div`
@@ -53,10 +51,12 @@ export const StyledModal = styled.div`
 	transform: translate(-50%, -50%);
 	${({ theme }) => css`
 		--padding-y: ${pxToRem(theme.spaces.m)};
+		--background: ${theme.ui.colors.light.background};
+		--color: ${theme.ui.colors.light.color};
 
 		padding: var(--padding-y) var(--padding-x);
-		background: ${theme.ui.colors.dark.background};
-		color: ${theme.ui.colors.dark.color};
+		background: var(--background);
+		color: var(--color);
 
 		@media screen and ${theme.mq.m} {
 			width: 600px;
