@@ -9,6 +9,7 @@ export const DeFlag = () => {
 		</svg>
 	);
 };
+
 export const UsFlag = () => {
 	return (
 		<svg viewBox="0 0 7410 3900">
