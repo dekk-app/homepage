@@ -4,6 +4,10 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.header`
+	display: flex;
+	align-content: center;
+	align-items: center;
+	height: ${pxToRem(68)};
 	${({ theme }) => css`
 		padding: ${pxToRem(theme.spaces.xs)} 0;
 	`};

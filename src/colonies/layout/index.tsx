@@ -45,7 +45,7 @@ const Layout: FC<LayoutProps> = ({ className, children, title, description, dark
 			</Head>
 			<Header />
 			<Main className={className}>{children}</Main>
-			<Footer />
+			<Footer dark={dark} />
 			{process.env.NODE_ENV !== "production" && <OverlayGrid />}
 		</>
 	);

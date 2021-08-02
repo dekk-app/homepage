@@ -5,9 +5,10 @@ import { Column } from "@/molecules/grid";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledFooter = styled.footer`
-	${({ theme }) => css`
+export const StyledFooter = styled.footer<{ dark?: boolean }>`
+	${({ theme, dark }) => css`
 		padding: ${pxToRem(theme.spaces.xxl)} 0;
+		background: ${dark ? "rgba(0, 0, 0, 0.2)" : "rgba(255, 255, 255, 0.5)"};
 	`};
 `;
 

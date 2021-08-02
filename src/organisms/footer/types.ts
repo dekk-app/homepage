@@ -1,3 +1,5 @@
 import { BasePropsWithInnerRef } from "@/types/components";
 
-export interface FooterProps extends BasePropsWithInnerRef {}
+export interface FooterProps extends BasePropsWithInnerRef {
+	dark?: boolean;
+}
