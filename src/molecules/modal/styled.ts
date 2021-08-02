@@ -36,7 +36,7 @@ export const StyledModalContent = styled.div`
 	flex-direction: column;
 `;
 
-export const StyledModal = styled.div`
+export const StyledModal = styled.div<{ dark?: boolean }>`
 	--padding-x: calc(var(--gap-x) / 2 + var(--grid-padding));
 
 	display: flex;
@@ -49,10 +49,10 @@ export const StyledModal = styled.div`
 	height: 100%;
 	overflow: auto;
 	transform: translate(-50%, -50%);
-	${({ theme }) => css`
+	${({ theme, dark }) => css`
 		--padding-y: ${pxToRem(theme.spaces.m)};
-		--background: ${theme.ui.colors.light.background};
-		--color: ${theme.ui.colors.light.color};
+		--background: ${dark ? theme.ui.colors.dark.background : theme.ui.colors.light.background};
+		--color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
 
 		padding: var(--padding-y) var(--padding-x);
 		background: var(--background);

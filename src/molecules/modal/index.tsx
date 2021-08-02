@@ -12,12 +12,12 @@ import {
 	StyledModalIconButtonWrapper,
 } from "./styled";
 
-const Modal: FC<ModalProps> = ({ children, onClose }) => {
+const Modal: FC<ModalProps> = ({ children, onClose, dark }) => {
 	return (
 		<FocusTrap>
 			<div>
 				<StyledModalBackdrop onClick={onClose} />
-				<StyledModal>
+				<StyledModal dark={dark}>
 					{children}
 					<StyledModalIconButtonWrapper>
 						<StyledModalIconButton onClick={onClose}>

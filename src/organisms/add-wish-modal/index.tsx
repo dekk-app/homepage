@@ -77,7 +77,7 @@ const AddWishModal = () => {
 	}, [id, updateMyWish, dataUpdateWish]);
 
 	return (
-		<Modal onClose={close}>
+		<Modal dark onClose={close}>
 			<ModalHeader>
 				<Typography centered raw variant="h2">
 					{t("wishlist:add-wish.headline")}
