@@ -9,8 +9,10 @@ import {
 	StyledArticle,
 	StyledCard,
 	StyledIconButtonWrapper,
+	StyledModeratorButtons,
 	StyledTooltip,
-	StyledVotes,
+	StyledCardActions,
+	StyledVote,
 } from "@/organisms/wish-card/styled";
 import { Wish, WishVote } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
@@ -69,34 +71,38 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 					{body}
 				</Typography>
 			</StyledArticle>
-			<StyledVotes>
-				{session ? (
-					session?.user.id === authorId ? (
-						<Icon icon="heartFilled" />
-					) : (
-						<StyledIconButton
-							aria-label={
-								voted
-									? t("wishlist:button.down-vote")
-									: t("wishlist:button.up-vote")
-							}
-							onClick={() => {
-								if (voted) {
-									void deleteWishVote();
-								} else {
-									void createWishVote();
+			<StyledCardActions>
+				<StyledIconButtonWrapper>
+					{session ? (
+						session?.user.id === authorId ? (
+							<StyledVote>
+								<Icon icon="heartFilled" />
+							</StyledVote>
+						) : (
+							<StyledIconButton
+								aria-label={
+									voted
+										? t("wishlist:button.down-vote")
+										: t("wishlist:button.up-vote")
 								}
-							}}
-						>
-							<Icon icon={voted ? "heartFilled" : "heartOutlined"} />
-						</StyledIconButton>
-					)
-				) : (
-					<Icon icon="heartOutlined" />
-				)}
-				<Typography raw light variant="body2">
-					{votes}
-				</Typography>
+								onClick={() => {
+									if (voted) {
+										void deleteWishVote();
+									} else {
+										void createWishVote();
+									}
+								}}
+							>
+								<Icon icon={voted ? "heartFilled" : "heartOutlined"} />
+							</StyledIconButton>
+						)
+					) : (
+						<StyledVote>
+							<Icon icon="heartOutlined" />
+						</StyledVote>
+					)}
+					<StyledTooltip>{votes}</StyledTooltip>
+				</StyledIconButtonWrapper>
 				{session?.user.id === authorId && (
 					<StyledIconButtonWrapper>
 						<StyledIconButton
@@ -115,7 +121,27 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 						)}
 					</StyledIconButtonWrapper>
 				)}
-			</StyledVotes>
+				{session?.user.role === "admin" && (
+					<StyledModeratorButtons>
+						<StyledIconButton
+							aria-label={t("wishlist:button.approve")}
+							onClick={() => {
+								console.log("approve");
+							}}
+						>
+							<Icon icon="checkCircleOutline" />
+						</StyledIconButton>
+						<StyledIconButton
+							aria-label={t("wishlist:button.decline")}
+							onClick={() => {
+								console.log("decline");
+							}}
+						>
+							<Icon icon="minusCircleOutline" />
+						</StyledIconButton>
+					</StyledModeratorButtons>
+				)}
+			</StyledCardActions>
 		</StyledCard>
 	);
 };

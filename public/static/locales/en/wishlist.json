@@ -3,6 +3,8 @@
   "description": "Tell us what you expect from a presentation software.",
   "button": {
     "add-wish": "Add wish",
+    "approve": "Approve",
+    "decline": "Decline",
     "edit": "Edit",
     "down-vote": "Remove vote",
     "up-vote": "Add vote",
