@@ -1149,7 +1149,7 @@
     through2 "^2.0.0"
     watchify "3.11.1"
 
-"@dekk-app/dekk-backend@^1.5.3":
+"@dekk-app/dekk-backend@1.5.3":
   version "1.5.3"
   resolved "https://npm.pkg.github.com/download/@dekk-app/dekk-backend/1.5.3/728d5294ee1fa75b08d6aab28e8cefeec8b324b2408a452a3f4ea479a8e683c7#1733b962287c963503ccfcc6909161fbd50e8af0"
   integrity sha512-1BbHG95Wz3kn6w0o9dA+ki27fHVM961IoPLz5CUpXVz9oh49+yyFb+mb7tYLOJAGx4nGya5QI5FepwXzC6jU8Q==
