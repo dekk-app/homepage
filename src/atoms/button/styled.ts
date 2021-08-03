@@ -88,56 +88,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	`};
 `;
 
-export const StyledSocialButton = styled.button`
-	display: flex;
+export const StyledSocialButton = styled(StyledButton)`
 	flex: 1;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
-	justify-self: stretch;
-	height: ${pxToRem(60)};
-	margin: 0;
-	border: 0;
-	background: none;
-	color: currentColor;
-	font-family: inherit;
-	font-size: 1em;
-	font-weight: 600;
-
-	&:hover {
-		color: currentColor;
-	}
-
-	&:focus {
-		outline: 0;
-	}
-
-	&:focus-visible {
-		color: currentColor;
-	}
-
-	&[disabled] {
-		opacity: 0.5;
-		pointer-events: none;
-	}
-
-	${({ theme }) => css`
-		border-radius: ${theme.shapes.s};
-		box-shadow: inset 0 0 0 1px currentColor;
-
-		&:hover {
-			background: ${theme.ui.atoms.button.hover.background};
-		}
-
-		&:active {
-			background: ${theme.ui.atoms.button.active.background};
-		}
-
-		&:focus-visible {
-			background: ${theme.ui.atoms.button.focus.background};
-			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
-		}
-	`};
 `;
 
 export const StyledSocialButtonLabel = styled.span`

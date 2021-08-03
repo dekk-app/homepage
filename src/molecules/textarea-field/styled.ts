@@ -11,6 +11,7 @@ export const StyledTextArea = styled(TextareaAutosize, {
 	},
 })<{ invalid?: boolean }>`
 	display: flex;
+	position: relative;
 	width: 100%;
 	min-height: ${pxToRem(150)};
 	margin: 0;
@@ -27,9 +28,7 @@ export const StyledTextArea = styled(TextareaAutosize, {
 		background: ${theme.ui.molecules.inputField.background};
 		color: ${theme.ui.molecules.inputField.color};
 		box-shadow: inset 0 0 0 1px
-			${invalid
-				? theme.ui.molecules.inputField.error.border
-				: theme.ui.molecules.inputField.border};
+			${invalid ? theme.ui.molecules.inputField.error.border : "transparent"};
 
 		&:focus {
 			outline: 0;

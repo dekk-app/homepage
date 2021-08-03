@@ -15,7 +15,6 @@ const Contact = () => {
 			<Head>
 				<meta key="robots" name="robots" content="noindex,nofollow" />
 			</Head>
-
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<ContactForm />

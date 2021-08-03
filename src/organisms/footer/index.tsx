@@ -16,11 +16,11 @@ import {
 } from "./styled";
 import { FooterProps } from "./types";
 
-const Footer: FC<FooterProps> = ({ children, className, innerRef, testId }) => {
+const Footer: FC<FooterProps> = ({ children, className, innerRef, testId, dark }) => {
 	const { t } = useTranslation(["navigation"]);
 	const router = useRouter();
 	return (
-		<StyledFooter ref={innerRef} className={className} data-test-id={testId}>
+		<StyledFooter ref={innerRef} dark={dark} className={className} data-test-id={testId}>
 			{children}
 			<Grid>
 				<StyledFooterColumn colSpanM={4} colSpanL={3} colStartL={7}>
