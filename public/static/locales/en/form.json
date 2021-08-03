@@ -11,7 +11,8 @@
     "pattern": "Please check your input.",
     "required": "This field is required.",
     "generic-error": "An error occurred.",
-    "CANNOT_UPDATE_VOTED_WISH": "Cannot update a wish that already has votes."
+    "CANNOT_UPDATE_VOTED_WISH": "Cannot update a wish that already has votes.",
+    "CANNOT_UPDATE_ACCEPTED_WISH": "Cannot update a wish that has been approved."
   },
   "fields-labels": {
     "confirmPassword": "Confirm password",

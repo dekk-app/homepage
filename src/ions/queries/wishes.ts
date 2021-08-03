@@ -9,6 +9,7 @@ export const WISHES = gql`
 			subject
 			voted
 			votes
+			moderate
 		}
 	}
 `;
@@ -37,6 +38,7 @@ export const CREATE_WISH = gql`
 			authorId
 			body
 			id
+			moderate
 			subject
 			voted
 			votes
@@ -50,6 +52,21 @@ export const UPDATE_WISH = gql`
 			authorId
 			body
 			id
+			moderate
+			subject
+			voted
+			votes
+		}
+	}
+`;
+
+export const MODERATE_WISH = gql`
+	mutation updateWish($moderate: Moderation, $id: Int) {
+		updateWish(where: { id: $id }, data: { moderate: $moderate }) {
+			authorId
+			body
+			id
+			moderate
 			subject
 			voted
 			votes
@@ -59,8 +76,10 @@ export const UPDATE_WISH = gql`
 
 export const NEW_WISH_FRAGMENT = gql`
 	fragment NewWish on Wish {
-		id
+		authorId
 		body
+		id
+		moderate
 		subject
 		voted
 		votes

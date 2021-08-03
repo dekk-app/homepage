@@ -14,16 +14,14 @@ import React from "react";
 const WrappedWishlist = withLoadingAndError(Wishlist);
 
 const Page: NextPage<PageProps> = () => {
-	const { data, error, loading } = useQuery<{ wishes: Wish[] }>(WISHES, {
-		// Polling for news
-		// pollInterval: 60_000,
-	});
+	const { data, error, loading } = useQuery<{ wishes: Wish[] }>(WISHES);
+
 	return <WrappedWishlist data={data} error={error} loading={loading} />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
-	const apolloClient = initializeApollo();
-
+	const session = await getSession(context);
+	const apolloClient = initializeApollo(null, context.req.headers.cookie);
 	await apolloClient.query({
 		query: WISHES,
 	});
@@ -31,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 	return addApolloState(apolloClient, {
 		props: {
 			...(await serverSideTranslations(context.locale)),
-			session: await getSession(context),
+			session,
 			providers: await getProviders(),
 			locale: context.locale,
 			consent: getServerSideCookieConsent(context),

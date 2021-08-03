@@ -11,7 +11,8 @@
     "pattern": "Überprüfe bitte deine Eingabe.",
     "required": "Dieses Feld ist ein Pflichtfeld.",
     "generic-error": "Ein Fehler ist aufgetreten.",
-    "CANNOT_UPDATE_VOTED_WISH": "Ein Wunsch mit Stimmen kann nicht bearbeitet werden."
+    "CANNOT_UPDATE_VOTED_WISH": "Ein Wunsch mit Stimmen kann nicht bearbeitet werden.",
+    "CANNOT_UPDATE_ACCEPTED_WISH": "Ein Wunsch der genehmigt wurde kann nicht bearbeitet werden."
   },
   "fields-labels": {
     "confirmPassword": "Passwort bestätigen",

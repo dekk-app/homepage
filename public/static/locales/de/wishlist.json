@@ -3,12 +3,16 @@
   "description": "Sag uns was du von einer Präsentation Software erwartest.",
   "button": {
     "add-wish": "Wunsch abgeben",
+    "approve": "Genehmigen",
+    "decline": "Ablehnen",
     "edit": "Bearbeiten",
     "down-vote": "Stimme abgeben",
     "up-vote": "Stimme entfernen",
     "update-wish": "Wunsch anpassen",
     "wish": "Ich habe einen Wunsch"
   },
+  "pending": "Ausstehend",
+  "declined": "Abgelehnt",
   "tooltip": {
     "disabled": "Wünsche mit Stimmen können nicht bearbeitet werden."
   },

@@ -12,7 +12,7 @@ const Page: NextPage<PageProps> = () => {
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
-	const apolloClient = initializeApollo();
+	const apolloClient = initializeApollo(null, context.req.headers.cookie);
 	const session = await getSession(context);
 
 	if (session) {

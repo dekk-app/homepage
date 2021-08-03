@@ -74,7 +74,6 @@ const Wishlist = ({ data: { wishes } }: WishlistProps) => {
 	const elevateButtonAt = stickyButtonTop - stickyButtonHeight - headerHeight;
 	const dark = false;
 	const isElevated = scrollY > elevateButtonAt && scrollY < stickyButtonTop;
-
 	return (
 		<Layout
 			dark={dark}

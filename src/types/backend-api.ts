@@ -36,6 +36,13 @@ export type DateTimeNullableFilter = {
   not?: Maybe<NestedDateTimeNullableFilter>;
 };
 
+export type EnumModerationNullableFilter = {
+  equals?: Maybe<Moderation>;
+  in?: Maybe<Array<Moderation>>;
+  notIn?: Maybe<Array<Moderation>>;
+  not?: Maybe<NestedEnumModerationNullableFilter>;
+};
+
 export type EnumRoleFilter = {
   equals?: Maybe<Role>;
   in?: Maybe<Array<Role>>;
@@ -53,6 +60,12 @@ export type IntFilter = {
   gte?: Maybe<Scalars['Int']>;
   not?: Maybe<NestedIntFilter>;
 };
+
+export enum Moderation {
+  Pending = 'pending',
+  Accepted = 'accepted',
+  Declined = 'declined'
+}
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -103,6 +116,13 @@ export type NestedDateTimeNullableFilter = {
   gt?: Maybe<Scalars['DateTime']>;
   gte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeNullableFilter>;
+};
+
+export type NestedEnumModerationNullableFilter = {
+  equals?: Maybe<Moderation>;
+  in?: Maybe<Array<Moderation>>;
+  notIn?: Maybe<Array<Moderation>>;
+  not?: Maybe<NestedEnumModerationNullableFilter>;
 };
 
 export type NestedEnumRoleFilter = {
@@ -285,6 +305,7 @@ export type Wish = {
   authorId: Scalars['Int'];
   subject: Scalars['String'];
   body: Scalars['String'];
+  moderate?: Maybe<Moderation>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   votes: Scalars['Int'];
@@ -298,6 +319,7 @@ export type WishConnectCreateWishVotesInput = {
 export type WishCreateInput = {
   subject: Scalars['String'];
   body: Scalars['String'];
+  moderate?: Maybe<Moderation>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   author: UserConnectCreateWishInput;
@@ -308,6 +330,7 @@ export type WishCreateManyAuthorInput = {
   id?: Maybe<Scalars['Int']>;
   subject: Scalars['String'];
   body: Scalars['String'];
+  moderate?: Maybe<Moderation>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -332,6 +355,7 @@ export type WishCreateOrConnectWithoutAuthorInput = {
 export type WishCreateWithoutAuthorInput = {
   subject: Scalars['String'];
   body: Scalars['String'];
+  moderate?: Maybe<Moderation>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   wishVotes?: Maybe<WishVoteCreateNestedManyWithoutWishInput>;
@@ -348,6 +372,7 @@ export type WishOrderByInput = {
   authorId?: Maybe<SortOrder>;
   subject?: Maybe<SortOrder>;
   body?: Maybe<SortOrder>;
+  moderate?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
 };
@@ -362,6 +387,7 @@ export enum WishScalarFieldEnum {
   AuthorId = 'authorId',
   Subject = 'subject',
   Body = 'body',
+  Moderate = 'moderate',
   CreatedAt = 'createdAt',
   UpdatedAt = 'updatedAt'
 }
@@ -369,6 +395,7 @@ export enum WishScalarFieldEnum {
 export type WishUpdateInput = {
   subject?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
+  moderate?: Maybe<Moderation>;
 };
 
 export type WishVote = {
@@ -445,6 +472,7 @@ export type WishWhereInput = {
   authorId?: Maybe<IntFilter>;
   subject?: Maybe<StringFilter>;
   body?: Maybe<StringFilter>;
+  moderate?: Maybe<EnumModerationNullableFilter>;
   wishVotes?: Maybe<WishVoteListRelationFilter>;
   createdAt?: Maybe<DateTimeNullableFilter>;
   updatedAt?: Maybe<DateTimeNullableFilter>;

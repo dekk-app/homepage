@@ -1,3 +1,4 @@
+import { StyledIconButton } from "@/atoms/icon-button/styled";
 import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
@@ -17,16 +18,6 @@ export const StyledCard = styled(Column)`
 	`};
 `;
 
-export const StyledVotes = styled.div`
-	display: grid;
-	grid-template-columns: ${pxToRem(32)} ${pxToRem(16)} auto;
-	align-items: center;
-	justify-content: start;
-	${({ theme }) => css`
-		grid-column-gap: ${pxToRem(theme.spaces.xs)};
-	`};
-`;
-
 export const StyledArticle = styled.article`
 	flex: 1;
 `;
@@ -36,7 +27,7 @@ export const StyledTooltip = styled.div`
 	position: absolute;
 	bottom: 100%;
 	left: 50%;
-	width: ${pxToRem(200)};
+	max-width: ${pxToRem(200)};
 	transition-property: visibility, opacity, transform;
 	will-change: visibility, opacity, transform;
 	opacity: 0;
@@ -61,4 +52,32 @@ export const StyledIconButtonWrapper = styled.span`
 			opacity: 1;
 		}
 	}
+`;
+
+export const StyledModeratorButtons = styled.div`
+	display: flex;
+	flex: 1;
+	justify-content: flex-end;
+`;
+
+export const StyledVote = styled.div`
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	width: ${pxToRem(48)};
+	height: ${pxToRem(48)};
+`;
+
+export const StyledCardActions = styled.div`
+	display: flex;
+	align-content: center;
+	align-items: center;
+	${({ theme }) => css`
+		margin: 0 ${pxToRem(-theme.spaces.s)};
+
+		${StyledIconButton},${StyledVote} {
+			margin: 0;
+		}
+	`};
 `;
