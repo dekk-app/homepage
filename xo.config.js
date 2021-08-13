@@ -4,17 +4,12 @@
 module.exports = {
 	extends: ["xo-react", "plugin:prettier/recommended"],
 	ignores: [
-		"lib",
 		"cypress",
 		"public",
 		"migrations",
 		"*.config.js",
-		"node_modules",
-		"prepare/*",
 		"next-env.d.ts",
 		"types/*.d.ts",
-		"src/**/types.ts",
-		"src/types/index.ts",
 		"src/types/contentful-api.ts",
 		"src/types/backend-api.ts",
 	],
@@ -31,23 +26,25 @@ module.exports = {
 			files: "**/*.{ts,tsx}",
 			rules: {
 				"@typescript-eslint/consistent-type-assertions": [
-					"warn",
+					1,
 					{
 						assertionStyle: "as",
 						objectLiteralTypeAssertions: "allow-as-parameter",
 					},
 				],
+				"react/prop-types": 0,
+			},
+		},
+		{
+			files: "prepare/*.js",
+			rules: {
+				"unicorn/prefer-module": 0,
 			},
 		},
 	],
 	prettier: true,
 	rules: {
 		"react/prop-types": 0,
-		"unicorn/no-array-reduce": 0,
 		"unicorn/prefer-node-protocol": 0,
-		// "prettier/prettier": 0,
-		// "react/jsx-uses-react": 1,
-		// "react/jsx-uses-vars": 1,
-		"no-unused-vars": 2,
 	},
 };

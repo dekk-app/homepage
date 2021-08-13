@@ -1,3 +1,4 @@
+import process from "process";
 import { PrismaClient } from "@dekk-app/dekk-backend/src/colonies/prisma/client";
 import NextAuth from "next-auth";
 import Adapters from "next-auth/adapters";

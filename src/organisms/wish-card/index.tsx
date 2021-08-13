@@ -8,10 +8,10 @@ import { CREATE_WISH_VOTE, DELETE_WISH_VOTE } from "@/ions/queries/wishes";
 import {
 	StyledArticle,
 	StyledCard,
+	StyledCardActions,
 	StyledIconButtonWrapper,
 	StyledModeratorButtons,
 	StyledTooltip,
-	StyledCardActions,
 	StyledVote,
 } from "@/organisms/wish-card/styled";
 import { Wish, WishVote } from "@/types/backend-api";

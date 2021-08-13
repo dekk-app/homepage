@@ -1,3 +1,4 @@
+const process = require("process");
 const { withSentryConfig } = require("@sentry/nextjs");
 const { i18n } = require("./next-i18next.config");
 
@@ -103,8 +104,4 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-const sentry = withSentryConfig(config, SentryWebpackPluginOptions);
-
-const configWith = sentry;
-
-module.exports = configWith;
+module.exports = withSentryConfig(config, SentryWebpackPluginOptions);

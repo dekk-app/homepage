@@ -1,10 +1,11 @@
-const fs = require("fs");
+const { promises: fs } = require("fs");
 const path = require("path");
+const process = require("process");
 const { config } = require("dotenv");
-const pify = require("pify");
+
 config();
 
-const { writeFile } = pify(fs);
+const { writeFile } = fs;
 
 const getContentfulUrl = environment =>
 	`https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${environment}?access_token=${process.env.NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY}`;

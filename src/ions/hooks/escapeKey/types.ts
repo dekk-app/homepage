@@ -1,3 +1,1 @@
-export interface UseEscapeKeyCallback {
-	(): void;
-}
+export type UseEscapeKeyCallback = () => void;
