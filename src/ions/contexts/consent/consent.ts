@@ -1,7 +1,7 @@
-import { ConsentContext } from "@/ions/hooks/consent/context";
 import { ConsentState } from "@/types";
 import { GetServerSidePropsContext } from "next";
 import { useContext, useEffect, useState } from "react";
+import { ConsentContext } from "./context";
 
 const useConsentContext = () => useContext(ConsentContext);
 

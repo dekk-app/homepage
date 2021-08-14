@@ -1,6 +1,6 @@
-import { StyledSpinner } from "@/atoms/spinner/styled";
-import { SpinnerProps } from "@/atoms/spinner/types";
 import React from "react";
+import { StyledSpinner } from "./styled";
+import { SpinnerProps } from "./types";
 
 const Spinner = (props: SpinnerProps) => {
 	return <StyledSpinner {...props} />;

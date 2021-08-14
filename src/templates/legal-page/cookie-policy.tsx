@@ -1,6 +1,6 @@
 import Typography from "@/atoms/typography";
-import Layout from "@/colonies/layout";
-import { useCookieFirst } from "@/ions/hooks/consent/cookie-first";
+import Layout from "@/groups/layout";
+import { useCookieFirst } from "@/ions/contexts/consent/cookie-first";
 import { Column, Grid } from "@/molecules/grid";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";

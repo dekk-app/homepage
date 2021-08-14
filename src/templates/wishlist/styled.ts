@@ -1,4 +1,4 @@
-import Layout from "@/colonies/layout";
+import Layout from "@/groups/layout";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
 import { css } from "@emotion/react";

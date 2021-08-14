@@ -1,4 +1,4 @@
-import Error404 from "@/templates/error/400";
+import Error404 from "@/templates/error/404";
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";

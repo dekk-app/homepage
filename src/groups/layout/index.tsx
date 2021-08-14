@@ -1,6 +1,4 @@
-import process from "process";
 import { GlobalTypography } from "@/atoms/typography/global";
-import { LayoutProps } from "@/colonies/layout/types";
 import { globalStyles } from "@/ions/styles";
 import Footer from "@/organisms/footer";
 import Header from "@/organisms/header";
@@ -8,7 +6,9 @@ import Main from "@/organisms/main";
 import { css, Global, useTheme } from "@emotion/react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import process from "process";
 import React, { FC } from "react";
+import { LayoutProps } from "./types";
 
 const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"));
 

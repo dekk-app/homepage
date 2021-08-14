@@ -1,6 +1,6 @@
-import { TypographyProps } from "@/atoms/typography/types";
 import dynamic from "next/dynamic";
 import React, { FC } from "react";
+import { TypographyProps } from "./types";
 
 const TitleText = dynamic(async () => import("./title-text"));
 const SubTitleText = dynamic(async () => import("./subtitle-text"));

@@ -1,4 +1,4 @@
-import Layout from "@/colonies/layout";
+import Layout from "@/groups/layout";
 import { DocumentToReact } from "@/molecules/document-to-react";
 import { Column, Grid } from "@/molecules/grid";
 import { PageCollection } from "@/types/contentful-api";

@@ -4,7 +4,7 @@ import Typography from "@/atoms/typography";
 import { StyledFieldset, StyledForm, StyledLegend } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
 import TextArea from "@/molecules/textarea-field";
-import Transdown from "@/molecules/transdown";
+import Transdown from "@/organisms/transdown";
 import { ContactFormProps } from "@/types";
 import axios from "axios";
 import { useTranslation } from "next-i18next";

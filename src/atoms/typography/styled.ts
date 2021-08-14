@@ -1,8 +1,8 @@
-import { a, h1, h2, h3, h4, p } from "@/atoms/typography/global";
-import { StyledLinkProps, StyledTypographyProps } from "@/atoms/typography/types";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { a, h1, h2, h3, h4, p } from "./global";
+import { StyledLinkProps, StyledTypographyProps } from "./types";
 
 export const StyledLink = styled.a<StyledLinkProps>`
 	${a};

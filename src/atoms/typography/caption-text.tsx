@@ -1,6 +1,6 @@
-import { StyledCaptionText } from "@/atoms/typography/styled";
-import { TypographyProps } from "@/atoms/typography/types";
 import React, { FC } from "react";
+import { StyledCaptionText } from "./styled";
+import { TypographyProps } from "./types";
 
 const CaptionText: FC<TypographyProps> = ({ children, component, variant, ...props }) => (
 	<StyledCaptionText {...props} as={component}>

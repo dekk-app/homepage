@@ -5,17 +5,17 @@ import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWishlist } from "@/ions/contexts/wishlist";
 import { useSession } from "@/ions/hooks/session";
 import { CREATE_WISH_VOTE, DELETE_WISH_VOTE } from "@/ions/queries/wishes";
+import { Wish, WishVote } from "@/types/backend-api";
+import { useMutation } from "@apollo/client";
+import { useTranslation } from "next-i18next";
+import React, { FC, memo, useEffect } from "react";
 import {
 	StyledArticle,
 	StyledCard,
 	StyledIconButtonWrapper,
 	StyledTooltip,
 	StyledVotes,
-} from "@/organisms/wish-card/styled";
-import { Wish, WishVote } from "@/types/backend-api";
-import { useMutation } from "@apollo/client";
-import { useTranslation } from "next-i18next";
-import React, { FC, memo, useEffect } from "react";
+} from "./styled";
 
 const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted, authorId } }) => {
 	const [session] = useSession();

@@ -1,8 +1,8 @@
-import Mail from "@/atoms/lottie/animations/mail";
-import Layout from "@/colonies/layout";
+import ContactForm from "@/groups/contact-form";
+import Layout from "@/groups/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import ContactForm from "@/organisms/contact-form";
+import Mail from "@/organisms/animations/mail";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import React from "react";

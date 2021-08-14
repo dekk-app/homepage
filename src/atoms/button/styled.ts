@@ -1,8 +1,8 @@
-import { StyledButtonProps } from "@/atoms/button/types";
 import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { StyledButtonProps } from "./types";
 
 export const StyledButtonWrapper = styled.div`
 	display: flex;

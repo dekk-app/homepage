@@ -1,7 +1,7 @@
-import { Column } from "@/molecules/grid/index";
 import styled from "@emotion/styled";
+import { StyledColumn } from "./styled";
 
-export const StyledVerticalFlexColumn = styled(Column)`
+export const StyledVerticalFlexColumn = styled(StyledColumn)`
 	display: flex;
 	flex-direction: column;
 `;

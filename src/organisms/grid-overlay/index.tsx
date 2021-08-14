@@ -1,10 +1,10 @@
+import React, { FC, useState } from "react";
 import {
 	StyledGridOverlay,
 	StyledGridToggle,
 	StyledOverlayColumn,
 	StyledOverlayGrid,
-} from "@/organisms/grid-overlay/styled";
-import React, { FC, useState } from "react";
+} from "./styled";
 
 const OverlayGrid: FC = () => {
 	const [grid, setGrid] = useState(false);

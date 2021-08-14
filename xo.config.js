@@ -45,5 +45,6 @@ module.exports = {
 	prettier: true,
 	rules: {
 		"unicorn/prefer-node-protocol": 0,
+		"import/order": 0,
 	},
 };

@@ -1,8 +1,8 @@
-import Contact from "@/atoms/lottie/animations/contact";
 import Typography from "@/atoms/typography";
-import Layout from "@/colonies/layout";
+import Layout from "@/groups/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
+import Contact from "@/organisms/animations/contact";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import React, { memo } from "react";

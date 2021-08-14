@@ -1,6 +1,6 @@
-import { StyledBodyText } from "@/atoms/typography/styled";
-import { TypographyProps } from "@/atoms/typography/types";
 import React, { FC } from "react";
+import { StyledBodyText } from "./styled";
+import { TypographyProps } from "./types";
 
 const BodyText: FC<TypographyProps> = ({ children, component, variant, ...props }) => (
 	<StyledBodyText {...props} as={component}>

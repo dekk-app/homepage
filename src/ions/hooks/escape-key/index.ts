@@ -1,5 +1,5 @@
-import { UseEscapeKeyCallback } from "@/ions/hooks/escapeKey/types";
 import { useEffect } from "react";
+import { UseEscapeKeyCallback } from "./types";
 
 export const useEscapeKey = (callback: UseEscapeKeyCallback) => {
 	useEffect(() => {

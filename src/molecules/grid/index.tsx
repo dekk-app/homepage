@@ -1,6 +1,6 @@
-import { StyledColumn, StyledGrid, StyledRow } from "@/molecules/grid/styled";
 import { BasePropsWithInnerRef } from "@/types/components";
 import React, { FC } from "react";
+import { StyledColumn, StyledGrid, StyledRow } from "./styled";
 import { ColumnProps } from "./types";
 
 export const Grid: FC<BasePropsWithInnerRef<HTMLDivElement>> = ({ innerRef, ...props }) => (

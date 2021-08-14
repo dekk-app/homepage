@@ -1,7 +1,7 @@
 import { pxToRem } from "@/ions/utils/unit";
-import { StyledColumnProps } from "@/molecules/grid/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { StyledColumnProps } from "./types";
 
 const StyledGridBase = styled.div`
 	display: grid;
