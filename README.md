@@ -24,6 +24,12 @@ Replace `GITHUB_TOKEN` with your newly created token.
 
 > The `.npmrc` file is required to allow access to private GitHub packages.
 
+## Webstorm
+
+Please read
+[this article on setting up XO with webstorm](https://github.com/jamestalmage/xo-with-webstorm).
+The file can be found under [./webstorm-xo-codestyle.xml](./webstorm-xo-codestyle.xml)
+
 ## ENV
 
 Copy the `.env.example` and rename it to `.env` (ignored in git).

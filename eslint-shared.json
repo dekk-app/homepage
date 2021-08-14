@@ -1,0 +1,35 @@
+{
+  "plugins": ["prettier"],
+  "overrides": [
+    {
+      "files": "**/*.stories.{ts,tsx}",
+      "rules": {
+        "import/no-extraneous-dependencies": 0
+      }
+    },
+    {
+      "files": "**/*.{ts,tsx}",
+      "rules": {
+        "@typescript-eslint/consistent-type-assertions": [
+          1,
+          {
+            "assertionStyle": "as",
+            "objectLiteralTypeAssertions": "allow-as-parameter"
+          }
+        ],
+        "react/prop-types": 0
+      }
+    },
+    {
+      "files": "prepare/*.js",
+      "rules": {
+        "unicorn/prefer-module": 0
+      }
+    }
+  ],
+  "rules": {
+    "unicorn/prefer-node-protocol": 0,
+    "import/extensions": 0,
+    "import/order": 0
+  }
+}
