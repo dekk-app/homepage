@@ -3,7 +3,7 @@
     "TAGS": "not @ignore"
   },
   "baseUrl": "http://localhost:3000",
-  "projectId": "pv4qcq",
+  "projectId": "nxsfzw",
   "supportFile": "./cypress/support/index.js",
   "pluginsFile": "./cypress/plugins/index.js",
   "retries": 0,

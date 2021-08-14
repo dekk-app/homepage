@@ -1,0 +1,82 @@
+name: Test Branch on Pull Request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - "**"
+
+jobs:
+  test:
+    name: Run Server and Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: n1hility/cancel-previous-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read .nvmrc
+        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+        id: nvm
+
+      - name: Use Node.js (.nvmrc)
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.nvm.outputs.NVMRC }}"
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - uses: actions/cache@v2
+        id: next-cache
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Create npmrc
+        run: yarn npmrc:setup
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn install
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: yarn build
+        env:
+          NEXT_PUBLIC_BACKEND_URI: ${{secrets.NEXT_PUBLIC_BACKEND_URI}}
+          NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: ${{secrets.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}}
+          NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}}
+          NEXT_PUBLIC_CONTENT_PREVIEW_API_KEY: ${{secrets.NEXT_PUBLIC_CONTENT_PREVIEW_API_KEY}}
+          NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY: ${{secrets.NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY}}
+
+      - name: Test
+        run: yarn test
+        env:
+          NEXTAUTH_URL: ${{secrets.NEXTAUTH_URL}}
+          CONTACT_CLIENT_EMAIL: ${{secrets.CONTACT_CLIENT_EMAIL}}
+          CONTACT_SERVICE_CLIENT: ${{secrets.CONTACT_SERVICE_CLIENT}}
+          CONTACT_PRIVATE_KEY: ${{secrets.CONTACT_PRIVATE_KEY}}
+          CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
+          SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
+          SENTRY_ORG: ${{secrets.SENTRY_ORG}}
+          SENTRY_PROJECT: ${{secrets.SENTRY_PROJECT}}
+          SENTRY_URL: ${{secrets.SENTRY_URL}}
+          GOOGLE_ENCRYPTION_IV: ${{secrets.GOOGLE_ENCRYPTION_IV}}
+          GOOGLE_ENCRYPTION_KEY: ${{secrets.GOOGLE_ENCRYPTION_KEY}}

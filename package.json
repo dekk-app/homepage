@@ -21,6 +21,7 @@
     "ncu": "npx npm-check-updates@11.8.3 -u --dep='prod,dev'",
     "ncu:minor": "yarn ncu -t minor",
     "ncu:patch": "yarn ncu -t patch",
+    "npmrc:setup": "node prepare/npmrc.js",
     "prepare": "husky install",
     "prettier": "prettier 'src/**/*.{ts,tsx}'",
     "prettier:write": "yarn prettier --write",
