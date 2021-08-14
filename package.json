@@ -96,7 +96,6 @@
     "faker": "^5.5.3",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
-    "pify": "^5.0.0",
     "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "stylelint-a11y": "^1.2.3",
