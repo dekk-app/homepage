@@ -1,3 +1,4 @@
+import process from "process";
 import Button from "@/atoms/button";
 import { StyledButtonGroup } from "@/atoms/button/styled";
 import Icon from "@/atoms/icon";
@@ -46,7 +47,8 @@ const Page: NextPage<PageProps> = () => {
 	return (
 		<Layout title="Design System">
 			<Head>
-				<meta name="robots" content="noindex,nofollow" />
+				<title key="title">Design System</title>
+				<meta key="robots" name="robots" content="noindex,nofollow" />
 			</Head>
 			<Grid>
 				<Column>

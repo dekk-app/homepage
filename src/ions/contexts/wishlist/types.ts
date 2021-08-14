@@ -1,8 +1,6 @@
 import { Wish } from "@/types/backend-api";
 
-export interface UpdateCallback {
-	(previousWish: Wish): Partial<Wish>;
-}
+export type UpdateCallback = (previousWish: Wish) => Partial<Wish>;
 
 export interface WishlistState {
 	wishes: Wish[];

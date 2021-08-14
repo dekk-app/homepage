@@ -1,6 +1,6 @@
 export interface ModalProps {
-	onClose?(): void;
 	dark?: boolean;
+	onClose?(): void;
 }
 
 export interface ModalActionProps {

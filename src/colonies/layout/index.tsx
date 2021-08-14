@@ -1,3 +1,4 @@
+import process from "process";
 import { GlobalTypography } from "@/atoms/typography/global";
 import { LayoutProps } from "@/colonies/layout/types";
 import { globalStyles } from "@/ions/styles";

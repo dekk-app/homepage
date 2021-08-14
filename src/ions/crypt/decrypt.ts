@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import process from "process";
 
 import { encrypted } from "./service-account.enc";
 
