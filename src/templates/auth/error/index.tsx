@@ -15,7 +15,7 @@ const ErrorPage = () => {
 	return (
 		<Layout dark title={t("meta:auth.error.title")}>
 			<Head>
-				<meta name="robots" content="noindex,nofollow" />
+				<meta key="robots" name="robots" content="noindex,nofollow" />
 			</Head>
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>

@@ -1,3 +1,4 @@
+import process from "process";
 import { ProvidersProvider } from "@/ions/contexts/providers";
 import { ScrollBarWidthProvider } from "@/ions/contexts/scrollbar-width";
 import "@/ions/fonts/poppins.css";

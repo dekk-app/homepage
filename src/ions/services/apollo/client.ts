@@ -1,3 +1,4 @@
+import process from "process";
 import { APOLLO_STATE_PROP_NAME } from "@/ions/constants";
 import { PageProps } from "@/types";
 import {

@@ -1,3 +1,4 @@
+const process = require("process");
 const { config } = require("dotenv");
 config();
 

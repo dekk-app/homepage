@@ -63,12 +63,11 @@ export const breakpoints: Sizes = {
 };
 
 export const getMediaQueries = (b: Sizes) =>
-	Object.entries(b).reduce(
-		(previousValue, [key, value]: [string, number]) => ({
-			...previousValue,
-			[key]: `(min-width: ${pxToRem(value)})`,
-		}),
-		{}
+	Object.fromEntries(
+		Object.entries(b).map(([key, value]: [string, number]) => [
+			key,
+			`(min-width: ${pxToRem(value)})`,
+		])
 	) as MediaQueries;
 
 export const mq: MediaQueries = getMediaQueries(breakpoints);
