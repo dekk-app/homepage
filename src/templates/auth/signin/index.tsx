@@ -1,8 +1,8 @@
-import Locked from "@/atoms/lottie/animations/locked";
-import Layout from "@/colonies/layout";
+import Layout from "@/groups/layout";
+import SigninForm from "@/groups/signin";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import SigninForm from "@/organisms/signin";
+import Locked from "@/organisms/animations/locked";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import React, { memo } from "react";

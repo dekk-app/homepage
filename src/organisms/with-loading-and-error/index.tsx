@@ -1,6 +1,6 @@
-import { StyledErrorMessage, StyledLoader } from "@/organisms/with-loading-and-error/styled";
 import { ApolloError } from "@apollo/client";
 import React, { ComponentProps, ComponentType, ReactNode } from "react";
+import { StyledErrorMessage, StyledLoader } from "./styled";
 
 export const withLoadingAndError = <C extends ComponentType<ComponentProps<C>>>(Component: C) => {
 	return ({

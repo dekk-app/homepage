@@ -1,4 +1,3 @@
-import { UpdateCallback, WishlistState } from "@/ions/contexts/wishlist/types";
 import { Wish } from "@/types/backend-api";
 import React, {
 	createContext,
@@ -9,6 +8,7 @@ import React, {
 	useMemo,
 	useState,
 } from "react";
+import { UpdateCallback, WishlistState } from "./types";
 
 export const WishlistContext = createContext<WishlistState>({
 	wishes: [],

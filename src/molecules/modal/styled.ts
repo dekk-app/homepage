@@ -1,8 +1,8 @@
 import { StyledIconButton } from "@/atoms/icon-button/styled";
 import { pxToRem } from "@/ions/utils/unit";
-import { ModalActionProps } from "@/molecules/modal/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { ModalActionProps } from "./types";
 
 export const StyledModalActions = styled.footer<ModalActionProps>`
 	display: grid;

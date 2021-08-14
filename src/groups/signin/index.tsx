@@ -19,7 +19,7 @@ import {
 } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
 import { StyledScreenWrapper } from "@/molecules/screen/styled";
-import Transdown from "@/molecules/transdown";
+import Transdown from "@/organisms/transdown";
 import { SigninFormProps } from "@/types";
 import { signIn } from "next-auth/client";
 import { useTranslation } from "next-i18next";

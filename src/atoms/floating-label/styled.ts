@@ -1,7 +1,7 @@
-import { StyledFloatingLabelProps } from "@/atoms/floating-label/types";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { StyledFloatingLabelProps } from "./types";
 
 export const StyledFloatingLabel = styled.span<StyledFloatingLabelProps>`
 	display: flex;

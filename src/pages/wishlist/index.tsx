@@ -1,4 +1,4 @@
-import { getServerSideConsent } from "@/ions/hooks/consent/consent";
+import { getServerSideConsent } from "@/ions/contexts/consent/consent";
 import { WISHES } from "@/ions/queries/wishes";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { withLoadingAndError } from "@/organisms/with-loading-and-error";

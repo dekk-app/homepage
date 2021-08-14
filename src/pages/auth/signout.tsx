@@ -1,4 +1,4 @@
-import { getServerSideConsent } from "@/ions/hooks/consent/consent";
+import { getServerSideConsent } from "@/ions/contexts/consent/consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import SignOut from "@/templates/auth/signout";
 import { PageProps } from "@/types";

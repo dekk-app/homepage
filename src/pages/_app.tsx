@@ -1,8 +1,7 @@
-import process from "process";
+import { ConsentProvider } from "@/ions/contexts/consent/context";
 import { ProvidersProvider } from "@/ions/contexts/providers";
 import { ScrollBarWidthProvider } from "@/ions/contexts/scrollbar-width";
 import "@/ions/fonts/poppins.css";
-import { ConsentProvider } from "@/ions/hooks/consent/context";
 import routes, { Route } from "@/ions/routes";
 import { useApollo } from "@/ions/services/apollo/client";
 import { cache } from "@/ions/services/emotion/cache";
@@ -15,14 +14,15 @@ import {
 	Global,
 	ThemeProvider as EmotionThemeProvider,
 } from "@emotion/react";
+import pkg from "@pkg";
 import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import process from "process";
 import React from "react";
-import pkg from "../../package.json";
 
 export const fontFaces = css`
 	body {

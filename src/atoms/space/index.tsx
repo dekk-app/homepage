@@ -1,5 +1,5 @@
-import { StyledSpace } from "@/atoms/space/styled";
-import { SpaceProps } from "@/atoms/space/types";
 import React, { FC } from "react";
+import { StyledSpace } from "./styled";
+import { SpaceProps } from "./types";
 
 export const Space: FC<SpaceProps> = ({ space }) => <StyledSpace space={space} />;

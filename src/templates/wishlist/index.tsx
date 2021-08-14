@@ -15,7 +15,7 @@ import React, { FC, memo } from "react";
 import { StyledLayout, StyledWishWrapper } from "./styled";
 
 const AddWishModal = dynamic(async () => import("@/organisms/add-wish-modal"));
-const SigninModal = dynamic(async () => import("@/organisms/signin-modal"));
+const SigninModal = dynamic(async () => import("@/groups/signin-modal"));
 
 export interface WishlistProps {
 	data: { wishes: Wish[] };

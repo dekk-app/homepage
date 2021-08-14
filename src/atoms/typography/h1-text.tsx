@@ -1,6 +1,6 @@
-import { StyledH1Text } from "@/atoms/typography/styled";
-import { TypographyProps } from "@/atoms/typography/types";
 import React, { FC } from "react";
+import { StyledH1Text } from "./styled";
+import { TypographyProps } from "./types";
 
 const H1Text: FC<TypographyProps> = ({ children, component, variant, ...props }) => (
 	<StyledH1Text {...props} as={component}>

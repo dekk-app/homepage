@@ -1,5 +1,5 @@
-import { WishState } from "@/ions/contexts/wish/types";
 import React, { createContext, FC, useCallback, useContext, useMemo, useState } from "react";
+import { WishState } from "./types";
 
 export const WishContext = createContext<WishState>({
 	changeBody() {

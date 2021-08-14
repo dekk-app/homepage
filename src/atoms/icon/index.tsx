@@ -1,6 +1,6 @@
-import { StyledPath, StyledSvg } from "@/atoms/icon/styled";
+import { icons } from "@/ions/icons";
 import React from "react";
-import { icons } from "../../ions/icons";
+import { StyledPath, StyledSvg } from "./styled";
 import { IconProps } from "./types";
 
 const Icon = (props: IconProps) => {

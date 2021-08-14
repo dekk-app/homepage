@@ -1,7 +1,7 @@
-import I18nLink from "@/atoms/i18n-link";
 import Typography from "@/atoms/typography";
 import { StyledLink } from "@/atoms/typography/styled";
 import { pxToRem } from "@/ions/utils/unit";
+import I18nLink from "@/molecules/i18n-link";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useTranslation } from "next-i18next";

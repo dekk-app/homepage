@@ -1,6 +1,6 @@
-import { StyledBody2Text } from "@/atoms/typography/styled";
-import { TypographyProps } from "@/atoms/typography/types";
 import React, { FC } from "react";
+import { StyledBody2Text } from "./styled";
+import { TypographyProps } from "./types";
 
 const Body2Text: FC<TypographyProps> = ({ children, component, variant, ...props }) => (
 	<StyledBody2Text {...props} as={component}>

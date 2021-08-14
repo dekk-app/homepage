@@ -1,8 +1,8 @@
-import { spin } from "@/atoms/spinner/styles";
-import { SpinnerProps } from "@/atoms/spinner/types";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { spin } from "./styles";
+import { SpinnerProps } from "./types";
 
 export const StyledSpinner = styled.div<SpinnerProps>`
 	display: inline-flex;

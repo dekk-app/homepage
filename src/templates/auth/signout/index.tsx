@@ -1,10 +1,10 @@
 import Button from "@/atoms/button";
-import Locked from "@/atoms/lottie/animations/locked";
 import Typography from "@/atoms/typography";
-import Layout from "@/colonies/layout";
+import Layout from "@/groups/layout";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import Transdown from "@/molecules/transdown";
+import Locked from "@/organisms/animations/locked";
+import Transdown from "@/organisms/transdown";
 import { signOut } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";

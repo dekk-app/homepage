@@ -1,8 +1,8 @@
-import { SpaceProps } from "@/atoms/space/types";
 import { pxToRem } from "@/ions/utils/unit";
 import { SpaceKey } from "@/types/theme";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { SpaceProps } from "./types";
 
 const colors: Record<SpaceKey, string> = {
 	xxs: "hsl(0, 50%, 70%)",

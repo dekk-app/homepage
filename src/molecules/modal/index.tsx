@@ -1,5 +1,4 @@
 import Icon from "@/atoms/icon";
-import { ModalActionProps, ModalProps } from "@/molecules/modal/types";
 import FocusTrap from "focus-trap-react";
 import React, { FC } from "react";
 import {
@@ -11,6 +10,7 @@ import {
 	StyledModalIconButton,
 	StyledModalIconButtonWrapper,
 } from "./styled";
+import { ModalActionProps, ModalProps } from "./types";
 
 const Modal: FC<ModalProps> = ({ children, onClose, dark }) => {
 	return (

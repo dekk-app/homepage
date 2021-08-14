@@ -4,11 +4,12 @@ import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWish } from "@/ions/contexts/wish";
 import { useWishlist } from "@/ions/contexts/wishlist";
 import { useLockBodyScroll } from "@/ions/hooks/body-scroll-lock";
-import { useEscapeKey } from "@/ions/hooks/escapeKey";
+import { useEscapeKey } from "@/ions/hooks/escape-key";
 import { useSession } from "@/ions/hooks/session";
 import { CREATE_WISH, UPDATE_WISH } from "@/ions/queries/wishes";
 import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
+import Modal, { ModalActions, ModalContent, ModalHeader } from "@/molecules/modal";
 import TextArea from "@/molecules/textarea-field";
 import { WishFormProps } from "@/types";
 import { Wish } from "@/types/backend-api";
@@ -16,7 +17,6 @@ import { useMutation } from "@apollo/client";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import Modal, { ModalActions, ModalContent, ModalHeader } from "../../molecules/modal";
 
 const AddWishModal = () => {
 	const [session] = useSession();

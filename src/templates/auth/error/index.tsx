@@ -1,9 +1,9 @@
-import Crash from "@/atoms/lottie/animations/crash";
 import Typography from "@/atoms/typography";
-import Layout from "@/colonies/layout";
+import Layout from "@/groups/layout";
+import Signin from "@/groups/signin";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import Signin from "@/organisms/signin";
+import Crash from "@/organisms/animations/crash";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
