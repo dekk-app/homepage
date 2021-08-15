@@ -26,18 +26,20 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 
 		const defaultLocale = "en";
 		const locales: Array<"de" | "en"> = ["en", "de"];
-		const indexedRoutes: Route[] = ["/", "/wishlist"];
-		for (const locale of locales) {
-			for (const route of indexedRoutes) {
-				smStream.write({
+		const indexedRoutes: Route[] = ["/", "/wishlist", "/about-us"];
+		for (const route of indexedRoutes) {
+			smStream.write({
+				url: `${routes[route][defaultLocale]}`.replace(/\/$/, ""),
+				changefreq: "daily",
+				links: locales.map(locale => ({
 					url: (locale === defaultLocale
 						? `${routes[route][locale]}`
 						: `/${locale}${routes[route][locale]}`
 					).replace(/\/$/, ""),
-					changefreq: "daily",
-					priority: 0.9,
-				});
-			}
+					lang: locale,
+				})),
+				priority: 0.9,
+			});
 		}
 
 		// End sitemap stream

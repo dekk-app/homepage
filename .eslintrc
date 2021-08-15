@@ -1,3 +1,11 @@
 {
-  "extends": "next"
+  "extends": "next",
+  "overrides": [
+    {
+      "files": "**/*.{ts,tsx}",
+      "rules": {
+        "react/display-name": 0
+      }
+    }
+  ]
 }

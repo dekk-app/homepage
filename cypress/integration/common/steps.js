@@ -1,9 +1,17 @@
-const { setUserLocale } = require("../../utils");
+const { When } = require("cypress-cucumber-preprocessor/steps");
 
-Given("the user is on the root page", function () {
+When("the user visits the root page", function () {
 	cy.visit("/");
 });
 
-Given("the user {string} as language", setUserLocale);
+When("the user logs in", function () {
+	cy.login();
+	cy.visit("/");
+	cy.wait("@session");
+});
 
-When("I prefer {string} as language", setUserLocale);
+When("the user logs out", function () {
+	cy.logout();
+	cy.visit("/");
+	cy.wait("@session");
+});

@@ -1,9 +1,8 @@
 import { getServerSideConsent } from "@/ions/contexts/consent/consent";
-import { useSession } from "@/ions/hooks/session";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
-import { getProviders, getSession } from "next-auth/client";
+import { getProviders, getSession, useSession } from "next-auth/client";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
 import React from "react";

@@ -5,7 +5,7 @@ export type CSSVariable = `var(${string})`;
 /** CalcFunction works but causes rendering issues in some cases.
  *  The repeat function requires a positive <integer> while the calc function
  *  could return a <number>
- *  Divisions will never work, whilemultiplications, subtractions and additions
+ *  Divisions will never work, while multiplications, subtractions and additions
  *  will not work if one side is a <number>
  *  @link {@see https://drafts.csswg.org/css-values-3/#calc-notation}
  *  @link {@see https://drafts.csswg.org/css-values-3/#calc-type-checking}

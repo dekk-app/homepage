@@ -1,4 +1,4 @@
-import { CSSProperties, ElementType, ReactNode } from "react";
+import { CSSProperties, ElementType, HTMLAttributes, ReactNode } from "react";
 
 export type TypographyVariant =
 	| "body"
@@ -11,7 +11,7 @@ export type TypographyVariant =
 	| "title"
 	| "subtitle";
 
-export interface TypographyProps {
+export interface TypographyProps extends HTMLAttributes<HTMLElement> {
 	id?: string;
 	component?: ElementType;
 	variant?: TypographyVariant;

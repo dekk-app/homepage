@@ -1,0 +1,9 @@
+{
+  "user": {
+    "name": "Foo Bar",
+    "email": "foo@bar.com",
+    "image": "/assets/mock/foobar.jpg"
+  },
+  "expires": "3000-08-13T09:11:05.152Z",
+  "accessToken": "abcdefghijklmnopqrst"
+}

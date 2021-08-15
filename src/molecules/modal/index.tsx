@@ -13,6 +13,7 @@ import {
 import { ModalActionProps, ModalProps } from "./types";
 
 const Modal: FC<ModalProps> = ({ children, onClose, dark }) => {
+	/* */
 	return (
 		<FocusTrap>
 			<div>

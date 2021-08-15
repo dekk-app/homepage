@@ -5,7 +5,7 @@ import { Options } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import React from "react";
 
-export const options: Options = {
+export const simpleOptions: Options = {
 	renderMark: {
 		[MARKS.BOLD]: text => <strong>{text}</strong>,
 	},

@@ -1,14 +1,13 @@
 import Button from "@/atoms/button";
 import Typography from "@/atoms/typography";
 import Layout from "@/groups/layout";
+import Locked from "@/molecules/animations/locked";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import Locked from "@/organisms/animations/locked";
 import Transdown from "@/organisms/transdown";
 import { signOut } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import React, { memo, useState } from "react";
 
 const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
@@ -18,10 +17,7 @@ const SignOut = () => {
 	const [loading, setLoading] = useState(false);
 
 	return (
-		<Layout dark title={t("meta:auth.signout.title")}>
-			<Head>
-				<meta key="robots" name="robots" content="noindex,nofollow" />
-			</Head>
+		<Layout dark title={t("meta:auth.signout.title")} robots="noindex,nofollow">
 			<StyledFlexedGrid>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography variant="h1">{t("auth:signout.headline")}</Typography>

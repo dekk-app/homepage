@@ -20,6 +20,7 @@ export const palette: Palette = {
 	green: "#2EFFB0",
 	blue: "#2E93FF",
 	yellow: "#FFD22E",
+	highlight: "#FFA07A",
 	dark: "#232424",
 	light: "#F8F9FD",
 	purple: "#6A28EA",
@@ -37,19 +38,19 @@ export const spaces: Spaces = {
 };
 
 export const gutter: Sizes = {
-	xs: 8,
-	s: 8,
-	m: 8,
-	l: 12,
-	xl: 12,
+	xs: spaces.s,
+	s: spaces.s,
+	m: spaces.m,
+	l: spaces.m,
+	xl: spaces.m,
 };
 
 export const gridPadding: Sizes = {
-	xs: 8,
-	s: 16,
-	m: 24,
-	l: 24,
-	xl: 24,
+	xs: spaces.s,
+	s: spaces.m,
+	m: spaces.l,
+	l: spaces.l,
+	xl: spaces.l,
 };
 
 export const columnBaseWidth = 80;
@@ -57,16 +58,24 @@ export const columnBaseWidth = 80;
 export const breakpoints: Sizes = {
 	xs: 0,
 	s: columnBaseWidth * 4, // 320
-	m: columnBaseWidth * 9, // 720
-	l: columnBaseWidth * 16, // 1_280
+	m: columnBaseWidth * 9.5, // 760
+	l: columnBaseWidth * 13.5, // 1_080
 	xl: columnBaseWidth * 16, // 1_280
+};
+
+export const colCount: Sizes = {
+	xs: 2,
+	s: 4,
+	m: 8,
+	l: 12,
+	xl: 12,
 };
 
 export const getMediaQueries = (b: Sizes) =>
 	Object.fromEntries(
 		Object.entries(b).map(([key, value]: [string, number]) => [
 			key,
-			`(min-width: ${pxToRem(value)})`,
+			`@media only screen and (min-width: ${pxToRem(value)})`,
 		])
 	) as MediaQueries;
 
@@ -75,20 +84,14 @@ export const mq: MediaQueries = getMediaQueries(breakpoints);
 export const grid: GridConfig = {
 	gutter,
 	gridPadding,
-	maxWidth: breakpoints.l - (gridPadding.l + gutter.l) * 2,
-	colSpan: {
-		xs: 2,
-		s: 4,
-		m: 8,
-		l: 12,
-		xl: 12,
-	},
+	maxWidth: breakpoints.xl,
+	colCount,
 };
 
 export const layout: Layout = {
 	header: {
 		height: {
-			xs: 32,
+			xs: 64,
 			s: 64,
 			m: 64,
 			l: 96,
@@ -149,7 +152,7 @@ export const ui: UIPatterns = {
 		},
 		focusRing: {
 			background: setOpacity(palette.purple, 20),
-			border: palette.blue,
+			border: palette.highlight,
 		},
 	},
 	atoms: {
@@ -186,7 +189,7 @@ export const ui: UIPatterns = {
 			background: "rgba(0, 0, 0, 0.1)",
 			color: "currentColor",
 			focus: {
-				border: palette.blue,
+				border: palette.highlight,
 				color: "currentColor",
 				background: "rgba(0, 0, 0, 0.1)",
 			},

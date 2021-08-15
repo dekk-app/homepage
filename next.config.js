@@ -4,6 +4,9 @@ const { i18n } = require("./next-i18next.config");
 
 const config = {
 	i18n,
+	images: {
+		domains: ["images.ctfassets.net"],
+	},
 	pwa: {
 		dest: "public",
 		disable: process.env.NODE_ENV === "development",
@@ -13,6 +16,12 @@ const config = {
 	},
 	async redirects() {
 		return [
+			{
+				destination: "/de/ueber-uns",
+				locale: false,
+				permanent: true,
+				source: "/de/about-us",
+			},
 			{
 				destination: "/de/kontakt",
 				locale: false,
@@ -61,6 +70,11 @@ const config = {
 				destination: "/de/wishlist",
 				locale: false,
 				source: "/de/wunschliste",
+			},
+			{
+				destination: "/de/about-us",
+				locale: false,
+				source: "/de/ueber-uns",
 			},
 			{
 				destination: "/de/contact",

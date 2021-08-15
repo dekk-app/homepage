@@ -1,12 +1,15 @@
+import { Color, HexValue, RemValue, TimeWithUnit } from "@/types/units";
+
 export interface Palette {
-	red: string;
-	green: string;
-	blue: string;
-	yellow: string;
-	dark: string;
-	light: string;
-	purple: string;
-	darkPurple: string;
+	red: HexValue;
+	green: HexValue;
+	blue: HexValue;
+	yellow: HexValue;
+	highlight: HexValue;
+	dark: HexValue;
+	light: HexValue;
+	purple: HexValue;
+	darkPurple: HexValue;
 }
 
 export type SpaceKey = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
@@ -28,7 +31,7 @@ export type Sizes = {
 };
 
 export type Shapes = {
-	[key in ShapeKey]: string;
+	[key in ShapeKey]: RemValue;
 };
 
 export type Shadows = {
@@ -36,19 +39,18 @@ export type Shadows = {
 };
 
 export type Speeds = {
-	[key in SpeedKey]: string;
+	[key in SpeedKey]: TimeWithUnit;
 };
 
 export interface GridConfig {
 	gutter: Sizes;
 	gridPadding: Sizes;
 	maxWidth: number;
-	colSpan: Sizes;
-	debug?: boolean;
+	colCount: Sizes;
 }
 
 export type MediaQueries = {
-	[key in SizeKey]: string;
+	[key in SizeKey]: `@media only screen and (min-width: ${RemValue})`;
 };
 
 export interface HeaderLayout {
@@ -60,8 +62,8 @@ export interface Layout {
 }
 
 export interface ElementTheme {
-	background?: string;
-	color?: string;
+	background?: Color;
+	color?: Color;
 	border?: string;
 	error?: ElementTheme;
 	focus?: ElementTheme;

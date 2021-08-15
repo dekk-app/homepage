@@ -1,16 +1,11 @@
 {
-  "add-artboard": "Add Artboard",
   "collapse": "Collapse",
   "cancel": "Cancel",
-  "create": "Create",
-  "dashboard": "Dashboard",
   "de": "Deutsch",
   "en": "English",
   "expand": "Expand",
-  "hello": "Hello",
   "home": "Home",
   "signin": "Sign in",
   "signout": "Sign out",
-  "try-now": "Try now",
-  "welcome-to-dekk": "Welcome to Dekk"
+  "updated-at": "Updated at"
 }

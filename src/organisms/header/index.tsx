@@ -6,10 +6,10 @@ import React, { FC, memo } from "react";
 import { StyledHeader, StyledHeaderColumn, StyledHeaderItemsColumn } from "./styled";
 import { HeaderProps } from "./types";
 
-const Header: FC<HeaderProps> = ({ children, className, innerRef, testId }) => {
+const Header: FC<HeaderProps> = ({ children, className, dark, innerRef, testId }) => {
 	const { t } = useTranslation(["navigation"]);
 	return (
-		<StyledHeader ref={innerRef} className={className} data-test-id={testId}>
+		<StyledHeader ref={innerRef} dark={dark} className={className} data-test-id={testId}>
 			{children}
 			<Grid>
 				<StyledHeaderColumn colSpanS={2}>

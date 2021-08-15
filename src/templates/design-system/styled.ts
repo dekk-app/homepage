@@ -1,9 +1,9 @@
 import Typography from "@/atoms/typography";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
-import { SPACE_COLORS } from "@/templates/design-system/constants";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { SPACE_COLORS } from "./constants";
 import { SpaceProps } from "./types";
 
 export const StyledTypographySpace = styled.div`
@@ -14,6 +14,7 @@ export const StyledTypographySpace = styled.div`
 		margin: ${pxToRem(theme.spaces.l)} 0;
 	`};
 `;
+
 export const StyledTypography = styled(Typography)`
 	width: 100%;
 	background: hsl(230, 80%, 70%);

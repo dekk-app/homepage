@@ -58,7 +58,7 @@ export const StyledModal = styled.div<{ dark?: boolean }>`
 		background: var(--background);
 		color: var(--color);
 
-		@media screen and ${theme.mq.m} {
+		${theme.mq.m} {
 			width: 600px;
 			max-width: calc(100vw - ${pxToRem(theme.spaces.xl)});
 			height: auto;
@@ -79,7 +79,7 @@ export const StyledModalBackdrop = styled.div`
 	left: 0;
 	background: rgba(0, 0, 0, 0.3);
 	${({ theme }) => css`
-		@media screen and ${theme.mq.m} {
+		${theme.mq.m} {
 			display: block;
 		}
 	`};

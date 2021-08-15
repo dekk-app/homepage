@@ -1,8 +1,11 @@
-import process from "process";
+import { days, hours } from "@/ions/utils/time";
+import { User } from "@/types/backend-api";
 import { PrismaClient } from "@dekk-app/dekk-backend/src/colonies/prisma/client";
 import NextAuth from "next-auth";
 import Adapters from "next-auth/adapters";
+import { JWT } from "next-auth/jwt";
 import Providers from "next-auth/providers";
+import process from "process";
 
 const prisma = new PrismaClient();
 
@@ -41,12 +44,12 @@ export default NextAuth({
 		jwt: true,
 
 		// Seconds - How long until an idle session expires and is no longer valid.
-		maxAge: 30 * 24 * 60 * 60, // 30 days
+		maxAge: days(30),
 
 		// Seconds - Throttle how frequently to write to database to extend a session.
 		// Use it to limit write operations. Set to 0 to always update the database.
 		// Note: This option is ignored if using JSON Web Tokens
-		updateAge: 24 * 60 * 60, // 24 hours
+		updateAge: hours(24),
 	},
 	jwt: {
 		// A secret to use for key generation - you should set this explicitly
@@ -81,7 +84,7 @@ export default NextAuth({
 		// async decode({ secret, token, maxAge }) {},
 	},
 	callbacks: {
-		async jwt(token, user) {
+		async jwt(token, user: User) {
 			// Add the user into the token so that it can be used in the session
 			// "user" is defined when the user signs in
 			if (user !== undefined) {
@@ -91,7 +94,7 @@ export default NextAuth({
 			return token;
 		},
 
-		async session(session, token) {
+		async session(session, token: JWT) {
 			// Add the user into the session
 			session.user = token.user;
 			return session;

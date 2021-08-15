@@ -1,10 +1,12 @@
 {
   "wishlist": {
     "title": "Wishlist",
+    "keywords": "Presentation,Deck,Slide,Lecture,Software,Keynote,Conference",
     "description": "Tell us what you need to create the perfect presentation."
   },
   "home": {
     "title": "Presentations of the future",
+    "keywords": "Presentation,Deck,Slide,Lecture,Software,Keynote,Conference",
     "description": "Dekk rethinks. We enable you to create the best presentation and make the best experience while you do."
   },
   "contact": {
@@ -15,21 +17,12 @@
       "title": "Page not found"
     },
     "500": {
-      "title": "Sever Error"
+      "title": "Server Error"
     }
   },
   "legal": {
     "cookie-policy": {
       "title": "Cookies"
-    },
-    "terms-of-service": {
-      "title": "Terms of Service"
-    },
-    "imprint": {
-      "title": "Imprint"
-    },
-    "privacy-policy": {
-      "title": "Privacy Policy"
     }
   },
   "auth": {

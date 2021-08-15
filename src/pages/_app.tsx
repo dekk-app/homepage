@@ -20,8 +20,6 @@ import { appWithTranslation } from "next-i18next";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Script from "next/script";
-import process from "process";
 import React from "react";
 
 export const fontFaces = css`
@@ -30,16 +28,9 @@ export const fontFaces = css`
 	}
 `;
 
-export const debugging = css`
-	:root {
-		--debug-color: hsla(180, 100%, 50%, 0.3);
-		--debug-stroke: 1px;
-	}
-`;
-
 const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 	const apolloClient = useApollo(pageProps as PageProps);
-	const { locale, locales, defaultLocale, route } = useRouter();
+	const { locales, defaultLocale, route } = useRouter();
 	return (
 		<>
 			<Global styles={fontFaces} />
@@ -48,15 +39,7 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<meta name="version" content={pkg.version} />
-				<meta name="application-name" content="Dekk" />
-				<meta name="apple-mobile-web-app-capable" content="yes" />
-				<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-				<meta name="apple-mobile-web-app-title" content="Dekk" />
 				<meta name="format-detection" content="telephone=no" />
-				<meta name="mobile-web-app-capable" content="yes" />
-				<meta name="msapplication-TileColor" content={theme.ui.colors.theme.background} />
-				<meta name="msapplication-tap-highlight" content="no" />
-				<meta name="theme-color" content={theme.ui.colors.theme.background} />
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
@@ -78,7 +61,18 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 				<link rel="canonical" href={`https://dekk.app${route === "/" ? "" : route}`} />
 				{locales.map(localeCode => {
 					if (!routes[route as Route]) {
-						return null;
+						return (
+							<link
+								key={localeCode}
+								rel="alternate"
+								hrefLang={localeCode}
+								href={
+									localeCode === defaultLocale
+										? `https://dekk.app${route}`
+										: `https://dekk.app/${localeCode}${route}`
+								}
+							/>
+						);
 					}
 
 					const href =
@@ -116,10 +110,6 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 					</ProvidersProvider>
 				</NextAuthProvider>
 			</ConsentProvider>
-			<Script
-				src={`https://consent.cookiefirst.com/banner.js?cookiefirst-key=${process.env.NEXT_PUBLIC_COOKIEFIRST_KEY}&language=${locale}`}
-				strategy="lazyOnload"
-			/>
 		</>
 	);
 };

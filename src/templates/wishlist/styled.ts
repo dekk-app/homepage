@@ -1,10 +1,10 @@
-import Layout from "@/groups/layout";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
+import { StyledWishWrapperProps } from "@/templates/wishlist/types";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const StyledWishWrapper = styled(Column)`
+export const StyledWishWrapper = styled(Column)<StyledWishWrapperProps>`
 	--padding-x: calc(var(--gap-x) / 2 + var(--grid-padding));
 
 	display: flex;
@@ -14,16 +14,10 @@ export const StyledWishWrapper = styled(Column)`
 	align-content: flex-end;
 	align-items: flex-end;
 	justify-content: flex-end;
-	${({ theme }) => css`
+	${({ theme, dark }) => css`
 		margin: 0 calc(var(--padding-x) * -1);
 		padding: ${pxToRem(theme.spaces.m)} var(--padding-x);
-		background: ${theme.ui.colors.light.background};
-		color: ${theme.ui.colors.light.color};
-	`};
-`;
-
-export const StyledLayout = styled(Layout)`
-	${({ theme }) => css`
-		padding-bottom: ${pxToRem(theme.spaces.xxl * 2)};
+		background: ${dark ? theme.ui.colors.dark.background : theme.ui.colors.light.background};
+		color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
 	`};
 `;
