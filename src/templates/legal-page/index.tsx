@@ -5,17 +5,13 @@ import { Route } from "@/ions/routes";
 import { Column, Grid } from "@/molecules/grid";
 import Breadcrumbs from "@/organisms/breadcrumbs";
 import { DocumentToReact } from "@/organisms/document-to-react";
-import { PageCollection } from "@/types/contentful-api";
 import { Document as RichTextDocument } from "@contentful/rich-text-types";
 import { format } from "date-fns";
 import { de, enUS } from "date-fns/locale";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { FC, useMemo } from "react";
-
-interface LegalPageProps {
-	data: { pageCollection: PageCollection };
-}
+import { LegalPageProps } from "./types";
 
 const breadcrumbTitles: Partial<Record<Route, string>> = {
 	"/legal/privacy-policy": "navigation:policy",

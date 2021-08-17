@@ -1,20 +1,23 @@
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { StyledColumnProps } from "./types";
+import { StyledColumnProps, StyledGridProps } from "./types";
 
-const StyledGridBase = styled.div`
+const StyledGridBase = styled.div<StyledGridProps>`
 	display: grid;
 	grid-column-gap: var(--gap-x);
 	grid-row-gap: var(--gap-y);
 	grid-template-columns: repeat(var(--col-count), 1fr);
 	width: 100%;
-	${({ theme }) => css`
+	${({ theme, stretch }) => css`
+		align-content: ${stretch ? "stretch" : "start"};
+		align-items: ${stretch ? "stretch" : "start"};
 		max-width: ${pxToRem(theme.grid.maxWidth)};
 	`};
 `;
 
 export const StyledGrid = styled(StyledGridBase)`
+	flex: 1;
 	margin: 0 auto;
 	padding: 0 calc(var(--gap-x) / 2 + var(--grid-padding));
 	${({ theme }) => css`
@@ -63,6 +66,7 @@ export const StyledColumn = styled.div<StyledColumnProps>`
 		colSpanS = colSpanXS,
 		colSpanM = colSpanS,
 		colSpanL = colSpanM,
+		order,
 	}) => css`
 		--col-span: ${colSpanXS};
 		${colStartXS &&
@@ -93,5 +97,6 @@ export const StyledColumn = styled.div<StyledColumnProps>`
 				grid-column-start: ${colStartL};
 			`};
 		}
+		order: ${order};
 	`};
 `;

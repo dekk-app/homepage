@@ -30,7 +30,7 @@ const GridExamples = () => {
 	);
 	return (
 		<Layout title="Grid | Design System" breadcrumbs={breadcrumbs} robots="noindex,nofollow">
-			<Grid>
+			<Grid stretch>
 				<Column>
 					<Breadcrumbs />
 					<Typography variant="h1">Grid</Typography>
@@ -54,7 +54,7 @@ const GridExamples = () => {
 				<StyledColumn colSpanL={3} colStartL={4} />
 				<StyledColumn colSpanL={3} />
 				<StyledColumn colSpanM={6}>
-					<Row>
+					<Row stretch>
 						<StyledColumn colSpanL={3} />
 						<StyledColumn colSpanM="calc(var(--col-count) - 1)" />
 						<StyledColumn colSpanM="calc(var(--col-count) - 2)" />
@@ -64,21 +64,39 @@ const GridExamples = () => {
 					</Row>
 				</StyledColumn>
 				<StyledColumn colSpanM={2} colSpanL={6}>
-					<Row>
+					<Row stretch>
 						<StyledColumn colSpanM={6}>
-							<Row>
+							<Row stretch>
 								<StyledColumn colSpanL={1} />
-								<StyledColumn colSpanL={1} />
-								<StyledColumn colSpanL={1} />
-								<StyledColumn colSpanL={1} />
-								<StyledColumn colSpanL={1} />
-								<StyledColumn colSpanL={1}>
+								<StyledColumn colSpanL={3}>
 									<Row>
 										<StyledColumn colSpanL={1} />
 										<StyledColumn colSpanL={1} />
 										<StyledColumn colSpanL={1} />
 									</Row>
 								</StyledColumn>
+								<StyledColumn colSpanL={1}>
+									<Row stretch>
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+									</Row>
+								</StyledColumn>
+								<StyledColumn colSpanL={1}>
+									<Row>
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+										<StyledColumn colSpanL={1} />
+									</Row>
+								</StyledColumn>
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
+								<StyledColumn colSpanL={1} />
 							</Row>
 						</StyledColumn>
 					</Row>

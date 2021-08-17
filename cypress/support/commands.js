@@ -1,17 +1,41 @@
-const sessionToken =
-	"eyJhbGciOiJIUzUxMiJ9.eyJuYW1lIjoiR3JlZ29yIEFkYW1zIiwiZW1haWwiOm51bGwsInBpY3R1cmUiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTE0ODMzND92PTQiLCJzdWIiOiI1IiwidXNlciI6eyJpZCI6NSwibmFtZSI6IkdyZWdvciBBZGFtcyIsImVtYWlsIjpudWxsLCJlbWFpbFZlcmlmaWVkIjpudWxsLCJpbWFnZSI6Imh0dHBzOi8vYXZhdGFycy5naXRodWJ1c2VyY29udGVudC5jb20vdS8xMTQ4MzM0P3Y9NCIsImNyZWF0ZWRBdCI6IjIwMjEtMDctMjhUMTc6MTY6MjcuMzYzWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDctMjhUMTc6MTY6MjcuMzYzWiIsInJvbGUiOiJ1c2VyIn0sImlhdCI6MTYyOTEzOTU1OCwiZXhwIjoxNjMxNzMxNTU4fQ.Qm2sa3IKb3iNZTts3TlTnapVugrLajmyJXhCepywgkAWUE5O-xLEfabM_U-N4_sqrwTuWSrJGrQFGh2OoQdWEQ";
-Cypress.Commands.add("login", () => {
+import { hasOperationName } from "../utils/graphql";
+
+/**
+ * Login stub for next-auth
+ */
+Cypress.Commands.add("login", function () {
 	cy.intercept("/api/auth/session", { fixture: "session.json" }).as("session");
 
 	// Set the cookie for cypress.
 	// It has to be a valid cookie so next-auth can decrypt it and confirm its validity.
 	// This step can probably/hopefully be improved
-	cy.setCookie("next-auth.session-token", sessionToken);
+	cy.setCookie("next-auth.session-token", Cypress.env("nextAuthSessionToken"));
 	Cypress.Cookies.preserveOnce("next-auth.session-token");
 });
 
-Cypress.Commands.add("logout", () => {
+/**
+ * Logout stub for next-auth
+ */
+Cypress.Commands.add("logout", function () {
 	cy.intercept("/api/auth/session", { fixture: null }).as("session");
 
 	cy.clearCookie("next-auth.session-token");
+});
+
+/**
+ * Stub a graphql call in cypress.
+ * @param {string} operationName The name of the operation
+ * @param {object} data The response body data
+ * @param {object} options Additional options to configure the stub
+ * @param {object} options.alias The alias of the stub
+ */
+Cypress.Commands.add("gql", function (operationName, data, { alias }) {
+	cy.intercept("POST", "http://localhost:1337/graphql", req => {
+		if (hasOperationName(req, operationName)) {
+			req.alias = alias;
+			req.reply(res => {
+				res.body.data = data;
+			});
+		}
+	});
 });

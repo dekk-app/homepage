@@ -10,7 +10,7 @@ const Error500 = () => {
 	const { t } = useTranslation(["error", "meta"]);
 	return (
 		<Layout dark title={t("meta:error.500.title")} robots="noindex,nofollow">
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography centered variant="h1">
 						{t("error:500.headline")}

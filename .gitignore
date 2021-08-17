@@ -67,6 +67,7 @@ api.graphql
 # Cypress
 /cypress/videos
 /cypress/screenshots
+/cypress/cucumber-json
 public/mockServiceWorker.js
 
 

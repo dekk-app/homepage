@@ -106,8 +106,8 @@ export const StyledCaptionText = styled.p<StyledTypographyProps>`
 export const StyledTitleText = styled.h1<StyledTypographyProps>`
 	margin: ${pxToRem(32)} 0;
 	font-size: ${pxToRem(34)};
-	font-weight: 700;
-	line-height: ${pxToRem(38)};
+	font-weight: 600;
+	line-height: ${pxToRem(46)};
 	${({ centered, raw, theme }) => css`
 		${raw &&
 		css`
@@ -119,8 +119,9 @@ export const StyledTitleText = styled.h1<StyledTypographyProps>`
 		`};
 
 		${theme.mq.m} {
+			margin: ${pxToRem(64)} 0;
 			font-size: ${pxToRem(65)};
-			line-height: ${pxToRem(72)};
+			line-height: ${pxToRem(86)};
 		}
 	`}
 `;

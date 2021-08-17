@@ -1,5 +1,5 @@
 import Button from "@/atoms/button";
-import { StyledButtonGroup } from "@/atoms/button/styled";
+import ButtonGroup from "@/atoms/button/button-group";
 import ButtonIcon from "@/atoms/icon/button-icon";
 import ButtonSpinner from "@/atoms/spinner/button-spinner";
 import Typography from "@/atoms/typography";
@@ -44,7 +44,7 @@ const ButtonExamples = () => {
 					<Typography variant="h2">Primary</Typography>
 				</Column>
 				<Column>
-					<StyledButtonGroup>
+					<ButtonGroup>
 						<Button primary>Primary Button</Button>
 						<Button primary disabled>
 							Primary Button
@@ -57,13 +57,13 @@ const ButtonExamples = () => {
 							<ButtonIcon icon="heartOutlined" />
 							Like
 						</Button>
-					</StyledButtonGroup>
+					</ButtonGroup>
 				</Column>
 				<Column>
 					<Typography variant="h2">Default</Typography>
 				</Column>
 				<Column>
-					<StyledButtonGroup>
+					<ButtonGroup>
 						<Button>Default Button</Button>
 						<Button disabled>Default Button</Button>
 						<Button>
@@ -74,13 +74,13 @@ const ButtonExamples = () => {
 							<ButtonIcon icon="heartOutlined" />
 							Like
 						</Button>
-					</StyledButtonGroup>
+					</ButtonGroup>
 				</Column>
 				<Column>
 					<Typography variant="h2">Text</Typography>
 				</Column>
 				<Column>
-					<StyledButtonGroup>
+					<ButtonGroup>
 						<Button text>text Button</Button>
 						<Button text disabled>
 							Text Button
@@ -93,7 +93,7 @@ const ButtonExamples = () => {
 							<ButtonIcon icon="heartOutlined" />
 							Like
 						</Button>
-					</StyledButtonGroup>
+					</ButtonGroup>
 				</Column>
 			</Grid>
 			<LightSection>
@@ -102,11 +102,11 @@ const ButtonExamples = () => {
 						<Typography variant="h2">Mixed on Light Background</Typography>
 					</Column>
 					<Column>
-						<StyledButtonGroup>
+						<ButtonGroup>
 							<Button primary>Submit</Button>
 							<Button>Reset</Button>
 							<Button text>Cancel</Button>
-						</StyledButtonGroup>
+						</ButtonGroup>
 					</Column>
 				</Grid>
 			</LightSection>
@@ -116,11 +116,11 @@ const ButtonExamples = () => {
 						<Typography variant="h2">Mixed on Dark Background</Typography>
 					</Column>
 					<Column>
-						<StyledButtonGroup>
+						<ButtonGroup>
 							<Button primary>Submit</Button>
 							<Button>Reset</Button>
 							<Button text>Cancel</Button>
-						</StyledButtonGroup>
+						</ButtonGroup>
 					</Column>
 				</Grid>
 			</DarkSection>

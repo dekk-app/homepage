@@ -18,7 +18,7 @@ const SignOut = () => {
 
 	return (
 		<Layout dark title={t("meta:auth.signout.title")} robots="noindex,nofollow">
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch data-test-id="logout-page">
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography variant="h1">{t("auth:signout.headline")}</Typography>
 
@@ -28,6 +28,7 @@ const SignOut = () => {
 					<div>
 						<Button
 							type="button"
+							data-test-id="logout-button"
 							onClick={() => {
 								setLoading(true);
 								void signOut();

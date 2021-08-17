@@ -8,8 +8,8 @@ export interface Palette {
 	highlight: HexValue;
 	dark: HexValue;
 	light: HexValue;
-	purple: HexValue;
-	darkPurple: HexValue;
+	brand: HexValue;
+	brandDark: HexValue;
 }
 
 export type SpaceKey = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
@@ -18,7 +18,7 @@ export type SizeKey = "xs" | "s" | "m" | "l" | "xl";
 
 export type ShapeKey = "xs" | "s" | "m" | "l" | "xl";
 
-export type ShadowKey = "s" | "m" | "l";
+export type ShadowKey = "0" | "s" | "m" | "l";
 
 export type SpeedKey = "fast" | "normal" | "slow" | "verySlow" | "extremelySlow";
 

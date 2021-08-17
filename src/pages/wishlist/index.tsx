@@ -1,4 +1,4 @@
-import { getServerSideConsent } from "@/ions/contexts/consent/consent";
+import { getServerSideCookieConsent } from "@/ions/contexts/cookie-consent";
 import { WISHES } from "@/ions/queries/wishes";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import { withLoadingAndError } from "@/organisms/with-loading-and-error";
@@ -15,7 +15,8 @@ const WrappedWishlist = withLoadingAndError(Wishlist);
 
 const Page: NextPage<PageProps> = () => {
 	const { data, error, loading } = useQuery<{ wishes: Wish[] }>(WISHES, {
-		pollInterval: 60_000,
+		// Polling for news
+		// pollInterval: 60_000,
 	});
 	return <WrappedWishlist data={data} error={error} loading={loading} />;
 };
@@ -33,7 +34,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			session: await getSession(context),
 			providers: await getProviders(),
 			locale: context.locale,
-			consent: getServerSideConsent(context),
+			consent: getServerSideCookieConsent(context),
 		},
 	});
 };

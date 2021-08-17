@@ -24,8 +24,7 @@ export const StyledColumn = styled(Column)`
 	min-height: 4em;
 	margin-top: 1em;
 	margin-bottom: 1em;
-	background: hsla(180, 50%, 70%, 0.15);
-	box-shadow: inset 0 0 0 2px hsl(180, 50%, 70%);
+	box-shadow: inset 0 0 0 1px hsl(10, 50%, 70%);
 `;
 
 export const StyledSpace = styled.div<SpaceProps>`

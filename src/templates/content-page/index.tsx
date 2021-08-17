@@ -4,15 +4,11 @@ import { Route } from "@/ions/routes";
 import { Column, Grid } from "@/molecules/grid";
 import Breadcrumbs from "@/organisms/breadcrumbs";
 import { DocumentToReact } from "@/organisms/document-to-react";
-import { PageCollection } from "@/types/contentful-api";
 import { Document as RichTextDocument } from "@contentful/rich-text-types/dist/types/types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { FC, useMemo } from "react";
-
-interface ContentPageProps {
-	data: { pageCollection: PageCollection };
-}
+import { ContentPageProps } from "./types";
 
 const breadcrumbTitles: Partial<Record<Route, string>> = {
 	"/about-us": "navigation:about-us",
@@ -20,7 +16,6 @@ const breadcrumbTitles: Partial<Record<Route, string>> = {
 
 const ContentPage: FC<ContentPageProps> = ({ data, children }) => {
 	const [entry] = data.pageCollection.items;
-	console.log(entry.seo);
 	const { t } = useTranslation(["navigation"]);
 	const { route } = useRouter();
 	const breadcrumbs: RawBreadcrumb[] = useMemo(

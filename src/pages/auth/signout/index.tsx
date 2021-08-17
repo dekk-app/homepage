@@ -1,6 +1,6 @@
-import { getServerSideConsent } from "@/ions/contexts/consent/consent";
+import { getServerSideCookieConsent } from "@/ions/contexts/cookie-consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
-import SignIn from "@/templates/auth/signin";
+import SignOut from "@/templates/auth/signout";
 import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";
@@ -8,14 +8,14 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 const Page: NextPage<PageProps> = () => {
-	return <SignIn />;
+	return <SignOut />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
-	const apolloClient = initializeApollo();
 	const session = await getSession(context);
+	const apolloClient = initializeApollo();
 
-	if (session) {
+	if (!session) {
 		return {
 			redirect: {
 				permanent: false,
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			providers: await getProviders(),
 			session,
 			locale: context.locale,
-			consent: getServerSideConsent(context),
+			consent: getServerSideCookieConsent(context),
 		},
 	});
 };

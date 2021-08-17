@@ -10,7 +10,7 @@ const VerifyRequest = () => {
 	const { t } = useTranslation(["auth", "meta"]);
 	return (
 		<Layout dark title={t("meta:auth.verify-request.title")} robots="noindex,nofollow">
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch>
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<Typography centered variant="h1">
 						{t("auth:verify-email")}

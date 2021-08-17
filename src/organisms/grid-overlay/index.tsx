@@ -29,7 +29,7 @@ const OverlayGrid: FC = () => {
 			</StyledGridToggle>
 			{visible && (
 				<StyledGridOverlay>
-					<StyledOverlayGrid>
+					<StyledOverlayGrid stretch>
 						<StyledOverlayColumn colSpanXS={1} />
 						<StyledOverlayColumn colSpanXS={1} />
 						<StyledOverlayColumn colSpanXS={1} />

@@ -1,4 +1,5 @@
 import { BasePropsWithInnerRef } from "@/types/components";
+import { ElementType } from "react";
 
 export type ColCount = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type CSSVariable = `var(${string})`;
@@ -23,6 +24,15 @@ export interface StyledColumnProps {
 	colStartS?: ColStart;
 	colStartM?: ColStart;
 	colStartL?: ColStart;
+	order?: number;
 }
 
-export interface ColumnProps extends StyledColumnProps, BasePropsWithInnerRef<HTMLDivElement> {}
+export interface ColumnProps extends StyledColumnProps, BasePropsWithInnerRef<HTMLDivElement> {
+	as?: ElementType;
+}
+
+export interface StyledGridProps {
+	stretch?: boolean;
+}
+
+export interface GridProps extends StyledGridProps, BasePropsWithInnerRef<HTMLDivElement> {}

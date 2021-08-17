@@ -1,4 +1,4 @@
-import { getServerSideConsent } from "@/ions/contexts/consent/consent";
+import { getServerSideCookieConsent } from "@/ions/contexts/cookie-consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
 import VerifyRequest from "@/templates/auth/verify-request";
 import { PageProps } from "@/types";
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			providers: await getProviders(),
 			session: await getSession(context),
 			locale: context.locale,
-			consent: getServerSideConsent(context),
+			consent: getServerSideCookieConsent(context),
 		},
 	});
 };

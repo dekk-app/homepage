@@ -38,6 +38,21 @@ export const GET_CONTENT_PAGE = gql`
 										json
 									}
 								}
+								... on Person {
+									name
+									picture {
+										sys {
+											id
+										}
+										url
+										description
+										height
+										width
+									}
+									biography {
+										json
+									}
+								}
 							}
 						}
 					}

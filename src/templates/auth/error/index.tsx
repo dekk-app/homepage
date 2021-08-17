@@ -13,7 +13,7 @@ const ErrorPage = () => {
 	const { t } = useTranslation(["auth", "meta"]);
 	return (
 		<Layout dark title={t("meta:auth.error.title")} robots="noindex,nofollow">
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch>
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<Signin />
 				</StyledCenteredColumn>

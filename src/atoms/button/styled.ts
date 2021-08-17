@@ -18,6 +18,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	align-content: center;
 	align-items: center;
 	justify-content: center;
+	width: max-content;
 	height: ${pxToRem(60)};
 	margin: 0;
 	padding: ${pxToRem(16)} ${pxToRem(24)};
@@ -27,6 +28,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	line-height: ${pxToRem(24)};
 	text-decoration: none;
 	vertical-align: bottom;
+	white-space: nowrap;
 
 	&:focus {
 		outline: 0;
@@ -63,14 +65,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 		&:hover {
 			background: ${primary
-				? theme.palette.darkPurple
+				? theme.palette.brandDark
 				: theme.ui.atoms.button.hover.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
 
 		&:active {
 			background: ${primary
-				? `${theme.palette.darkPurple} linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1))`
+				? `${theme.palette.brandDark} linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1))`
 				: theme.ui.atoms.button.active.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
@@ -81,7 +83,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 		&:focus-visible {
 			background: ${primary
-				? theme.palette.darkPurple
+				? theme.palette.brandDark
 				: theme.ui.atoms.button.focus.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 
@@ -123,7 +125,7 @@ export const StyledLanguageButton = styled.button`
 		&:hover {
 			&::after {
 				content: "";
-				background: ${setOpacity(theme.palette.purple, 30)};
+				background: ${setOpacity(theme.palette.brand, 30)};
 			}
 		}
 

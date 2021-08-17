@@ -16,15 +16,15 @@ import {
 } from "@/types/theme";
 
 export const palette: Palette = {
-	red: "#D90303",
-	green: "#2EFFB0",
-	blue: "#2E93FF",
-	yellow: "#FFD22E",
+	red: "#DB0303",
+	green: "#2BFFB0",
+	blue: "#2B93FF",
+	yellow: "#FED22E",
 	highlight: "#FFA07A",
-	dark: "#232424",
-	light: "#F8F9FD",
-	purple: "#6A28EA",
-	darkPurple: "#4F13C2",
+	dark: "#232421",
+	light: "#F8F9FA",
+	brand: "#6A26E9",
+	brandDark: "#4F11C0",
 };
 
 export const spaces: Spaces = {
@@ -121,6 +121,7 @@ export const speeds: Speeds = {
 };
 
 export const shadows: Shadows = {
+	"0": `0 0 0 rgba(0,0,0,0), 0 0 0 rgba(0,0,0,0)`,
 	s: `0 ${pxToRem(1)} ${pxToRem(2)} rgba(0,0,0,0.1), 0 ${pxToRem(3)} ${pxToRem(
 		5
 	)} rgba(0,0,0,0.2)`,
@@ -135,7 +136,7 @@ export const shadows: Shadows = {
 export const ui: UIPatterns = {
 	colors: {
 		primary: {
-			background: palette.purple,
+			background: palette.brand,
 			color: "#ffffff",
 		},
 		light: {
@@ -151,7 +152,7 @@ export const ui: UIPatterns = {
 			color: "#ffffff",
 		},
 		focusRing: {
-			background: setOpacity(palette.purple, 20),
+			background: setOpacity(palette.brand, 20),
 			border: palette.highlight,
 		},
 	},
@@ -174,13 +175,13 @@ export const ui: UIPatterns = {
 			background: "none",
 			color: "currentColor",
 			hover: {
-				background: setOpacity(palette.purple, 20),
+				background: setOpacity(palette.brand, 20),
 			},
 			focus: {
-				background: setOpacity(palette.purple, 30),
+				background: setOpacity(palette.brand, 30),
 			},
 			active: {
-				background: setOpacity(palette.purple, 40),
+				background: setOpacity(palette.brand, 40),
 			},
 		},
 	},

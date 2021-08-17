@@ -1,6 +1,6 @@
-import { getServerSideConsent } from "@/ions/contexts/consent/consent";
+import { getServerSideCookieConsent } from "@/ions/contexts/cookie-consent";
 import { addApolloState, initializeApollo } from "@/ions/services/apollo/client";
-import ErrorPage from "@/templates/auth/error";
+import SignIn from "@/templates/auth/signin";
 import { PageProps } from "@/types";
 import { GetServerSideProps, NextPage } from "next";
 import { getProviders, getSession } from "next-auth/client";
@@ -8,7 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 const Page: NextPage<PageProps> = () => {
-	return <ErrorPage />;
+	return <SignIn />;
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			providers: await getProviders(),
 			session,
 			locale: context.locale,
-			consent: getServerSideConsent(context),
+			consent: getServerSideCookieConsent(context),
 		},
 	});
 };

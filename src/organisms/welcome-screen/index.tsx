@@ -29,11 +29,13 @@ const WelcomeScreen = () => {
 				{t("welcome:body-line2")}
 			</Typography>
 			<StyledLinksWrapper>
-				<I18nLink passHref bold href="/wishlist">
+				<I18nLink passHref bold href="/wishlist" data-test-id="link-to-wishlist">
 					{t("welcome:button")}
 				</I18nLink>
 				<Link passHref href="/auth/signout">
-					<StyledLink bold>{t("common:signout")}</StyledLink>
+					<StyledLink bold data-test-id="link-to-logout">
+						{t("common:signout")}
+					</StyledLink>
 				</Link>
 			</StyledLinksWrapper>
 		</>

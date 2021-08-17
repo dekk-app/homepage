@@ -1,6 +1,8 @@
 import { GlobalTypography } from "@/atoms/typography/global";
 import { BreadcrumbsProvider } from "@/ions/contexts/breadcrumbs/context";
+import { useCookieConsentModal } from "@/ions/contexts/cookie-consent-modal";
 import { globalStyles } from "@/ions/styles";
+import CookieBanner from "@/organisms/cookie-banner";
 import Footer from "@/organisms/footer";
 import Header from "@/organisms/header";
 import Main from "@/organisms/main";
@@ -25,13 +27,15 @@ const Layout: FC<LayoutProps> = ({
 }) => {
 	const theme = useTheme();
 	const breadcrumbs = useMemo(() => rawBreadcrumbs || [], [rawBreadcrumbs]);
+	const { isOpen: isCookieModalOpen } = useCookieConsentModal();
+
 	return (
 		<>
-			<Global styles={globalStyles} />
+			<Global key="globalStyles" styles={globalStyles} />
 			<GlobalTypography />
 			{dark ? (
 				<Global
-					key="dark"
+					key="layout-theme"
 					styles={css`
 						body {
 							background-color: ${theme.ui.colors.dark.background};
@@ -41,7 +45,7 @@ const Layout: FC<LayoutProps> = ({
 				/>
 			) : (
 				<Global
-					key="light"
+					key="layout-theme"
 					styles={css`
 						body {
 							background-color: ${theme.ui.colors.light.background};
@@ -63,6 +67,7 @@ const Layout: FC<LayoutProps> = ({
 			</BreadcrumbsProvider>
 			<Footer dark={dark} />
 			{process.env.NODE_ENV !== "production" && <OverlayGrid />}
+			{isCookieModalOpen && <CookieBanner />}
 		</>
 	);
 };

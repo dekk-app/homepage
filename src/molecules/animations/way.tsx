@@ -1,7 +1,16 @@
-import Player from "@/atoms/lottie/player";
-import way from "@/ions/lottie/way/data.json";
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 
-const Way = () => <Player animationData={way as unknown as JSON} />;
+const Player = dynamic(async () => import("@/atoms/lottie/player"));
+
+const Way = () => {
+	const [animationData, setAnimationData] = useState<JSON>(null);
+	useEffect(() => {
+		void import("@/ions/lottie/way/data.json").then(mod => {
+			setAnimationData(mod.default as unknown as JSON);
+		});
+	}, []);
+	return animationData && <Player animationData={animationData} />;
+};
 
 export default Way;

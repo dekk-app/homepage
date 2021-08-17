@@ -16,7 +16,7 @@ const SigninHome = () => {
 			description={t("meta:home.description")}
 			keywords={t("meta:home.keywords")}
 		>
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch data-test-id="logged-out-page">
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<Signin />
 				</StyledCenteredColumn>

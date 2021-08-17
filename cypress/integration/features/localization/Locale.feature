@@ -1,9 +1,9 @@
-Feature: Locale redirects
+Feature: Locale Redirects
 
 	As a User, I want to see the page with my preferred language,
 	so that I can understand it.
 
-	Scenario Outline: The user's operation system language
+	Scenario Outline: The user's operating system language
 
 		Given the user prefers <locale>
 		Then the user sees <url> in the url

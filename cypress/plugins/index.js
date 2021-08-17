@@ -1,7 +1,14 @@
-const cucumber = require("cypress-cucumber-preprocessor").default;
+import cucumber from "cypress-cucumber-preprocessor";
+import dotenv from "dotenv";
 
-const config = on => {
-	on("file:preprocessor", cucumber());
+dotenv.config();
+
+const setupPlugins = (on, config) => {
+	// We cannot use `cucumber()`. Instead we have to use `cucumber.default()`
+	// @see {@link https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/issues/614}
+	on("file:preprocessor", cucumber.default());
+	config.env.nextAuthSessionToken = process.env.CYPRESS_NEXT_AUTH_SESSION_TOKEN;
+	return config;
 };
 
-module.exports = config;
+export default setupPlugins;

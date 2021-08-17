@@ -6,4 +6,5 @@ export interface HeaderProps extends BasePropsWithInnerRef {
 
 export interface StyledHeaderProps {
 	dark?: boolean;
+	elevated?: boolean;
 }

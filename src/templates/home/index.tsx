@@ -16,7 +16,7 @@ const Home = () => {
 			description={t("meta:home.description")}
 			keywords={t("meta:home.keywords")}
 		>
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch data-test-id="logged-in-page">
 				<StyledCenteredColumn colSpanM={4} colSpanL={5}>
 					<WelcomeScreen />
 				</StyledCenteredColumn>

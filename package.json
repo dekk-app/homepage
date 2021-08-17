@@ -1,13 +1,18 @@
 {
   "name": "app",
   "version": "0.1.0",
-  "main": "n/a",
   "license": "UNLICENSED",
+  "main": "n/a",
   "scripts": {
     "prebuild": "npx rimraf@3.0.2 node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-darwin node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-debian-openssl-1.1.x",
     "build": "next build",
+    "build:analyze": "npx cross-env@7.0.3 ANALYZE=true next build",
     "cypress:run": "npx cypress@8.3.0 run --record",
+    "cypress:run:firefox": "npx cypress@8.3.0 run --record  --browser firefox",
+    "cypress:run:chrome": "npx cypress@8.3.0 run --record --browser chrome",
     "cypress:run-local": "npx cypress@8.3.0 run",
+    "cypress:run-local:firefox": "npx cypress@8.3.0 run --browser firefox",
+    "cypress:run-local:chrome": "npx cypress@8.3.0 run --browser chrome",
     "cypress:open": "npx cypress@8.3.0 open",
     "dev": "next",
     "graphql:setup": "node prepare/graphql-setup.js",
@@ -60,7 +65,8 @@
     "react-lottie-player": "1.3.3",
     "react-textarea-autosize": "8.3.3",
     "sitemap": "7.0.0",
-    "tslib": "2.3.1"
+    "tslib": "2.3.1",
+    "use-cookie-consent": "^0.1.12"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -69,13 +75,18 @@
     "@commitlint/config-conventional": "^13.1.0",
     "@emotion/babel-plugin": "^11.3.0",
     "@graphql-codegen/cli": "^1.21.8",
+    "@graphql-codegen/introspection": "2.0.0",
     "@graphql-codegen/typescript": "^1.23.0",
     "@graphql-codegen/typescript-operations": "^1.18.4",
+    "@next/bundle-analyzer": "^11.1.0",
     "@types/faker": "^5.5.8",
     "@types/jasmine": "^3.8.2",
     "@types/jasmine-matchers": "^0.2.32",
     "@types/jest": "^27.0.1",
+    "@types/lodash.at": "^4.6.6",
     "@types/lodash.isequal": "^4.5.5",
+    "@types/lodash.pullallby": "^4.7.6",
+    "@types/lodash.take": "^4.1.6",
     "@types/node": "^16.6.1",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.17",
@@ -85,7 +96,6 @@
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
     "cypress-cucumber-preprocessor": "^4.2.0",
-    "cypress-graphql-mock-network": "^0.10.1",
     "dotenv": "^10.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "eslint": "^7.32.0",
@@ -99,6 +109,9 @@
     "faker": "^5.5.3",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
+    "lodash.at": "^4.6.0",
+    "lodash.pullallby": "^4.7.0",
+    "lodash.take": "^4.1.1",
     "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "stylelint-a11y": "^1.2.3",
@@ -112,8 +125,6 @@
     "type-fest": "^2.0.0",
     "typescript": "^4.3.5",
     "webpack": "^5.50.0",
-    "xo": "^0.44.0",
-    "@graphql-codegen/typescript-react-apollo": "3.0.0",
-    "@graphql-codegen/introspection": "2.0.0"
+    "xo": "^0.44.0"
   }
 }

@@ -1,7 +1,7 @@
-exports.dataTestId = id => `[data-test-id='${id}']`;
+export const dataTestId = id => `[data-test-id="${id}"]`;
 
-exports.dataTestState = state => `[data-test-state='${state}']`;
+export const dataTestState = state => `[data-test-state="${state}"]`;
 
-exports.dataTestSelector = (selector, value) => `[data-test-${selector}='${value}']`;
+export const dataTestSelector = selector => `[data-test-selector="${selector}"]`;
 
-exports.withBaseUrl = urlPath => `${Cypress.config().baseUrl}${urlPath}`;
+export const withBaseUrl = urlPath => `${Cypress.config().baseUrl}${urlPath}`;

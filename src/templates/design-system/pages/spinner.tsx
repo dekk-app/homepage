@@ -44,7 +44,7 @@ const SpinnerExamples = () => {
 					<Typography variant="h2">Color</Typography>
 					<Spinner color={theme.palette.blue} />
 					<Spinner color={theme.palette.red} />
-					<Spinner color={theme.palette.purple} />
+					<Spinner color={theme.palette.brand} />
 				</Column>
 				<Column>
 					<Typography variant="h2">Stroke Width</Typography>
@@ -57,7 +57,7 @@ const SpinnerExamples = () => {
 				</Column>
 				<Column>
 					<Typography variant="h2">Mixed</Typography>
-					<Spinner strokeWidth={pxToRem(4)} color={theme.palette.purple} />
+					<Spinner strokeWidth={pxToRem(4)} color={theme.palette.brand} />
 					<Spinner
 						size={pxToRem(100)}
 						strokeWidth={pxToRem(5)}

@@ -101,8 +101,8 @@ export const globalTypography = css`
 		line-height: inherit;
 
 		&:hover {
-			background: ${setOpacity(palette.purple, 20)};
+			background: ${setOpacity(palette.brand, 20)};
 		}
 	}
 `;
-export const GlobalTypography = () => <Global styles={globalTypography} />;
+export const GlobalTypography = () => <Global key="globalTypography" styles={globalTypography} />;

@@ -1,6 +1,7 @@
+import Spinner from "@/atoms/spinner";
 import { ApolloError } from "@apollo/client";
 import React, { ComponentProps, ComponentType, ReactNode } from "react";
-import { StyledErrorMessage, StyledLoader } from "./styled";
+import { StyledErrorMessage, StyledSinnerWrapper } from "./styled";
 
 export const withLoadingAndError = <C extends ComponentType<ComponentProps<C>>>(Component: C) => {
 	return ({
@@ -10,7 +11,11 @@ export const withLoadingAndError = <C extends ComponentType<ComponentProps<C>>>(
 		...props
 	}: ComponentProps<C> & { loading?: boolean; error?: ApolloError; children?: ReactNode }) => {
 		if (loading) {
-			return <StyledLoader />;
+			return (
+				<StyledSinnerWrapper>
+					<Spinner />
+				</StyledSinnerWrapper>
+			);
 		}
 
 		if (error) {

@@ -11,7 +11,7 @@ const Contact = () => {
 
 	return (
 		<Layout dark title={t("meta:contact.title")} robots="noindex,nofollow">
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch>
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<ContactForm />
 				</StyledCenteredColumn>

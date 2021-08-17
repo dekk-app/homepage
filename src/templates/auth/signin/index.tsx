@@ -11,7 +11,7 @@ const Signin = () => {
 
 	return (
 		<Layout dark title={t("meta:auth.signin.title")} robots="noindex,nofollow">
-			<StyledFlexedGrid>
+			<StyledFlexedGrid stretch>
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<SigninForm />
 				</StyledCenteredColumn>

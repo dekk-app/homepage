@@ -1,9 +1,11 @@
 import { BreakLines } from "@/atoms/break-lines";
-import Typography from "@/atoms/typography";
 import { StyledLink } from "@/atoms/typography/styled";
 import { Options } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const Typography = dynamic(async () => import("@/atoms/typography"));
 
 export const simpleOptions: Options = {
 	renderMark: {

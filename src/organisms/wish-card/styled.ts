@@ -8,10 +8,11 @@ import styled from "@emotion/styled";
 export const StyledCard = styled(Column)`
 	display: flex;
 	flex-direction: column;
-	padding: ${pxToRem(24)};
 	background-color: white;
 	color: black;
 	${({ theme }) => css`
+		margin-bottom: ${pxToRem(theme.spaces.m)};
+		padding: ${pxToRem(theme.spaces.m)};
 		border-radius: ${theme.shapes.m};
 	`};
 `;

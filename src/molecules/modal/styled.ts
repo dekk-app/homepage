@@ -8,13 +8,14 @@ export const StyledModalActions = styled.footer<ModalActionProps>`
 	display: grid;
 	z-index: 1;
 	bottom: calc(var(--padding-y) * -1);
-	grid-template-columns: 1fr auto;
 	justify-content: start;
 	background: var(--background);
 	color: var(--color);
-	${({ theme, sticky }) => css`
+	${({ theme, sticky, secondary }) => css`
 		position: ${sticky ? "sticky" : "static"};
+		grid-template-columns: ${secondary ? "1fr 1fr" : "1fr auto"};
 		grid-column-gap: ${pxToRem(theme.spaces.xs)};
+		grid-row-gap: ${pxToRem(theme.spaces.xs)};
 		margin: 0 calc(var(--padding-x) * -1) ${sticky ? "calc(var(--padding-y) * -1)" : ""};
 		padding: ${sticky ? "var(--padding-y)" : 0} var(--padding-x);
 	`};
@@ -34,6 +35,9 @@ export const StyledModalContent = styled.div`
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+	${({ theme }) => css`
+		padding: ${pxToRem(theme.spaces.s)} 0;
+	`};
 `;
 
 export const StyledModal = styled.div<{ dark?: boolean }>`
@@ -99,5 +103,6 @@ export const StyledModalIconButtonWrapper = styled.div`
 	${({ theme }) => css`
 		top: ${pxToRem(theme.spaces.xxs)};
 		right: ${pxToRem(theme.spaces.xs)};
+		margin: 0 calc(var(--padding-x) * -0.5);
 	`};
 `;

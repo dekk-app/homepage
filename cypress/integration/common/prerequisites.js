@@ -1,4 +1,4 @@
-const { Given } = require("cypress-cucumber-preprocessor/steps");
+import { Given } from "cypress-cucumber-preprocessor/steps";
 
 Given("the user is on the root page", function () {
 	cy.visit("/");

@@ -1,7 +1,16 @@
-import Player from "@/atoms/lottie/player";
-import contact from "@/ions/lottie/contact/data.json";
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 
-const Contact = () => <Player animationData={contact as unknown as JSON} />;
+const Player = dynamic(async () => import("@/atoms/lottie/player"));
+
+const Contact = () => {
+	const [animationData, setAnimationData] = useState<JSON>(null);
+	useEffect(() => {
+		void import("@/ions/lottie/contact/data.json").then(mod => {
+			setAnimationData(mod.default as unknown as JSON);
+		});
+	}, []);
+	return animationData && <Player animationData={animationData} />;
+};
 
 export default Contact;

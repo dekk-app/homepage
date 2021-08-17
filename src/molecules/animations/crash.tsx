@@ -1,7 +1,16 @@
-import Player from "@/atoms/lottie/player";
-import crash from "@/ions/lottie/crash/data.json";
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 
-const Crash = () => <Player animationData={crash as unknown as JSON} />;
+const Player = dynamic(async () => import("@/atoms/lottie/player"));
+
+const Crash = () => {
+	const [animationData, setAnimationData] = useState<JSON>(null);
+	useEffect(() => {
+		void import("@/ions/lottie/crash/data.json").then(mod => {
+			setAnimationData(mod.default as unknown as JSON);
+		});
+	}, []);
+	return animationData && <Player animationData={animationData} />;
+};
 
 export default Crash;
