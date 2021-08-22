@@ -8,7 +8,9 @@
     "minLength": "The minimum length is {{minLength}}.",
     "passwordMatch": "The passwords do not match.",
     "pattern": "Please check your input.",
-    "required": "This field is required."
+    "required": "This field is required.",
+    "generic-error": "An error occurred.",
+    "CANNOT_UPDATE_VOTED_WISH": "Cannot update a wish that already has votes."
   },
   "fields-labels": {
     "confirmPassword": "Confirm password",

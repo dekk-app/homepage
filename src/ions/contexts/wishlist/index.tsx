@@ -12,16 +12,21 @@ import { UpdateCallback, WishlistState } from "./types";
 
 export const WishlistContext = createContext<WishlistState>({
 	wishes: [],
+	error: null,
 	add() {
 		/**/
 	},
 	update() {
 		/**/
 	},
+	setError() {
+		/**/
+	},
 });
 
 export const WishlistProvider: FC<{ initialState: Wish[] }> = ({ children, initialState }) => {
 	const [wishes, setWishes] = useState<Wish[]>(initialState);
+	const [error, setError] = useState<string | null>(null);
 
 	const add = useCallback((wish: Wish) => {
 		setWishes(previousState => [wish, ...previousState]);
@@ -49,8 +54,10 @@ export const WishlistProvider: FC<{ initialState: Wish[] }> = ({ children, initi
 			wishes,
 			add,
 			update,
+			setError,
+			error,
 		}),
-		[add, wishes, update]
+		[add, wishes, update, setError, error]
 	);
 
 	return <WishlistContext.Provider value={context}>{children}</WishlistContext.Provider>;

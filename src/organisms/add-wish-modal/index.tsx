@@ -1,4 +1,5 @@
 import Button from "@/atoms/button";
+import { StyledErrorText } from "@/atoms/error-text/styled";
 import Typography from "@/atoms/typography";
 import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWish } from "@/ions/contexts/wish";
@@ -15,8 +16,11 @@ import { Wish } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import React, { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
 
 const AddWishModal = () => {
 	const [session] = useSession();
@@ -32,9 +36,9 @@ const AddWishModal = () => {
 			"wish-body": previousBody,
 		},
 	});
-	const { update: updateMyWish } = useWishlist();
+	const { update: updateMyWish, setError: setWishlistError } = useWishlist();
 
-	const [createWish, { data: dataCreateWish }] = useMutation<{
+	const [createWish, { data: dataCreateWish, loading: loadingCreateWish }] = useMutation<{
 		createWish: Wish;
 	}>(CREATE_WISH, {
 		variables: {
@@ -44,7 +48,10 @@ const AddWishModal = () => {
 		},
 	});
 
-	const [updateWish, { data: dataUpdateWish }] = useMutation<{
+	const [
+		updateWish,
+		{ data: dataUpdateWish, error: errorUpdateWish, loading: loadingUpdateWish },
+	] = useMutation<{
 		updateWish: Wish;
 	}>(UPDATE_WISH, {
 		variables: {
@@ -54,10 +61,31 @@ const AddWishModal = () => {
 		},
 	});
 
+	const loading = loadingUpdateWish || loadingCreateWish;
+	// Activate when the errors return keys
+	// const error = errorUpdateWish || errorCreateWish;
+
 	const handleSubmit = useCallback(async () => {
-		await (id ? updateWish() : createWish());
-		close();
-	}, [id, updateWish, createWish, close]);
+		if (id) {
+			updateWish()
+				.then(() => {
+					close();
+				})
+				.catch(() => {
+					close();
+					setWishlistError(t("form:errors:CANNOT_UPDATE_VOTED_WISH"));
+				});
+		} else {
+			createWish()
+				.then(() => {
+					close();
+				})
+				.catch(() => {
+					close();
+					setWishlistError(t("form:errors:generic-error"));
+				});
+		}
+	}, [id, updateWish, createWish, close, setWishlistError, t]);
 
 	// Add new wish
 	useEffect(() => {
@@ -86,10 +114,16 @@ const AddWishModal = () => {
 			<ModalContent>
 				<FormProvider {...methods}>
 					<Typography centered>{t("wishlist:add-wish.body")}</Typography>
+					{errorUpdateWish && (
+						<StyledErrorText>
+							{t("form:errors:CANNOT_UPDATE_VOTED_WISH")}
+						</StyledErrorText>
+					)}
 					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 						<StyledFieldset>
 							<InputField
 								fullWidth
+								disabled={Boolean(errorUpdateWish)}
 								id="form:wishlist:wish-subject"
 								name="wish-subject"
 								helpText={t("form:help-texts.wish-subject")}
@@ -101,6 +135,7 @@ const AddWishModal = () => {
 							/>
 							<TextArea
 								fullWidth
+								disabled={Boolean(errorUpdateWish)}
 								id="form:wishlist:wish-body"
 								name="wish-body"
 								helpText={t("form:help-texts.wish-body")}
@@ -109,7 +144,8 @@ const AddWishModal = () => {
 							/>
 						</StyledFieldset>
 						<ModalActions sticky>
-							<Button primary type="submit">
+							<Button primary type="submit" disabled={Boolean(errorUpdateWish)}>
+								{loading && <ButtonSpinner />}
 								{id
 									? t("wishlist:button.update-wish")
 									: t("wishlist:button.add-wish")}

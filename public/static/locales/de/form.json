@@ -8,7 +8,9 @@
     "minLength": "Die Mindestlänge ist {{minLength}}.",
     "passwordMatch": "Die Passwörter stimmen nicht überein.",
     "pattern": "Überprüfe bitte deine Eingabe.",
-    "required": "Dieses Feld ist ein Pflichtfeld."
+    "required": "Dieses Feld ist ein Pflichtfeld.",
+    "generic-error": "Ein Fehler ist aufgetreten.",
+    "CANNOT_UPDATE_VOTED_WISH": "Ein Wunsch mit Stimmen kann nicht bearbeitet werden."
   },
   "fields-labels": {
     "confirmPassword": "Passwort bestätigen",

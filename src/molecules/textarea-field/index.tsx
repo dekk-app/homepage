@@ -28,6 +28,8 @@ const TextArea: FC<TextAreaFieldProps> = ({
 	fullWidth,
 	defaultValue,
 	autoFocus,
+	readOnly,
+	disabled,
 	helpText,
 	required,
 	validation = {},
@@ -57,7 +59,12 @@ const TextArea: FC<TextAreaFieldProps> = ({
 
 	return (
 		<>
-			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
+			<StyledInputWrapper
+				fullWidth={fullWidth}
+				disabled={disabled}
+				focused={focused}
+				htmlFor={`${id}_field`}
+			>
 				<StyledFloatingLabel
 					floating={focused || filled || isValid}
 					initial={isValid}
@@ -71,6 +78,8 @@ const TextArea: FC<TextAreaFieldProps> = ({
 					id={`${id}_field`}
 					name={name}
 					autoFocus={autoFocus}
+					readOnly={readOnly}
+					disabled={disabled}
 					required={Boolean(validation.required)}
 					invalid={Boolean(errors[name])}
 					data-test-id={testId}
@@ -95,7 +104,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 			</StyledInputWrapper>
 
 			{errors[name] ? (
-				<StyledErrorText>
+				<StyledErrorText arrow>
 					<Typography raw id={`${id}_help`}>
 						{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
 							minLength: 2,

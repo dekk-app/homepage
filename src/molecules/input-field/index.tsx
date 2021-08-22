@@ -18,6 +18,8 @@ const InputField: FC<InputFieldProps> = ({
 	fullWidth,
 	defaultValue,
 	autoFocus,
+	readOnly,
+	disabled,
 	helpText,
 	required,
 	validation = {},
@@ -41,7 +43,12 @@ const InputField: FC<InputFieldProps> = ({
 
 	return (
 		<>
-			<StyledInputWrapper fullWidth={fullWidth} focused={focused} htmlFor={`${id}_field`}>
+			<StyledInputWrapper
+				fullWidth={fullWidth}
+				disabled={disabled}
+				focused={focused}
+				htmlFor={`${id}_field`}
+			>
 				<StyledFloatingLabel
 					floating={focused || filled || isValid}
 					initial={isValid}
@@ -58,6 +65,8 @@ const InputField: FC<InputFieldProps> = ({
 					id={`${id}_field`}
 					name={name}
 					autoFocus={autoFocus}
+					readOnly={readOnly}
+					disabled={disabled}
 					required={Boolean(validation.required)}
 					invalid={Boolean(errors[name])}
 					type={type}
@@ -83,7 +92,7 @@ const InputField: FC<InputFieldProps> = ({
 			</StyledInputWrapper>
 
 			{errors[name] ? (
-				<StyledErrorText>
+				<StyledErrorText arrow>
 					<Typography raw id={`${id}_help`}>
 						{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
 							minLength: 2,
