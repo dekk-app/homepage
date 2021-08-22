@@ -27,9 +27,10 @@ jobs:
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
           always-auth: true
+          scope: '@dekk-app'
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
