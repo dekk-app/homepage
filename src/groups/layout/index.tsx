@@ -12,8 +12,8 @@ import process from "process";
 import React, { FC, useMemo } from "react";
 import { LayoutProps } from "./types";
 
-const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"));
-const CookieBanner = dynamic(async () => import("@/organisms/cookie-banner"));
+const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"), { ssr: false });
+const CookieBanner = dynamic(async () => import("@/organisms/cookie-banner"), { ssr: false });
 
 const Layout: FC<LayoutProps> = ({
 	className,
@@ -67,7 +67,7 @@ const Layout: FC<LayoutProps> = ({
 				{description && <meta itemProp="description" content={description} />}
 				{image && <meta itemProp="image" content={image} />}
 			</Head>
-			{isCookieModalOpen && <CookieBanner />}
+			{isCookieModalOpen && !process.env.NEXT_PUBLIC_HIDE_COOKIE_CONSENT && <CookieBanner />}
 			<Header dark={dark} />
 			<BreadcrumbsProvider breadcrumbs={breadcrumbs}>
 				<Main className={className}>{children}</Main>
