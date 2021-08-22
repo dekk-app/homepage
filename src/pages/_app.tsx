@@ -66,7 +66,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 							<link
 								key={localeCode}
 								rel="alternate"
-								hrefLang={localeCode}
+								hrefLang={localeCode === defaultLocale ? "x-default" : localeCode}
 								href={
 									localeCode === defaultLocale
 										? `https://dekk.app${route}`
@@ -90,7 +90,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 						<link
 							key={localeCode}
 							rel="alternate"
-							hrefLang={localeCode}
+							hrefLang={localeCode === defaultLocale ? "x-default" : localeCode}
 							href={route === "/" ? hrefRoot : href}
 						/>
 					);
