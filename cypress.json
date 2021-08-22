@@ -7,5 +7,5 @@
   "supportFile": "./cypress/support/index.js",
   "pluginsFile": "./cypress/plugins/index.js",
   "retries": 0,
-  "testFiles": "**/features/**//ReadWishes.feature"
+  "testFiles": "**/features/**/*.feature"
 }
