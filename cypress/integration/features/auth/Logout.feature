@@ -8,7 +8,7 @@ Feature: Logout
 		Given the user is logged in
 		And the user is on the root page
 
-	@logged-in
+	@ignore @logged-in
 	Scenario: The user wants to logout
 
 		When the user clicks the link to the "logout" page
