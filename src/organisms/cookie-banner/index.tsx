@@ -18,7 +18,7 @@ const CookieBanner = () => {
 			<Column>
 				<Modal anchor="bottomRight" onClose={close}>
 					<ModalHeader raw>
-						<Typography raw variant="body2" component="h2">
+						<Typography raw variant="subtitle" component="h2">
 							{t("cookie-banner:headline")}
 						</Typography>
 					</ModalHeader>
