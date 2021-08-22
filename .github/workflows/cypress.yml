@@ -26,13 +26,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
-          always-auth: true
           scope: '@dekk-app'
 
       - name: Install dependencies
         run: yarn install
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
