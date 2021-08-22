@@ -11,19 +11,19 @@ import {
 	StyledModalIconButton,
 	StyledModalIconButtonWrapper,
 } from "./styled";
-import { ModalActionProps, ModalProps } from "./types";
+import { ModalActionProps, ModalContentProps, ModalHeaderProps, ModalProps } from "./types";
 
 const focusTrapOptions: FocusTrapProps["focusTrapOptions"] = {
 	initialFocus: false,
 };
 
-const Modal: FC<ModalProps> = ({ children, onClose, dark }) => {
+const Modal: FC<ModalProps> = ({ children, onClose, dark, backdrop, anchor = "center" }) => {
 	const { t } = useTranslation(["common"]);
-	return (
+	return backdrop ? (
 		<FocusTrap focusTrapOptions={focusTrapOptions}>
 			<div>
-				<StyledModalBackdrop onClick={onClose} />
-				<StyledModal dark={dark}>
+				{backdrop && <StyledModalBackdrop onClick={onClose} />}
+				<StyledModal dark={dark} anchor={anchor}>
 					{children}
 					<StyledModalIconButtonWrapper>
 						<StyledModalIconButton aria-label={t("common:close")} onClick={onClose}>
@@ -33,17 +33,26 @@ const Modal: FC<ModalProps> = ({ children, onClose, dark }) => {
 				</StyledModal>
 			</div>
 		</FocusTrap>
+	) : (
+		<StyledModal dark={dark} anchor={anchor}>
+			{children}
+			<StyledModalIconButtonWrapper>
+				<StyledModalIconButton aria-label={t("common:close")} onClick={onClose}>
+					<Icon icon="close" />
+				</StyledModalIconButton>
+			</StyledModalIconButtonWrapper>
+		</StyledModal>
 	);
 };
 
-export const ModalHeader: FC = ({ children }) => <StyledModalHeader>{children}</StyledModalHeader>;
-export const ModalContent: FC = ({ children }) => (
-	<StyledModalContent>{children}</StyledModalContent>
+export const ModalHeader: FC<ModalHeaderProps> = ({ children, ...props }) => (
+	<StyledModalHeader {...props}>{children}</StyledModalHeader>
 );
-export const ModalActions: FC<ModalActionProps> = ({ children, sticky, secondary }) => (
-	<StyledModalActions sticky={sticky} secondary={secondary}>
-		{children}
-	</StyledModalActions>
+export const ModalContent: FC<ModalContentProps> = ({ children, ...props }) => (
+	<StyledModalContent {...props}>{children}</StyledModalContent>
+);
+export const ModalActions: FC<ModalActionProps> = ({ children, ...props }) => (
+	<StyledModalActions {...props}>{children}</StyledModalActions>
 );
 
 export default Modal;

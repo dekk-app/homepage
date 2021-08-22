@@ -21,7 +21,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	width: max-content;
 	height: ${pxToRem(60)};
 	margin: 0;
-	padding: ${pxToRem(16)} ${pxToRem(24)};
+	padding: 0 ${pxToRem(24)};
 	border: 0;
 	font-size: ${pxToRem(16)};
 	font-weight: 600;
@@ -49,8 +49,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		pointer-events: none;
 	}
 
-	${({ flex, fullWidth, text, primary, theme }) => css`
+	${({ flex, fullWidth, text, primary, theme, slim }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
+		height: ${slim ? pxToRem(48) : pxToRem(60)};
 		${flex &&
 		css`
 			flex: 1;

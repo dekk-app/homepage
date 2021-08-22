@@ -25,7 +25,7 @@ export const CookieConsentModalContext = createContext<CookieConsentModalState>(
 export const CookieConsentModalProvider: FC = ({ children }) => {
 	const { consent } = useCookieConsentContext();
 
-	const [isOpen, setIsOpen] = useState(Object.keys(consent).length === 0);
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		setIsOpen(Object.keys(consent).length === 0);
@@ -46,6 +46,7 @@ export const CookieConsentModalProvider: FC = ({ children }) => {
 			setIsOpen(previousState => !previousState);
 		}
 	}, []);
+
 	const context = useMemo(
 		() => ({
 			isOpen,

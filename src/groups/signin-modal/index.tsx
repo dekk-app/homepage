@@ -45,7 +45,7 @@ const SigninModal = () => {
 	const loading = isSubmitting || isSubmitSuccessful;
 
 	return (
-		<Modal dark onClose={close}>
+		<Modal dark backdrop onClose={close}>
 			<ModalHeader>
 				<Typography centered variant="h2">
 					{t("form:legends.signin")}

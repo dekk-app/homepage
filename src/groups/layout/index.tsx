@@ -2,7 +2,6 @@ import { GlobalTypography } from "@/atoms/typography/global";
 import { BreadcrumbsProvider } from "@/ions/contexts/breadcrumbs/context";
 import { useCookieConsentModal } from "@/ions/contexts/cookie-consent-modal";
 import { globalStyles } from "@/ions/styles";
-import CookieBanner from "@/organisms/cookie-banner";
 import Footer from "@/organisms/footer";
 import Header from "@/organisms/header";
 import Main from "@/organisms/main";
@@ -14,6 +13,7 @@ import React, { FC, useMemo } from "react";
 import { LayoutProps } from "./types";
 
 const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"));
+const CookieBanner = dynamic(async () => import("@/organisms/cookie-banner"));
 
 const Layout: FC<LayoutProps> = ({
 	className,
@@ -67,13 +67,13 @@ const Layout: FC<LayoutProps> = ({
 				{description && <meta itemProp="description" content={description} />}
 				{image && <meta itemProp="image" content={image} />}
 			</Head>
+			{isCookieModalOpen && <CookieBanner />}
 			<Header dark={dark} />
 			<BreadcrumbsProvider breadcrumbs={breadcrumbs}>
 				<Main className={className}>{children}</Main>
 			</BreadcrumbsProvider>
 			<Footer dark={dark} />
 			{process.env.NODE_ENV !== "production" && <OverlayGrid />}
-			{isCookieModalOpen && <CookieBanner />}
 		</>
 	);
 };
