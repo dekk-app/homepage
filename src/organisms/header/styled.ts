@@ -1,6 +1,8 @@
 import { StyledLink } from "@/atoms/typography/styled";
+import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
+import { HexColor } from "@/types/units";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { StyledHeaderProps } from "./types";
@@ -13,15 +15,25 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
 	height: ${pxToRem(68)};
 	${({ theme, dark, elevated }) => css`
 		padding: ${pxToRem(theme.spaces.xs)} 0;
-		background: ${dark ? theme.ui.colors.dark.background : theme.ui.colors.light.background};
-		color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
 
 		${theme.mq.l} {
 			position: sticky;
 			top: 0;
+			background-color: ${dark
+				? theme.ui.colors.dark.background
+				: theme.ui.colors.light.background};
+			color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
 			transition: box-shadow ${theme.speeds.normal};
 			will-change: box-shadow;
 			box-shadow: ${elevated ? theme.shadows.m : theme.shadows[0]};
+
+			@supports (backdrop-filter: blur(1px)) {
+				background-color: ${dark
+					? setOpacity(theme.ui.colors.dark.background as HexColor, 80)
+					: setOpacity(theme.ui.colors.light.background as HexColor, 80)};
+				color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
+				backdrop-filter: blur(${pxToRem(10)}) saturate(50%);
+			}
 		}
 	`};
 `;
