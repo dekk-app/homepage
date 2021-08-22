@@ -1,6 +1,6 @@
-Sitemap: https://dekk.app/sitemap.xml
 User-agent: *
 Disallow: /api/
 Disallow: /auth/
 Disallow: /_next/data/
 
+Sitemap: https://dekk.app/sitemap.xml
