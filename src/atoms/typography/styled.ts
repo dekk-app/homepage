@@ -85,9 +85,9 @@ export const StyledBody2Text = styled.p<StyledTypographyProps>`
 
 export const StyledCaptionText = styled.p<StyledTypographyProps>`
 	margin: ${pxToRem(8)} 0;
-	font-size: ${pxToRem(10)};
-	line-height: ${pxToRem(14)};
-	${({ centered, raw, light }) => css`
+	font-size: ${pxToRem(12)};
+	line-height: ${pxToRem(16)};
+	${({ theme, centered, raw, light }) => css`
 		${raw &&
 		css`
 			margin: 0;
@@ -100,6 +100,11 @@ export const StyledCaptionText = styled.p<StyledTypographyProps>`
 		css`
 			opacity: 0.6;
 		`};
+
+		${theme.mq.m} {
+			font-size: ${pxToRem(10)};
+			line-height: ${pxToRem(14)};
+		}
 	`}
 `;
 
