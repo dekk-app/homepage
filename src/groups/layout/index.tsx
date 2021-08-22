@@ -23,6 +23,7 @@ const Layout: FC<LayoutProps> = ({
 	keywords,
 	robots,
 	dark,
+	image,
 	breadcrumbs: rawBreadcrumbs,
 }) => {
 	const theme = useTheme();
@@ -54,12 +55,17 @@ const Layout: FC<LayoutProps> = ({
 					`}
 				/>
 			)}
-
 			<Head>
 				<title key="title">Dekk | {title}</title>
 				{description && <meta key="description" name="description" content={description} />}
 				{keywords && <meta key="keywords" name="keywords" content={keywords} />}
 				{robots && <meta key="robots" name="robots" content={robots} />}
+				<meta property="og:title" content={`Dekk | ${title}`} />
+				{description && <meta property="og:description" content={description} />}
+				{image && <meta property="og:image" content={image} />}
+				<meta itemProp="name" content={`Dekk | ${title}`} />
+				{description && <meta itemProp="description" content={description} />}
+				{image && <meta itemProp="image" content={image} />}
 			</Head>
 			<Header dark={dark} />
 			<BreadcrumbsProvider breadcrumbs={breadcrumbs}>

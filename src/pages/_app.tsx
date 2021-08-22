@@ -95,6 +95,8 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 						/>
 					);
 				})}
+				<meta property="og:url" content={`https://dekk.app${route === "/" ? "" : route}`} />
+				<meta property="og:site_name" content="Dekk" />
 			</Head>
 			<CookieConsentProvider consent={pageProps.consent}>
 				<NextAuthProvider session={pageProps.session}>

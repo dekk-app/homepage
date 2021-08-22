@@ -6,6 +6,7 @@ export interface LayoutProps {
 	description?: string;
 	keywords?: string;
 	robots?: string;
+	image?: string;
 	dark?: boolean;
 	breadcrumbs?: RawBreadcrumb[];
 }
