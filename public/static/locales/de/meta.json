@@ -1,11 +1,13 @@
 {
   "wishlist": {
     "title": "Wunschliste",
+    "keywords": "Präsentation,Deck,Slide,Vortrag,Software,Keynote,Konferenz",
     "description": "Sag uns was du brauchst um die perfekte Präsentation zu erstellen."
   },
   "home": {
     "title": "Präsentationen der Zukunft",
-    "description": "Dekk denkt um. Wir ermöglichen dir die besten Präsentationen zu erstellen und dabei die beste Erfahrung zu machen"
+    "keywords": "Präsentation,Deck,Slide,Vortrag,Software,Keynote,Konferenz",
+    "description": "Dekk denkt um. Wir ermöglichen dir die besten Präsentationen zu erstellen und dabei die beste Erfahrung zu machen."
   },
   "contact": {
     "title": "Kontakt"
@@ -15,21 +17,12 @@
       "title": "Seite nicht gefunden"
     },
     "500": {
-      "title": "Sever Fehler"
+      "title": "Server Fehler"
     }
   },
   "legal": {
     "cookie-policy": {
       "title": "Cookie Richtlinie"
-    },
-    "terms-of-service": {
-      "title": "Allgemeine Geschäftsbedingungen"
-    },
-    "imprint": {
-      "title": "Impressum"
-    },
-    "privacy-policy": {
-      "title": "Datenschutzrichtlinie"
     }
   },
   "auth": {

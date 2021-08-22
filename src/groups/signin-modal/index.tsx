@@ -1,11 +1,7 @@
 import Button from "@/atoms/button";
-import {
-	StyledButtonGroup,
-	StyledSocialButton,
-	StyledSocialButtonLabel,
-} from "@/atoms/button/styled";
+import { StyledButtonGroup } from "@/atoms/button/styled";
 import { StyledFormText } from "@/atoms/form-text/styled";
-import Icon from "@/atoms/icon";
+import ButtonIcon from "@/atoms/icon/button-icon";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
 import { useProviders } from "@/ions/contexts/providers";
@@ -25,7 +21,6 @@ import React, { memo, useCallback, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
-const Spinner = dynamic(async () => import("@/atoms/spinner"));
 
 const SigninModal = () => {
 	const { providers } = useProviders();
@@ -62,7 +57,8 @@ const SigninModal = () => {
 						<StyledFormWrapper>
 							<StyledFieldset>
 								<StyledButtonGroup>
-									<StyledSocialButton
+									<Button
+										flex
 										type="button"
 										aria-label="google"
 										onClick={() => {
@@ -71,13 +67,14 @@ const SigninModal = () => {
 										}}
 									>
 										{loadingGoogle ? (
-											<Spinner size={pxToRem(24)} />
+											<ButtonSpinner size={pxToRem(24)} />
 										) : (
-											<Icon icon="google" />
-										)}{" "}
-										<StyledSocialButtonLabel>Google</StyledSocialButtonLabel>
-									</StyledSocialButton>
-									<StyledSocialButton
+											<ButtonIcon icon="google" />
+										)}
+										Google
+									</Button>
+									<Button
+										flex
 										type="button"
 										aria-label="github"
 										onClick={() => {
@@ -86,12 +83,12 @@ const SigninModal = () => {
 										}}
 									>
 										{loadingGithub ? (
-											<Spinner size={pxToRem(24)} />
+											<ButtonSpinner size={pxToRem(24)} />
 										) : (
-											<Icon icon="github" />
+											<ButtonIcon icon="github" />
 										)}
-										<StyledSocialButtonLabel>Github</StyledSocialButtonLabel>
-									</StyledSocialButton>
+										Github
+									</Button>
 								</StyledButtonGroup>
 								<StyledStripeWrapper>
 									<StyledStripe />

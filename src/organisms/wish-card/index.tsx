@@ -3,10 +3,10 @@ import { StyledIconButton } from "@/atoms/icon-button/styled";
 import Typography from "@/atoms/typography";
 import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { useWishlist } from "@/ions/contexts/wishlist";
-import { useSession } from "@/ions/hooks/session";
 import { CREATE_WISH_VOTE, DELETE_WISH_VOTE } from "@/ions/queries/wishes";
 import { Wish, WishVote } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
+import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import React, { FC, memo, useEffect } from "react";
 import {
@@ -60,12 +60,12 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 	}, [id, updateWish, dataDeleteWishVote]);
 
 	return (
-		<StyledCard colSpanS={4} colSpanL={6}>
+		<StyledCard colSpanS={4} colSpanL={6} data-test-selector="wish-card" data-test-id={`${id}`}>
 			<StyledArticle>
-				<Typography variant="subtitle" component="h2">
+				<Typography variant="subtitle" component="h2" data-test-selector="wish-subject">
 					{subject}
 				</Typography>
-				<Typography light variant="body2">
+				<Typography light variant="body2" data-test-selector="wish-body">
 					{body}
 				</Typography>
 			</StyledArticle>
@@ -94,7 +94,7 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 				) : (
 					<Icon icon="heartOutlined" />
 				)}
-				<Typography raw light variant="body2">
+				<Typography raw light variant="body2" data-test-selector="wish-votes">
 					{votes}
 				</Typography>
 				{session?.user.id === authorId && (

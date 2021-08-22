@@ -1,16 +1,14 @@
 {
-  "add-artboard": "Artboard hinzufügen",
   "collapse": "Einklappen",
   "cancel": "Abbrechen",
-  "create": "Erstellen",
-  "dashboard": "Dashboard",
   "de": "Deutsch",
   "en": "English",
+  "yes": "Ja",
+  "no": "Nein",
+  "close": "Schließen",
   "expand": "Ausklappen",
-  "hello": "Hallo",
   "home": "Home",
   "signin": "Anmelden",
   "signout": "Abmelden",
-  "try-now": "Jetzt Probieren",
-  "welcome-to-dekk": "Willkommen zu Dekk"
+  "updated-at": "Aktualisiert am"
 }

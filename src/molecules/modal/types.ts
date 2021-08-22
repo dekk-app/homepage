@@ -5,4 +5,5 @@ export interface ModalProps {
 
 export interface ModalActionProps {
 	sticky?: boolean;
+	secondary?: boolean;
 }

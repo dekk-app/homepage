@@ -18,6 +18,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	align-content: center;
 	align-items: center;
 	justify-content: center;
+	width: max-content;
 	height: ${pxToRem(60)};
 	margin: 0;
 	padding: ${pxToRem(16)} ${pxToRem(24)};
@@ -27,6 +28,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	line-height: ${pxToRem(24)};
 	text-decoration: none;
 	vertical-align: bottom;
+	white-space: nowrap;
 
 	&:focus {
 		outline: 0;
@@ -34,10 +36,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 	&::after {
 		position: absolute;
-		top: -1px;
-		right: -1px;
-		bottom: -1px;
-		left: -1px;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
 		border-radius: inherit;
 		pointer-events: none;
 	}
@@ -47,8 +49,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		pointer-events: none;
 	}
 
-	${({ fullWidth, text, primary, theme }) => css`
+	${({ flex, fullWidth, text, primary, theme }) => css`
 		width: ${fullWidth ? "100%" : "initial"};
+		${flex &&
+		css`
+			flex: 1;
+		`};
 		border-radius: ${theme.shapes.s};
 		background: ${primary
 			? theme.ui.colors.primary.background
@@ -59,14 +65,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 		&:hover {
 			background: ${primary
-				? theme.palette.darkPurple
+				? theme.palette.brandDark
 				: theme.ui.atoms.button.hover.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
 
 		&:active {
 			background: ${primary
-				? theme.palette.darkPurple
+				? `${theme.palette.brandDark} linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1))`
 				: theme.ui.atoms.button.active.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
@@ -77,7 +83,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 		&:focus-visible {
 			background: ${primary
-				? theme.palette.darkPurple
+				? theme.palette.brandDark
 				: theme.ui.atoms.button.focus.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 
@@ -85,17 +91,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
 				content: "";
 			}
 		}
-	`};
-`;
-
-export const StyledSocialButton = styled(StyledButton)`
-	flex: 1;
-`;
-
-export const StyledSocialButtonLabel = styled.span`
-	${({ theme }) => css`
-		margin-left: ${pxToRem(theme.spaces.s)};
-		color: currentColor;
 	`};
 `;
 
@@ -130,7 +125,7 @@ export const StyledLanguageButton = styled.button`
 		&:hover {
 			&::after {
 				content: "";
-				background: ${setOpacity(theme.palette.purple, 30)};
+				background: ${setOpacity(theme.palette.brand, 30)};
 			}
 		}
 
@@ -151,7 +146,7 @@ export const StyledLanguageButton = styled.button`
 			background: ${theme.ui.atoms.button.focus.background};
 		}
 
-		@media only screen and ${theme.mq.m} {
+		${theme.mq.m} {
 			min-width: unset;
 			min-height: unset;
 
@@ -168,9 +163,9 @@ export const StyledButtonGroup = styled.div`
 	flex-wrap: wrap;
 	${({ theme }) => css`
 		width: calc(100% + ${pxToRem(theme.spaces.xs * 2)});
-		margin: 0 ${pxToRem(-theme.spaces.xs)};
-		${StyledButton}, ${StyledSocialButton}, ${StyledLanguageButton} {
-			margin: 0 ${pxToRem(theme.spaces.xs)};
+		margin: ${pxToRem(-theme.spaces.xs)};
+		${StyledButton}, ${StyledLanguageButton} {
+			margin: ${pxToRem(theme.spaces.xs)};
 		}
 	`};
 `;

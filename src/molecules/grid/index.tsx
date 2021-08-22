@@ -1,13 +1,12 @@
-import { BasePropsWithInnerRef } from "@/types/components";
 import React, { FC } from "react";
 import { StyledColumn, StyledGrid, StyledRow } from "./styled";
-import { ColumnProps } from "./types";
+import { ColumnProps, GridProps } from "./types";
 
-export const Grid: FC<BasePropsWithInnerRef<HTMLDivElement>> = ({ innerRef, ...props }) => (
+export const Grid: FC<GridProps> = ({ innerRef, ...props }) => (
 	<StyledGrid {...props} ref={innerRef} />
 );
 
-export const Row: FC<BasePropsWithInnerRef<HTMLDivElement>> = ({ innerRef, ...props }) => (
+export const Row: FC<GridProps> = ({ innerRef, ...props }) => (
 	<StyledRow {...props} ref={innerRef} />
 );
 

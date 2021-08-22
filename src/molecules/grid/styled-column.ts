@@ -3,6 +3,7 @@ import { StyledColumn } from "./styled";
 
 export const StyledVerticalFlexColumn = styled(StyledColumn)`
 	display: flex;
+	position: relative;
 	flex-direction: column;
 `;
 

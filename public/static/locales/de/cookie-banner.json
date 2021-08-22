@@ -1,0 +1,17 @@
+{
+  "headline": "Wir verwenden Cookies",
+  "body": "Wir können diese zur Analyse unserer Besucherdaten platzieren, um unsere Website zu verbessern, personalisierte Inhalte anzuzeigen und Ihnen ein großartiges Website-Erlebnis zu bieten. Für weitere Informationen zu den von uns verwendeten Cookies öffnen Sie die Einstellungen.",
+  "accept-all": "Erlauben",
+  "deny-all": "Verweigern",
+  "accept-third-party": "Drittanbieter erlauben",
+  "accept-first-party": "Erstanbieter erlauben",
+  "consent-given": "Einwilligung erteilt",
+  "session": "Session",
+  "persistent": "Persistent",
+  "necessary": "Notwendig",
+  "preferences": "Einstellungen",
+  "statistics": "Statistiken",
+  "marketing": "Marketing",
+  "firstParty": "Erstanbieter",
+  "thirdParty": "Drittanbieter"
+}

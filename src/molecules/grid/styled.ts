@@ -1,38 +1,53 @@
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { StyledColumnProps } from "./types";
+import { StyledColumnProps, StyledGridProps } from "./types";
 
-const StyledGridBase = styled.div`
+const StyledGridBase = styled.div<StyledGridProps>`
 	display: grid;
-	grid-column-gap: var(--gap-x, 1rem);
-	grid-row-gap: var(--gap-y, 1rem);
+	grid-column-gap: var(--gap-x);
+	grid-row-gap: var(--gap-y);
 	grid-template-columns: repeat(var(--col-count), 1fr);
 	width: 100%;
-	${({ theme }) => css`
-		--gap-x: ${pxToRem(theme.spaces.m)};
-		--gap-y: ${pxToRem(theme.spaces.m)};
-		max-width: ${pxToRem(theme.breakpoints.l)};
+	${({ theme, stretch }) => css`
+		align-content: ${stretch ? "stretch" : "start"};
+		align-items: ${stretch ? "stretch" : "start"};
+		max-width: ${pxToRem(theme.grid.maxWidth)};
 	`};
 `;
 
 export const StyledGrid = styled(StyledGridBase)`
-	--col-count: 2;
-	--grid-padding: 1rem;
-
+	flex: 1;
 	margin: 0 auto;
-	padding: 0 calc(var(--gap-x, 1rem) / 2 + var(--grid-padding, 1rem));
+	padding: 0 calc(var(--gap-x) / 2 + var(--grid-padding));
 	${({ theme }) => css`
-		@media screen and ${theme.mq.s} {
-			--col-count: 4;
+		--grid-padding: ${pxToRem(theme.grid.gridPadding.xs)};
+		--gap-x: ${pxToRem(theme.grid.gutter.xs)};
+		--gap-y: 0;
+		--col-count: ${theme.grid.colCount.xs};
+
+		${theme.mq.s} {
+			--grid-padding: ${pxToRem(theme.grid.gridPadding.s)};
+			--gap-x: ${pxToRem(theme.grid.gutter.s)};
+			--col-count: ${theme.grid.colCount.s};
 		}
 
-		@media screen and ${theme.mq.m} {
-			--col-count: 8;
+		${theme.mq.m} {
+			--grid-padding: ${pxToRem(theme.grid.gridPadding.m)};
+			--gap-x: ${pxToRem(theme.grid.gutter.m)};
+			--col-count: ${theme.grid.colCount.m};
 		}
 
-		@media screen and ${theme.mq.l} {
-			--col-count: 12;
+		${theme.mq.l} {
+			--grid-padding: ${pxToRem(theme.grid.gridPadding.l)};
+			--gap-x: ${pxToRem(theme.grid.gutter.l)};
+			--col-count: ${theme.grid.colCount.l};
+		}
+
+		${theme.mq.xl} {
+			--grid-padding: ${pxToRem(theme.grid.gridPadding.xl)};
+			--gap-x: ${pxToRem(theme.grid.gutter.xl)};
+			--col-count: ${theme.grid.colCount.xl};
 		}
 	`};
 `;
@@ -47,51 +62,41 @@ export const StyledColumn = styled.div<StyledColumnProps>`
 		colStartS,
 		colStartM,
 		colStartL,
-		colSpanXS,
+		colSpanXS = "var(--col-count)",
 		colSpanS = colSpanXS,
 		colSpanM = colSpanS,
 		colSpanL = colSpanM,
+		order,
 	}) => css`
-		${colSpanXS &&
-		css`
-			--col-span: ${colSpanXS};
-		`};
+		--col-span: ${colSpanXS};
 		${colStartXS &&
 		css`
 			grid-column-start: ${colStartXS};
 		`};
 
-		@media screen and ${theme.mq.s} {
-			${colSpanS &&
-			css`
-				--col-span: ${colSpanS};
-			`};
+		${theme.mq.s} {
+			--col-span: ${colSpanS};
 			${colStartS &&
 			css`
 				grid-column-start: ${colStartS};
 			`};
 		}
 
-		@media screen and ${theme.mq.m} {
-			${colSpanM &&
-			css`
-				--col-span: ${colSpanM};
-			`};
+		${theme.mq.m} {
+			--col-span: ${colSpanM};
 			${colStartM &&
 			css`
 				grid-column-start: ${colStartM};
 			`};
 		}
 
-		@media screen and ${theme.mq.l} {
-			${colSpanL &&
-			css`
-				--col-span: ${colSpanL};
-			`};
+		${theme.mq.l} {
+			--col-span: ${colSpanL};
 			${colStartL &&
 			css`
 				grid-column-start: ${colStartL};
 			`};
 		}
+		order: ${order};
 	`};
 `;

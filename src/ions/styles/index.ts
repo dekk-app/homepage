@@ -14,7 +14,7 @@ export const globalStyles = css`
 
 	body {
 		width: 100%;
-		min-width: ${pxToRem(320)};
+		min-width: ${pxToRem(180)};
 		min-height: 100vh;
 		margin: 0;
 

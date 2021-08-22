@@ -8,6 +8,7 @@ export const StyledSpinner = styled.div<SpinnerProps>`
 	display: inline-flex;
 	border: var(--stroke) solid transparent;
 	border-radius: 50%;
+	will-change: transform;
 
 	&::before,
 	&::after {
@@ -19,6 +20,7 @@ export const StyledSpinner = styled.div<SpinnerProps>`
 		left: calc(var(--stroke) * -1);
 		border: inherit;
 		border-radius: inherit;
+		will-change: transform;
 	}
 
 	${({ theme, color = "currentColor", size = "3em", strokeWidth = "2px" }) => css`
@@ -44,6 +46,6 @@ export const StyledSpinner = styled.div<SpinnerProps>`
 
 export const StyledButtonSpinner = styled(StyledSpinner)`
 	${({ theme }) => css`
-		margin-right: ${pxToRem(theme.spaces.xs)};
+		margin-right: ${pxToRem(theme.spaces.s)};
 	`};
 `;

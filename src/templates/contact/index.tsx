@@ -1,21 +1,17 @@
 import ContactForm from "@/groups/contact-form";
 import Layout from "@/groups/layout";
+import Mail from "@/molecules/animations/mail";
 import { StyledCenteredColumn } from "@/molecules/grid/styled-column";
 import { StyledFlexedGrid } from "@/molecules/grid/styled-grid";
-import Mail from "@/organisms/animations/mail";
 import { useTranslation } from "next-i18next";
-import Head from "next/head";
 import React from "react";
 
 const Contact = () => {
 	const { t } = useTranslation(["meta"]);
 
 	return (
-		<Layout dark title={t("meta:contact.title")}>
-			<Head>
-				<meta key="robots" name="robots" content="noindex,nofollow" />
-			</Head>
-			<StyledFlexedGrid>
+		<Layout dark title={t("meta:contact.title")} robots="noindex,nofollow">
+			<StyledFlexedGrid stretch>
 				<StyledCenteredColumn colSpanM={4} colSpanL={4} colStartL={2}>
 					<ContactForm />
 				</StyledCenteredColumn>

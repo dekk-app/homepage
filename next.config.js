@@ -1,9 +1,15 @@
 const process = require("process");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+});
 const { withSentryConfig } = require("@sentry/nextjs");
 const { i18n } = require("./next-i18next.config");
 
 const config = {
 	i18n,
+	images: {
+		domains: ["images.ctfassets.net"],
+	},
 	pwa: {
 		dest: "public",
 		disable: process.env.NODE_ENV === "development",
@@ -13,6 +19,12 @@ const config = {
 	},
 	async redirects() {
 		return [
+			{
+				destination: "/de/ueber-uns",
+				locale: false,
+				permanent: true,
+				source: "/de/about-us",
+			},
 			{
 				destination: "/de/kontakt",
 				locale: false,
@@ -63,6 +75,11 @@ const config = {
 				source: "/de/wunschliste",
 			},
 			{
+				destination: "/de/about-us",
+				locale: false,
+				source: "/de/ueber-uns",
+			},
+			{
 				destination: "/de/contact",
 				locale: false,
 				source: "/de/kontakt",
@@ -104,4 +121,4 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(config, SentryWebpackPluginOptions);
+module.exports = withBundleAnalyzer(withSentryConfig(config, SentryWebpackPluginOptions));

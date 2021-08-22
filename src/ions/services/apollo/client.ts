@@ -1,4 +1,3 @@
-import process from "process";
 import { APOLLO_STATE_PROP_NAME } from "@/ions/constants";
 import { PageProps } from "@/types";
 import {
@@ -17,6 +16,7 @@ import { QueryOptions } from "@apollo/client/core/watchQueryOptions";
 import merge from "deepmerge";
 import { DocumentNode } from "graphql";
 import isEqual from "lodash.isequal";
+import process from "process";
 import { useMemo } from "react";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;

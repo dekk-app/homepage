@@ -134,11 +134,29 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  personCollection?: Maybe<PersonCollection>;
+  imageTextCollection?: Maybe<ImageTextCollection>;
   seoCollection?: Maybe<SeoCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsPersonCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsImageTextCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -299,6 +317,121 @@ export enum ImageResizeStrategy {
   /** Creates a thumbnail from the image. */
   Thumb = 'THUMB'
 }
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/imageText) */
+export type ImageText = Entry & {
+  __typename?: 'ImageText';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<ImageTextLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  text?: Maybe<ImageTextText>;
+  imageCollection?: Maybe<AssetCollection>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/imageText) */
+export type ImageTextLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/imageText) */
+export type ImageTextTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/imageText) */
+export type ImageTextTextArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/imageText) */
+export type ImageTextImageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ImageTextCollection = {
+  __typename?: 'ImageTextCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<ImageText>>;
+};
+
+export type ImageTextFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  text_exists?: Maybe<Scalars['Boolean']>;
+  text_contains?: Maybe<Scalars['String']>;
+  text_not_contains?: Maybe<Scalars['String']>;
+  imageCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<ImageTextFilter>>>;
+  AND?: Maybe<Array<Maybe<ImageTextFilter>>>;
+};
+
+export type ImageTextLinkingCollections = {
+  __typename?: 'ImageTextLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ImageTextLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum ImageTextOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ImageTextText = {
+  __typename?: 'ImageTextText';
+  json: Scalars['JSON'];
+  links: ImageTextTextLinks;
+};
+
+export type ImageTextTextAssets = {
+  __typename?: 'ImageTextTextAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
+};
+
+export type ImageTextTextEntries = {
+  __typename?: 'ImageTextTextEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type ImageTextTextLinks = {
+  __typename?: 'ImageTextTextLinks';
+  entries: ImageTextTextEntries;
+  assets: ImageTextTextAssets;
+};
 
 export type ImageTransformOptions = {
   /** Desired width in pixels. Defaults to the original image width. */
@@ -461,6 +594,135 @@ export enum PageOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/person) */
+export type Person = Entry & {
+  __typename?: 'Person';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<PersonLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  biography?: Maybe<PersonBiography>;
+  picture?: Maybe<Asset>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/person) */
+export type PersonLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/person) */
+export type PersonTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/person) */
+export type PersonNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/person) */
+export type PersonBiographyArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/3o9j2tarqfuq/content_types/person) */
+export type PersonPictureArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type PersonBiography = {
+  __typename?: 'PersonBiography';
+  json: Scalars['JSON'];
+  links: PersonBiographyLinks;
+};
+
+export type PersonBiographyAssets = {
+  __typename?: 'PersonBiographyAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
+};
+
+export type PersonBiographyEntries = {
+  __typename?: 'PersonBiographyEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type PersonBiographyLinks = {
+  __typename?: 'PersonBiographyLinks';
+  entries: PersonBiographyEntries;
+  assets: PersonBiographyAssets;
+};
+
+export type PersonCollection = {
+  __typename?: 'PersonCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Person>>;
+};
+
+export type PersonFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  biography_exists?: Maybe<Scalars['Boolean']>;
+  biography_contains?: Maybe<Scalars['String']>;
+  biography_not_contains?: Maybe<Scalars['String']>;
+  picture_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<PersonFilter>>>;
+  AND?: Maybe<Array<Maybe<PersonFilter>>>;
+};
+
+export type PersonLinkingCollections = {
+  __typename?: 'PersonLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PersonLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum PersonOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 
 export type Query = {
   __typename?: 'Query';
@@ -468,6 +730,10 @@ export type Query = {
   assetCollection?: Maybe<AssetCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
+  person?: Maybe<Person>;
+  personCollection?: Maybe<PersonCollection>;
+  imageText?: Maybe<ImageText>;
+  imageTextCollection?: Maybe<ImageTextCollection>;
   seo?: Maybe<Seo>;
   seoCollection?: Maybe<SeoCollection>;
   versionTracker?: Maybe<VersionTracker>;
@@ -507,6 +773,40 @@ export type QueryPageCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<PageFilter>;
   order?: Maybe<Array<Maybe<PageOrder>>>;
+};
+
+
+export type QueryPersonArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryPersonCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<PersonFilter>;
+  order?: Maybe<Array<Maybe<PersonOrder>>>;
+};
+
+
+export type QueryImageTextArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryImageTextCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ImageTextFilter>;
+  order?: Maybe<Array<Maybe<ImageTextOrder>>>;
 };
 
 

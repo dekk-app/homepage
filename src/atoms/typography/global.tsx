@@ -28,7 +28,7 @@ export const h1 = css`
 	font-size: ${pxToRem(28)};
 	font-weight: 700;
 	line-height: ${pxToRem(36)};
-	@media only screen and ${mq.m} {
+	${mq.m} {
 		font-size: ${pxToRem(55)};
 		line-height: ${pxToRem(60)};
 	}
@@ -39,7 +39,7 @@ export const h2 = css`
 	font-size: ${pxToRem(24)};
 	font-weight: 600;
 	line-height: ${pxToRem(30)};
-	@media only screen and ${mq.m} {
+	${mq.m} {
 		font-size: ${pxToRem(42)};
 		line-height: ${pxToRem(48)};
 	}
@@ -50,7 +50,7 @@ export const h3 = css`
 	font-size: ${pxToRem(20)};
 	font-weight: 600;
 	line-height: ${pxToRem(28)};
-	@media only screen and ${mq.m} {
+	${mq.m} {
 		font-size: ${pxToRem(24)};
 		line-height: ${pxToRem(34)};
 	}
@@ -95,12 +95,14 @@ export const globalTypography = css`
 		border-radius: ${shapes.s};
 		background: rgba(0, 0, 0, 0.1);
 		color: currentColor;
+		font-family: inherit;
 		font-size: 1em;
 		font-weight: 600;
+		line-height: inherit;
 
 		&:hover {
-			background: ${setOpacity(palette.purple, 20)};
+			background: ${setOpacity(palette.brand, 20)};
 		}
 	}
 `;
-export const GlobalTypography = () => <Global styles={globalTypography} />;
+export const GlobalTypography = () => <Global key="globalTypography" styles={globalTypography} />;

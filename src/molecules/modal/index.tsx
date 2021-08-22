@@ -1,5 +1,6 @@
 import Icon from "@/atoms/icon";
-import FocusTrap from "focus-trap-react";
+import FocusTrap, { Props as FocusTrapProps } from "focus-trap-react";
+import { useTranslation } from "next-i18next";
 import React, { FC } from "react";
 import {
 	StyledModal,
@@ -12,15 +13,20 @@ import {
 } from "./styled";
 import { ModalActionProps, ModalProps } from "./types";
 
+const focusTrapOptions: FocusTrapProps["focusTrapOptions"] = {
+	initialFocus: false,
+};
+
 const Modal: FC<ModalProps> = ({ children, onClose, dark }) => {
+	const { t } = useTranslation(["common"]);
 	return (
-		<FocusTrap>
+		<FocusTrap focusTrapOptions={focusTrapOptions}>
 			<div>
 				<StyledModalBackdrop onClick={onClose} />
 				<StyledModal dark={dark}>
 					{children}
 					<StyledModalIconButtonWrapper>
-						<StyledModalIconButton onClick={onClose}>
+						<StyledModalIconButton aria-label={t("common:close")} onClick={onClose}>
 							<Icon icon="close" />
 						</StyledModalIconButton>
 					</StyledModalIconButtonWrapper>
@@ -34,8 +40,10 @@ export const ModalHeader: FC = ({ children }) => <StyledModalHeader>{children}</
 export const ModalContent: FC = ({ children }) => (
 	<StyledModalContent>{children}</StyledModalContent>
 );
-export const ModalActions: FC<ModalActionProps> = ({ children, sticky }) => (
-	<StyledModalActions sticky={sticky}>{children}</StyledModalActions>
+export const ModalActions: FC<ModalActionProps> = ({ children, sticky, secondary }) => (
+	<StyledModalActions sticky={sticky} secondary={secondary}>
+		{children}
+	</StyledModalActions>
 );
 
 export default Modal;

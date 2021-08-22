@@ -3,6 +3,7 @@ const { config } = require("dotenv");
 config();
 
 module.exports = {
+	overwrite: true,
 	generates: {
 		"./src/types/backend-api.ts": {
 			plugins: ["typescript", "typescript-operations"],

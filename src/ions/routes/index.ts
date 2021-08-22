@@ -27,7 +27,13 @@ const routes = {
 		de: "/kontakt",
 		en: "/contact",
 	},
+	"/about-us": {
+		de: "/ueber-uns",
+		en: "/about-us",
+	},
 };
+
+export type RouteWildcard = `/${string}`;
 
 export type Route = keyof typeof routes;
 

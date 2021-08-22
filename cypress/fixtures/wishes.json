@@ -1,0 +1,49 @@
+{
+  "wishes": [
+    {
+      "authorId": 1,
+      "body": "As a user, I want to animate elements on my slides, so that I catch the attention of my viewers.",
+      "id": 1,
+      "subject": "Animations",
+      "voted": false,
+      "votes": 0,
+      "__typename": "Wish"
+    },
+    {
+      "authorId": 1,
+      "body": "As a user, I want to use fragments on my slides, so that I can build the content of a slide in steps.",
+      "id": 2,
+      "subject": "Fragments",
+      "voted": false,
+      "votes": 0,
+      "__typename": "Wish"
+    },
+    {
+      "authorId": 1,
+      "body": "As a user, I want to use lottie animations on my slides, so that I can create more lively slides.",
+      "id": 3,
+      "subject": "Lottie",
+      "voted": false,
+      "votes": 0,
+      "__typename": "Wish"
+    },
+    {
+      "authorId": 1,
+      "body": "As a user, I want to use master slides, so that I can reuse a predefined layout.",
+      "id": 4,
+      "subject": "Master slides",
+      "voted": false,
+      "votes": 0,
+      "__typename": "Wish"
+    },
+    {
+      "authorId": 1,
+      "body": "As a user, I want to pick a theme, so that I my decks have a predefined appearance.",
+      "id": 5,
+      "subject": "Master slides",
+      "voted": false,
+      "votes": 0,
+      "__typename": "Wish"
+    }
+  ]
+}

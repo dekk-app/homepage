@@ -16,14 +16,15 @@ import {
 } from "@/types/theme";
 
 export const palette: Palette = {
-	red: "#D90303",
-	green: "#2EFFB0",
-	blue: "#2E93FF",
-	yellow: "#FFD22E",
-	dark: "#232424",
-	light: "#F8F9FD",
-	purple: "#6A28EA",
-	darkPurple: "#4F13C2",
+	red: "#DB0303",
+	green: "#2BFFB0",
+	blue: "#2B93FF",
+	yellow: "#FED22E",
+	highlight: "#FFA07A",
+	dark: "#232421",
+	light: "#F8F9FA",
+	brand: "#6A26E9",
+	brandDark: "#4F11C0",
 };
 
 export const spaces: Spaces = {
@@ -37,19 +38,19 @@ export const spaces: Spaces = {
 };
 
 export const gutter: Sizes = {
-	xs: 8,
-	s: 8,
-	m: 8,
-	l: 12,
-	xl: 12,
+	xs: spaces.s,
+	s: spaces.s,
+	m: spaces.m,
+	l: spaces.m,
+	xl: spaces.m,
 };
 
 export const gridPadding: Sizes = {
-	xs: 8,
-	s: 16,
-	m: 24,
-	l: 24,
-	xl: 24,
+	xs: spaces.s,
+	s: spaces.m,
+	m: spaces.l,
+	l: spaces.l,
+	xl: spaces.l,
 };
 
 export const columnBaseWidth = 80;
@@ -57,16 +58,24 @@ export const columnBaseWidth = 80;
 export const breakpoints: Sizes = {
 	xs: 0,
 	s: columnBaseWidth * 4, // 320
-	m: columnBaseWidth * 9, // 720
-	l: columnBaseWidth * 16, // 1_280
+	m: columnBaseWidth * 9.5, // 760
+	l: columnBaseWidth * 13.5, // 1_080
 	xl: columnBaseWidth * 16, // 1_280
+};
+
+export const colCount: Sizes = {
+	xs: 2,
+	s: 4,
+	m: 8,
+	l: 12,
+	xl: 12,
 };
 
 export const getMediaQueries = (b: Sizes) =>
 	Object.fromEntries(
 		Object.entries(b).map(([key, value]: [string, number]) => [
 			key,
-			`(min-width: ${pxToRem(value)})`,
+			`@media only screen and (min-width: ${pxToRem(value)})`,
 		])
 	) as MediaQueries;
 
@@ -75,20 +84,14 @@ export const mq: MediaQueries = getMediaQueries(breakpoints);
 export const grid: GridConfig = {
 	gutter,
 	gridPadding,
-	maxWidth: breakpoints.l - (gridPadding.l + gutter.l) * 2,
-	colSpan: {
-		xs: 2,
-		s: 4,
-		m: 8,
-		l: 12,
-		xl: 12,
-	},
+	maxWidth: breakpoints.xl,
+	colCount,
 };
 
 export const layout: Layout = {
 	header: {
 		height: {
-			xs: 32,
+			xs: 64,
 			s: 64,
 			m: 64,
 			l: 96,
@@ -118,6 +121,7 @@ export const speeds: Speeds = {
 };
 
 export const shadows: Shadows = {
+	"0": `0 0 0 rgba(0,0,0,0), 0 0 0 rgba(0,0,0,0)`,
 	s: `0 ${pxToRem(1)} ${pxToRem(2)} rgba(0,0,0,0.1), 0 ${pxToRem(3)} ${pxToRem(
 		5
 	)} rgba(0,0,0,0.2)`,
@@ -132,7 +136,7 @@ export const shadows: Shadows = {
 export const ui: UIPatterns = {
 	colors: {
 		primary: {
-			background: palette.purple,
+			background: palette.brand,
 			color: "#ffffff",
 		},
 		light: {
@@ -148,8 +152,8 @@ export const ui: UIPatterns = {
 			color: "#ffffff",
 		},
 		focusRing: {
-			background: setOpacity(palette.purple, 20),
-			border: palette.blue,
+			background: setOpacity(palette.brand, 20),
+			border: palette.highlight,
 		},
 	},
 	atoms: {
@@ -171,13 +175,13 @@ export const ui: UIPatterns = {
 			background: "none",
 			color: "currentColor",
 			hover: {
-				background: setOpacity(palette.purple, 20),
+				background: setOpacity(palette.brand, 20),
 			},
 			focus: {
-				background: setOpacity(palette.purple, 30),
+				background: setOpacity(palette.brand, 30),
 			},
 			active: {
-				background: setOpacity(palette.purple, 40),
+				background: setOpacity(palette.brand, 40),
 			},
 		},
 	},
@@ -186,7 +190,7 @@ export const ui: UIPatterns = {
 			background: "rgba(0, 0, 0, 0.1)",
 			color: "currentColor",
 			focus: {
-				border: palette.blue,
+				border: palette.highlight,
 				color: "currentColor",
 				background: "rgba(0, 0, 0, 0.1)",
 			},

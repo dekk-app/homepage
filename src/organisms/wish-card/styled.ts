@@ -1,16 +1,18 @@
 import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
+import { HexColor } from "@/types/units";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const StyledCard = styled(Column)`
 	display: flex;
 	flex-direction: column;
-	padding: ${pxToRem(24)};
 	background-color: white;
 	color: black;
 	${({ theme }) => css`
+		margin-bottom: ${pxToRem(theme.spaces.m)};
+		padding: ${pxToRem(theme.spaces.m)};
 		border-radius: ${theme.shapes.m};
 	`};
 `;
@@ -44,7 +46,7 @@ export const StyledTooltip = styled.div`
 		border-radius: ${theme.shapes.m};
 		transform: translate3d(-50%, ${pxToRem(theme.spaces.s)}, 0);
 		transition-duration: ${theme.speeds.fast};
-		background: ${setOpacity(theme.ui.colors.dark.background, 90)};
+		background: ${setOpacity(theme.ui.colors.dark.background as HexColor, 90)};
 		color: ${theme.ui.colors.dark.color};
 	`};
 `;

@@ -2,7 +2,7 @@
  * {@see https://eslint.org/docs/user-guide/configuring/rules}
  */
 module.exports = {
-	extends: ["xo-react", "plugin:prettier/recommended"],
+	extends: ["xo-react", "prettier"],
 	ignores: [
 		"cypress",
 		"public",
@@ -12,6 +12,7 @@ module.exports = {
 		"types/*.d.ts",
 		"src/types/contentful-api.ts",
 		"src/types/backend-api.ts",
+		"src/types/units.ts",
 	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],
@@ -33,6 +34,19 @@ module.exports = {
 					},
 				],
 				"react/prop-types": 0,
+				"react/display-name": 0,
+				"arrow-body-style": 0,
+				"import/extensions": [
+					1,
+					{
+						js: "never",
+						jsx: "never",
+						ts: "never",
+						tsx: "never",
+						css: "always",
+						json: "always",
+					},
+				],
 			},
 		},
 		{

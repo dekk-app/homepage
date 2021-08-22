@@ -1,3 +1,4 @@
+import { range } from "@/ions/utils/array";
 import { Column, Grid } from "@/molecules/grid";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -9,89 +10,58 @@ export const StyledGridOverlay = styled.div`
 	right: 0;
 	bottom: 0;
 	left: 0;
-	opacity: 0.05;
+	opacity: 0.1;
 	pointer-events: none;
 `;
 
 export const StyledOverlayColumn = styled(Column)`
 	height: 100%;
-	background: magenta;
+	background: #f0f;
 `;
 
 export const StyledOverlayGrid = styled(Grid)`
 	height: 100%;
-	background: yellow;
+	background: #ff0;
 
 	${StyledOverlayColumn} {
-		&:nth-of-type(1) {
-			display: none;
-		}
-		&:nth-of-type(2) {
-			display: none;
-		}
-		&:nth-of-type(3) {
-			display: none;
-		}
-		&:nth-of-type(4) {
-			display: none;
-		}
-		&:nth-of-type(5) {
-			display: none;
-		}
-		&:nth-of-type(6) {
-			display: none;
-		}
-		&:nth-of-type(7) {
-			display: none;
-		}
-		&:nth-of-type(8) {
-			display: none;
-		}
-		&:nth-of-type(9) {
-			display: none;
-		}
-		&:nth-of-type(10) {
-			display: none;
-		}
-
+		display: none;
 		${({ theme }) => css`
-			@media screen and ${theme.mq.s} {
-				&:nth-of-type(9) {
-					display: unset !important;
-				}
-				&:nth-of-type(10) {
-					display: unset !important;
-				}
+			${range(theme.grid.colCount.xs).map(
+				n => css`
+					&:nth-of-type(${theme.grid.colCount.xl - n}) {
+						display: unset !important;
+					}
+				`
+			)};
+
+			${theme.mq.s} {
+				${range(theme.grid.colCount.s - theme.grid.colCount.xs, theme.grid.colCount.xs).map(
+					n => css`
+						&:nth-of-type(${theme.grid.colCount.xl - n}) {
+							display: unset !important;
+						}
+					`
+				)};
 			}
 
-			@media screen and ${theme.mq.m} {
-				&:nth-of-type(5) {
-					display: unset !important;
-				}
-				&:nth-of-type(6) {
-					display: unset !important;
-				}
-				&:nth-of-type(7) {
-					display: unset !important;
-				}
-				&:nth-of-type(8) {
-					display: unset !important;
-				}
+			${theme.mq.m} {
+				${range(theme.grid.colCount.m - theme.grid.colCount.s, theme.grid.colCount.s).map(
+					n => css`
+						&:nth-of-type(${theme.grid.colCount.xl - n}) {
+							display: unset !important;
+						}
+					`
+				)};
 			}
 
-			@media screen and ${theme.mq.l} {
-				&:nth-of-type(1) {
-					display: unset !important;
-				}
-				&:nth-of-type(2) {
-					display: unset !important;
-				}
-				&:nth-of-type(3) {
-					display: unset !important;
-				}
-				&:nth-of-type(4) {
-					display: unset !important;
-				}
+			${theme.mq.l} {
+				${range(theme.grid.colCount.l - theme.grid.colCount.m, theme.grid.colCount.m).map(
+					n => css`
+						&:nth-of-type(${theme.grid.colCount.xl - n}) {
+							display: unset !important;
+						}
+					`
+				)};
 			}
 		`};
 	}
