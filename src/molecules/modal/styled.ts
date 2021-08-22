@@ -132,10 +132,11 @@ export const StyledModalBackdrop = styled.div`
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.5);
 	${({ theme }) => css`
 		${theme.mq.m} {
 			display: block;
+			backdrop-filter: blur(${pxToRem(4)}) saturate(50%);
 		}
 	`};
 `;
