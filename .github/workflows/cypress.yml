@@ -30,6 +30,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
+      - name: Create npmrc
+        run: yarn npmrc:setup
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
       - name: Install dependencies
         run: yarn install
         env:

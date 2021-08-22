@@ -21,12 +21,12 @@ always-auth=true
 	const fileExists = await exists(npmrc);
 	if (fileExists) {
 		console.log(`${npmrc} already exists`);
-	} else if (process.env.GITHUB_TOKEN === undefined) {
-		console.log(`GITHUB_TOKEN is not set`);
+	} else if (process.env.NODE_AUTH_TOKEN === undefined) {
+		console.log(`NODE_AUTH_TOKEN is not set`);
 	} else {
 		console.log(`creating: ${npmrc}`);
 		// eslint-disable-next-line no-template-curly-in-string
-		const content = createContent("${GITHUB_TOKEN}");
+		const content = createContent("${NODE_AUTH_TOKEN}");
 		await fs.writeFile(npmrc, content);
 		console.log(`created: ${npmrc}`);
 	}
