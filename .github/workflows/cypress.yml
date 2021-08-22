@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
           always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Install dependencies
         run: yarn install
