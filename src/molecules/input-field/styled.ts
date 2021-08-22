@@ -28,7 +28,7 @@ export const StyledInput = styled("input", {
 
 		&:focus {
 			outline: 0;
-			box-shadow: inset 0 0 0 1px
+			box-shadow: inset 0 0 0 ${theme.borders.focusRing}
 				${invalid
 					? theme.ui.molecules.inputField.error.border
 					: theme.ui.colors.focusRing.border};

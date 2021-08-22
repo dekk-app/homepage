@@ -1,5 +1,7 @@
 import Button from "@/atoms/button";
 import ButtonGroup from "@/atoms/button/button-group";
+import Toggle from "@/atoms/toggle";
+import { StyledToggleLabel } from "@/atoms/toggle/styled";
 import Typography from "@/atoms/typography";
 import { useCookieConsentContext } from "@/ions/contexts/cookie-consent";
 import { GET_LEGAL_PAGE } from "@/ions/queries/legal-page";
@@ -41,22 +43,47 @@ const Page: NextPage<PageProps> = props => {
 	);
 	const { t } = useTranslation(["cookie-banner"]);
 
-	const { consent, acceptAllCookies, declineAllCookies } = useCookieConsentContext();
+	const { consent, acceptAllCookies, declineAllCookies, acceptCookies } =
+		useCookieConsentContext();
 
 	return (
 		<WrappedLegalPage data={data} error={error} loading={loading}>
 			<div>
 				<Typography variant="h3">{t("cookie-banner:consent-given")}</Typography>
-				<ol>
-					{consentKeys.map(key => {
-						return (
-							<Typography key={key} raw component="li">
-								{t(`cookie-banner:${key}`)}:{" "}
-								{consent[key] ? t("common:yes") : t("common:no")}
-							</Typography>
-						);
-					})}
-				</ol>
+				<table>
+					<tbody>
+						{consentKeys.map(key => {
+							return (
+								<tr key={key}>
+									<td>
+										<Typography raw>
+											{t(`cookie-banner:${key}`)}&nbsp;
+										</Typography>
+									</td>
+									<td>
+										<label>
+											<Toggle
+												checked={consent[key] as boolean}
+												disabled={key === "necessary"}
+												onChange={event_ => {
+													acceptCookies({
+														...consent,
+														[key]: (event_.target as HTMLInputElement)
+															.checked,
+													});
+												}}
+											/>
+											<StyledToggleLabel>
+												{consent[key] ? t("common:yes") : t("common:no")}
+											</StyledToggleLabel>
+										</label>
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+				<br />
 			</div>
 			<ButtonGroup>
 				<Button
