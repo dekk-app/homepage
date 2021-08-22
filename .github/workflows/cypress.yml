@@ -49,7 +49,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
