@@ -26,19 +26,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
-          always-auth: true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
-      - name: Create npmrc
-        run: yarn npmrc:setup
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
-      - name: Install dependencies
-        run: yarn install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -60,6 +47,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Create npmrc
+        run: yarn npmrc:setup
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: Install dependencies
+        run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
       - name: Build
         run: yarn build
         env:
@@ -68,6 +65,7 @@ jobs:
           NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}}
           NEXT_PUBLIC_CONTENT_PREVIEW_API_KEY: ${{secrets.NEXT_PUBLIC_CONTENT_PREVIEW_API_KEY}}
           NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY: ${{secrets.NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY}}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Test
         run: yarn test
@@ -83,3 +81,4 @@ jobs:
           SENTRY_URL: ${{secrets.SENTRY_URL}}
           GOOGLE_ENCRYPTION_IV: ${{secrets.GOOGLE_ENCRYPTION_IV}}
           GOOGLE_ENCRYPTION_KEY: ${{secrets.GOOGLE_ENCRYPTION_KEY}}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
