@@ -34,10 +34,13 @@ const DesignSystem = () => {
 				<Column>
 					<ul>
 						<li>
-							<I18nLink href="/design-system/typography">Typography</I18nLink>
+							<I18nLink href="/design-system/accordion">Accordion</I18nLink>
 						</li>
 						<li>
 							<I18nLink href="/design-system/button">Button</I18nLink>
+						</li>
+						<li>
+							<I18nLink href="/design-system/grid">Grid</I18nLink>
 						</li>
 						<li>
 							<I18nLink href="/design-system/space">Space</I18nLink>
@@ -46,10 +49,10 @@ const DesignSystem = () => {
 							<I18nLink href="/design-system/spinner">Spinner</I18nLink>
 						</li>
 						<li>
-							<I18nLink href="/design-system/accordion">Accordion</I18nLink>
+							<I18nLink href="/design-system/toggle">Toggle</I18nLink>
 						</li>
 						<li>
-							<I18nLink href="/design-system/grid">Grid</I18nLink>
+							<I18nLink href="/design-system/typography">Typography</I18nLink>
 						</li>
 					</ul>
 				</Column>
