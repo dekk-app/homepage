@@ -1,11 +1,12 @@
 export type IconName =
-	| "edit"
-	| "heartOutlined"
-	| "heartFilled"
-	| "google"
-	| "github"
-	| "close"
 	| "chevronDown"
 	| "chevronRight"
 	| "chevronLeft"
-	| "chevronUp";
+	| "chevronUp"
+	| "close"
+	| "edit"
+	| "github"
+	| "google"
+	| "heartFilled"
+	| "heartOutlined"
+	| "menu";

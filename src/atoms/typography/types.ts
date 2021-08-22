@@ -24,6 +24,7 @@ export interface TypographyProps extends HTMLAttributes<HTMLElement> {
 export interface StyledLinkProps {
 	bold?: boolean;
 	isActive?: boolean;
+	fullWidth?: boolean;
 	target?: string;
 	as?: ElementType;
 	className?: string;
