@@ -1,3 +1,4 @@
+import { StyledLink } from "@/atoms/typography/styled";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column } from "@/molecules/grid";
 import { css } from "@emotion/react";
@@ -38,6 +39,12 @@ export const StyledHeaderItemsColumn = styled(StyledHeaderColumn)<{ indented?: b
 			padding-right: ${indented ? "var(--sticky-button-width)" : 0};
 			transition: padding-right ${theme.speeds.normal};
 			will-change: padding-right;
+		}
+		${StyledLink} {
+			margin-left: ${pxToRem(theme.spaces.s)};
+			${theme.mq.m} {
+				margin-left: ${pxToRem(theme.spaces.l)};
+			}
 		}
 	`};
 `;

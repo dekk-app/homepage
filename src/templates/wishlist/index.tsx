@@ -6,10 +6,10 @@ import { RawBreadcrumb } from "@/ions/contexts/breadcrumbs/types";
 import { SigninModalProvider, useSigninModal } from "@/ions/contexts/signin-modal";
 import { WishProvider } from "@/ions/contexts/wish";
 import { useWishlist, WishlistProvider } from "@/ions/contexts/wishlist";
+import { useScrollY } from "@/ions/hooks/scroll-y";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column, Grid, Row } from "@/molecules/grid";
 import Breadcrumbs from "@/organisms/breadcrumbs";
-import { useScrollY } from "@/organisms/header";
 import WishCard from "@/organisms/wish-card";
 import { Wish } from "@/types/backend-api";
 import { css, Global } from "@emotion/react";
@@ -31,7 +31,7 @@ const Wishlist = () => {
 	const { wishes } = useWishlist();
 	const { open: openAddWishModal, isOpen: isAddWishModalOpen } = useAddWishModal();
 	const { open: openSigninModal, isOpen: isSigninModalOpen } = useSigninModal();
-	const scrollY = useScrollY();
+	const scrollY = useScrollY(true);
 	const { t } = useTranslation(["navigation", "common", "wishlist", "meta"]);
 	const breadcrumbs: RawBreadcrumb[] = useMemo(
 		() => [

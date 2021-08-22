@@ -37,6 +37,9 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId, dark }
 							<StyledFooterLink href="/about-us">
 								{t("navigation:about-us")}
 							</StyledFooterLink>
+							<StyledFooterLink href="/wishlist" data-test-id="link-to-wishlist">
+								{t("navigation:wishlist")}
+							</StyledFooterLink>
 						</StyledFooterMenu>
 					</Hidden>
 					<Hidden hideM hideL>
@@ -47,6 +50,9 @@ const Footer: FC<FooterProps> = ({ children, className, innerRef, testId, dark }
 								</StyledFooterLink>
 								<StyledFooterLink a11y href="/about-us">
 									{t("navigation:about-us")}
+								</StyledFooterLink>
+								<StyledFooterLink a11y href="/wishlist">
+									{t("navigation:wishlist")}
 								</StyledFooterLink>
 							</StyledFooterMenu>
 						</Accordion>
