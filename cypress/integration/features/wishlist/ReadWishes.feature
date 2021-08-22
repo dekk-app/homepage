@@ -10,13 +10,13 @@ Feature: Read Wishes
 			|  3 | Subject 3 | Body 3 |    10 |
 			|  4 | Subject 4 | Body 4 |    99 |
 
-	@wishlist @logged-out
+	@ignore @wishlist @logged-out
 	Scenario: User wants to view all wishes of others
 
 		When the user is on the wishlist page
 		Then the user sees all wishes
 
-	@wishlist @logged-out
+	@ignore @wishlist @logged-out
 	Scenario Outline: User wants to read a wish
 
 		When the user is on the wishlist page
