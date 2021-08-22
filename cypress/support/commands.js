@@ -30,7 +30,7 @@ Cypress.Commands.add("logout", function () {
  * @param {object} options.alias The alias of the stub
  */
 Cypress.Commands.add("gql", function (operationName, data, { alias }) {
-	cy.intercept("POST", "http://localhost:1337/graphql", req => {
+	cy.intercept("POST", Cypress.env("backendUri"), req => {
 		if (hasOperationName(req, operationName)) {
 			req.alias = alias;
 			req.reply(res => {
