@@ -21,10 +21,9 @@ import { HeaderProps } from "./types";
 const Header: FC<HeaderProps> = ({ children, className, dark, innerRef, testId }) => {
 	const { t } = useTranslation(["navigation"]);
 	const { route } = useRouter();
-	const isOnWishlist = route === "/wishlist";
-	const scrollY = useScrollY(isOnWishlist);
+	const scrollY = useScrollY(true);
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-	const isIndented = scrollY > 150;
+	const isIndented = scrollY > 150 && route === "/wishlist";
 
 	return (
 		<>
