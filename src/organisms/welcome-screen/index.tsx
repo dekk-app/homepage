@@ -30,7 +30,7 @@ const WelcomeScreen = () => {
 			</Typography>
 			<StyledLinksWrapper>
 				<I18nLink passHref bold href="/wishlist" data-test-id="link-to-wishlist">
-					{t("welcome:button")}
+					{t("welcome:to-wishlist")}
 				</I18nLink>
 				<Link passHref href="/auth/signout">
 					<StyledLink bold data-test-id="link-to-logout">

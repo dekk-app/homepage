@@ -52,6 +52,9 @@ const Header: FC<HeaderProps> = ({ children, className, dark, innerRef, testId }
 							<I18nLink href="/about-us" data-test-id="link-to-about-us">
 								{t("navigation:about-us")}
 							</I18nLink>
+							<I18nLink href="/wishlist" data-test-id="link-to-wishlist">
+								{t("navigation:wishlist")}
+							</I18nLink>
 						</Hidden>
 						<Hidden hideM hideL>
 							<IconButton
