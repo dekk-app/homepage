@@ -16,9 +16,10 @@ import { css, Global } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-import React, { FC, memo, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyledButtonWrapper, StyledWishWrapper } from "./styled";
 
+const Snackbar = dynamic(async () => import("@/molecules/snackbar"));
 const AddWishModal = dynamic(async () => import("@/organisms/add-wish-modal"));
 const SigninModal = dynamic(async () => import("@/groups/signin-modal"));
 
@@ -28,7 +29,7 @@ export interface WishlistProps {
 
 const Wishlist = () => {
 	const [session] = useSession();
-	const { wishes } = useWishlist();
+	const { wishes, error, setError } = useWishlist();
 	const { open: openAddWishModal, isOpen: isAddWishModalOpen } = useAddWishModal();
 	const { open: openSigninModal, isOpen: isSigninModalOpen } = useSigninModal();
 	const scrollY = useScrollY(true);
@@ -48,6 +49,9 @@ const Wishlist = () => {
 	);
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const [stickyButtonVar, setStickyButtonVar] = useState(css``);
+	const resetError = useCallback(() => {
+		setError(null);
+	}, [setError]);
 	useEffect(() => {
 		if (buttonRef.current) {
 			const { width } = buttonRef.current.getBoundingClientRect();
@@ -114,6 +118,11 @@ const Wishlist = () => {
 						))}
 					</Row>
 				</Column>
+				{error && (
+					<Snackbar fixed id="wishlistError" level="error" onClose={resetError}>
+						{error}
+					</Snackbar>
+				)}
 				{isAddWishModalOpen && <AddWishModal />}
 				{isSigninModalOpen && <SigninModal />}
 			</Grid>
