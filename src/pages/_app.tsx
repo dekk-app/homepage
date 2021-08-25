@@ -1,3 +1,4 @@
+import RouteLoader from "@/atoms/route-loader";
 import { CookieConsentProvider } from "@/ions/contexts/cookie-consent";
 import { CookieConsentModalProvider } from "@/ions/contexts/cookie-consent-modal";
 import { ProvidersProvider } from "@/ions/contexts/providers";
@@ -21,8 +22,8 @@ import { Provider as NextAuthProvider } from "next-auth/client";
 import { appWithTranslation } from "next-i18next";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React from "react";
+import { Router, useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 interface MyAppProps extends AppProps<PageProps> {
 	pageProps: PageProps;
@@ -31,6 +32,38 @@ interface MyAppProps extends AppProps<PageProps> {
 const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 	const apolloClient = useApollo(pageProps);
 	const { locales, defaultLocale, route } = useRouter();
+	const [loading, setLoading] = useState(false);
+	const [loaded, setLoaded] = useState(false);
+	useEffect(() => {
+		let timer: number;
+		const start = () => {
+			setLoaded(false);
+			setLoading(true);
+		};
+
+		const end = () => {
+			setLoading(false);
+			setLoaded(true);
+
+			timer = window.setTimeout(() => {
+				setLoaded(false);
+				setLoading(false);
+			}, 250);
+		};
+
+		Router.events.on("routeChangeStart", start);
+		Router.events.on("routeChangeComplete", end);
+
+		const unsubscribe = () => {
+			Router.events.off("routeChangeStart", start);
+			Router.events.off("routeChangeComplete", end);
+			window.clearTimeout(timer);
+			setLoaded(false);
+			setLoading(false);
+		};
+
+		return unsubscribe;
+	}, []);
 	return (
 		<>
 			<Global key="fontFace" styles={fontFace} />
@@ -106,6 +139,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 								<EmotionThemeProvider theme={theme}>
 									<ScrollBarWidthProvider>
 										<CookieConsentModalProvider>
+											<RouteLoader loading={loading} loaded={loaded} />
 											<Component {...pageProps} />
 										</CookieConsentModalProvider>
 									</ScrollBarWidthProvider>
