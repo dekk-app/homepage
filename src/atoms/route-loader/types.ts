@@ -1,6 +1,6 @@
 export interface StyledLoaderProps {
-	loading?: boolean;
-	loaded?: boolean;
+	isLoading?: boolean;
+	isLoaded?: boolean;
 }
 
 export interface RouteLoaderProps extends StyledLoaderProps {}

@@ -23,9 +23,9 @@ export const StyledLoader = styled.div<StyledLoaderProps>`
 		transform: scale3d(0, 1, 1);
 		transform-origin: 0 0;
 		background: ${palette.brand};
-		${({ loading, loaded }) => css`
-			transition: ${loading ? "5s" : loaded ? "0.2s" : "0s"};
-			transform: scale3d(${loading ? 0.5 : loaded ? 1 : 0}, 1, 1);
+		${({ isLoading, isLoaded }) => css`
+			transition: ${isLoading ? "5s" : isLoaded ? "0.2s" : "0s"};
+			transform: scale3d(${isLoading ? 0.5 : isLoaded ? 1 : 0}, 1, 1);
 		`};
 	}
 `;

@@ -139,7 +139,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 								<EmotionThemeProvider theme={theme}>
 									<ScrollBarWidthProvider>
 										<CookieConsentModalProvider>
-											<RouteLoader loading={loading} loaded={loaded} />
+											<RouteLoader isLoading={loading} isLoaded={loaded} />
 											<Component {...pageProps} />
 										</CookieConsentModalProvider>
 									</ScrollBarWidthProvider>
