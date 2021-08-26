@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "npx rimraf@3.0.2 node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-darwin node_modules/@dekk-app/dekk-backend/src/colonies/prisma/client/query-engine-debian-openssl-1.1.x",
     "build": "next build",
+    "build:dev": "npx cross-env@7.0.3 NODE_ENV=development next build",
     "build:analyze": "npx cross-env@7.0.3 ANALYZE=true next build",
     "cypress:run": "npx cypress@8.3.0 run --record",
     "cypress:run:firefox": "npx cypress@8.3.0 run --record  --browser firefox",
@@ -96,6 +97,7 @@
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
+    "babel-plugin-jsx-remove-data-test-id": "^3.0.0",
     "cypress-cucumber-preprocessor": "^4.2.0",
     "dotenv": "^10.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
