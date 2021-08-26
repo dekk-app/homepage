@@ -77,7 +77,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: MyAppProps) => {
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href={`/icons/apple-touch-icon.png?${pkg.version}`}
+					href={`/icons/icon-180x180.png?${pkg.version}`}
 				/>
 				<link
 					rel="icon"
