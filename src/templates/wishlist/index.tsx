@@ -1,12 +1,12 @@
 import { StyledButton } from "@/atoms/button/styled";
 import Typography from "@/atoms/typography";
 import Layout from "@/groups/layout";
-import { AddWishModalProvider, useAddWishModal } from "@/ions/contexts/add-wish-modal";
 import { RawBreadcrumb } from "@/ions/contexts/breadcrumbs/types";
-import { SigninModalProvider, useSigninModal } from "@/ions/contexts/signin-modal";
-import { WishProvider } from "@/ions/contexts/wish";
-import { useWishlist, WishlistProvider } from "@/ions/contexts/wishlist";
 import { useScrollY } from "@/ions/hooks/scroll-y";
+import { useError } from "@/ions/stores/error";
+import { useSigninModal } from "@/ions/stores/modal/signin";
+import { useAddWishModal } from "@/ions/stores/modal/wish";
+import { useWish } from "@/ions/stores/wish";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column, Grid, Row } from "@/molecules/grid";
 import Breadcrumbs from "@/organisms/breadcrumbs";
@@ -16,7 +16,7 @@ import { css, Global } from "@emotion/react";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-import React, { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyledButtonWrapper, StyledWishWrapper } from "./styled";
 
 const Snackbar = dynamic(async () => import("@/molecules/snackbar"));
@@ -27,11 +27,17 @@ export interface WishlistProps {
 	data: { wishes: Wish[] };
 }
 
-const Wishlist = () => {
+const Wishlist = ({ data: { wishes } }: WishlistProps) => {
 	const [session] = useSession();
-	const { wishes, error, setError } = useWishlist();
-	const { open: openAddWishModal, isOpen: isAddWishModalOpen } = useAddWishModal();
-	const { open: openSigninModal, isOpen: isSigninModalOpen } = useSigninModal();
+	const setError = useError(state => state.setError);
+	const error = useError(state => state.error);
+	const isAddWishModalOpen = useAddWishModal(state => state.isOpen);
+	const openAddWishModal = useAddWishModal(state => state.open);
+	const isSigninModalOpen = useSigninModal(state => state.isOpen);
+	const openSigninModal = useSigninModal(state => state.open);
+	const setId = useWish(state => state.setId);
+	const setBody = useWish(state => state.setBody);
+	const setSubject = useWish(state => state.setSubject);
 	const scrollY = useScrollY(true);
 	const { t } = useTranslation(["navigation", "common", "wishlist", "meta"]);
 	const breadcrumbs: RawBreadcrumb[] = useMemo(
@@ -92,6 +98,9 @@ const Wishlist = () => {
 								primary
 								type="button"
 								onClick={() => {
+									setId();
+									setBody();
+									setSubject();
 									openAddWishModal();
 								}}
 							>
@@ -130,20 +139,4 @@ const Wishlist = () => {
 	);
 };
 
-const MemoizedWishlist = memo(Wishlist);
-
-const StatefulWishlist: FC<WishlistProps> = ({ data }) => {
-	return (
-		<SigninModalProvider>
-			<AddWishModalProvider>
-				<WishlistProvider initialState={data?.wishes}>
-					<WishProvider>
-						<MemoizedWishlist />
-					</WishProvider>
-				</WishlistProvider>
-			</AddWishModalProvider>
-		</SigninModalProvider>
-	);
-};
-
-export default StatefulWishlist;
+export default memo(Wishlist);

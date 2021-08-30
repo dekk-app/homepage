@@ -1,14 +1,14 @@
 import Icon from "@/atoms/icon";
 import { StyledIconButton } from "@/atoms/icon-button/styled";
 import Typography from "@/atoms/typography";
-import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
-import { useWishlist } from "@/ions/contexts/wishlist";
-import { CREATE_WISH_VOTE, DELETE_WISH_VOTE } from "@/ions/queries/wishes";
+import { CREATE_WISH_VOTE, DELETE_WISH_VOTE, NEW_WISH_FRAGMENT } from "@/ions/queries/wishes";
+import { useAddWishModal } from "@/ions/stores/modal/wish";
+import { useWish } from "@/ions/stores/wish";
 import { Wish, WishVote } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
-import React, { FC, memo, useEffect } from "react";
+import React, { FC, memo } from "react";
 import {
 	StyledArticle,
 	StyledCard,
@@ -17,47 +17,76 @@ import {
 	StyledVotes,
 } from "./styled";
 
-const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted, authorId } }) => {
+const WishCard: FC<{ wish: Wish }> = ({
+	wish: { body, id, subject, votes, voted, authorId, __typename },
+}) => {
 	const [session] = useSession();
 	const { t } = useTranslation(["wishlist"]);
-	const { update: updateWish } = useWishlist();
-	const { open } = useAddWishModal();
-
-	const [createWishVote, { data: dataCreateWishVote }] = useMutation<{
+	const open = useAddWishModal(state => state.open);
+	const setId = useWish(state => state.setId);
+	const setBody = useWish(state => state.setBody);
+	const setSubject = useWish(state => state.setSubject);
+	const [createWishVote] = useMutation<{
 		createWishVote: WishVote;
 	}>(CREATE_WISH_VOTE, {
 		variables: {
 			userId: session?.user.id,
 			wishId: id,
 		},
+		update(cache, { data: { createWishVote } }) {
+			cache.modify({
+				fields: {
+					wishes(existingWishes: Wish[] = []) {
+						const newWishRef = cache.writeFragment({
+							data: {
+								__typename,
+								id,
+								body,
+								subject,
+								voted: true,
+								votes: votes + 1,
+							},
+							fragment: NEW_WISH_FRAGMENT,
+						});
+						return existingWishes.map(existingWish =>
+							existingWish.id === createWishVote.id ? newWishRef : existingWish
+						);
+					},
+				},
+			});
+		},
 	});
 
-	const [deleteWishVote, { data: dataDeleteWishVote }] = useMutation<{
+	const [deleteWishVote] = useMutation<{
 		deleteWishVote: WishVote;
 	}>(DELETE_WISH_VOTE, {
 		variables: {
 			userId: session?.user.id,
 			wishId: id,
 		},
+		update(cache, { data: { deleteWishVote } }) {
+			cache.modify({
+				fields: {
+					wishes(existingWishes: Wish[] = []) {
+						const newWishRef = cache.writeFragment({
+							data: {
+								__typename,
+								id,
+								body,
+								subject,
+								voted: false,
+								votes: votes - 1,
+							},
+							fragment: NEW_WISH_FRAGMENT,
+						});
+						return existingWishes.map(existingWish =>
+							existingWish.id === deleteWishVote.id ? newWishRef : existingWish
+						);
+					},
+				},
+			});
+		},
 	});
-
-	useEffect(() => {
-		if (dataCreateWishVote?.createWishVote) {
-			updateWish(id, (previousState: Wish) => ({
-				voted: true,
-				votes: previousState.votes + 1,
-			}));
-		}
-	}, [id, updateWish, dataCreateWishVote]);
-
-	useEffect(() => {
-		if (dataDeleteWishVote?.deleteWishVote) {
-			updateWish(id, (previousState: Wish) => ({
-				voted: false,
-				votes: previousState.votes - 1,
-			}));
-		}
-	}, [id, updateWish, dataDeleteWishVote]);
 
 	return (
 		<StyledCard colSpanS={4} colSpanL={6} data-test-selector="wish-card" data-test-id={`${id}`}>
@@ -104,7 +133,10 @@ const WishCard: FC<{ wish: Wish }> = ({ wish: { body, id, subject, votes, voted,
 							disabled={votes > 0}
 							onClick={() => {
 								if (votes < 1) {
-									open(id, subject, body);
+									setId(id);
+									setBody(body);
+									setSubject(subject);
+									open();
 								}
 							}}
 						>

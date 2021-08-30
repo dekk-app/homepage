@@ -1,3 +1,4 @@
+import RouteLoader from "@/atoms/route-loader";
 import { GlobalTypography } from "@/atoms/typography/global";
 import { BreadcrumbsProvider } from "@/ions/contexts/breadcrumbs/context";
 import { useCookieConsentModal } from "@/ions/contexts/cookie-consent-modal";
@@ -67,12 +68,15 @@ const Layout: FC<LayoutProps> = ({
 				{description && <meta itemProp="description" content={description} />}
 				{image && <meta itemProp="image" content={image} />}
 			</Head>
-			{isCookieModalOpen && !process.env.NEXT_PUBLIC_HIDE_COOKIE_CONSENT && <CookieBanner />}
+			{isCookieModalOpen && !process.env.NEXT_PUBLIC_HIDE_COOKIE_CONSENT && (
+				<CookieBanner dark={!dark} />
+			)}
 			<Header dark={dark} />
 			<BreadcrumbsProvider breadcrumbs={breadcrumbs}>
 				<Main className={className}>{children}</Main>
 			</BreadcrumbsProvider>
 			<Footer dark={dark} />
+			<RouteLoader />
 			{process.env.NODE_ENV !== "production" && <OverlayGrid />}
 		</>
 	);

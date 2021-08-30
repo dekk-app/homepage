@@ -1,12 +1,11 @@
 import Button from "@/atoms/button";
-import { StyledErrorText } from "@/atoms/error-text/styled";
 import Typography from "@/atoms/typography";
-import { useAddWishModal } from "@/ions/contexts/add-wish-modal";
-import { useWish } from "@/ions/contexts/wish";
-import { useWishlist } from "@/ions/contexts/wishlist";
 import { useLockBodyScroll } from "@/ions/hooks/body-scroll-lock";
 import { useEscapeKey } from "@/ions/hooks/escape-key";
-import { CREATE_WISH, UPDATE_WISH } from "@/ions/queries/wishes";
+import { CREATE_WISH, NEW_WISH_FRAGMENT, UPDATE_WISH } from "@/ions/queries/wishes";
+import { useError } from "@/ions/stores/error";
+import { useAddWishModal } from "@/ions/stores/modal/wish";
+import { useWish } from "@/ions/stores/wish";
 import { StyledFieldset, StyledForm } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
 import Modal, { ModalActions, ModalContent, ModalHeader } from "@/molecules/modal";
@@ -17,7 +16,7 @@ import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
@@ -25,20 +24,23 @@ const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner
 const AddWishModal = () => {
 	const [session] = useSession();
 	const { t } = useTranslation(["cancel", "form", "wishlist"]);
-	const { body, subject, changeBody, changeSubject } = useWish();
-	const { add: addWish } = useWishlist();
-	const { close, id, body: previousBody, subject: previousSubject } = useAddWishModal();
+	const setBody = useWish(state => state.setBody);
+	const setSubject = useWish(state => state.setSubject);
+	const id = useWish(state => state.id);
+	const body = useWish(state => state.body);
+	const subject = useWish(state => state.subject);
+	const setWishlistError = useError(state => state.setError);
+	const close = useAddWishModal(state => state.close);
 	useEscapeKey(close);
 	useLockBodyScroll();
 	const methods = useForm<WishFormProps>({
 		defaultValues: {
-			"wish-subject": previousSubject,
-			"wish-body": previousBody,
+			"wish-subject": subject,
+			"wish-body": body,
 		},
 	});
-	const { update: updateMyWish, setError: setWishlistError } = useWishlist();
 
-	const [createWish, { data: dataCreateWish, loading: loadingCreateWish }] = useMutation<{
+	const [createWish, { loading: loadingCreateWish }] = useMutation<{
 		createWish: Wish;
 	}>(CREATE_WISH, {
 		variables: {
@@ -46,12 +48,22 @@ const AddWishModal = () => {
 			subject,
 			body,
 		},
+		update(cache, { data: { createWish } }) {
+			cache.modify({
+				fields: {
+					wishes(existingWishes: Wish[] = []) {
+						const newWishRef = cache.writeFragment({
+							data: createWish,
+							fragment: NEW_WISH_FRAGMENT,
+						});
+						return [newWishRef, ...existingWishes];
+					},
+				},
+			});
+		},
 	});
 
-	const [
-		updateWish,
-		{ data: dataUpdateWish, error: errorUpdateWish, loading: loadingUpdateWish },
-	] = useMutation<{
+	const [updateWish, { loading: loadingUpdateWish }] = useMutation<{
 		updateWish: Wish;
 	}>(UPDATE_WISH, {
 		variables: {
@@ -59,11 +71,24 @@ const AddWishModal = () => {
 			subject,
 			body,
 		},
+		update(cache, { data: { updateWish } }) {
+			cache.modify({
+				fields: {
+					wishes(existingWishes: Wish[] = []) {
+						const newWishRef = cache.writeFragment({
+							data: updateWish,
+							fragment: NEW_WISH_FRAGMENT,
+						});
+						return existingWishes.map(existingWish =>
+							existingWish.id === updateWish.id ? newWishRef : existingWish
+						);
+					},
+				},
+			});
+		},
 	});
 
 	const loading = loadingUpdateWish || loadingCreateWish;
-	// Activate when the errors return keys
-	// const error = errorUpdateWish || errorCreateWish;
 
 	const handleSubmit = useCallback(async () => {
 		if (id) {
@@ -87,23 +112,6 @@ const AddWishModal = () => {
 		}
 	}, [id, updateWish, createWish, close, setWishlistError, t]);
 
-	// Add new wish
-	useEffect(() => {
-		if (dataCreateWish?.createWish) {
-			addWish(dataCreateWish.createWish);
-		}
-	}, [addWish, dataCreateWish]);
-
-	// Edit existing wish
-	useEffect(() => {
-		if (dataUpdateWish?.updateWish) {
-			updateMyWish(id, () => ({
-				body: dataUpdateWish.updateWish.body,
-				subject: dataUpdateWish.updateWish.subject,
-			}));
-		}
-	}, [id, updateMyWish, dataUpdateWish]);
-
 	return (
 		<Modal dark backdrop onClose={close}>
 			<ModalHeader>
@@ -114,16 +122,11 @@ const AddWishModal = () => {
 			<ModalContent>
 				<FormProvider {...methods}>
 					<Typography centered>{t("wishlist:add-wish.body")}</Typography>
-					{errorUpdateWish && (
-						<StyledErrorText>
-							{t("form:errors:CANNOT_UPDATE_VOTED_WISH")}
-						</StyledErrorText>
-					)}
 					<StyledForm noValidate onSubmit={methods.handleSubmit(handleSubmit)}>
 						<StyledFieldset>
 							<InputField
 								fullWidth
-								disabled={Boolean(errorUpdateWish)}
+								autoFocus
 								id="form:wishlist:wish-subject"
 								name="wish-subject"
 								helpText={t("form:help-texts.wish-subject")}
@@ -131,20 +134,19 @@ const AddWishModal = () => {
 									required: true,
 									minLength: 2,
 								}}
-								onChange={changeSubject}
+								onChange={setSubject}
 							/>
 							<TextArea
 								fullWidth
-								disabled={Boolean(errorUpdateWish)}
 								id="form:wishlist:wish-body"
 								name="wish-body"
 								helpText={t("form:help-texts.wish-body")}
 								validation={{ required: true, minLength: 2 }}
-								onChange={changeBody}
+								onChange={setBody}
 							/>
 						</StyledFieldset>
 						<ModalActions sticky>
-							<Button primary type="submit" disabled={Boolean(errorUpdateWish)}>
+							<Button primary type="submit">
 								{loading && <ButtonSpinner />}
 								{id
 									? t("wishlist:button.update-wish")
