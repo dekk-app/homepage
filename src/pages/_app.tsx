@@ -1,5 +1,4 @@
 import { CookieConsentProvider } from "@/ions/contexts/cookie-consent";
-import { CookieConsentModalProvider } from "@/ions/contexts/cookie-consent-modal";
 import { ScrollBarWidthProvider } from "@/ions/contexts/scrollbar-width";
 import { fontFace } from "@/ions/fonts/styles";
 import routes, { Route } from "@/ions/routes";
@@ -100,9 +99,7 @@ const App: NextPage<NextAppProps> = ({ Component, pageProps }: AppProps) => {
 						<EmotionCacheProvider value={cache}>
 							<EmotionThemeProvider theme={theme}>
 								<ScrollBarWidthProvider>
-									<CookieConsentModalProvider>
-										<Component {...pageProps} />
-									</CookieConsentModalProvider>
+									<Component {...pageProps} />
 								</ScrollBarWidthProvider>
 							</EmotionThemeProvider>
 						</EmotionCacheProvider>

@@ -1,7 +1,8 @@
 import RouteLoader from "@/atoms/route-loader";
 import { GlobalTypography } from "@/atoms/typography/global";
 import { BreadcrumbsProvider } from "@/ions/contexts/breadcrumbs/context";
-import { useCookieConsentModal } from "@/ions/contexts/cookie-consent-modal";
+import { useCookieConsentContext } from "@/ions/contexts/cookie-consent";
+import { useCookieConsentModal } from "@/ions/stores/modal/cookie-consent";
 import { globalStyles } from "@/ions/styles";
 import Footer from "@/organisms/footer";
 import Header from "@/organisms/header";
@@ -10,7 +11,7 @@ import { css, Global, useTheme } from "@emotion/react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import process from "process";
-import React, { FC, useMemo } from "react";
+import React, { FC, useEffect, useMemo } from "react";
 import { LayoutProps } from "./types";
 
 const OverlayGrid = dynamic(async () => import("@/organisms/grid-overlay"), { ssr: false });
@@ -29,8 +30,17 @@ const Layout: FC<LayoutProps> = ({
 }) => {
 	const theme = useTheme();
 	const breadcrumbs = useMemo(() => rawBreadcrumbs || [], [rawBreadcrumbs]);
-	const { isOpen: isCookieModalOpen } = useCookieConsentModal();
+	const isCookieModalOpen = useCookieConsentModal(state => state.isOpen);
+	const toggleCookieModal = useCookieConsentModal(state => state.toggle);
+	const { consent } = useCookieConsentContext();
 
+	useEffect(() => {
+		if (consent) {
+			toggleCookieModal(Object.keys(consent).length === 0);
+		} else {
+			toggleCookieModal(true);
+		}
+	}, [consent, toggleCookieModal]);
 	return (
 		<>
 			<Global key="globalStyles" styles={globalStyles} />

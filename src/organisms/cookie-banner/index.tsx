@@ -1,7 +1,7 @@
 import Button from "@/atoms/button";
 import Typography from "@/atoms/typography";
 import { useCookieConsentContext } from "@/ions/contexts/cookie-consent";
-import { useCookieConsentModal } from "@/ions/contexts/cookie-consent-modal";
+import { useCookieConsentModal } from "@/ions/stores/modal/cookie-consent";
 import { Column, Grid } from "@/molecules/grid";
 import I18nLink from "@/molecules/i18n-link";
 import Modal, { ModalActions, ModalContent, ModalHeader } from "@/molecules/modal";
@@ -12,7 +12,7 @@ import { CookieBannerProps } from "./types";
 const CookieBanner = ({ dark }: CookieBannerProps) => {
 	const { acceptAllCookies, declineAllCookies } = useCookieConsentContext();
 	const { t } = useTranslation(["cookie-banner", "navigation"]);
-	const { close } = useCookieConsentModal();
+	const close = useCookieConsentModal(state => state.close);
 
 	return (
 		<Grid>

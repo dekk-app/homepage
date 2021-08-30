@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyledInput, StyledToggle, StyledToggleWrapper } from "./styled";
 import { ToggleProps } from "./types";
 
@@ -17,4 +17,4 @@ const Toggle = ({ checked, onChange, invalid, disabled, ...props }: ToggleProps)
 	);
 };
 
-export default Toggle;
+export default memo(Toggle);

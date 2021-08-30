@@ -1,6 +1,11 @@
 import { GetServerSidePropsContext } from "next";
-import React, { createContext, FC, useContext, useMemo } from "react";
+import React, { createContext, FC, useCallback, useContext, useMemo, useState } from "react";
 import { CookieConsent, CookieConsentHookState, useCookieConsent } from "use-cookie-consent";
+import {
+	DurationCookieTypes,
+	ProvenanceCookieTypes,
+	PurposeCookieTypes,
+} from "use-cookie-consent/build/cjs/types";
 
 export const CookieConsentContext = createContext<CookieConsentHookState>({
 	consent: {},
@@ -41,6 +46,8 @@ export const CookieConsentContext = createContext<CookieConsentHookState>({
 	},
 });
 
+type CookieTypes = PurposeCookieTypes & DurationCookieTypes & ProvenanceCookieTypes;
+
 export const CookieConsentProvider: FC<{ consent?: CookieConsent }> = ({
 	children,
 	consent: defaultConsent,
@@ -54,26 +61,64 @@ export const CookieConsentProvider: FC<{ consent?: CookieConsent }> = ({
 		didDeclineAll,
 		cookies,
 	} = useCookieConsent({ defaultConsent });
+	const [localConsent, setLocalConsent] = useState(defaultConsent || consent);
+	const localAcceptAllCookies = useCallback(() => {
+		acceptAllCookies();
+		setLocalConsent(() => ({
+			necessary: true,
+			preferences: true,
+			statistics: true,
+			marketing: true,
+			firstParty: true,
+			thirdParty: true,
+			session: true,
+			persistent: true,
+		}));
+	}, [acceptAllCookies]);
+
+	const localDeclineAllCookies = useCallback(() => {
+		declineAllCookies();
+		setLocalConsent(() => ({
+			necessary: true,
+			preferences: false,
+			statistics: false,
+			marketing: false,
+			firstParty: false,
+			thirdParty: false,
+			session: false,
+			persistent: false,
+		}));
+	}, [declineAllCookies]);
+
+	const localAcceptCookies = useCallback(
+		(cookies: CookieTypes) => {
+			acceptCookies(cookies);
+			setLocalConsent(previousState => ({
+				...previousState,
+				...cookies,
+			}));
+		},
+		[acceptCookies]
+	);
 
 	const context = useMemo(
 		() => ({
-			consent: defaultConsent || consent,
-			acceptAllCookies,
-			declineAllCookies,
-			acceptCookies,
+			consent: localConsent,
+			acceptAllCookies: localAcceptAllCookies,
+			declineAllCookies: localDeclineAllCookies,
+			acceptCookies: localAcceptCookies,
 			didAcceptAll,
 			didDeclineAll,
 			cookies,
 		}),
 		[
-			consent,
-			acceptAllCookies,
-			declineAllCookies,
-			acceptCookies,
+			localConsent,
+			localAcceptAllCookies,
+			localDeclineAllCookies,
+			localAcceptCookies,
 			didAcceptAll,
 			didDeclineAll,
 			cookies,
-			defaultConsent,
 		]
 	);
 
