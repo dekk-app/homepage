@@ -4,10 +4,9 @@ import { StyledFormText } from "@/atoms/form-text/styled";
 import ButtonIcon from "@/atoms/icon/button-icon";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
-import { useProviders } from "@/ions/contexts/providers";
-import { useSigninModal } from "@/ions/contexts/signin-modal";
 import { useLockBodyScroll } from "@/ions/hooks/body-scroll-lock";
 import { useEscapeKey } from "@/ions/hooks/escape-key";
+import { useSigninModal } from "@/ions/stores/modal/signin";
 import { pxToRem } from "@/ions/utils/unit";
 import { StyledFieldset, StyledForm, StyledFormWrapper } from "@/molecules/form/styled";
 import InputField from "@/molecules/input-field";
@@ -23,9 +22,8 @@ import { FormProvider, useForm } from "react-hook-form";
 const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
 
 const SigninModal = () => {
-	const { providers } = useProviders();
 	const { t } = useTranslation(["cancel", "form", "wishlist"]);
-	const { close } = useSigninModal();
+	const close = useSigninModal(state => state.close);
 	const methods = useForm<SigninFormProps>();
 	const [loadingGoogle, setLoadingGoogle] = useState(false);
 	const [loadingGithub, setLoadingGithub] = useState(false);
@@ -35,10 +33,10 @@ const SigninModal = () => {
 
 	const handleSubmit = useCallback(
 		async (data: SigninFormProps) => {
-			await signIn(providers.email.id, { email: data.email });
+			await signIn("email", { email: data.email });
 			close();
 		},
-		[providers, close]
+		[close]
 	);
 
 	const { isSubmitting, isSubmitSuccessful } = methods.formState;
@@ -63,7 +61,7 @@ const SigninModal = () => {
 										aria-label="google"
 										onClick={() => {
 											setLoadingGoogle(true);
-											void signIn(providers.google.id);
+											void signIn("google");
 										}}
 									>
 										{loadingGoogle ? (
@@ -79,7 +77,7 @@ const SigninModal = () => {
 										aria-label="github"
 										onClick={() => {
 											setLoadingGithub(true);
-											void signIn(providers.github.id);
+											void signIn("github");
 										}}
 									>
 										{loadingGithub ? (

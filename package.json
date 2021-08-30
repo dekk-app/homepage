@@ -68,7 +68,8 @@
     "react-textarea-autosize": "8.3.3",
     "sitemap": "7.0.0",
     "tslib": "2.3.1",
-    "use-cookie-consent": "^0.1.12"
+    "use-cookie-consent": "^0.1.12",
+    "zustand": "3.5.10"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

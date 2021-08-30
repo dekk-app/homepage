@@ -57,6 +57,16 @@ export const UPDATE_WISH = gql`
 	}
 `;
 
+export const NEW_WISH_FRAGMENT = gql`
+	fragment NewWish on Wish {
+		id
+		body
+		subject
+		voted
+		votes
+	}
+`;
+
 export const USER = gql`
 	query user($email: String!) {
 		user(where: { email: $email }) {

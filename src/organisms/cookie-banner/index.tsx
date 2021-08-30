@@ -1,22 +1,23 @@
 import Button from "@/atoms/button";
 import Typography from "@/atoms/typography";
 import { useCookieConsentContext } from "@/ions/contexts/cookie-consent";
-import { useCookieConsentModal } from "@/ions/contexts/cookie-consent-modal";
+import { useCookieConsentModal } from "@/ions/stores/modal/cookie-consent";
 import { Column, Grid } from "@/molecules/grid";
 import I18nLink from "@/molecules/i18n-link";
 import Modal, { ModalActions, ModalContent, ModalHeader } from "@/molecules/modal";
 import { useTranslation } from "next-i18next";
 import React from "react";
+import { CookieBannerProps } from "./types";
 
-const CookieBanner = () => {
+const CookieBanner = ({ dark }: CookieBannerProps) => {
 	const { acceptAllCookies, declineAllCookies } = useCookieConsentContext();
 	const { t } = useTranslation(["cookie-banner", "navigation"]);
-	const { close } = useCookieConsentModal();
+	const close = useCookieConsentModal(state => state.close);
 
 	return (
 		<Grid>
 			<Column>
-				<Modal anchor="bottomRight" onClose={close}>
+				<Modal anchor="bottomRight" dark={dark} onClose={close}>
 					<ModalHeader raw>
 						<Typography raw variant="subtitle" component="h2">
 							{t("cookie-banner:headline")}
@@ -35,6 +36,7 @@ const CookieBanner = () => {
 						<Button
 							primary
 							slim
+							autoFocus
 							onClick={() => {
 								acceptAllCookies();
 							}}

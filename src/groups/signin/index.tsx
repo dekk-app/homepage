@@ -4,7 +4,6 @@ import { StyledFormText } from "@/atoms/form-text/styled";
 import ButtonIcon from "@/atoms/icon/button-icon";
 import { StyledStripe, StyledStripeWrapper } from "@/atoms/stripe/styled";
 import Typography from "@/atoms/typography";
-import { useProviders } from "@/ions/contexts/providers";
 import { pxToRem } from "@/ions/utils/unit";
 import {
 	StyledFieldset,
@@ -25,18 +24,14 @@ import { FormProvider, useForm } from "react-hook-form";
 const ButtonSpinner = dynamic(async () => import("@/atoms/spinner/button-spinner"));
 
 const Signin = () => {
-	const { providers } = useProviders();
 	const { t } = useTranslation(["form"]);
 	const methods = useForm<SigninFormProps>();
 	const [loadingGoogle, setLoadingGoogle] = useState(false);
 	const [loadingGithub, setLoadingGithub] = useState(false);
 
-	const handleSubmit = useCallback(
-		(data: SigninFormProps) => {
-			void signIn(providers.email.id, { email: data.email });
-		},
-		[providers]
-	);
+	const handleSubmit = useCallback((data: SigninFormProps) => {
+		void signIn("email", { email: data.email });
+	}, []);
 
 	const { isSubmitting, isSubmitSuccessful } = methods.formState;
 	const loading = isSubmitting || isSubmitSuccessful;
@@ -60,7 +55,7 @@ const Signin = () => {
 									aria-label="google"
 									onClick={() => {
 										setLoadingGoogle(true);
-										void signIn(providers.google.id);
+										void signIn("google");
 									}}
 								>
 									{loadingGoogle ? (
@@ -77,7 +72,7 @@ const Signin = () => {
 									aria-label="github"
 									onClick={() => {
 										setLoadingGithub(true);
-										void signIn(providers.github.id);
+										void signIn("github");
 									}}
 								>
 									{loadingGithub ? (

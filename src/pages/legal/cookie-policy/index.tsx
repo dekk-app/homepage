@@ -3,7 +3,10 @@ import ButtonGroup from "@/atoms/button/button-group";
 import Toggle from "@/atoms/toggle";
 import { StyledToggleLabel } from "@/atoms/toggle/styled";
 import Typography from "@/atoms/typography";
-import { useCookieConsentContext } from "@/ions/contexts/cookie-consent";
+import {
+	getServerSideCookieConsent,
+	useCookieConsentContext,
+} from "@/ions/contexts/cookie-consent";
 import { GET_LEGAL_PAGE } from "@/ions/queries/legal-page";
 import {
 	addApolloState,
@@ -13,9 +16,10 @@ import {
 } from "@/ions/services/apollo/client";
 import { withLoadingAndError } from "@/organisms/with-loading-and-error";
 import LegalPage from "@/templates/legal-page";
-import { PageProps, StaticPageProps } from "@/types";
+import { PageProps } from "@/types";
 import { PageCollection } from "@/types/contentful-api";
-import { GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
+import { getProviders, getSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
@@ -63,7 +67,9 @@ const Page: NextPage<PageProps> = props => {
 									<td>
 										<label>
 											<Toggle
-												checked={consent[key] as boolean}
+												checked={Boolean(
+													key === "necessary" || consent[key]
+												)}
 												disabled={key === "necessary"}
 												onChange={event_ => {
 													acceptCookies({
@@ -74,7 +80,9 @@ const Page: NextPage<PageProps> = props => {
 												}}
 											/>
 											<StyledToggleLabel>
-												{consent[key] ? t("common:yes") : t("common:no")}
+												{key === "necessary" || consent[key]
+													? t("common:yes")
+													: t("common:no")}
 											</StyledToggleLabel>
 										</label>
 									</td>
@@ -107,8 +115,9 @@ const Page: NextPage<PageProps> = props => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
 	const apolloClient = initializeApollo();
+
 	await contentfulQuery(apolloClient, {
 		query: GET_LEGAL_PAGE,
 		variables: {
@@ -117,10 +126,13 @@ export const getStaticProps: GetStaticProps = async context => {
 		},
 	});
 
-	return addApolloState<StaticPageProps>(apolloClient, {
+	return addApolloState(apolloClient, {
 		props: {
 			...(await serverSideTranslations(context.locale)),
+			session: await getSession(context),
+			providers: await getProviders(),
 			locale: context.locale,
+			consent: getServerSideCookieConsent(context),
 		},
 	});
 };

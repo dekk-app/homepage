@@ -1,7 +1,11 @@
-import React from "react";
+import { useRouteLoader } from "@/ions/hooks/route-loader";
+import React, { memo } from "react";
 import { StyledLoader } from "./styled";
-import { RouteLoaderProps } from "./types";
 
-const RouteLoader = (props: RouteLoaderProps) => <StyledLoader {...props} />;
+const RouteLoader = () => {
+	const { loaded, loading } = useRouteLoader();
 
-export default RouteLoader;
+	return <StyledLoader isLoading={loading} isLoaded={loaded} />;
+};
+
+export default memo(RouteLoader);
