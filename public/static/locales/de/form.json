@@ -6,6 +6,7 @@
   },
   "errors": {
     "minLength": "Die Mindestlänge ist {{minLength}}.",
+    "maxLength": "Die Maximallänge ist {{maxLength}}.",
     "passwordMatch": "Die Passwörter stimmen nicht überein.",
     "pattern": "Überprüfe bitte deine Eingabe.",
     "required": "Dieses Feld ist ein Pflichtfeld.",

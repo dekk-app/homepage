@@ -6,6 +6,7 @@
   },
   "errors": {
     "minLength": "The minimum length is {{minLength}}.",
+    "maxLength": "The maximum length is {{maxLength}}.",
     "passwordMatch": "The passwords do not match.",
     "pattern": "Please check your input.",
     "required": "This field is required.",

@@ -133,6 +133,7 @@ const AddWishModal = () => {
 								validation={{
 									required: true,
 									minLength: 2,
+									maxLength: 255,
 								}}
 								onChange={setSubject}
 							/>
@@ -141,7 +142,7 @@ const AddWishModal = () => {
 								id="form:wishlist:wish-body"
 								name="wish-body"
 								helpText={t("form:help-texts.wish-body")}
-								validation={{ required: true, minLength: 2 }}
+								validation={{ required: true, minLength: 2, maxLength: 65_535 }}
 								onChange={setBody}
 							/>
 						</StyledFieldset>
