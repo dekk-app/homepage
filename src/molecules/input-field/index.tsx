@@ -94,9 +94,10 @@ const InputField: FC<InputFieldProps> = ({
 			{errors[name] ? (
 				<StyledErrorText arrow>
 					<Typography raw id={`${id}_help`}>
-						{t(`form:errors.${(errors[name] as FieldError).type as string}`, {
-							minLength: 2,
-						})}
+						{t(
+							`form:errors.${(errors[name] as FieldError).type as string}`,
+							validation
+						)}
 					</Typography>
 				</StyledErrorText>
 			) : (
