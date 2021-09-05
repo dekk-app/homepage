@@ -12,7 +12,7 @@ import Modal, { ModalActions, ModalContent, ModalHeader } from "@/molecules/moda
 import TextArea from "@/molecules/textarea-field";
 import { WishFormProps } from "@/types";
 import { Wish } from "@/types/backend-api";
-import { useMutation } from "@apollo/client";
+import { ApolloError, isApolloError, useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
@@ -92,23 +92,31 @@ const AddWishModal = () => {
 
 	const handleSubmit = useCallback(async () => {
 		if (id) {
-			updateWish()
-				.then(() => {
-					close();
-				})
-				.catch(() => {
-					close();
-					setWishlistError(t("form:errors:CANNOT_UPDATE_VOTED_WISH"));
-				});
+			try {
+				await updateWish();
+				close();
+			} catch (error_: unknown) {
+				close();
+				if (isApolloError(error_ as Error)) {
+					switch ((error_ as ApolloError).message) {
+						case "CANNOT_UPDATE_VOTED_WISH":
+						case "CANNOT_UPDATE_ACCEPTED_WISH":
+							setWishlistError(t(`form:errors:${(error_ as ApolloError).message}`));
+							break;
+						default:
+							setWishlistError(t("form:errors:generic-error"));
+							break;
+					}
+				}
+			}
 		} else {
-			createWish()
-				.then(() => {
-					close();
-				})
-				.catch(() => {
-					close();
-					setWishlistError(t("form:errors:generic-error"));
-				});
+			try {
+				await createWish();
+				close();
+			} catch {
+				close();
+				setWishlistError(t("form:errors:generic-error"));
+			}
 		}
 	}, [id, updateWish, createWish, close, setWishlistError, t]);
 

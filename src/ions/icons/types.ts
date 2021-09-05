@@ -1,12 +1,16 @@
 export type IconName =
+	| "check"
+	| "checkCircleOutline"
 	| "chevronDown"
 	| "chevronRight"
 	| "chevronLeft"
 	| "chevronUp"
 	| "close"
+	| "delete"
 	| "edit"
 	| "github"
 	| "google"
 	| "heartFilled"
 	| "heartOutlined"
-	| "menu";
+	| "menu"
+	| "minusCircleOutline";

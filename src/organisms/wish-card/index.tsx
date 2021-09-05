@@ -1,24 +1,36 @@
 import Icon from "@/atoms/icon";
 import { StyledIconButton } from "@/atoms/icon-button/styled";
+import Spinner from "@/atoms/spinner";
+import { StyledTags } from "@/atoms/tag/styled";
 import Typography from "@/atoms/typography";
-import { CREATE_WISH_VOTE, DELETE_WISH_VOTE, NEW_WISH_FRAGMENT } from "@/ions/queries/wishes";
+import {
+	CREATE_WISH_VOTE,
+	DELETE_WISH_VOTE,
+	MODERATE_WISH,
+	NEW_WISH_FRAGMENT,
+} from "@/ions/queries/wishes";
 import { useAddWishModal } from "@/ions/stores/modal/wish";
 import { useWish } from "@/ions/stores/wish";
-import { Wish, WishVote } from "@/types/backend-api";
+import { pxToRem } from "@/ions/utils/unit";
+import { Moderation, Wish, WishVote } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import React, { FC, memo } from "react";
 import {
 	StyledArticle,
 	StyledCard,
+	StyledCardActions,
 	StyledIconButtonWrapper,
-	StyledTooltip,
-	StyledVotes,
+	StyledModeratorButtons,
+	StyledVote,
 } from "./styled";
 
+const Tag = dynamic(async () => import("@/atoms/tag"));
+
 const WishCard: FC<{ wish: Wish }> = ({
-	wish: { body, id, subject, votes, voted, authorId, __typename },
+	wish: { body, id, subject, votes, voted, authorId, moderate, __typename },
 }) => {
 	const [session] = useSession();
 	const { t } = useTranslation(["wishlist"]);
@@ -88,6 +100,26 @@ const WishCard: FC<{ wish: Wish }> = ({
 		},
 	});
 
+	const [moderateWish, { loading: loadingUpdateWish }] = useMutation<{
+		updateWish: Wish;
+	}>(MODERATE_WISH, {
+		update(cache, { data: { updateWish } }) {
+			cache.modify({
+				fields: {
+					wishes(existingWishes: Wish[] = []) {
+						const newWishRef = cache.writeFragment({
+							data: updateWish,
+							fragment: NEW_WISH_FRAGMENT,
+						});
+						return existingWishes.map(existingWish =>
+							existingWish.id === updateWish.id ? newWishRef : existingWish
+						);
+					},
+				},
+			});
+		},
+	});
+
 	return (
 		<StyledCard colSpanS={4} colSpanL={6} data-test-selector="wish-card" data-test-id={`${id}`}>
 			<StyledArticle>
@@ -98,10 +130,23 @@ const WishCard: FC<{ wish: Wish }> = ({
 					{body}
 				</Typography>
 			</StyledArticle>
-			<StyledVotes>
+			<StyledTags>
+				{session?.user.id === authorId && (
+					<Tag colorScheme="green">{t("wishlist:my-wish")}</Tag>
+				)}
+				{moderate === Moderation.Pending && (
+					<Tag colorScheme="yellow">{t("wishlist:pending")}</Tag>
+				)}
+				{moderate === Moderation.Declined && (
+					<Tag colorScheme="red">{t("wishlist:declined")}</Tag>
+				)}
+			</StyledTags>
+			<StyledCardActions>
 				{session ? (
 					session?.user.id === authorId ? (
-						<Icon icon="heartFilled" />
+						<StyledVote>
+							<Icon icon="heartFilled" />
+						</StyledVote>
 					) : (
 						<StyledIconButton
 							aria-label={
@@ -121,33 +166,63 @@ const WishCard: FC<{ wish: Wish }> = ({
 						</StyledIconButton>
 					)
 				) : (
-					<Icon icon="heartOutlined" />
+					<StyledVote>
+						<Icon icon="heartOutlined" />
+					</StyledVote>
 				)}
 				<Typography raw light variant="body2" data-test-selector="wish-votes">
 					{votes}
 				</Typography>
-				{session?.user.id === authorId && (
-					<StyledIconButtonWrapper>
-						<StyledIconButton
-							aria-label={t("wishlist:button.edit")}
-							disabled={votes > 0}
-							onClick={() => {
-								if (votes < 1) {
+				<StyledModeratorButtons>
+					{session?.user.id === authorId && moderate === Moderation.Pending && (
+						<StyledIconButtonWrapper>
+							<StyledIconButton
+								aria-label={t("wishlist:button.edit")}
+								onClick={() => {
 									setId(id);
 									setBody(body);
 									setSubject(subject);
 									open();
-								}
-							}}
-						>
-							<Icon icon="edit" />
-						</StyledIconButton>
-						{votes > 0 && (
-							<StyledTooltip>{t("wishlist:tooltip.disabled")}</StyledTooltip>
-						)}
-					</StyledIconButtonWrapper>
-				)}
-			</StyledVotes>
+								}}
+							>
+								<Icon icon="edit" />
+							</StyledIconButton>
+						</StyledIconButtonWrapper>
+					)}
+					{session?.user.role === "admin" && (
+						<>
+							<StyledIconButton
+								aria-label={t("wishlist:button.approve")}
+								onClick={() => {
+									void moderateWish({
+										variables: { id, moderate: Moderation.Accepted },
+									});
+								}}
+							>
+								{loadingUpdateWish ? (
+									<Spinner size={pxToRem(24)} />
+								) : (
+									<Icon icon="checkCircleOutline" />
+								)}
+							</StyledIconButton>
+							<StyledIconButton
+								aria-label={t("wishlist:button.decline")}
+								onClick={() => {
+									void moderateWish({
+										variables: { id, moderate: Moderation.Declined },
+									});
+								}}
+							>
+								{loadingUpdateWish ? (
+									<Spinner size={pxToRem(24)} />
+								) : (
+									<Icon icon="minusCircleOutline" />
+								)}
+							</StyledIconButton>
+						</>
+					)}
+				</StyledModeratorButtons>
+			</StyledCardActions>
 		</StyledCard>
 	);
 };

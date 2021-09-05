@@ -134,8 +134,8 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
-  personCollection?: Maybe<PersonCollection>;
   imageTextCollection?: Maybe<ImageTextCollection>;
+  personCollection?: Maybe<PersonCollection>;
   seoCollection?: Maybe<SeoCollection>;
 };
 
@@ -148,7 +148,7 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type AssetLinkingCollectionsPersonCollectionArgs = {
+export type AssetLinkingCollectionsImageTextCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -156,7 +156,7 @@ export type AssetLinkingCollectionsPersonCollectionArgs = {
 };
 
 
-export type AssetLinkingCollectionsImageTextCollectionArgs = {
+export type AssetLinkingCollectionsPersonCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -728,12 +728,12 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  page?: Maybe<Page>;
-  pageCollection?: Maybe<PageCollection>;
-  person?: Maybe<Person>;
-  personCollection?: Maybe<PersonCollection>;
   imageText?: Maybe<ImageText>;
   imageTextCollection?: Maybe<ImageTextCollection>;
+  person?: Maybe<Person>;
+  personCollection?: Maybe<PersonCollection>;
+  page?: Maybe<Page>;
+  pageCollection?: Maybe<PageCollection>;
   seo?: Maybe<Seo>;
   seoCollection?: Maybe<SeoCollection>;
   versionTracker?: Maybe<VersionTracker>;
@@ -759,20 +759,20 @@ export type QueryAssetCollectionArgs = {
 };
 
 
-export type QueryPageArgs = {
+export type QueryImageTextArgs = {
   id: Scalars['String'];
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryPageCollectionArgs = {
+export type QueryImageTextCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
-  where?: Maybe<PageFilter>;
-  order?: Maybe<Array<Maybe<PageOrder>>>;
+  where?: Maybe<ImageTextFilter>;
+  order?: Maybe<Array<Maybe<ImageTextOrder>>>;
 };
 
 
@@ -793,20 +793,20 @@ export type QueryPersonCollectionArgs = {
 };
 
 
-export type QueryImageTextArgs = {
+export type QueryPageArgs = {
   id: Scalars['String'];
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryImageTextCollectionArgs = {
+export type QueryPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
-  where?: Maybe<ImageTextFilter>;
-  order?: Maybe<Array<Maybe<ImageTextOrder>>>;
+  where?: Maybe<PageFilter>;
+  order?: Maybe<Array<Maybe<PageOrder>>>;
 };
 
 
