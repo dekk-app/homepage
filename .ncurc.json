@@ -1,0 +1,10 @@
+{
+  "upgrade": true,
+  "deep": true,
+  "reject": [
+    "@graphql-codegen/cli",
+    "@graphql-codegen/introspection",
+    "@graphql-codegen/typescript",
+    "@graphql-codegen/typescript-operations"
+  ]
+}
