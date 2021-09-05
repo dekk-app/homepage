@@ -43,9 +43,8 @@ function createApolloClient() {
 		cache: new InMemoryCache().restore({}),
 		defaultOptions: {
 			query: {
-				fetchPolicy: "cache-first",
-				// Enable if you want to develop with uncached data
-				// fetchPolicy: process.env.NODE_ENV === "production" ? "cache-first" : "no-cache",
+				fetchPolicy:
+					process.env.NEXT_PUBLIC_NO_CACHE === "true" ? "no-cache" : "cache-first",
 				errorPolicy: "all",
 			},
 		},
