@@ -100,7 +100,7 @@ const AddWishModal = () => {
 				if (isApolloError(error_ as Error)) {
 					switch ((error_ as ApolloError).message) {
 						case "CANNOT_UPDATE_VOTED_WISH":
-						case "CANNOT_UPDATE_ACCEPTED_WISH":
+						case "CANNOT_UPDATE_MODERATED_WISH":
 							setWishlistError(t(`form:errors:${(error_ as ApolloError).message}`));
 							break;
 						default:
