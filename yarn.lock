@@ -1136,10 +1136,10 @@
     through2 "^2.0.0"
     watchify "3.11.1"
 
-"@dekk-app/dekk-backend@1.10.0":
-  version "1.10.0"
-  resolved "https://npm.pkg.github.com/download/@dekk-app/dekk-backend/1.10.0/cb6198081c8cbc9026e01352e8ca6d46f7d652de1e9d6bc087af1153272d1e48#dfa90ebb73cded841c2a2d96440de2c85066a64e"
-  integrity sha512-RSGb/oIGghiqXBwEQmofqSOUKEsmWYuXvdv8U5umyUiSoLsZ+0R5+8bDc6qcmm1/eFAScHZvYxLXZSCpVCBVyA==
+"@dekk-app/dekk-backend@1.11.0":
+  version "1.11.0"
+  resolved "https://npm.pkg.github.com/download/@dekk-app/dekk-backend/1.11.0/0ed09e8737092a139293b480842a28267fea874b1c2e8da1f5d5d64bee7312e6#b7f17ec8a33c33d6fc2e8b64f5b5464aec5cf9a1"
+  integrity sha512-g6JzWf6ny+znFEkXYPv50U+l1eJmdXBZkJqLUCWHo3BOXFRiE2ZzCnfOLTgU6xfafzZ0zYXtm6BCnaykdXXPTA==
   dependencies:
     "@prisma/client" "^2.23.0"
     apollo-server-express "^2.21.2"
