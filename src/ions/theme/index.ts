@@ -91,11 +91,11 @@ export const grid: GridConfig = {
 export const layout: Layout = {
 	header: {
 		height: {
-			xs: 64,
-			s: 64,
-			m: 64,
-			l: 96,
-			xl: 96,
+			xs: 68,
+			s: 68,
+			m: 68,
+			l: 68,
+			xl: 68,
 		},
 	},
 };

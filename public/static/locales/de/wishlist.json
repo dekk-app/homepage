@@ -11,6 +11,8 @@
     "update-wish": "Wunsch anpassen",
     "wish": "Ich habe einen Wunsch"
   },
+  "search-wishes": "Wünsche durchsuchen",
+  "filter": "Filter",
   "pending": "Ausstehend",
   "declined": "Abgelehnt",
   "tooltip": {

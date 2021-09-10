@@ -12,7 +12,7 @@ import {
 import { useAddWishModal } from "@/ions/stores/modal/wish";
 import { useWish } from "@/ions/stores/wish";
 import { pxToRem } from "@/ions/utils/unit";
-import { Moderation, Wish, WishVote } from "@/types/backend-api";
+import { Moderation, Role, Wish, WishVote } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
 import { useTranslation } from "next-i18next";
@@ -143,7 +143,7 @@ const WishCard: FC<{ wish: Wish }> = ({
 			</StyledTags>
 			<StyledCardActions>
 				{session ? (
-					session?.user.id === authorId ? (
+					session.user.id === authorId ? (
 						<StyledVote>
 							<Icon icon="heartFilled" />
 						</StyledVote>
@@ -189,7 +189,7 @@ const WishCard: FC<{ wish: Wish }> = ({
 							</StyledIconButton>
 						</StyledIconButtonWrapper>
 					)}
-					{session?.user.role === "admin" && (
+					{session?.user.role === Role.Admin && (
 						<>
 							<StyledIconButton
 								aria-label={t("wishlist:button.approve")}

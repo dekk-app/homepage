@@ -5,7 +5,7 @@ import { Except } from "type-fest";
 export interface InputFieldProps extends Except<HTMLProps<HTMLInputElement>, "onChange"> {
 	fullWidth?: boolean;
 	autoFocus?: boolean;
-	validation: RegisterOptions;
+	validation?: RegisterOptions;
 	args?: Record<string, string | number>;
 	testId?: string;
 	helpText?: string;

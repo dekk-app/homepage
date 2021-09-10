@@ -14,7 +14,8 @@
     "CANNOT_UPDATE_VOTED_WISH": "Cannot update a wish that already has votes.",
     "CANNOT_UPDATE_MODERATED_WISH": "Cannot update a wish that has been moderated."
   },
-  "fields-labels": {
+  "field-labels": {
+    "search": "Search…",
     "confirmPassword": "Confirm password",
     "email": "E-mail address",
     "firstName": "First name",

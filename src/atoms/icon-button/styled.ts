@@ -36,7 +36,6 @@ export const StyledIconButton = styled.button`
 		}
 
 		&:focus-visible {
-			background-color: ${theme.ui.atoms.button.focus.background};
 			box-shadow: inset 0 0 0 ${theme.borders.focusRing} ${theme.ui.colors.focusRing.border};
 		}
 	`};

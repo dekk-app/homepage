@@ -5,4 +5,5 @@ export interface WishStore {
 	setId(value?: number): void;
 	setBody(value?: string): void;
 	setSubject(value?: string): void;
+	clear(): void;
 }

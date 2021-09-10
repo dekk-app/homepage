@@ -53,7 +53,7 @@
     "axios": "0.21.4",
     "date-fns": "2.23.0",
     "deepmerge": "4.2.2",
-    "focus-trap-react": "^8.7.1",
+    "focus-trap-react": "8.7.1",
     "graphql": "15.5.3",
     "lodash.isequal": "4.5.0",
     "next": "11.1.2",
@@ -68,7 +68,8 @@
     "react-textarea-autosize": "8.3.3",
     "sitemap": "7.0.0",
     "tslib": "2.3.1",
-    "use-cookie-consent": "^0.1.13",
+    "use-cookie-consent": "0.1.13",
+    "use-debounce": "7.0.0",
     "zustand": "3.5.10"
   },
   "devDependencies": {

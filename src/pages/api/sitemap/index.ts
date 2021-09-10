@@ -26,7 +26,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 
 		const defaultLocale = "en";
 		const locales: Array<"de" | "en"> = ["en", "de"];
-		const indexedRoutes: Route[] = ["/", "/wishlist", "/about-us"];
+		const indexedRoutes: Route[] = ["/", "/about-us"];
 		for (const route of indexedRoutes) {
 			smStream.write({
 				url: `${routes[route][defaultLocale]}`.replace(/\/$/, ""),

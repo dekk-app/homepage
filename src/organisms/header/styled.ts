@@ -12,13 +12,14 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
 	z-index: 1;
 	align-content: center;
 	align-items: center;
-	height: ${pxToRem(68)};
 	${({ theme, dark, elevated }) => css`
 		padding: ${pxToRem(theme.spaces.xs)} 0;
+		height: ${pxToRem(theme.layout.header.height.xs)};
 
 		${theme.mq.l} {
 			position: sticky;
 			top: 0;
+			height: ${pxToRem(theme.layout.header.height.l)};
 			background-color: ${dark
 				? theme.ui.colors.dark.background
 				: theme.ui.colors.light.background};
@@ -31,7 +32,6 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
 				background-color: ${dark
 					? setOpacity(theme.ui.colors.dark.background as HexColor, 80)
 					: setOpacity(theme.ui.colors.light.background as HexColor, 80)};
-				color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
 				backdrop-filter: blur(${pxToRem(10)}) saturate(50%);
 			}
 		}

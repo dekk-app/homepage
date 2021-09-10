@@ -45,27 +45,25 @@ const Layout: FC<LayoutProps> = ({
 		<>
 			<Global key="globalStyles" styles={globalStyles} />
 			<GlobalTypography />
-			{dark ? (
-				<Global
-					key="layout-theme"
-					styles={css`
-						body {
-							background-color: ${theme.ui.colors.dark.background};
-							color: ${theme.ui.colors.dark.color};
-						}
-					`}
-				/>
-			) : (
-				<Global
-					key="layout-theme"
-					styles={css`
-						body {
-							background-color: ${theme.ui.colors.light.background};
-							color: ${theme.ui.colors.light.color};
-						}
-					`}
-				/>
-			)}
+			<Global
+				key="layout-theme"
+				styles={
+					dark
+						? css`
+								body {
+									background-color: ${theme.ui.colors.dark.background};
+									color: ${theme.ui.colors.dark.color};
+								}
+						  `
+						: css`
+								body {
+									background-color: ${theme.ui.colors.light.background};
+									color: ${theme.ui.colors.light.color};
+								}
+						  `
+				}
+			/>
+
 			<Head>
 				<title key="title">Dekk | {title}</title>
 				{description && <meta key="description" name="description" content={description} />}

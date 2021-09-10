@@ -11,4 +11,7 @@ export const useWish = create<WishStore>(set => ({
 	setSubject: subject => {
 		set({ subject });
 	},
+	clear: () => {
+		set({ body: undefined, id: undefined, subject: undefined });
+	},
 }));
