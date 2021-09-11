@@ -11,6 +11,8 @@
     "update-wish": "Update wish",
     "wish": "I have a wish"
   },
+  "search-wishes": "Search wishes",
+  "filter": "Filter",
   "pending": "Pending",
   "declined": "Declined",
   "tooltip": {

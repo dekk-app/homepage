@@ -5,6 +5,7 @@ import { StyledInputWrapperProps } from "./types";
 
 export const StyledInputWrapper = styled.label<StyledInputWrapperProps>`
 	position: relative;
+	z-index: 0;
 	margin: 0 auto ${pxToRem(16)};
 	padding: 0;
 

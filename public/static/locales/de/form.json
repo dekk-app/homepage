@@ -14,7 +14,8 @@
     "CANNOT_UPDATE_VOTED_WISH": "Ein Wunsch mit Stimmen kann nicht bearbeitet werden.",
     "CANNOT_UPDATE_MODERATED_WISH": "Ein Wunsch der moderiert wurde kann nicht bearbeitet werden."
   },
-  "fields-labels": {
+  "field-labels": {
+    "search": "Suchen…",
     "confirmPassword": "Passwort bestätigen",
     "email": "E-Mail Adresse",
     "firstName": "Vorname",

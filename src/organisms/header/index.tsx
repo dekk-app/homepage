@@ -2,6 +2,7 @@ import Icon from "@/atoms/icon";
 import IconButton from "@/atoms/icon-button";
 import Logo from "@/atoms/logo";
 import Typography from "@/atoms/typography";
+import { useBreakpoint } from "@/ions/hooks/breakpoint";
 import { useScrollY } from "@/ions/hooks/scroll-y";
 import Drawer from "@/molecules/drawer";
 import {
@@ -21,7 +22,8 @@ import { HeaderProps } from "./types";
 const Header: FC<HeaderProps> = ({ children, className, dark, innerRef, testId }) => {
 	const { t } = useTranslation(["navigation"]);
 	const { route } = useRouter();
-	const scrollY = useScrollY(true);
+	const isLargeScreen = useBreakpoint("l");
+	const scrollY = useScrollY(isLargeScreen);
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const isIndented = scrollY > 150 && route === "/wishlist";
 

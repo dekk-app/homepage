@@ -6,6 +6,7 @@ import { StyledFloatingLabelProps } from "./types";
 export const StyledFloatingLabel = styled.span<StyledFloatingLabelProps>`
 	display: flex;
 	position: absolute;
+	z-index: 1;
 	top: ${pxToRem(30)};
 	left: ${pxToRem(24)};
 	transform-origin: 0 0;
@@ -13,6 +14,7 @@ export const StyledFloatingLabel = styled.span<StyledFloatingLabelProps>`
 	will-change: transform;
 	transition-timing-function: ease-in-out;
 	font-weight: 400;
+	white-space: nowrap;
 	${({ theme, floating, initial }) =>
 		css`
 			transition-duration: ${initial ? "0s" : theme.speeds.fast};

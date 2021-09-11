@@ -1,4 +1,5 @@
 export interface StyledWishWrapperProps {
+	elevated?: boolean;
 	dark?: boolean;
 }
 

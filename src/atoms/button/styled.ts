@@ -1,4 +1,3 @@
-import { setOpacity } from "@/ions/utils/color";
 import { pxToRem } from "@/ions/utils/unit";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -73,7 +72,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 		&:active {
 			background: ${primary
-				? `${theme.palette.brandDark} linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1))`
+				? `${theme.palette.brandDark} linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1))`
 				: theme.ui.atoms.button.active.background};
 			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
 		}
@@ -83,11 +82,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		}
 
 		&:focus-visible {
-			background: ${primary
-				? theme.palette.brandDark
-				: theme.ui.atoms.button.focus.background};
-			color: ${primary ? theme.ui.colors.primary.color : "currentColor"};
-
 			&::after {
 				content: "";
 			}
@@ -126,7 +120,14 @@ export const StyledLanguageButton = styled.button`
 		&:hover {
 			&::after {
 				content: "";
-				background: ${setOpacity(theme.palette.brand, 30)};
+				background: ${theme.ui.atoms.button.hover.background};
+			}
+		}
+
+		&:active {
+			&::after {
+				content: "";
+				background: ${theme.ui.atoms.button.active.background};
 			}
 		}
 
@@ -144,7 +145,6 @@ export const StyledLanguageButton = styled.button`
 			bottom: ${pxToRem(-theme.spaces.xs)};
 			left: ${pxToRem(-theme.spaces.xs)};
 			border-radius: ${theme.shapes.s};
-			background: ${theme.ui.atoms.button.focus.background};
 		}
 
 		${theme.mq.m} {

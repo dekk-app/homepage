@@ -6358,7 +6358,7 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.2.tgz#64bfed5cb68fe3ca78b3eb214ad97b63bedce561"
   integrity sha512-JaTY/wtrcSyvXJl4IMFHPKyFur1sE9AUqc0QnhOaJ0CxHtAoIV8pYDzeEfAaNEtGkOfq4gr3LBFmdXW5mOQFnA==
 
-focus-trap-react@^8.7.1:
+focus-trap-react@8.7.1:
   version "8.7.1"
   resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-8.7.1.tgz#a9e4dc866db5e6794bdb751cad9ddc8989598ec5"
   integrity sha512-1bCCtdZXSzYVrMEcvHfHq+706OSM5r3iZsBFXy9zbnf3+5dyCFiEVWix7Sf6jUaOgshjpyDvZHiBhSlcsO9k3A==
@@ -12167,12 +12167,17 @@ use-composed-ref@^1.0.0:
   dependencies:
     ts-essentials "^2.0.3"
 
-use-cookie-consent@^0.1.13:
+use-cookie-consent@0.1.13:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/use-cookie-consent/-/use-cookie-consent-0.1.13.tgz#0f63b647bdd09ea498be0d72181ff59470173e76"
   integrity sha512-y9Oo/WDesdS+KqM2ovlSFmVxyZ/EU0WAlNmzvsEgRmktrQO8TLvdBKSVc8qtEn59j0da11Lkf0Kb+4YgZ9/JDQ==
   dependencies:
     js-cookie "^2"
+
+use-debounce@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-7.0.0.tgz#00a67d23d4fe09905e11145a99278da06c01c880"
+  integrity sha512-4fvxEEs7ztdNMh+c497HAgysdq2+Ascem6EaDANGlCIap1JzqfL03Xw8xkYc2lShfXm4uO6PA6V5zcXN7gJdFA==
 
 use-isomorphic-layout-effect@^1.0.0:
   version "1.1.1"

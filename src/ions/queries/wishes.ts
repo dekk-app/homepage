@@ -1,8 +1,33 @@
 import { gql } from "@apollo/client";
 
 export const WISHES = gql`
-	query wishes {
-		wishes(orderBy: { createdAt: desc }) {
+	query wishes($query: String!) {
+		wishes(
+			orderBy: { createdAt: desc }
+			where: { OR: [{ subject: { contains: $query } }, { body: { contains: $query } }] }
+		) {
+			authorId
+			body
+			id
+			subject
+			voted
+			votes
+			moderate
+		}
+	}
+`;
+
+export const MY_WISHES = gql`
+	query myWishes($query: String!, $authorId: Int!) {
+		wishes(
+			orderBy: { createdAt: desc }
+			where: {
+				AND: [
+					{ OR: [{ subject: { contains: $query } }, { body: { contains: $query } }] }
+					{ authorId: { equals: $authorId } }
+				]
+			}
+		) {
 			authorId
 			body
 			id

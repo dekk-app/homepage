@@ -70,7 +70,7 @@ const TextArea: FC<TextAreaFieldProps> = ({
 					initial={isValid}
 					id={`${id}_label`}
 				>
-					{t(`form:fields-labels.${name}`)}
+					{t(`form:field-labels.${name}`)}
 					{required && <StyledRequiredIndicator>*</StyledRequiredIndicator>}
 				</StyledFloatingLabel>
 				<StyledTextArea
