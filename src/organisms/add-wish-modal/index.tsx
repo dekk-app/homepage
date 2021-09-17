@@ -101,10 +101,10 @@ const AddWishModal = () => {
 					switch ((error_ as ApolloError).message) {
 						case "CANNOT_UPDATE_VOTED_WISH":
 						case "CANNOT_UPDATE_MODERATED_WISH":
-							setWishlistError(t(`form:errors:${(error_ as ApolloError).message}`));
+							setWishlistError(t(`form:errors.${(error_ as ApolloError).message}`));
 							break;
 						default:
-							setWishlistError(t("form:errors:generic-error"));
+							setWishlistError(t("form:errors.generic-error"));
 							break;
 					}
 				}
@@ -115,7 +115,7 @@ const AddWishModal = () => {
 				close();
 			} catch {
 				close();
-				setWishlistError(t("form:errors:generic-error"));
+				setWishlistError(t("form:errors.generic-error"));
 			}
 		}
 	}, [id, updateWish, createWish, close, setWishlistError, t]);
