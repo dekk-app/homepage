@@ -116,7 +116,7 @@ const Page: NextPage<PageProps> = props => {
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async context => {
-	const apolloClient = initializeApollo(null, context.req.headers.cookie);
+	const apolloClient = initializeApollo();
 
 	await contentfulQuery(apolloClient, {
 		query: GET_LEGAL_PAGE,

@@ -43,6 +43,9 @@ const DesignSystem = () => {
 							<I18nLink href="/design-system/grid">Grid</I18nLink>
 						</li>
 						<li>
+							<I18nLink href="/design-system/pagers">Pagers</I18nLink>
+						</li>
+						<li>
 							<I18nLink href="/design-system/snackbar">Snackbar</I18nLink>
 						</li>
 						<li>

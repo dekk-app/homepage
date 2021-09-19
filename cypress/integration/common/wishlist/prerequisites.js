@@ -8,17 +8,37 @@ Given("the wishlist has {int} wishes", function (count) {
 });
 
 Given("the wishlist has the following wishes:", function (table) {
-	const wishes = table.hashes().map(({ body, id, subject, votes }) => {
+	const hashes = table.hashes();
+	const wishes = hashes.map(({ body, id, subject, votes }) => {
 		return {
 			authorId: 1,
 			body,
 			id,
 			subject,
 			voted: false,
+			moderate: "accepted",
 			votes,
 			__typename: "Wish",
 		};
 	});
 	this.count = wishes.length;
-	cy.gql("wishes", { wishes }, { alias: "gql_wishes" });
+	cy.gql([
+		{
+			operationName: "wishes",
+			data: { wishes },
+			alias: "gql_wishes",
+		},
+		// For aggregated Wishes
+		{
+			operationName: "wishesCount",
+			data: {
+				aggregateWish: {
+					count: {
+						_all: hashes.length,
+					},
+				},
+			},
+			alias: "gql_wishesCount",
+		},
+	]);
 });

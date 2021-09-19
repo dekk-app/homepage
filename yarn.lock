@@ -1139,6 +1139,13 @@
     reflect-metadata "^0.1.13"
     type-graphql "^1.1.1"
 
+"@dekk-utils/string-case@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@dekk-utils/string-case/-/string-case-0.1.2.tgz#f5eaeef0d361680d1d53a56f9bdce9a945146f2d"
+  integrity sha512-TiWTHQ1f9hHaDHo7gjx/faYinBQoPmm6JMiGhoyo044Skluha6Lx+oSDCTTBixX+bU7v62aF2n5FCtEnjoBxXg==
+  dependencies:
+    tslib "^2.3.1"
+
 "@emotion/babel-plugin@^11.3.0":
   version "11.3.0"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.3.0.tgz#3a16850ba04d8d9651f07f3fb674b3436a4fb9d7"
@@ -11564,7 +11571,7 @@ tsconfig-paths@^3.11.0, tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@2.3.1, tslib@^2, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@~2.3.0:
+tslib@2.3.1, tslib@^2, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@~2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==

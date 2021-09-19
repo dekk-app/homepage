@@ -1,10 +1,17 @@
 import { gql } from "@apollo/client";
 
 export const WISHES = gql`
-	query wishes($query: String!) {
+	query wishes($query: String!, $skip: Int!, $take: Int!, $moderate: [Moderation!]) {
 		wishes(
 			orderBy: { createdAt: desc }
-			where: { OR: [{ subject: { contains: $query } }, { body: { contains: $query } }] }
+			take: $take
+			skip: $skip
+			where: {
+				AND: [
+					{ OR: { subject: { contains: $query }, body: { contains: $query } } }
+					{ moderate: { notIn: $moderate } }
+				]
+			}
 		) {
 			authorId
 			body
@@ -17,14 +24,39 @@ export const WISHES = gql`
 	}
 `;
 
+export const WISHES_COUNT = gql`
+	query wishesCount($query: String!, $moderate: [Moderation!]) {
+		aggregateWish(
+			where: {
+				AND: [
+					{ OR: { subject: { contains: $query }, body: { contains: $query } } }
+					{ moderate: { notIn: $moderate } }
+				]
+			}
+		) {
+			count {
+				_all
+			}
+		}
+	}
+`;
+
 export const MY_WISHES = gql`
-	query myWishes($query: String!, $authorId: Int!) {
+	query myWishes(
+		$query: String!
+		$authorId: Int!
+		$skip: Int!
+		$take: Int!
+		$moderate: [Moderation!]
+	) {
 		wishes(
 			orderBy: { createdAt: desc }
+			take: $take
+			skip: $skip
 			where: {
 				AND: [
 					{ OR: [{ subject: { contains: $query } }, { body: { contains: $query } }] }
-					{ authorId: { equals: $authorId } }
+					{ authorId: { equals: $authorId }, moderate: { notIn: $moderate } }
 				]
 			}
 		) {
@@ -35,6 +67,23 @@ export const MY_WISHES = gql`
 			voted
 			votes
 			moderate
+		}
+	}
+`;
+
+export const MY_WISHES_COUNT = gql`
+	query myWishesCount($query: String!, $authorId: Int!, $moderate: [Moderation!]) {
+		aggregateWish(
+			where: {
+				AND: [
+					{ OR: [{ subject: { contains: $query } }, { body: { contains: $query } }] }
+					{ authorId: { equals: $authorId }, moderate: { notIn: $moderate } }
+				]
+			}
+		) {
+			count {
+				_all
+			}
 		}
 	}
 `;
