@@ -1,0 +1,10 @@
+overwrite: true
+hooks:
+  afterAllFileWrite: ["prettier --write"]
+generates:
+  ./src/types/backend-api.ts:
+    plugins: [typescript, typescript-operations]
+    schema: ${BACKEND_URI}
+  ./src/types/contentful-api.ts:
+    plugins: [typescript, typescript-operations]
+    schema: ${CONTENTFUL_GRAPHQL_URI}
