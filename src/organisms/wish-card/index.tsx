@@ -54,6 +54,8 @@ const WishCard: FC<{ wish: Wish }> = ({
 								__typename,
 								id,
 								body,
+								authorId,
+								moderate,
 								subject,
 								voted: true,
 								votes: votes + 1,
@@ -86,6 +88,8 @@ const WishCard: FC<{ wish: Wish }> = ({
 								id,
 								body,
 								subject,
+								authorId,
+								moderate,
 								voted: false,
 								votes: votes - 1,
 							},
@@ -132,7 +136,7 @@ const WishCard: FC<{ wish: Wish }> = ({
 			</StyledArticle>
 			<StyledTags>
 				{session?.user.id === authorId && (
-					<Tag colorScheme="green">{t("wishlist:my-wish")}</Tag>
+					<Tag colorScheme="blue">{t("wishlist:my-wish")}</Tag>
 				)}
 				{moderate === Moderation.Pending && (
 					<Tag colorScheme="yellow">{t("wishlist:pending")}</Tag>

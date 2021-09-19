@@ -13,5 +13,9 @@
   "home": "Home",
   "signin": "Sign in",
   "signout": "Sign out",
-  "updated-at": "Updated at"
+  "updated-at": "Updated at",
+  "first-page": "First page",
+  "last-page": "Last page",
+  "next-page": "Next page",
+  "previous-page": "Previous page"
 }

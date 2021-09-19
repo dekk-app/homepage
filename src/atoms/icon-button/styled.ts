@@ -15,6 +15,10 @@ export const StyledIconButton = styled.button`
 	border-radius: 50%;
 	background: none;
 	color: currentColor;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 600;
+	line-height: ${pxToRem(24)};
 
 	&:focus {
 		outline: 0;
@@ -22,6 +26,7 @@ export const StyledIconButton = styled.button`
 
 	&[disabled] {
 		opacity: 0.2;
+		pointer-events: none;
 	}
 
 	${({ theme }) => css`

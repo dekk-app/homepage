@@ -7,21 +7,22 @@ import { StyledButtonWrapperProps, StyledWishWrapperProps } from "./types";
 export const StyledStickyWrapper = styled(Column)<StyledWishWrapperProps>`
 	--padding-x: calc(var(--gap-x) / 2 + var(--grid-padding));
 
-	display: flex;
+	display: grid;
 	position: sticky;
 	z-index: 1;
 	top: 0;
 	align-content: center;
 	align-items: center;
-	justify-content: flex-end;
 	margin: 0 calc(var(--padding-x) * -1);
 	${({ theme, dark }) => css`
-		height: ${pxToRem(theme.layout.header.height.xs)};
+		min-height: ${pxToRem(theme.layout.header.height.xs)};
+		margin: 0 calc(var(--padding-x) * -1) ${pxToRem(theme.spaces.s)};
 		padding: 0 var(--padding-x);
 		background: ${dark ? theme.ui.colors.dark.background : theme.ui.colors.light.background};
 		color: ${dark ? theme.ui.colors.dark.color : theme.ui.colors.light.color};
 
 		${theme.mq.l} {
+			padding: 0 var(--padding-x);
 			background: none;
 			visibility: hidden;
 			color: inherit;
@@ -30,6 +31,7 @@ export const StyledStickyWrapper = styled(Column)<StyledWishWrapperProps>`
 `;
 
 export const StyledButtonWrapper = styled.div<StyledButtonWrapperProps>`
+	justify-self: end;
 	${({ theme, elevated }) => css`
 		${theme.mq.l} {
 			visibility: visible;
@@ -42,9 +44,9 @@ export const StyledButtonWrapper = styled.div<StyledButtonWrapperProps>`
 	`};
 `;
 
-export const StyledFiltersWrapper = styled(Column)`
+export const StyledFiltersWrapper = styled.div`
 	${({ theme }) => css`
-		padding: 0 0 ${pxToRem(theme.spaces.m)};
+		margin: 0 0 ${pxToRem(theme.spaces.s)};
 	`};
 `;
 

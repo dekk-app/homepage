@@ -25,16 +25,14 @@ const contentful = new HttpLink({
 	uri: `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}?access_token=${process.env.NEXT_PUBLIC_CONTENT_DELIVERY_API_KEY}`,
 });
 
-function createApolloClient(cookie?: string) {
+function createApolloClient() {
 	const backend = new HttpLink({
 		uri: process.env.NEXT_PUBLIC_BACKEND_URI,
 		credentials: "include",
-		headers: {
-			cookie,
-		},
 	});
 	return new ApolloClient({
 		ssrMode: typeof window === "undefined",
+		credentials: "include",
 		link: ApolloLink.split(
 			operation => {
 				return operation.getContext().clientName === "contentful";
@@ -53,8 +51,8 @@ function createApolloClient(cookie?: string) {
 	});
 }
 
-export function initializeApollo(initialState: NormalizedCacheObject = null, cookie?: string) {
-	const _apolloClient = apolloClient ?? createApolloClient(cookie);
+export function initializeApollo(initialState: NormalizedCacheObject = null) {
+	const _apolloClient = apolloClient ?? createApolloClient();
 
 	// If your page has Next.js data fetching methods that use Apollo Client, the initial state
 	// gets hydrated here

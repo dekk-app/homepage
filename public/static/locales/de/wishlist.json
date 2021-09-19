@@ -13,8 +13,10 @@
   },
   "search-wishes": "Wünsche durchsuchen",
   "filter": "Filter",
+  "hide": "Verstecken",
   "pending": "Ausstehend",
   "declined": "Abgelehnt",
+  "accepted": "Akzeptiert",
   "tooltip": {
     "disabled": "Wünsche mit Stimmen können nicht bearbeitet werden."
   },
@@ -22,5 +24,5 @@
     "headline": "Nenne uns deinen Wunsch",
     "body": "Als Dankeschön schenken wir dir ein Dekk Pro Konto"
   },
-  "my-wish": "Mein Wunsch"
+  "my-wish": "Von mir"
 }

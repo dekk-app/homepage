@@ -5,19 +5,24 @@ import { StyledTags } from "@/atoms/tag/styled";
 import Typography from "@/atoms/typography";
 import Layout from "@/groups/layout";
 import { useBreakpoint } from "@/ions/hooks/breakpoint";
+import { useObjectSnakeToCamel } from "@/ions/hooks/case";
+import { useQueryRouter } from "@/ions/hooks/query-router";
 import { useScrollY } from "@/ions/hooks/scroll-y";
-import { MY_WISHES, WISHES } from "@/ions/queries/wishes";
+import { MY_WISHES, MY_WISHES_COUNT, WISHES, WISHES_COUNT } from "@/ions/queries/wishes";
 import { useError } from "@/ions/stores/error";
 import { useSigninModal } from "@/ions/stores/modal/signin";
 import { useAddWishModal } from "@/ions/stores/modal/wish";
-import { useSearchQuery } from "@/ions/stores/query";
 import { useWish } from "@/ions/stores/wish";
+import { objectCamelToSnake } from "@/ions/utils/object";
+import { toString } from "@/ions/utils/string";
 import { pxToRem } from "@/ions/utils/unit";
 import { Column, Grid, Row } from "@/molecules/grid";
+import Hidden from "@/molecules/hidden";
 import Breadcrumbs from "@/organisms/breadcrumbs";
+import Pager, { config } from "@/organisms/pager";
 import SearchField from "@/organisms/search-field";
 import WishCard from "@/organisms/wish-card";
-import { Wish } from "@/types/backend-api";
+import { AggregateWish, Wish } from "@/types/backend-api";
 import { useQuery } from "@apollo/client";
 import { css, Global, useTheme } from "@emotion/react";
 import { useSession } from "next-auth/client";
@@ -36,10 +41,126 @@ const Snackbar = dynamic(async () => import("@/molecules/snackbar"));
 const AddWishModal = dynamic(async () => import("@/organisms/add-wish-modal"));
 const SigninModal = dynamic(async () => import("@/groups/signin-modal"));
 
+const toggleItemInArray = (array: string[], value: string) => {
+	if (array.includes(value)) {
+		array.splice(array.indexOf(value), 1);
+	} else {
+		array.push(value);
+	}
+
+	return array;
+};
+
+const toggleItemInString = (string: string, value: string) =>
+	toggleItemInArray(string.split(",").filter(Boolean), value).sort().join(",");
+
+const SearchFilters = () => {
+	const { t } = useTranslation(["common"]);
+	const [session] = useSession();
+	const { push: queryPush, query: routerQuery } = useQueryRouter();
+	const { authorId, moderateNotIn = "" } = useObjectSnakeToCamel(routerQuery);
+	return (
+		session && (
+			<StyledFiltersWrapper>
+				<Row>
+					<Column>
+						<Typography variant="subtitle">{t("wishlist:filter")}</Typography>
+						<StyledTags>
+							<Tag
+								colorScheme={
+									authorId &&
+									Number.parseInt(authorId as string, 10) === session.user.id
+										? "blue"
+										: "dark"
+								}
+								as="button"
+								onClick={() => {
+									void queryPush(
+										objectCamelToSnake({
+											authorId:
+												authorId &&
+												Number.parseInt(authorId as string, 10) ===
+													session.user.id
+													? null
+													: toString(session.user.id as number),
+											page: null,
+											moderateNotIn: null,
+										})
+									);
+								}}
+							>
+								{t("wishlist:my-wish")}
+							</Tag>
+							<Tag
+								colorScheme={moderateNotIn.includes("accepted") ? "dark" : "blue"}
+								as="button"
+								onClick={() => {
+									void queryPush(
+										objectCamelToSnake({
+											moderateNotIn:
+												toggleItemInString(
+													moderateNotIn as string,
+													"accepted"
+												) || null,
+											page: null,
+										})
+									);
+								}}
+							>
+								{t("wishlist:accepted")}
+							</Tag>
+							<Tag
+								colorScheme={moderateNotIn.includes("pending") ? "dark" : "blue"}
+								as="button"
+								onClick={() => {
+									void queryPush(
+										objectCamelToSnake({
+											moderateNotIn:
+												toggleItemInString(
+													moderateNotIn as string,
+													"pending"
+												) || null,
+											page: null,
+										})
+									);
+								}}
+							>
+								{t("wishlist:pending")}
+							</Tag>
+							<Tag
+								colorScheme={moderateNotIn.includes("declined") ? "dark" : "blue"}
+								as="button"
+								onClick={() => {
+									void queryPush(
+										objectCamelToSnake({
+											moderateNotIn:
+												toggleItemInString(
+													moderateNotIn as string,
+													"declined"
+												) || null,
+											page: null,
+										})
+									);
+								}}
+							>
+								{t("wishlist:declined")}
+							</Tag>
+						</StyledTags>
+					</Column>
+				</Row>
+			</StyledFiltersWrapper>
+		)
+	);
+};
+
+export const INITIAL_PAGE_SIZE = 12;
+
 const Wishlist = () => {
 	const theme = useTheme();
 	const [session] = useSession();
+	const { query } = useQueryRouter();
 	const { t } = useTranslation(["navigation", "common", "wishlist", "meta"]);
+	const darkMode = false;
 
 	// References
 	const offsetRef = useRef<HTMLDivElement>(null);
@@ -61,9 +182,18 @@ const Wishlist = () => {
 
 	const clearWish = useWish(state => state.clear);
 
-	const query = useSearchQuery(state => state.query);
-
-	const [authorId, setAuthorId] = useState<null | number>(null);
+	const objectQuery = useObjectSnakeToCamel(query);
+	const pageSize = objectQuery.pageSize
+		? Number.parseInt(objectQuery.pageSize as string, 10)
+		: INITIAL_PAGE_SIZE;
+	const page = objectQuery.page ? Number.parseInt(objectQuery.page as string, 10) - 1 : 0;
+	const authorId = objectQuery.authorId
+		? Number.parseInt(objectQuery.authorId as string, 10)
+		: null;
+	const moderate = objectQuery.moderateNotIn
+		? (objectQuery.moderateNotIn as string).split(",")
+		: [];
+	const searchQuery = objectQuery.searchQuery ?? "";
 
 	const [stickyButtonVar, setStickyButtonVar] = useState(css``);
 	const [offsetObject, setOffsetObject] = useState({
@@ -71,15 +201,29 @@ const Wishlist = () => {
 		top: 272,
 	});
 
-	const [debouncedQuery] = useDebounce(query.trim(), 1000);
+	const [debouncedQuery] = useDebounce((searchQuery as string).trim(), 1000);
 
 	// Graphql & Data Management
 	const { data, loading } = useQuery<{ wishes: Wish[] }>(authorId ? MY_WISHES : WISHES, {
 		variables: {
 			query: debouncedQuery,
 			authorId,
+			take: pageSize,
+			skip: pageSize * page,
+			moderate,
 		},
 	});
+
+	const { data: dataCount } = useQuery<{ aggregateWish: AggregateWish }>(
+		authorId ? MY_WISHES_COUNT : WISHES_COUNT,
+		{
+			variables: {
+				query: debouncedQuery,
+				authorId,
+				moderate,
+			},
+		}
+	);
 
 	// Side-effects
 	useEffect(() => {
@@ -103,6 +247,7 @@ const Wishlist = () => {
 
 	return (
 		<Layout
+			dark={darkMode}
 			title={t("meta:wishlist.title")}
 			description={t("meta:wishlist.description")}
 			keywords={t("meta:wishlist.keywords")}
@@ -131,34 +276,28 @@ const Wishlist = () => {
 				<Column innerRef={offsetRef} colSpanL={6} order={-1}>
 					<SearchField label={t("wishlist:search-wishes")} />
 				</Column>
-				<StyledFiltersWrapper>
-					{session && (
-						<>
-							<Typography variant="subtitle">{t("wishlist:filter")}</Typography>
-							<StyledTags>
-								<Tag
-									colorScheme={authorId ? "green" : "dark"}
-									as="button"
-									onClick={() => {
-										setAuthorId(previousState =>
-											typeof previousState === "number"
-												? null
-												: (session.user.id as number)
-										);
-									}}
-								>
-									{t("wishlist:my-wish")}
-								</Tag>
-							</StyledTags>
-						</>
+				<Column>
+					<SearchFilters />
+					{dataCount?.aggregateWish && (
+						<Pager
+							items={dataCount.aggregateWish.count._all}
+							pageSize={{ property: "pageSize", step: pageSize }}
+							elements={{
+								currentPage: dataCount.aggregateWish.count._all / pageSize > 1,
+								toPrevious: dataCount.aggregateWish.count._all / pageSize > 1,
+								toNext: dataCount.aggregateWish.count._all / pageSize > 1,
+								toLast: false,
+								toFirst: false,
+							}}
+							property="page"
+						/>
 					)}
-				</StyledFiltersWrapper>
-				<StyledStickyWrapper colSpanL={6} order={-1}>
+				</Column>
+				<StyledStickyWrapper dark={darkMode} colSpanL={6} order={-1}>
 					<StyledButtonWrapper ref={buttonRef} elevated={isStickyButtonElevated}>
 						{session ? (
 							<Button
 								primary
-								slim
 								type="button"
 								onClick={() => {
 									clearWish();
@@ -170,7 +309,6 @@ const Wishlist = () => {
 						) : (
 							<Button
 								primary
-								slim
 								type="button"
 								onClick={() => {
 									openSigninModal();
@@ -193,6 +331,17 @@ const Wishlist = () => {
 							<WishCard key={wish.id} wish={wish} />
 						))}
 					</Row>
+					{dataCount && (
+						<Hidden hideXS hideS>
+							<Pager
+								fullWidth
+								items={dataCount.aggregateWish.count._all}
+								pageSize={{ property: "pageSize", step: INITIAL_PAGE_SIZE }}
+								elements={config.full}
+								property="page"
+							/>
+						</Hidden>
+					)}
 				</Column>
 				{error && (
 					<Snackbar

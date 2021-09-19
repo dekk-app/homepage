@@ -22,6 +22,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	margin: 0;
 	padding: 0 ${pxToRem(24)};
 	border: 0;
+	font-family: inherit;
 	font-size: ${pxToRem(16)};
 	font-weight: 600;
 	line-height: ${pxToRem(24)};

@@ -29,13 +29,15 @@ Cypress.Commands.add("logout", function () {
  * @param {object} options Additional options to configure the stub
  * @param {object} options.alias The alias of the stub
  */
-Cypress.Commands.add("gql", function (operationName, data, { alias }) {
+Cypress.Commands.add("gql", function (...operations) {
 	cy.intercept("POST", Cypress.env("backendUri"), req => {
-		if (hasOperationName(req, operationName)) {
-			req.alias = alias;
-			req.reply(res => {
-				res.body.data = data;
-			});
-		}
+		operations.forEach(({ operationName, data, alias }) => {
+			if (hasOperationName(req, operationName)) {
+				req.alias = alias;
+				req.reply(res => {
+					res.body.data = data;
+				});
+			}
+		});
 	});
 });

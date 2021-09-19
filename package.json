@@ -43,6 +43,7 @@
     "@contentful/rich-text-react-renderer": "15.4.0",
     "@contentful/rich-text-types": "15.3.6",
     "@dekk-app/dekk-backend": "1.11.0",
+    "@dekk-utils/string-case": "0.1.2",
     "@emotion/cache": "11.4.0",
     "@emotion/core": "11.0.0",
     "@emotion/react": "11.4.1",
@@ -70,6 +71,7 @@
     "sitemap": "7.0.0",
     "tslib": "2.3.1",
     "use-cookie-consent": "0.1.15",
+    "use-dark-mode": "2.3.1",
     "use-debounce": "7.0.0",
     "zustand": "3.5.10"
   },
