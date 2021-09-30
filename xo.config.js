@@ -8,6 +8,7 @@ module.exports = {
 		"public",
 		"migrations",
 		"*.config.js",
+		"server.js",
 		"next-env.d.ts",
 		"types/*.d.ts",
 		"src/types/contentful-api.ts",
