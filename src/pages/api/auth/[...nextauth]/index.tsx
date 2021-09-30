@@ -8,9 +8,10 @@ import Providers from "next-auth/providers";
 import process from "process";
 
 const prisma = new PrismaClient();
-const useSecureCookies = process.env.NEXTAUTH_URL.startsWith('https://')
-const cookiePrefix = useSecureCookies ? '__Secure-' : ''
-const hostName = new URL(process.env.NEXTAUTH_URL).hostname
+const useSecureCookies = process.env.NEXTAUTH_URL.startsWith("https://");
+const cookiePrefix = useSecureCookies ? "__Secure-" : "";
+const hostName = new URL(process.env.NEXTAUTH_URL).hostname;
+const domain = hostName === "localhost" ? hostName : "." + hostName;
 
 /* eslint-disable new-cap */
 export default NextAuth({
@@ -41,24 +42,24 @@ export default NextAuth({
 		// Allow cookies on sub-domains (like api.dekk.app) by adding
 		// a . infront of the hostname (like .dekk.app)
 		sessionToken: {
-		  name: `${cookiePrefix}next-auth.session-token`,
-		  options: {
-			httpOnly: true,
-			sameSite: 'lax',
-			path: '/',
-			secure: useSecureCookies,
-			domain: hostName == 'localhost' ? hostName : '.' + hostName
-		  }
+			name: `${cookiePrefix}next-auth.session-token`,
+			options: {
+				httpOnly: true,
+				sameSite: "lax",
+				path: "/",
+				secure: useSecureCookies,
+				domain,
+			},
 		},
 		csrfToken: {
 			name: `${cookiePrefix}next-auth.csrf-token`,
 			options: {
-			  httpOnly: true,
-			  sameSite: 'lax',
-			  path: '/',
-			  secure: useSecureCookies,
-			  domain: hostName == 'localhost' ? hostName : '.' + hostName
-			}
+				httpOnly: true,
+				sameSite: "lax",
+				path: "/",
+				secure: useSecureCookies,
+				domain,
+			},
 		},
 	},
 
