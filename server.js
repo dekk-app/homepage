@@ -1,8 +1,5 @@
 /**
- * A server that can be used for local SSL testing by running
- * yarn dev:local
- *
- * This also disabled SSL cert check via NODE_TLS_REJECT_UNAUTHORIZED=0
+ * A server that can be used for local SSL testing
  */
 const https = require("https");
 const fs = require("fs");
