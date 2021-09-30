@@ -25,6 +25,7 @@ export interface PageProps {
 	locale: string;
 	[APOLLO_STATE_PROP_NAME]?: NormalizedCacheObject;
 	consent: CookieConsent | null;
+	cookie: string;
 }
 
 export interface StaticPageProps {
