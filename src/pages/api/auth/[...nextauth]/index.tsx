@@ -8,6 +8,9 @@ import Providers from "next-auth/providers";
 import process from "process";
 
 const prisma = new PrismaClient();
+const useSecureCookies = process.env.NEXTAUTH_URL.startsWith('https://')
+const cookiePrefix = useSecureCookies ? '__Secure-' : ''
+const hostName = new URL(process.env.NEXTAUTH_URL).hostname
 
 /* eslint-disable new-cap */
 export default NextAuth({
@@ -33,6 +36,31 @@ export default NextAuth({
 	],
 	adapter: Adapters.Prisma.Adapter({ prisma }),
 	secret: process.env.SECRET,
+
+	cookies: {
+		// Allow cookies on sub-domains (like api.dekk.app) by adding
+		// a . infront of the hostname (like .dekk.app)
+		sessionToken: {
+		  name: `${cookiePrefix}next-auth.session-token`,
+		  options: {
+			httpOnly: true,
+			sameSite: 'lax',
+			path: '/',
+			secure: useSecureCookies,
+			domain: hostName == 'localhost' ? hostName : '.' + hostName
+		  }
+		},
+		csrfToken: {
+			name: `${cookiePrefix}next-auth.csrf-token`,
+			options: {
+			  httpOnly: true,
+			  sameSite: 'lax',
+			  path: '/',
+			  secure: useSecureCookies,
+			  domain: hostName == 'localhost' ? hostName : '.' + hostName
+			}
+		},
+	},
 
 	// @TODO: Use https://github.com/praveenweb/next-auth-hasura-example/blob/main/pages/api/auth/%5B...nextauth%5D.js
 	// to make sure the JWT is send in the session
