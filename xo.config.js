@@ -13,6 +13,7 @@ module.exports = {
 		"src/types/contentful-api.ts",
 		"src/types/backend-api.ts",
 		"src/types/units.ts",
+		"server.js",
 	],
 	plugins: ["prettier"],
 	env: ["browser", "node"],

@@ -16,7 +16,7 @@
     "cypress:run-local:chrome": "npx cypress@8.3.0 run --browser chrome",
     "cypress:open": "npx cypress@8.3.0 open",
     "dev": "next",
-    "dev:local": "PORT=3000 node ./server.js",
+    "dev:local": "PORT=3000 NODE_TLS_REJECT_UNAUTHORIZED=0 node ./server.js",
     "graphql:setup": "node prepare/graphql-setup.js",
     "graphql:types": "graphql-codegen --require dotenv/config --config codegen.yml",
     "lint": "yarn tsc:noEmit && yarn xo && yarn stylelint && next lint",
