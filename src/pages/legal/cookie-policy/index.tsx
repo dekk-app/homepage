@@ -133,7 +133,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			providers: await getProviders(),
 			locale: context.locale,
 			consent: getServerSideCookieConsent(context),
-			cookie: context.req.headers.cookie,
+			cookie: context.req.headers.cookie || null,
 		},
 	});
 };
