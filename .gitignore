@@ -62,6 +62,7 @@ sentry.properties
 .npmrc
 contentful.graphql
 api.graphql
+ssl
 
 
 # Cypress
