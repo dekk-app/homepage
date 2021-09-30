@@ -103,8 +103,11 @@ export const addApolloState = <Props = PageProps>(
 	return pageProps;
 };
 
-export const useApollo = (pageProps: PageProps) =>
-	useMemo(() => initializeApollo(pageProps[APOLLO_STATE_PROP_NAME]), [pageProps]);
+export const useApollo = (pageProps: PageProps, cookie?: string) =>
+	useMemo(
+		() => initializeApollo(pageProps[APOLLO_STATE_PROP_NAME], pageProps.cookie),
+		[pageProps]
+	);
 
 export const useContentfulQuery = <
 	TData extends Record<string, unknown> = any,
