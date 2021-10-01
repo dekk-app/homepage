@@ -12,7 +12,7 @@ Then("the user sees all wishes", function () {
 Then("the wish with id {int} has {string} {string}", function (id, element, text) {
 	const elements = {
 		body: dataTestSelector("wish-body"),
-		subject: dataTestSelector("wish-subject"),
+		subject: dataTestSelector("accordion-header"),
 		votes: dataTestSelector("wish-votes"),
 	};
 	cy.get(dataTestId(id)).find(elements[element]).should("contain", text);

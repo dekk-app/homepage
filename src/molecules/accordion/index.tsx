@@ -1,7 +1,12 @@
 import Icon from "@/atoms/icon";
 import React, { FC, useState } from "react";
 import { FAQ_SCHEMA } from "./constants";
-import { StyledAccordionButton, StyledAccordionContent, StyledAccordionHeading } from "./styled";
+import {
+	StyledAccordionButton,
+	StyledAccordionContent,
+	StyledAccordionHeading,
+	StyledAccordionLabel,
+} from "./styled";
 import { AccordionProps } from "./types";
 
 const Accordion: FC<AccordionProps> = ({
@@ -9,6 +14,7 @@ const Accordion: FC<AccordionProps> = ({
 	headerComponent,
 	faq,
 	heading,
+	ellipsis,
 	id,
 	initiallyExpanded,
 }) => {
@@ -20,7 +26,7 @@ const Accordion: FC<AccordionProps> = ({
 			itemProp={schema ? "mainEntity" : undefined}
 			itemType={schema?.parentType || undefined}
 		>
-			<StyledAccordionHeading as={headerComponent}>
+			<StyledAccordionHeading as={headerComponent} data-test-selector="accordion-header">
 				<StyledAccordionButton
 					role="button"
 					aria-expanded={expanded ? "true" : "false"}
@@ -31,7 +37,9 @@ const Accordion: FC<AccordionProps> = ({
 						setExpanded(previousState => !previousState);
 					}}
 				>
-					{heading}
+					<StyledAccordionLabel ellipsis={ellipsis && !expanded}>
+						{heading}
+					</StyledAccordionLabel>
 					<Icon icon={expanded ? "chevronUp" : "chevronDown"} />
 				</StyledAccordionButton>
 			</StyledAccordionHeading>
@@ -43,6 +51,7 @@ const Accordion: FC<AccordionProps> = ({
 				itemProp={schema?.childProp || undefined}
 				itemType={schema?.childType || undefined}
 				isExpanded={expanded}
+				data-test-selector="accordion-content"
 			>
 				{children}
 			</StyledAccordionContent>

@@ -1,3 +1,4 @@
+import { BreakLines } from "@/atoms/break-lines";
 import Icon from "@/atoms/icon";
 import { StyledIconButton } from "@/atoms/icon-button/styled";
 import Spinner from "@/atoms/spinner";
@@ -12,6 +13,7 @@ import {
 import { useAddWishModal } from "@/ions/stores/modal/wish";
 import { useWish } from "@/ions/stores/wish";
 import { pxToRem } from "@/ions/utils/unit";
+import Accordion from "@/molecules/accordion";
 import { Moderation, Role, Wish, WishVote } from "@/types/backend-api";
 import { useMutation } from "@apollo/client";
 import { useSession } from "next-auth/client";
@@ -38,6 +40,7 @@ const WishCard: FC<{ wish: Wish }> = ({
 	const setId = useWish(state => state.setId);
 	const setBody = useWish(state => state.setBody);
 	const setSubject = useWish(state => state.setSubject);
+
 	const [createWishVote] = useMutation<{
 		createWishVote: WishVote;
 	}>(CREATE_WISH_VOTE, {
@@ -123,12 +126,11 @@ const WishCard: FC<{ wish: Wish }> = ({
 	return (
 		<StyledCard colSpanS={4} colSpanL={6} data-test-selector="wish-card" data-test-id={`${id}`}>
 			<StyledArticle>
-				<Typography variant="subtitle" component="h2" data-test-selector="wish-subject">
-					{subject}
-				</Typography>
-				<Typography light variant="body2" data-test-selector="wish-body">
-					{body}
-				</Typography>
+				<Accordion ellipsis heading={subject} id={`__wish-card__${id}`}>
+					<Typography light variant="body2" data-test-selector="wish-body">
+						<BreakLines text={body} />
+					</Typography>
+				</Accordion>
 			</StyledArticle>
 			<StyledTags>
 				{session?.user.id === authorId && (

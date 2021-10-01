@@ -4,6 +4,16 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { AccordionContentProps } from "./types";
 
+export const StyledAccordionLabel = styled.div<{ ellipsis?: boolean }>`
+	width: 100%;
+	${({ ellipsis }) =>
+		ellipsis &&
+		css`
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		`};
+`;
 export const StyledAccordionButton = styled.button`
 	display: flex;
 	position: relative;
