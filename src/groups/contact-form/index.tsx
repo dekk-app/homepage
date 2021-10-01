@@ -6,7 +6,7 @@ import InputField from "@/molecules/input-field";
 import TextArea from "@/molecules/textarea-field";
 import Transdown from "@/organisms/transdown";
 import { ContactFormProps } from "@/types";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -27,10 +27,10 @@ const ContactForm = () => {
 		async (data: ContactFormProps) => {
 			setLoading(true);
 			try {
-				const response = await axios.post<{ status?: number; error?: unknown }>(
-					`/api/mail?locale=${locale}`,
-					data
-				);
+				const response = await axios.post<
+					ContactFormProps,
+					AxiosResponse<{ status?: number; error?: unknown }>
+				>(`/api/mail?locale=${locale}`, data);
 				switch (response.data.status) {
 					case 200:
 						setContactSuccess(true);
