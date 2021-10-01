@@ -56,3 +56,16 @@ To start developing start the next.js development script and open http://localho
 ```sh
 yarn dev
 ```
+
+### Develop with SSL
+
+* Create a SSL certificate by executing the following command on the CLI in the project root which will generate a folder `ssl` with two files:
+
+```bash
+mkdir ssl && openssl req -x509 -out ssl/localhost.crt -keyout ssl/localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```
+
+* Start the dev-server: `yarn dev:ssl`

@@ -31,6 +31,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async context =
 			session,
 			locale: context.locale,
 			consent: getServerSideCookieConsent(context),
+			cookie: context.req.headers.cookie || null,
 		},
 	});
 };
