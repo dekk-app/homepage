@@ -1,6 +1,8 @@
 export type IconName =
 	| "check"
 	| "checkCircleOutline"
+	| "chevronDoubleLeft"
+	| "chevronDoubleRight"
 	| "chevronDown"
 	| "chevronRight"
 	| "chevronLeft"

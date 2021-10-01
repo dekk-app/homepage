@@ -13,5 +13,9 @@
   "home": "Home",
   "signin": "Anmelden",
   "signout": "Abmelden",
-  "updated-at": "Aktualisiert am"
+  "updated-at": "Aktualisiert am",
+  "first-page": "Erste Seite",
+  "last-page": "Letzte Seite",
+  "next-page": "Nächste Seite",
+  "previous-page": "Vorherige Seite"
 }

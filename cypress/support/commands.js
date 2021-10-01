@@ -22,20 +22,17 @@ Cypress.Commands.add("logout", function () {
 	cy.clearCookie("next-auth.session-token");
 });
 
-/**
- * Stub a graphql call in cypress.
- * @param {string} operationName The name of the operation
- * @param {object} data The response body data
- * @param {object} options Additional options to configure the stub
- * @param {object} options.alias The alias of the stub
- */
-Cypress.Commands.add("gql", function (operationName, data, { alias }) {
+Cypress.Commands.add("gql", function (operations) {
 	cy.intercept("POST", Cypress.env("backendUri"), req => {
-		if (hasOperationName(req, operationName)) {
-			req.alias = alias;
-			req.reply(res => {
-				res.body.data = data;
-			});
+		for (const { operationName, data, alias } of operations) {
+			if (hasOperationName(req, operationName)) {
+				if (alias) {
+					req.alias = alias;
+				}
+				req.reply(res => {
+					res.body.data = data;
+				});
+			}
 		}
 	});
 });
